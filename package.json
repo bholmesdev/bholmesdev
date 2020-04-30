@@ -1,0 +1,32 @@
+{
+  "name": "bholmesdev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "livereload": "^0.8.2",
+    "rollup": "^1.27.14",
+    "rollup-plugin-babel": "^4.3.3",
+    "serve": "^11.2.0",
+    "showdown": "^1.9.1"
+  },
+  "dependencies": {},
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "entry",
+          "corejs": "2.x"
+        }
+      ]
+    ]
+  },
+  "browserslist": "> 0.25%, not dead",
+  "scripts": {
+    "start": "(MODE=dev node build.js) & serve public -l 3000",
+    "build": "node build.js"
+  }
+}
