@@ -5,9 +5,10 @@
 <div id="dashed-line" />
 </nav>
 
-<section class="header">
+<div style="--section-color: var(--green)" markdown>
+<section class="me-header">
   <img width="600" height="600" src="/static/me.jpg" alt="Hand-drawn portrait of Ben Holmes">
-  <div class="header-text" markdown>
+  <div class="me-header__content" markdown>
 
 # Ben Holmes
 
@@ -23,8 +24,8 @@
 </div>
 </section>
 
-<section class="me-description">
-<div class="content-header social-links" markdown>
+<section class="me">
+<div class="me-section-header social-links" markdown>
 
 ## In brief.
 
@@ -34,7 +35,7 @@
 
 </div>
 
-<div class="content" markdown>
+<div markdown>
 I first got into software development not through algorithms, not unit testing, not objected-oriented principles... none of the hirable buzzwords. Back in high school, I was wrestling with Java concepts because _I love making shiny pixels move around on a screen._
 
 Back then, it was in the pursuit of inefficient, spaghetti-coded video games. Now, I've channeled a love for graphics into _**web development and design**_. I spent most of my time at Georgia Tech figuring out the sexiest frameworks to use, the most impactful way to apply my novice knowledge, and how to teach others at a beginner's level. I'm just entering the working world as an adult-in-denial, so I hope [my lessons learned along the way](https://dev.to/bholmesdev) end up helping you!
@@ -42,19 +43,19 @@ Back then, it was in the pursuit of inefficient, spaghetti-coded video games. No
 </section>
 
 <div style="--section-color: var(--red)" markdown>
-<section id="teach" class="me-description">
-<div class="content-header" markdown>
+<section id="teach" class="me">
+<div class="me-section-header in-brief" markdown>
 
 ## I teach.
 
-<p class="in-brief-header">In brief...</p>
+<p class="me-section-header__in-brief-label">In brief...</p>
 
 - Learning web dev sucks and I want to help
 - Co-authored fullstack bootcamp with in-person workshops
 - Became Top 500 author on DEV.to in 2019
 
 </div>
-<div class="content" markdown>
+<div markdown>
 
 Let's be honest, picking up web development ain't easy. I spent years banging my head against Codecademy tutorials and W3schools to vertically center a div (and the top Stack Overflow answer is still wrong 😑). What's even worse is how disconnected university CS curricula ends up feeling compared to _useful_ web development concepts.
 
@@ -65,9 +66,9 @@ So, I got tired of sitting in silence. I started a blog back in 2019 as a place 
 
 
 
-<section id="bootcamp" class="me-description">
+<section id="bootcamp" class="me">
 
-<a class="image-link" href="https://www.notion.so/gtbitsofgood/Bootcamp-b1fe164df73e42d3b9c2ab0755e4ca49">
+<a class="img-link" href="https://www.notion.so/gtbitsofgood/Bootcamp-b1fe164df73e42d3b9c2ab0755e4ca49">
 <div class="img-container">
 <img src="static/bootie-squad.jpg" alt="Group photo with bootcampers">
 </div>
