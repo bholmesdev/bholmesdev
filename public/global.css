@@ -14,9 +14,10 @@
   --bg-color-2: #d9c7ab;
   --green: #5fb88e;
   --red: #e46a4e;
+  --red-dim: #e4694e71;
 
   --content-max-width: 1400px;
-  --nav-height: 150px;
+  --nav-height: 100px;
 }
 
 * {
@@ -49,7 +50,27 @@ nav {
 nav a,
 nav a:visited {
   color: var(--body-color);
-  margin: 50px;
+  margin: 50px 30px;
+  opacity: 0.5;
+}
+
+nav a.active {
+  opacity: 1;
+}
+
+#dashed-line {
+  position: fixed;
+  right: var(--nav-height);
+  top: 0;
+  bottom: -50px;
+  width: 2px;
+  background-image: repeating-linear-gradient(
+    var(--body-color) 0,
+    var(--body-color) 50%,
+    transparent 50%,
+    transparent 100%
+  );
+  background-size: 2px 50px;
 }
 
 h1,
@@ -80,12 +101,14 @@ body {
 section {
   max-width: var(--content-max-width);
   margin: auto;
+  padding-left: 50px;
+  padding-right: 50px;
   margin-bottom: 200px;
 }
 
 @media (max-width: 1700px) {
   section {
-    margin-right: var(--nav-height);
+    margin-right: calc(var(--nav-height) + 50px);
   }
 }
 
@@ -123,7 +146,7 @@ section.header {
   margin-top: 100px;
 }
 
-section.home,
+section.me-description,
 section.header {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -131,7 +154,7 @@ section.header {
 }
 
 @media (max-width: 1200px) {
-  section.home,
+  section.me-description,
   section.header {
     gap: 100px;
   }
@@ -142,21 +165,21 @@ section.header > img {
   height: auto;
 }
 
-section.home {
+section.me-description {
   font-size: 20px;
   margin-top: 100px;
 }
 
-.section-description {
+section.me-description > .content-header {
   display: grid;
   grid-template-areas:
     'header header'
     'in-brief description';
-  margin-left: 100px;
+  align-content: flex-start;
   grid-template-columns: 50px 1fr;
 }
 
-.section-description > .in-brief-header {
+section.me-description > .content-header > .in-brief-header {
   grid-area: in-brief;
   font-family: var(--header-font);
   font-weight: bold;
@@ -165,25 +188,25 @@ section.home {
   writing-mode: vertical-lr;
 }
 
-.section-description > ul {
+section.me-description > .content-header > ul {
   grid-area: description;
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 }
 
-.section-description li {
+section.me-description > .content-header li {
   margin-bottom: 15px;
 }
 
-.section-description > h2 {
+section.me-description > .content-header > h2 {
   grid-area: header;
   position: relative;
   font-size: 72px;
   margin-top: 0;
 }
 
-.section-description h2:before {
+section.me-description > .content-header > h2:before {
   counter-increment: section-number;
   content: counter(section-number);
   background: var(--bg-color-2);
@@ -198,6 +221,98 @@ section.home {
   justify-content: center;
   color: var(--bg-color);
   z-index: -1;
+}
+
+a.image-link {
+  margin-top: 30px;
+}
+
+.image-link .img-container {
+  position: relative;
+}
+
+.image-link .img-container:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-left: 10px solid var(--section-color);
+  border-bottom: 10px solid var(--section-color);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--red-dim) 0,
+    var(--red-dim) 25%,
+    transparent 0%,
+    transparent 50%
+  );
+  background-size: 50px 50px;
+  background-position: 0 0;
+  z-index: -1;
+  transition: transform 0.5s;
+  transform: translate(-6px, 6px);
+}
+
+@keyframes stripe-anim {
+  to {
+    background-position: -40px, -40px;
+  }
+}
+
+a.image-link .img-container img {
+  width: 100%;
+  transition: transform 0.5s;
+}
+
+.image-link:hover .img-container img {
+  transform: translate(20px, -20px);
+}
+
+.image-link:hover .img-container:after {
+  animation: stripe-anim 3s linear infinite;
+}
+
+a.image-link p {
+  margin-top: 50px;
+  border: 3px solid var(--section-color);
+  color: var(--section-color);
+  font-family: var(--header-font);
+  font-weight: bold;
+  padding: 10px;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    var(--section-color) 0,
+    var(--section-color) 50%,
+    var(--bg-color) 50%,
+    var(--bg-color) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: background-position 0.5s;
+}
+
+a.image-link:hover p {
+  background-position: 0;
+  color: var(--bg-color);
+}
+
+a.image-link p:before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: -9px;
+  right: 3px;
+  bottom: -9px;
+  background: var(--section-color);
+  z-index: -1;
+  transition: transform 0.5s;
+  transform-origin: left;
+}
+
+a.image-link:hover p:before {
+  transform: translate(6px, -3px) scaleX(0);
 }
 
 @keyframes float-up-down {
