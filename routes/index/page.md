@@ -5,10 +5,11 @@
 <div id="dashed-line" />
 </nav>
 
+<main>
 <div style="--section-color: var(--green)" markdown>
 <section class="me-header">
-  <img width="600" height="600" src="/static/me.jpg" alt="Hand-drawn portrait of Ben Holmes">
-  <div class="me-header__content" markdown>
+<img width="600" height="600" src="/static/me.jpg" alt="Hand-drawn portrait of Ben Holmes">
+<div class="me-header__content" markdown>
 
 # Ben Holmes
 
@@ -24,6 +25,14 @@
 </div>
 </section>
 
+<div class="line-accents-container">
+<div class="line-accents">
+<div></div>
+<div></div>
+<div></div>
+</div>
+</div>
+
 <section class="me">
 <div class="me-section-header social-links" markdown>
 
@@ -36,9 +45,27 @@
 </div>
 
 <div markdown>
+<label class="in-brief-switch">
+<input type="checkbox" checked>
+<span class="in-brief-switch__personal">Personal Mode</span>
+<span class="in-brief-switch__slider"></span>
+<span class="in-brief-switch__recruiter">Recruiter Mode</span>
+</label>
+
+<div class="in-brief__personal-content" markdown>
+
 I first got into software development not through algorithms, not unit testing, not objected-oriented principles... none of the hirable buzzwords. Back in high school, I was wrestling with Java concepts because _I love making shiny pixels move around on a screen._
 
 Back then, it was in the pursuit of inefficient, spaghetti-coded video games. Now, I've channeled a love for graphics into _**web development and design**_. I spent most of my time at Georgia Tech figuring out the sexiest frameworks to use, the most impactful way to apply my novice knowledge, and how to teach others at a beginner's level. I'm just entering the working world as an adult-in-denial, so I hope [my lessons learned along the way](https://dev.to/bholmesdev) end up helping you!
+
+</div>
+<div class="in-brief__recruiter-content" markdown>
+
+Recruiter bs!
+
+_Very_ cool.
+
+</div>
 </div>
 </section>
 
@@ -64,8 +91,6 @@ So, I got tired of sitting in silence. I started a blog back in 2019 as a place 
 </div>
 </section>
 
-
-
 <section id="bootcamp" class="me">
 
 <a class="img-link" href="https://www.notion.so/gtbitsofgood/Bootcamp-b1fe164df73e42d3b9c2ab0755e4ca49">
@@ -88,3 +113,4 @@ We've been teaching this material at the [Bits of Good student org](https://bits
 
 </section>
 </div>
+</main>
