@@ -13,13 +13,16 @@
   --bg-color: #f9f1db;
   --bg-color-2: #d9c7ab;
   --section-color: var(--body-color);
-  --green: #24AC6C;
+  --green: #24ac6c;
+  --green-faded: #5fb88e;
+  --purple: #6b56a7;
   --red: #e46a4e;
+  --red-faded: #e07c64;
   --red-dim: #e4694e71;
 
-  --content-max-width: 1200px;
+  --content-max-width: 1400px;
   --nav-height: 100px;
-  --me-font-size: 20px;
+  --me-font-size: 24px;
 }
 
 * {
@@ -36,8 +39,6 @@ html {
   color: var(--body-color);
   background: var(--bg-color);
 }
-
-
 
 nav {
   writing-mode: vertical-rl;
@@ -89,18 +90,23 @@ h3 {
   font-family: var(--header-font);
 }
 
-h1 {
-  font-size: 72px;
+h1,
+h2 {
+  font-size: 80px;
 }
 
 h2 {
   font-weight: normal;
-  font-size: 60px;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: var(--section-color);
   text-decoration: underline dashed;
+}
+
+.relative {
+  position: relative;
 }
 
 /* home page */
@@ -118,21 +124,87 @@ section {
   margin-bottom: 200px;
 }
 
+.line-accents-container {
+  max-width: var(--content-max-width);
+  margin: auto;
+  margin-top: -300px;
+  padding-right: 50px;
+  height: 200px;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 1700px) {
-  section {
-    margin-right: calc(var(--nav-height) + 50px);
+  section,
+  .line-accents-container {
+    margin-right: var(--nav-height);
   }
 }
 
+.line-accents {
+  display: flex;
+  margin-right: 10%;
+}
+
+.line-accents > * {
+  width: 10px;
+  position: relative;
+  margin-right: 10px;
+  transition: transform 0.5s;
+  transform-origin: top;
+  height: 100px;
+  opacity: 0.8;
+}
+
+.line-accents > :nth-child(1) {
+  background-color: var(--green);
+}
+
+.line-accents > :nth-child(2) {
+  top: -40px;
+  background-color: var(--red);
+}
+
+.line-accents > :nth-child(3) {
+  top: -80px;
+  background-color: var(--purple);
+}
+
+.line-accents > .active {
+  opacity: 1;
+  transform: scaleY(5);
+}
+
+section.me-header {
+  height: 100vh;
+  min-height: 800px;
+  max-height: 1000px;
+  margin-top: 0;
+
+  align-content: center;
+  align-items: center;
+}
+
+section.me-header > h1 {
+  margin-top: 0;
+}
+
+section.me-header > img {
+  width: calc(100% + 100px);
+  height: auto;
+}
+
 .me-header__content {
-  font-size: 36px;
+  font-size: 44px;
   font-family: var(--header-font);
 }
 
 .me-header__content h1 {
   text-transform: uppercase;
   max-width: 400px;
-  font-size: 72px;
+  margin-top: 0;
 }
 
 .me-header__content ul {
@@ -157,8 +229,8 @@ section {
 section.me,
 section.me-header {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 150px;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 200px;
 }
 
 @media (max-width: 1200px) {
@@ -166,11 +238,6 @@ section.me-header {
   section.me-header {
     gap: 100px;
   }
-}
-
-section.me-header > img {
-  width: calc(100% + 100px);
-  height: auto;
 }
 
 .me-section-header.social-links a,
@@ -185,6 +252,73 @@ section.me-header > img {
   width: 30px;
   height: 30px;
   margin-right: 20px;
+}
+
+label.in-brief-switch {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--header-font);
+  color: var(--bg-color-2);
+  font-size: 36px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+label.in-brief-switch > input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.in-brief-switch__slider {
+  position: relative;
+  width: 1.5em;
+  height: 0.5em;
+  border-radius: 0.75em;
+  border: 4px solid var(--bg-color-2);
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.in-brief-switch__slider:before {
+  content: '';
+  height: 0.8em;
+  width: 0.8em;
+  margin: -0.2em;
+  background-color: var(--section-color);
+  border-radius: 100%;
+  transition: transform 0.2s;
+}
+
+.in-brief-switch__personal {
+  color: var(--section-color);
+  font-weight: bold;
+}
+
+input:focus ~ .in-brief-switch__slider {
+  border: 5px solid var(--section-color);
+}
+
+input:checked ~ .in-brief-switch__personal {
+  color: inherit;
+  font-weight: normal;
+}
+
+input:checked ~ .in-brief-switch__recruiter {
+  color: var(--section-color);
+  font-weight: bold;
+}
+
+input:checked ~ .in-brief-switch__slider:before {
+  transform: translateX(0.9em);
+}
+
+p > label.in-brief-switch ~ .in-brief__personal-content {
+  display: none;
 }
 
 .me-section-header.in-brief {
@@ -219,7 +353,6 @@ section.me-header > img {
 .me-section-header > h2 {
   grid-area: header;
   position: relative;
-  font-size: 72px;
   margin-top: 0;
 }
 
