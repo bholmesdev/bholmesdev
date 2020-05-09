@@ -46,20 +46,20 @@
 
 <div markdown>
 <label class="in-brief-switch">
-<input type="checkbox" checked>
+<input id="in-brief-mode-checkbox" type="checkbox" checked>
 <span class="in-brief-switch__personal">Personal Mode</span>
 <span class="in-brief-switch__slider"></span>
 <span class="in-brief-switch__recruiter">Recruiter Mode</span>
 </label>
 
-<div class="in-brief__personal-content" markdown>
+<div id="in-brief__personal-content" markdown>
 
 I first got into software development not through algorithms, not unit testing, not objected-oriented principles... none of the hirable buzzwords. Back in high school, I was wrestling with Java concepts because _I love making shiny pixels move around on a screen._
 
 Back then, it was in the pursuit of inefficient, spaghetti-coded video games. Now, I've channeled a love for graphics into _**web development and design**_. I spent most of my time at Georgia Tech figuring out the sexiest frameworks to use, the most impactful way to apply my novice knowledge, and how to teach others at a beginner's level. I'm just entering the working world as an adult-in-denial, so I hope [my lessons learned along the way](https://dev.to/bholmesdev) end up helping you!
 
 </div>
-<div class="in-brief__recruiter-content" markdown>
+<div id="in-brief__recruiter-content" markdown>
 
 Recruiter bs!
 

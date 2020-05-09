@@ -73,14 +73,11 @@
     };
   }
 
-  var clickCount = 0;
   var speed = 100;
-  document.addEventListener('click', function () {
-    clickCount++;
-    console.log("Clicked ".concat(clickCount, " times!"));
-  });
   var dashedLine = document.getElementById('dashed-line');
   var translationY = 0;
+  var personalModeEl = document.getElementById('in-brief__personal-content');
+  var recruiterModeEl = document.getElementById('in-brief__recruiter-content');
   setInterval(function () {
     translationY = (translationY - 2) % 50;
     dashedLine.style.transform = "translateY(".concat(translationY, "px)");
@@ -106,6 +103,19 @@
     };
   })();
 
+  document.addEventListener('change', function (_ref) {
+    var target = _ref.target;
+
+    if (target.id === 'in-brief-mode-checkbox') {
+      if (target.checked) {
+        personalModeEl.style.display = 'none';
+        recruiterModeEl.style.display = 'initial';
+      } else {
+        personalModeEl.style.display = 'initial';
+        recruiterModeEl.style.display = 'none';
+      }
+    }
+  });
   var observerOptions = {
     root: null,
     rootMargin: '-40% 0px -40% 0px',

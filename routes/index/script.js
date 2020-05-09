@@ -1,13 +1,10 @@
-let clickCount = 0
 let speed = 100
-
-document.addEventListener('click', () => {
-  clickCount++
-  console.log(`Clicked ${clickCount} times!`)
-})
 
 const dashedLine = document.getElementById('dashed-line')
 let translationY = 0
+
+const personalModeEl = document.getElementById('in-brief__personal-content')
+const recruiterModeEl = document.getElementById('in-brief__recruiter-content')
 
 setInterval(() => {
   translationY = (translationY - 2) % 50
@@ -33,6 +30,18 @@ setInterval(() => {
     }
   }
 })()
+
+document.addEventListener('change', ({ target }) => {
+  if (target.id === 'in-brief-mode-checkbox') {
+    if (target.checked) {
+      personalModeEl.style.display = 'none'
+      recruiterModeEl.style.display = 'initial'
+    } else {
+      personalModeEl.style.display = 'initial'
+      recruiterModeEl.style.display = 'none'
+    }
+  }
+})
 
 const observerOptions = {
   root: null,

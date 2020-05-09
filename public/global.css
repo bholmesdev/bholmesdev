@@ -317,6 +317,10 @@ input:checked ~ .in-brief-switch__slider:before {
   transform: translateX(0.9em);
 }
 
+#in-brief__recruiter-content {
+  display: none;
+}
+
 p > label.in-brief-switch ~ .in-brief__personal-content {
   display: none;
 }
