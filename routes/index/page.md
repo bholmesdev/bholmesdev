@@ -33,7 +33,7 @@
 </div>
 </div>
 
-<section class="me">
+<section id="inbrief-section" class="me">
 <div class="me-section-header social-links" markdown>
 
 ## In brief.
@@ -61,16 +61,16 @@ Back then, it was in the pursuit of inefficient, spaghetti-coded video games. No
 </div>
 <div id="in-brief__recruiter-content" markdown>
 
-Recruiter bs!
+I'm extremely hirable!
 
-_Very_ cool.
+[Take my resume](https://drive.google.com/file/d/1_Dix3-mAHaPVNEB2xIZeZ9RMkZRJ0A8O/view?usp=sharing)
 
 </div>
 </div>
 </section>
 
 <div style="--section-color: var(--red)" markdown>
-<section id="teach" class="me">
+<section id="iteach-section" class="me">
 <div class="me-section-header in-brief" markdown>
 
 ## I teach.
@@ -84,9 +84,9 @@ _Very_ cool.
 </div>
 <div markdown>
 
-Let's be honest, picking up web development ain't easy. I spent years banging my head against Codecademy tutorials and W3schools to vertically center a div (and the top Stack Overflow answer is still wrong 😑). What's even worse is how disconnected university CS curricula ends up feeling compared to _useful_ web development concepts.
+Let's be honest, picking up web development ain't easy. I spent years banging my head against Codecademy tutorials and W3schools to vertically center a div (and the top Stack Overflow answer is still wrong 😑). What's even worse is how disconnected university CS curricula ends up feeling compared to _practical_ web development concepts.
 
-So, I got tired of sitting in silence. I started a blog back in 2019 as a place to paste some concepts and snippets I learned into a public resource. This somehow made me a Top 500 author on DEV.to (I'll never understand that...), which motivated me to get more involved as a web dev teacher at Georgia Tech. Now, I have **<span id="post-count">10</span>** posts to my name and an entire curriculum of full stack fundamentals!
+So, I got tired of sitting in silence. I started a blog back in 2019 as a place to paste some concepts and snippets I learned into a public resource. This somehow made me a Top 500 author on DEV.to, which motivated me to get more involved as a web dev teacher at Georgia Tech. Now, I have **<span id="post-count">10</span>** posts to my name and an entire curriculum of full stack fundamentals!
 
 </div>
 </section>

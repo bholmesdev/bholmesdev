@@ -73,17 +73,39 @@
     };
   }
 
-  var speed = 100;
-  var dashedLine = document.getElementById('dashed-line');
-  var translationY = 0;
-  var personalModeEl = document.getElementById('in-brief__personal-content');
-  var recruiterModeEl = document.getElementById('in-brief__recruiter-content');
-  setInterval(function () {
-    translationY = (translationY - 2) % 50;
-    dashedLine.style.transform = "translateY(".concat(translationY, "px)");
-  }, 35);
+  (function inBriefModeCheckbox() {
+    var personalModeEl = document.getElementById('in-brief__personal-content');
+    var recruiterModeEl = document.getElementById('in-brief__recruiter-content');
+    var modeCheckboxEl = document.getElementById('in-brief-mode-checkbox');
 
-  (function animationFrame() {
+    if (modeCheckboxEl.checked) {
+      personalModeEl.style.display = 'none';
+      recruiterModeEl.style.display = 'initial';
+    }
+
+    document.addEventListener('change', function (_ref) {
+      var target = _ref.target;
+
+      if (target === modeCheckboxEl) {
+        if (target.checked) {
+          personalModeEl.style.display = 'none';
+          recruiterModeEl.style.display = 'initial';
+        } else {
+          personalModeEl.style.display = 'initial';
+          recruiterModeEl.style.display = 'none';
+        }
+      }
+    });
+  })();
+
+  (function navigationDashedLineAnim() {
+    var dashedLine = document.getElementById('dashed-line');
+    var translationY = 0;
+    var speed = 100;
+    setInterval(function () {
+      translationY = (translationY - 2) % 50;
+      dashedLine.style.transform = "translateY(".concat(translationY, "px)");
+    }, 35);
     var waitingOnAnimRequest = false;
     var prevScrollY = 0;
     var currScrollY = 0;
@@ -103,103 +125,52 @@
     };
   })();
 
-  document.addEventListener('change', function (_ref) {
-    var target = _ref.target;
+  (function coloredStripeLogic() {
+    var observerOptions = {
+      root: null,
+      rootMargin: '-60% 0px -40% 0px',
+      threshold: 0
+    };
+    var sectionTargets = [document.getElementById('inbrief-section'), document.getElementById('iteach-section')];
+    var allStripes = document.querySelectorAll('.line-accents > *');
 
-    if (target.id === 'in-brief-mode-checkbox') {
-      if (target.checked) {
-        personalModeEl.style.display = 'none';
-        recruiterModeEl.style.display = 'initial';
-      } else {
-        personalModeEl.style.display = 'initial';
-        recruiterModeEl.style.display = 'none';
-      }
-    }
-  });
-  var observerOptions = {
-    root: null,
-    rootMargin: '-40% 0px -40% 0px',
-    threshold: 0
-  };
+    var observerCallback = function observerCallback(entries) {
+      entries.forEach(function (change) {
+        var targettedIndex = sectionTargets.findIndex(function (target) {
+          return target === change.target;
+        });
+        var selectedStripe = document.querySelector(".line-accents > :nth-child(".concat(targettedIndex + 1, ")"));
 
-  function SectionTarget(element) {
-    this.el = element;
-    this.enteredTop = 0; // the y-pos where the section has entered the viewport
+        if (change.isIntersecting) {
+          var _iterator = _createForOfIteratorHelper(allStripes),
+              _step;
 
-    this.exitedTop = 0; // the y-pos where the section has exited the viewport
-  }
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var stripe = _step.value;
 
-  var sectionTargets = [new SectionTarget(document.getElementById('inbrief')), new SectionTarget(document.getElementById('iteach'))];
-  var intersectionTypes = ['enteredSection', // entered a new section
-  'leftToPrevSection', // left the current section by scrolling up to a previous section
-  'other' // either hasn't entered a section or remains in current section
-  ];
-  var allStripes = document.querySelectorAll('.line-accents > *');
-
-  var observerCallback = function observerCallback(entries, observer) {
-    entries.forEach(function (change) {
-      var intersectionType = null;
-      var targettedIndex = sectionTargets.findIndex(function (target) {
-        return target.el === change.target;
-      });
-      var target = sectionTargets[targettedIndex];
-      if (!target) return;
-
-      if (change.isIntersecting) {
-        target.enteredTop = change.boundingClientRect.top;
-        intersectionType = intersectionTypes[0];
-      } else {
-        if (target.enteredTop > 0) {
-          // don't set exited position until the section has entered into view
-          target.exitedTop = change.boundingClientRect.top;
-        }
-
-        if (target.exitedTop > target.enteredTop) {
-          intersectionType = intersectionTypes[1];
-        } else {
-          intersectionType = intersectionTypes[2];
-        }
-      }
-
-      if (intersectionType === intersectionTypes[2]) return;
-      var visibleSectionIndex = 0;
-
-      if (intersectionType === intersectionTypes[0]) {
-        // show stripe for current section
-        visibleSectionIndex = targettedIndex + 1;
-      }
-
-      if (intersectionType === intersectionTypes[1]) {
-        // show stripe for previous section
-        visibleSectionIndex = targettedIndex;
-      }
-
-      var _iterator = _createForOfIteratorHelper(allStripes),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var stripe = _step.value;
-          var selectedStripe = document.querySelector(".line-accents > :nth-child(".concat(visibleSectionIndex, ")"));
-
-          if (stripe === selectedStripe) {
-            stripe.classList.add('active');
-          } else {
-            stripe.classList.remove('active');
+              if (stripe === selectedStripe) {
+                stripe.classList.add('active');
+              } else {
+                stripe.classList.remove('active');
+              }
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
           }
+        } else if (targettedIndex === 0) {
+          selectedStripe.classList.remove('active');
         }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    });
-  };
+      });
+    };
 
-  var observer = new IntersectionObserver(observerCallback, observerOptions);
-  sectionTargets.forEach(function (target) {
-    return observer.observe(target.el);
-  });
+    var observer = new IntersectionObserver(observerCallback, observerOptions);
+    sectionTargets.forEach(function (target) {
+      return observer.observe(target);
+    });
+  })();
 
 
 
