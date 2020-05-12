@@ -13,6 +13,12 @@ module.exports = (pages, currRouteName) => `
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <nav>
+      <a href="/" class="active">Me</a>
+      <a href="/projects">Projects</a>
+      <a href="/contact">Contact</a>
+      <div id="dashed-line" />
+    </nav>
     ${pages.reduce((fullHtml, { routeName, html }) => {
       return (
         fullHtml +

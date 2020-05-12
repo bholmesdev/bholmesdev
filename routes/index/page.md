@@ -1,11 +1,3 @@
-<nav>
-<a href="/" class="active">Me</a>
-<a href="/projects">Projects</a>
-<a href="/contact">Contact</a>
-<div id="dashed-line" />
-</nav>
-
-<main>
 <div style="--section-color: var(--green)" markdown>
 <section class="me-header">
 <img width="600" height="600" src="/static/me.jpg" alt="Hand-drawn portrait of Ben Holmes">
@@ -113,4 +105,3 @@ We've been teaching this material at the [Bits of Good student org](https://bits
 
 </section>
 </div>
-</main>
