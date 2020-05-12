@@ -5,13 +5,15 @@ const { rollup } = require('rollup')
 const babel = require('rollup-plugin-babel')
 const livereload = require('livereload')
 const readMdFile = require('./utils/readMdFile')
-const pageLayout = require('./routes/pageLayout')
+const pageLayout = require('./src/pageLayout')
 
 const liveReloadPort = 35729
 
 const appendFile = promisify(filesystem.appendFile)
 const writeFile = promisify(filesystem.writeFile)
 const readFile = promisify(filesystem.readFile)
+
+const routesDir = __dirname + '/src/routes'
 
 const addLiveReloadScript = {
   name: 'livereload',
@@ -27,7 +29,7 @@ const consoleLogGreen = (text) => {
 const bundleHTML = async (routeNames) => {
   const pages = []
   for (let routeName of routeNames) {
-    const html = await readMdFile(`routes/${routeName}/page.md`)
+    const html = await readMdFile(`${routesDir}/${routeName}/page.md`)
     pages.push({ routeName, html })
   }
   for (let routeName of routeNames) {
@@ -36,10 +38,13 @@ const bundleHTML = async (routeNames) => {
 }
 
 const bundleCSS = async (routeNames) => {
-  const globalCssString = await readFile('./global.css')
+  const globalCssString = await readFile(__dirname + '/src/global.css')
   writeFile('public/styles.css', globalCssString)
   for (let routeName of routeNames) {
-    const cssString = await readFile(`./routes/${routeName}/styles.css`, 'utf8')
+    const cssString = await readFile(
+      `${routesDir}/${routeName}/styles.css`,
+      'utf8'
+    )
     appendFile('public/styles.css', cssString)
   }
 }
@@ -51,7 +56,7 @@ const bundleJS = async (routeNames) => {
   }
 
   const bundle = await rollup({
-    input: 'routes/pageScript.js',
+    input: 'src/pageScript.js',
     plugins,
   })
   await bundle.write({
@@ -66,16 +71,16 @@ const bundleJS = async (routeNames) => {
   if (!filesystem.existsSync(__dirname + '/public/')) {
     filesystem.mkdirSync('public')
   }
-  filesystem.readdir(__dirname + '/routes/', async (err, files) => {
+  filesystem.readdir(routesDir, async (err, files) => {
     files = files.filter((fileName) =>
-      filesystem.statSync(__dirname + '/routes/' + fileName).isDirectory()
+      filesystem.statSync(routesDir + '/' + fileName).isDirectory()
     )
     await Promise.all([bundleHTML(files), bundleCSS(files), bundleJS(files)])
     consoleLogGreen('Built successfully!')
 
     if (process.env.MODE === 'dev') {
       filesystem.watch(
-        __dirname + '/routes',
+        __dirname + '/src',
         { recursive: true },
         async (event, filePath) => {
           process.stdout.write('\r\x1b[K')

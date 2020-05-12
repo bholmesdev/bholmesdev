@@ -1,5 +1,5 @@
-import index from './index/script'
-import projects from './projects/script'
+import index from './routes/index/script'
+import projects from './routes/projects/script'
 
 const routeScripts = {
   '/': index,
