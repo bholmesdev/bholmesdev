@@ -15,6 +15,7 @@ module.exports = (pages, currRouteName) => `
   <head>
     <title>Ben Holmes</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/liz3dnm.css">
   </head>
   <body>
     <nav>
