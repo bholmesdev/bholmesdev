@@ -1,8 +1,12 @@
 /**
- * @param {Object[]} pages - list of HTML pages to insert into the doc HTML
- * @param {Object} page - information about a particular HTML page
- * @param {string} page.routeName - the route URL for the page, used for clientside routing
- * @param {string} page.html - the HTML string for a particular page
+ * @typedef {Object} Page
+ * @param {string} routeName - the route URL for the page, used for clientside routing
+ * @param {string} html - the HTML string for a particular page
+ */
+
+/**
+ *
+ * @param {Page[]} pages - list of HTML pages to insert into the doc HTML
  * @param {string} currRouteName - the route name for the page being generated. Used to hide other pages in HTML
  */
 module.exports = (pages, currRouteName) => `
