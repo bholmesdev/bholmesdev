@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "livereload": "^0.8.2",
@@ -11,9 +11,6 @@
     "rollup-plugin-babel": "^4.3.3",
     "serve": "^11.2.0",
     "showdown": "^1.9.1"
-  },
-  "dependencies": {
-    "@rollup/plugin-multi-entry": "^3.0.1"
   },
   "babel": {
     "presets": [
