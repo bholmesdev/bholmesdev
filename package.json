@@ -12,7 +12,9 @@
     "serve": "^11.2.0",
     "showdown": "^1.9.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@rollup/plugin-multi-entry": "^3.0.1"
+  },
   "babel": {
     "presets": [
       [

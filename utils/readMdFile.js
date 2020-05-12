@@ -1,7 +1,7 @@
 const filesystem = require('fs')
 const showdown = require('showdown')
 
-module.exports = path =>
+module.exports = (path) =>
   new Promise((resolve, reject) => {
     filesystem.readFile(path, 'utf8', (error, data) => {
       if (error) {

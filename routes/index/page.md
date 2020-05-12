@@ -18,7 +18,7 @@
 - Blogger
 - Charcoal fan
 
-<a href="#teach">More about me
+<a href="#iteach">More about me
 <img height="30" width="30" src="/static/icons/arrow-down.svg" />
 </a>
 

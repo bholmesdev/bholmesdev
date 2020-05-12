@@ -1,13 +1,15 @@
 
+<!DOCTYPE html>
 <html lang="en-US">
   <head>
     <title>Ben Holmes</title>
-    <link rel="stylesheet" href="global.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://use.typekit.net/liz3dnm.css">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <nav>
+    <main 
+          
+          data-route="/">
+          <nav>
 <a href="/" class="active">Me</a>
 <a href="/projects">Projects</a>
 <a href="/contact">Contact</a>
@@ -24,7 +26,7 @@
 <li>Blogger</li>
 <li>Charcoal fan</li>
 </ul>
-<p><a href="#teach">More about me
+<p><a href="#iteach">More about me
 <img height="30" width="30" src="/static/icons/arrow-down.svg" />
 </a></p></div>
 </section>
@@ -79,6 +81,14 @@
 
 </section></div>
 <p></main></p>
+        </main><main 
+          hidden
+          data-route="/projects">
+          <h1 id="projects">Projects</h1>
+<p>This is the project page, <em><strong>with <a href="https://duckduckgo.com">links</a>!</strong></em></p>
+<p>cool!
+<button>And a button!</button></p>
+        </main>
   </body>
-  <script src="index.js"></script>
+  <script src="bundle.js"></script>
 </html>
