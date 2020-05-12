@@ -1,6 +1,15 @@
-let clickCount = 0
+export default () => {
+  let clickCount = 0
 
-document.addEventListener('click', () => {
-  clickCount++
-  console.log(`Clicked ${clickCount} times!`)
-})
+  const clickPrintListener = () => {
+    clickCount++
+    console.log(`Clicked ${clickCount} times!`)
+  }
+
+  document.addEventListener('click', clickPrintListener)
+
+  //cleanup
+  return () => {
+    document.removeEventListener('click', clickPrintListener)
+  }
+}

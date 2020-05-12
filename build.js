@@ -2,11 +2,10 @@ const filesystem = require('fs')
 const path = require('path')
 const { promisify } = require('util')
 const { rollup } = require('rollup')
-const multi = require('@rollup/plugin-multi-entry')
 const babel = require('rollup-plugin-babel')
 const livereload = require('livereload')
 const readMdFile = require('./utils/readMdFile')
-const pageLayout = require('./pageLayout')
+const pageLayout = require('./routes/pageLayout')
 
 const liveReloadPort = 35729
 
@@ -46,21 +45,19 @@ const bundleCSS = async (routeNames) => {
 }
 
 const bundleJS = async (routeNames) => {
-  let plugins = [babel(), multi()]
+  let plugins = [babel()]
   if (process.env.MODE === 'dev') {
     plugins = [...plugins, addLiveReloadScript]
   }
 
-  const input = [
-    ...routeNames.map((routeName) => `routes/${routeName}/script.js`),
-    'routes/routingScript.js',
-  ]
-
-  const bundle = await rollup({ input, plugins })
+  const bundle = await rollup({
+    input: 'routes/pageScript.js',
+    plugins,
+  })
   await bundle.write({
     entryFileNames: 'bundle.js',
     dir: 'public',
-    format: 'iife',
+    format: 'esm',
   })
 }
 
@@ -74,30 +71,32 @@ const bundleJS = async (routeNames) => {
       filesystem.statSync(__dirname + '/routes/' + fileName).isDirectory()
     )
     await Promise.all([bundleHTML(files), bundleCSS(files), bundleJS(files)])
-
-    filesystem.watch(
-      __dirname + '/routes',
-      { recursive: true },
-      async (event, filePath) => {
-        process.stdout.write('\r\x1b[K')
-        process.stdout.write('Rebuilding...')
-
-        const fileExtension = path.extname(filePath)
-        if (fileExtension === '.css') {
-          await bundleCSS(files)
-        } else if (fileExtension === '.js') {
-          await bundleJS(files)
-        } else if (fileExtension === '.md') {
-          await bundleHTML(files)
-        } else {
-          return
-        }
-
-        process.stdout.write('\r\x1b[K')
-        process.stdout.write(`\r\x1b[KRebuilt changes to ${fileName}`)
-      }
-    )
     consoleLogGreen('Built successfully!')
+
+    if (process.env.MODE === 'dev') {
+      filesystem.watch(
+        __dirname + '/routes',
+        { recursive: true },
+        async (event, filePath) => {
+          process.stdout.write('\r\x1b[K')
+          process.stdout.write('Rebuilding...')
+
+          const fileExtension = path.extname(filePath)
+          if (fileExtension === '.css') {
+            await bundleCSS(files)
+          } else if (fileExtension === '.js') {
+            await bundleJS(files)
+          } else if (fileExtension === '.md') {
+            await bundleHTML(files)
+          } else {
+            return
+          }
+
+          process.stdout.write('\r\x1b[K')
+          process.stdout.write(`\r\x1b[KRebuilt changes to ${filePath}`)
+        }
+      )
+    }
   })
   if (process.env.MODE === 'dev') {
     const server = livereload.createServer({ port: liveReloadPort }, () =>
