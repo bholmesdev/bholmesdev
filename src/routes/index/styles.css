@@ -265,16 +265,16 @@ p > label.in-brief-switch ~ .in-brief__personal-content {
   z-index: -1;
 }
 
-a.img-link {
+.img-link {
   margin-top: 30px;
   text-decoration: none;
 }
 
-a.img-link > .img-container {
+.img-link__img-container {
   position: relative;
 }
 
-a.img-link > .img-container:after {
+.img-link__img-container:after {
   content: '';
   position: absolute;
   top: 0;
@@ -303,20 +303,20 @@ a.img-link > .img-container:after {
   }
 }
 
-a.img-link > .img-container > img {
+.img-link__img-container > img {
   width: 100%;
   transition: transform 0.5s;
 }
 
-.img-link:hover > .img-container > img {
+.img-link:hover > .img-link__img-container > img {
   transform: translate(20px, -20px);
 }
 
-.img-link:hover > .img-container:after {
+.img-link:hover > .img-link__img-container:after {
   animation: stripe-anim 3s linear infinite;
 }
 
-a.img-link p {
+.img-link__text {
   margin-top: 50px;
   border: 3px solid var(--section-color);
   color: var(--section-color);
@@ -336,12 +336,7 @@ a.img-link p {
   transition: background-position 0.5s;
 }
 
-a.img-link:hover > p {
-  background-position: 0;
-  color: var(--bg-color);
-}
-
-a.img-link > p:before {
+.img-link__text:before {
   content: '';
   position: absolute;
   top: 3px;
@@ -354,7 +349,12 @@ a.img-link > p:before {
   transform-origin: left;
 }
 
-a.img-link:hover > p:before {
+.img-link:hover > .img-link__text {
+  background-position: 0;
+  color: var(--bg-color);
+}
+
+.img-link:hover > .img-link__text:before {
   transform: translate(6px, -3px) scaleX(0);
 }
 
