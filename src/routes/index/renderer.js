@@ -22,7 +22,7 @@ const getMinReadIcon = (minRead) => {
   if (minRead <= 3) {
     icon.src = getSrc('small')
     icon.alt = 'Small coffee cup'
-  } else if (minRead <= 7) {
+  } else if (minRead <= 9) {
     icon.src = getSrc('med')
     icon.alt = 'Medium coffee cup'
   } else {
@@ -39,7 +39,7 @@ const getBlogPostHTML = ({
   title,
 }) => `
   <a class="me-blog-post" href="${url}">
-    <img class="me-blog-post__icon" src=${src} alt=${alt}
+    <img class="me-blog-post__icon" src="${src}" alt="${alt}" />
     <dd class="me-blog-post__min-read">${minRead} min</dd>
     <dt class="me-blog-post__title">${title}</dt>
   </a>
