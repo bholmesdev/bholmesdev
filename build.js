@@ -42,15 +42,11 @@ const bundleHTML = async (routeNames) => {
 }
 
 const bundleCSS = async (routeNames) => {
-  const globalCssString = await readFile(__dirname + '/src/global.css')
-  writeFile('public/styles.css', globalCssString)
+  let cssString = await readFile(__dirname + '/src/global.css')
   for (let routeName of routeNames) {
-    const cssString = await readFile(
-      `${routesDir}/${routeName}/styles.css`,
-      'utf8'
-    )
-    appendFile('public/styles.css', cssString)
+    cssString += await readFile(`${routesDir}/${routeName}/styles.css`, 'utf8')
   }
+  writeFile('public/styles.css', cssString)
 }
 
 const bundleJS = async () => {
@@ -94,7 +90,7 @@ const bundleJS = async () => {
           if (fileExtension === '.css') {
             await bundleCSS(routeDirs)
           } else if (fileExtension === '.js') {
-            await bundleJS()
+            await Promise.all([bundleJS(), bundleHTML(routeDirs)])
           } else if (fileExtension === '.md') {
             await bundleHTML(routeDirs)
           } else {
