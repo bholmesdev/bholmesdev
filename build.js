@@ -1,17 +1,14 @@
 const filesystem = require('fs')
 const path = require('path')
-const { promisify } = require('util')
 const { rollup } = require('rollup')
 const babel = require('rollup-plugin-babel')
 const livereload = require('livereload')
-const readMdFile = require('./utils/readMdFile')
+const { mdFileToHtmlString } = require('./utils/mdHelpers')
 const pageLayout = require('./src/pageLayout')
+const { appendFile, writeFile, readFile } = require('./utils/fsPromisified')
+require('dotenv').config()
 
 const liveReloadPort = 35729
-
-const appendFile = promisify(filesystem.appendFile)
-const writeFile = promisify(filesystem.writeFile)
-const readFile = promisify(filesystem.readFile)
 
 const routesDir = __dirname + '/src/routes'
 
@@ -29,7 +26,14 @@ const consoleLogGreen = (text) => {
 const bundleHTML = async (routeNames) => {
   const pages = []
   for (let routeName of routeNames) {
-    const html = await readMdFile(`${routesDir}/${routeName}/page.md`)
+    let html = ''
+    const basePath = `${routesDir}/${routeName}`
+    if (filesystem.existsSync(basePath + '/renderer.js')) {
+      const renderer = require(basePath + '/renderer.js')
+      html = await renderer(basePath)
+    } else {
+      html = await mdFileToHtmlString(basePath + '/page.md')
+    }
     pages.push({ routeName, html })
   }
   for (let routeName of routeNames) {
@@ -49,7 +53,7 @@ const bundleCSS = async (routeNames) => {
   }
 }
 
-const bundleJS = async (routeNames) => {
+const bundleJS = async () => {
   let plugins = [babel()]
   if (process.env.MODE === 'dev') {
     plugins = [...plugins, addLiveReloadScript]
@@ -72,10 +76,10 @@ const bundleJS = async (routeNames) => {
     filesystem.mkdirSync('public')
   }
   filesystem.readdir(routesDir, async (err, files) => {
-    files = files.filter((fileName) =>
+    const routeDirs = files.filter((fileName) =>
       filesystem.statSync(routesDir + '/' + fileName).isDirectory()
     )
-    await Promise.all([bundleHTML(files), bundleCSS(files), bundleJS(files)])
+    await Promise.all([bundleHTML(routeDirs), bundleCSS(routeDirs), bundleJS()])
     consoleLogGreen('Built successfully!')
 
     if (process.env.MODE === 'dev') {
@@ -88,11 +92,11 @@ const bundleJS = async (routeNames) => {
 
           const fileExtension = path.extname(filePath)
           if (fileExtension === '.css') {
-            await bundleCSS(files)
+            await bundleCSS(routeDirs)
           } else if (fileExtension === '.js') {
-            await bundleJS(files)
+            await bundleJS()
           } else if (fileExtension === '.md') {
-            await bundleHTML(files)
+            await bundleHTML(routeDirs)
           } else {
             return
           }
