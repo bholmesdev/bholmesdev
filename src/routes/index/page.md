@@ -83,14 +83,29 @@ So, I got tired of sitting in silence. I started a blog back in 2019 as a place 
 </div>
 </section>
 
-<section id="bootcamp" class="me">
+<section id="blog" class="me">
+  <a class="me-headline-blog-post img-link" href="">
+    <div class="img-link__img-container">
+      <img src="" alt="">
+      <p class="me-headline-blog-post__min-read">
+        <img class="me-headline-blog-post__icon" src="" alt="" />
+      </p>
+    </div>
+    <p class="me-headline-blog-post__title"></p>
+    <p class="img-link__text">Get to reading</p>
+  </a>
+  <dl class="me-blog-posts">
+  </dl>
+</section>
+
+<section class="me">
 
 <a class="img-link" href="https://www.notion.so/gtbitsofgood/Bootcamp-b1fe164df73e42d3b9c2ab0755e4ca49">
-<div class="img-container">
+<div class="img-link__img-container">
 <img src="static/bootie-squad.jpg" alt="Group photo with bootcampers">
 </div>
 
-<p>Browse the curriculum</p>
+<p class="img-link__text">Browse the curriculum</p>
 </a>
 
 <div markdown>
