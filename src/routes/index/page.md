@@ -86,7 +86,7 @@ So, I got tired of sitting in silence. I started a blog back in 2019 as a place 
 <section id="blog" class="me">
   <a class="me-headline-blog-post img-link" href="">
     <div class="img-link__img-container">
-      <img src="" alt="">
+      <img class="me-headline-blog-post__img" src="" alt="">
       <p class="me-headline-blog-post__min-read">
         <img class="me-headline-blog-post__icon" src="" alt="" />
       </p>
