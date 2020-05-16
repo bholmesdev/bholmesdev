@@ -358,6 +358,62 @@ p > label.in-brief-switch ~ .in-brief__personal-content {
   transform: translate(6px, -3px) scaleX(0);
 }
 
+.me-blog-post,
+.me-blog-post:visited {
+  position: relative;
+  display: grid;
+  grid-template-areas:
+    'icon title'
+    'min-read title';
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 50px 1fr;
+  column-gap: 20px;
+  color: var(--body-color);
+  text-decoration: none;
+  margin-bottom: 40px;
+}
+
+.me-blog-post:after {
+  --size: 15px;
+  content: '';
+  position: absolute;
+  background: url('/static/icons/arrow-link-accent.svg');
+  background-size: var(--size) var(--size);
+  top: -10px;
+  right: -20px;
+  width: var(--size);
+  height: var(--size);
+  transition: transform 0.2s;
+}
+
+.me-blog-post:hover:after {
+  transform: translate(15px, -15px);
+}
+
+.me-blog-post__title {
+  grid-area: title;
+  font-size: 30px;
+  font-weight: 600;
+  align-self: center;
+}
+
+.me-blog-post__icon {
+  height: 50px;
+  width: 50px;
+  margin: auto;
+  grid-area: icon;
+}
+
+.me-blog-post__min-read {
+  grid-area: min-read;
+  margin: 0;
+  font-family: var(--header-font);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
 @keyframes float-up-down {
   0%,
   100% {
