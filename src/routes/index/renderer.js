@@ -10,7 +10,7 @@ function Image(src, alt) {
 function BlogPost(article) {
   this.title = article.title
   this.url = article.url
-  this.coverImage = new Image(article.coverImage)
+  this.coverImage = new Image(article.cover_image)
   this.minRead = minutesToRead(article.body_markdown)
   this.minReadIcon = getMinReadIcon(this.minRead)
 }
@@ -63,7 +63,8 @@ const setupHeadlineBlogPost = (blogPost, document) => {
   els.title.innerHTML = blogPost.title
   els.img.src = blogPost.coverImage.src
   els.img.alt = blogPost.coverImage.alt
-  els.minRead.textContent = blogPost.minRead + ' min read'
+  const minReadText = document.createTextNode(blogPost.minRead + ' min read')
+  els.minRead.appendChild(minReadText)
   els.minReadIcon.src = blogPost.minReadIcon.src
   els.minReadIcon.alt = blogPost.minReadIcon.alt
 }
@@ -89,7 +90,7 @@ module.exports = async (routePath) => {
 
     const blogPosts = articles.map((article) => new BlogPost(article))
 
-    const headlinePost = blogPosts[0]
+    const headlinePost = blogPosts[1]
     setupHeadlineBlogPost(headlinePost, document)
 
     const postsContainer = document.querySelector('.me-blog-posts')
