@@ -10,9 +10,7 @@
 - Blogger
 - Charcoal fan
 
-<a href="#iteach">More about me
-<img height="30" width="30" src="/static/icons/arrow-down.svg" />
-</a>
+<a href="#iteach" class="icon-after icon__arrow-down">More about me</a>
 
 </div>
 </section>
@@ -83,7 +81,8 @@ So, I got tired of sitting in silence. I started a blog back in 2019 as a place 
 </div>
 </section>
 
-<section id="blog" class="me">
+<section id="blog" class="me sub-section">
+<h3 class="section-me__grid-header">I blog a lot.</h3>
   <a class="me-headline-blog-post img-link" href="">
     <div class="img-link__img-container">
       <img class="me-headline-blog-post__img" src="" alt="">
@@ -92,25 +91,28 @@ So, I got tired of sitting in silence. I started a blog back in 2019 as a place 
       </p>
     </div>
     <p class="me-headline-blog-post__title"></p>
-    <p class="img-link__text">Get to reading</p>
+    <p class="cta-link icon-after icon__arrow-right">Get to reading</p>
   </a>
+  <div class="me-blog-posts-container">
   <dl class="me-blog-posts">
   </dl>
+  <a href="https://dev.to/bholmesdev" class="cta-link icon-after icon__devto">Find more on my blog</a>
+  </div>
 </section>
 
-<section class="me">
+<section class="me sub-section">
+
+<h3 class="section-me__grid-header">I led a bootcamp.</h3>
 
 <a class="img-link" href="https://www.notion.so/gtbitsofgood/Bootcamp-b1fe164df73e42d3b9c2ab0755e4ca49">
 <div class="img-link__img-container">
 <img src="static/bootie-squad.jpg" alt="Group photo with bootcampers">
 </div>
 
-<p class="img-link__text">Browse the curriculum</p>
+<p class="cta-link icon-after icon__notion">Browse the curriculum</p>
 </a>
 
 <div markdown>
-
-### I led a bootcamp.
 
 I asked around the dev community to udnerstand how people learn best, and I found a variety of approaches from written documentation to recorded code-alongs. So, I tried to make a bootcamp that was the best of _all_ worlds, incorporating video activites, written code samples, and in-person workshops to create one **mega resource** for becoming a MERN stack sorcerer 🔮
 

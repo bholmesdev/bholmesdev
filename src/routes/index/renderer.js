@@ -74,7 +74,7 @@ module.exports = async (routePath) => {
 
   try {
     const res = await fetch(
-      'https://dev.to/api/articles/me/published?per_page=4',
+      'https://dev.to/api/articles/me/published?per_page=5',
       {
         method: 'GET',
         headers: {
@@ -84,7 +84,7 @@ module.exports = async (routePath) => {
       }
     )
     const articles = await res.json()
-    if (!articles || articles.length !== 4) {
+    if (!articles || articles.length !== 5) {
       throw 'API did not return expected amount of articles.'
     }
 
@@ -94,7 +94,7 @@ module.exports = async (routePath) => {
     setupHeadlineBlogPost(headlinePost, document)
 
     const postsContainer = document.querySelector('.me-blog-posts')
-    for (let blogPost of blogPosts.slice(1)) {
+    for (let blogPost of blogPosts.slice(2)) {
       appendBlogPost(blogPost, postsContainer)
     }
     return dom.serialize()
