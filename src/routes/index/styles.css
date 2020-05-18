@@ -349,6 +349,11 @@ p > label.in-brief-switch ~ .in-brief__personal-content {
   animation: stripe-anim 3s linear infinite;
 }
 
+.cta-link:hover,
+.img-link:hover {
+  animation: none;
+}
+
 .cta-link {
   position: relative;
   display: flex;
