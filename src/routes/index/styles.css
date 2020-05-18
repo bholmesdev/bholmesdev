@@ -3,8 +3,10 @@
   --icon-size: 1.5em;
   --icon-color: var(--section-color);
   content: '';
-  mask: var(--icon-source);
+  mask-image: var(--icon-source);
+  -webkit-mask-image: var(--icon-source);
   mask-size: var(--icon-size);
+  -webkit-mask-size: var(--icon-size);
   height: var(--icon-size);
   width: var(--icon-size);
   background-color: var(--icon-color);
