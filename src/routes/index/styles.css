@@ -149,6 +149,7 @@ section.me-header {
 
 .me-section-header.social-links a,
 .me-section-header.social-links a:visited {
+  font-size: 30px;
   display: flex;
   margin-bottom: 30px;
   align-items: center;
