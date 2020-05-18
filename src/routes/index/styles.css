@@ -85,16 +85,12 @@
 
 section.me-header {
   height: 100vh;
-  min-height: 800px;
-  max-height: 1000px;
+  min-height: 900px;
+  max-height: 1200px;
   margin-top: 0;
 
   align-content: center;
   align-items: center;
-}
-
-section.me-header > h1 {
-  margin-top: 0;
 }
 
 section.me-header > img {
