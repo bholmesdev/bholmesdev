@@ -58,6 +58,7 @@ I'm extremely hirable!
 </div>
 </div>
 </section>
+</div>
 
 <div style="--section-color: var(--red)" markdown>
 <section id="iteach-section" class="me">
@@ -114,7 +115,7 @@ So, I got tired of sitting in silence. I started a blog back in 2019 as a place 
 
 <div markdown>
 
-I asked around the dev community to udnerstand how people learn best, and I found a variety of approaches from written documentation to recorded code-alongs. So, I tried to make a bootcamp that was the best of _all_ worlds, incorporating video activites, written code samples, and in-person workshops to create one **mega resource** for becoming a MERN stack sorcerer 🔮
+I asked around the dev community to understand how people learn best, and I found a variety of approaches from written documentation to recorded code-alongs. So, I tried to make a bootcamp that was the best of _all_ worlds, incorporating video activites, written code samples, and in-person workshops to create one **mega resource** for becoming a MERN stack sorcerer 🔮
 
 We've been teaching this material at the [Bits of Good student org](https://bitsofgood.org) for 2 semesters now, so we've had a lot of time to work out the kinks. Click through to find our videos, resources, and project templates 100% free! A huge thanks to Andre Hijouay for creating the incredible v1 of the bootcamp, Max Karpawich for our lovely backend materials, and James Wang for contributing + teaching 😁
 
