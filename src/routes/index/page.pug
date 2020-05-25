@@ -1,0 +1,96 @@
+section.header
+  img(width=600 height=600 src="/static/me.jpg" alt="Handdrawn portrait of Ben Holmes")
+
+  .content
+    h1 Ben Holmes
+    ul
+      li Web dev
+      li UX freak
+      li Blogger
+      li Charcoal fan
+
+    a.icon-after.arrow-down(href="#iteach") More about me
+
+.line-accents-container
+  .inner-container
+    div
+    div
+    div
+
+section#inbrief-section
+  .section__numbered
+    h2 In brief.
+    a(href="https://twitter.com/bholmesdev")
+      img(src="/static/icons/twitter.svg" alt="Twitter icon")
+      span Short thoughts
+    a(href="https://dev.to/bholmesdev")
+      img(src="/static/icons/devto.svg" alt="DEV icon")
+      span Long reads
+    a(href="https://linkedin.com/in/bholmesdev")
+      img(src="/static/icons/linkedin.svg" alt="LinkedIn icon")
+      span Get professional
+
+  div
+    input#switch__checkbox(type="checkbox")
+    label.switch__text(for="switch__checkbox")
+      span.personal Personal Mode
+      span.slider
+      span.recruiter Recruiter Mode
+
+    .content__personal
+      :markdown-it
+        I first got into software development not through algorithms, not unit testing, not objected-oriented principles... none of the hirable buzzwords. Back in high school, I was wrestling with Java concepts because _I love making shiny pixels move around on a screen._
+
+        Back then, it was in the pursuit of inefficient, spaghetti-coded video games. Now, I've channeled a love for graphics into _**web development and design**_. I spent most of my time at Georgia Tech figuring out the sexiest frameworks to use, the most impactful way to apply my novice knowledge, and how to teach others at a beginner's level. I'm just entering the working world as an adult-in-denial, so I hope [my lessons learned along the way](https://dev.to/bholmesdev) end up helping you!
+
+    .content__recruiter
+      :markdown-it
+        I'm extremely hireable!
+
+        [Take my resume](https://drive.google.com/file/d/1_Dix3-mAHaPVNEB2xIZeZ9RMkZRJ0A8O/view?usp=sharing)
+
+div(style="--section-color: var(--red)")
+  section#iteach-section
+    .section__summary
+      h2 I teach.
+      p In brief...
+      ul
+        li Learning web dev sucks and I want to help
+        li Co-authored fullstack bootcamp with in-person workshops
+        li Became Top 500 author on DEV.to in 2019
+
+    div
+      :markdown-it(html=true)
+        Let's be honest, picking up web development ain't easy. I spent years banging my head against Codecademy tutorials and W3schools to vertically center a div (and the top Stack Overflow answer is still wrong 😑). What's even worse is how disconnected university CS curricula ends up feeling compared to _practical_ web development concepts.
+
+        So, I got tired of sitting in silence. I started a blog back in 2019 as a place to paste some concepts and snippets I learned into a public resource. This somehow made me a Top 500 author on DEV.to, which motivated me to get more involved as a web dev teacher at Georgia Tech. Now, I have **<span id="post-count">10</span>** posts to my name and an entire curriculum of full stack fundamentals!
+
+  section.subsection
+    h3.subsection__header I blog a lot.
+    a.blog-post__headline.img-link(href=headline.link)
+      .img-link__img-container
+        img(src=headline.coverImg.src, alt=headline.coverImg.alt)
+        p.min-read
+          img.mug(src=headline.icon.src, alt=headline.icon.alt)
+      p.title
+      p.cta-link.icon-after.icon__arrow-right Get to reading
+    .blog-post__container
+      dl
+        each post in blogPosts
+          img.mug(src=post.src alt=post.alt)
+          dd.min-read {post.minRead} min
+          dt.title {post.title}
+      a.cta-link.icon-after.icon__devto(href='https://dev.to/bholmesdev') Find more on my blog
+
+  section.subsection
+    h3.subsection__header I led a bootcamp.
+    a.img-link(href='https://www.notion.so/gtbitsofgood/Bootcamp-b1fe164df73e42d3b9c2ab0755e4ca49')
+      .img-link__img-container
+        img(src='static/bootie-squad.jpg', alt='Group photo with bootcampers')
+      p.cta-link.icon-after.icon__notion Browse the curriculum
+
+    div
+      :markdown-it
+        I asked around the dev community to understand how people learn best, and I found a variety of approaches from written documentation to recorded code-alongs. So, I tried to make a bootcamp that was the best of _all_ worlds, incorporating video activites, written code samples, and in-person workshops to create one **mega resource** for becoming a MERN stack sorcerer 🔮
+
+        We've been teaching this material at the [Bits of Good student org](https://bitsofgood.org) for 2 semesters now, so we've had a lot of time to work out the kinks. Click through to find our videos, resources, and project templates 100% free! A huge thanks to Andre Hijouay for creating the incredible v1 of the bootcamp, Max Karpawich for our lovely backend materials, and James Wang for contributing + teaching 😁

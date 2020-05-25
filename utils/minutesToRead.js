@@ -1,11 +1,10 @@
 const html2Text = require('html-to-text')
-const showdown = require('showdown')
+const { md } = require('./mdHelpers')
 
 const avgWPMForAdults = 265
 
 module.exports = (mdString) => {
-  const mdConverter = new showdown.Converter()
-  const html = mdConverter.makeHtml(mdString)
+  const html = md.render(mdString)
 
   const text = html2Text.fromString(html, {
     ignoreImage: true,

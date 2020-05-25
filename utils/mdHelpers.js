@@ -1,11 +1,19 @@
-const showdown = require('showdown')
 const { readFile } = require('./fsPromisified')
 const { JSDOM } = require('jsdom')
+const md = require('markdown-it')({
+  html: true,
+})
+const pug = require('pug')
+
+exports.md = md
+
+exports.pugToHtmlString = async (path) => {
+  return pug.renderFile(path)
+}
 
 exports.mdFileToHtmlString = async (path) => {
   const data = await readFile(path, 'utf8')
-  const mdConverter = new showdown.Converter()
-  return mdConverter.makeHtml(data)
+  return md.render(data)
 }
 
 exports.mdFileToJSDOM = async (path) => {

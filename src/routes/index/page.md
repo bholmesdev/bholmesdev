@@ -1,4 +1,4 @@
-<div style="--section-color: var(--green)" markdown>
+<div style="--section-color: var(--green)">
 <section class="me-header">
 <img width="600" height="600" src="/static/me.jpg" alt="Hand-drawn portrait of Ben Holmes">
 <div class="me-header__content" markdown>
@@ -15,6 +15,7 @@
 </div>
 </section>
 
+
 <div class="line-accents-container">
 <div class="line-accents">
 <div></div>
@@ -22,6 +23,7 @@
 <div></div>
 </div>
 </div>
+
 
 <section id="inbrief-section" class="me">
 <div class="me-section-header social-links" markdown>
@@ -34,9 +36,9 @@
 
 </div>
 
-<div markdown>
+<div>
 <label class="in-brief-switch">
-<input id="in-brief-mode-checkbox" type="checkbox" checked>
+<input id="in-brief-mode-checkbox" type="checkbox">
 <span class="in-brief-switch__personal">Personal Mode</span>
 <span class="in-brief-switch__slider"></span>
 <span class="in-brief-switch__recruiter">Recruiter Mode</span>
@@ -49,6 +51,7 @@ I first got into software development not through algorithms, not unit testing, 
 Back then, it was in the pursuit of inefficient, spaghetti-coded video games. Now, I've channeled a love for graphics into _**web development and design**_. I spent most of my time at Georgia Tech figuring out the sexiest frameworks to use, the most impactful way to apply my novice knowledge, and how to teach others at a beginner's level. I'm just entering the working world as an adult-in-denial, so I hope [my lessons learned along the way](https://dev.to/bholmesdev) end up helping you!
 
 </div>
+
 <div id="in-brief__recruiter-content" markdown>
 
 I'm extremely hirable!

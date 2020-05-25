@@ -9,12 +9,16 @@
     "dotenv": "^8.2.0",
     "html-to-text": "^5.1.1",
     "jsdom": "^16.2.2",
+    "jstransformer-markdown-it": "^2.1.0",
     "livereload": "^0.8.2",
+    "markdown-it": "^11.0.0",
+    "markdown-it-container": "^2.0.0",
     "node-fetch": "^2.6.0",
+    "pug": "^2.0.4",
     "rollup": "^1.27.14",
     "rollup-plugin-babel": "^4.3.3",
-    "serve": "^11.2.0",
-    "showdown": "^1.9.1"
+    "rollup-plugin-scss": "^2.5.0",
+    "serve": "^11.2.0"
   },
   "babel": {
     "presets": [
