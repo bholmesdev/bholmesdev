@@ -1,5 +1,5 @@
-import index from './routes/index/script'
-import projects from './routes/projects/script'
+import index from './me/script'
+import projects from './projects/script'
 import './global.css'
 
 const routeScripts = {
