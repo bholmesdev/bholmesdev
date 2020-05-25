@@ -9,11 +9,11 @@
  * @param {Page[]} pages - list of HTML pages to insert into the doc HTML
  * @param {string} currRouteName - the route name for the page being generated. Used to hide other pages in HTML
  */
-module.exports = (pages, currRouteName) => `
+module.exports = (routeName, meta, allPages) => `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Ben Holmes</title>
+    <title>${meta.title}</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/liz3dnm.css">
   </head>
@@ -24,13 +24,13 @@ module.exports = (pages, currRouteName) => `
       <a href="/contact">Contact</a>
       <div id="dashed-line" />
     </nav>
-    ${pages.reduce((fullHtml, { routeName, html }) => {
+    ${allPages.reduce((fullHtml, page) => {
       return (
         fullHtml +
         `<main 
-          ${currRouteName !== routeName ? 'hidden' : ''}
-          data-route="/${routeName === 'index' ? '' : routeName}">
-          ${html}
+          ${routeName !== page.routeName ? 'hidden' : ''}
+          data-route="${page.routeName}">
+          ${page.html}
         </main>`
       )
     }, '')}

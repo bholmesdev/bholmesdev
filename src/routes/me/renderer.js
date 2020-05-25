@@ -1,5 +1,5 @@
 const pug = require('pug')
-const minutesToRead = require('../../../utils/minutesToRead')
+const minutesToRead = require('../../utils/minutesToRead')
 const fetch = require('node-fetch')
 
 function Image(src, alt) {
@@ -32,7 +32,7 @@ const getMinReadIcon = (minRead) => {
   return icon
 }
 
-module.exports = async (routePath) => {
+module.exports = async () => {
   try {
     const res = await fetch(
       'https://dev.to/api/articles/me/published?per_page=5',
@@ -51,7 +51,7 @@ module.exports = async (routePath) => {
 
     const blogPosts = articles.map((article) => new BlogPost(article))
 
-    const html = pug.renderFile(routePath + '/page.pug', {
+    const html = pug.renderFile(__dirname + '/page.pug', {
       headline: blogPosts[1],
       blogPosts,
     })
