@@ -5,9 +5,10 @@
  */
 
 /**
- *
- * @param {Page[]} pages - list of HTML pages to insert into the doc HTML
- * @param {string} currRouteName - the route name for the page being generated. Used to hide other pages in HTML
+ * @param {string} routeName - the route name for the page being generated.
+ *        Used to hide HTML blocks for other routes loaded from allPages
+ * @param {Object} meta - any attributes to include in the document <head>
+ * @param {Page[]} allPages - list of HTML pages to insert into the doc HTML
  */
 module.exports = (routeName, meta, allPages) => `
 <!DOCTYPE html>
