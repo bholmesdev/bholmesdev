@@ -12,8 +12,11 @@ let prevRouteCleanup = () => {}
 const baseUrl = location.origin
 const allPageEls = document.querySelectorAll('main[data-route]')
 
+const pathToRoute = (path) => (path === '/' ? 'index' : path.slice(1))
 const setVisiblePage = (pathname) => {
-  const pageEl = document.querySelector(`main[data-route="${pathname}"]`)
+  const pageEl = document.querySelector(
+    `main[data-route="${pathToRoute(pathname)}"]`
+  )
   if (pageEl) {
     for (let el of allPageEls) {
       el.setAttribute('hidden', '')
