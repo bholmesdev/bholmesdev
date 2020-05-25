@@ -1,5 +1,7 @@
 const html2Text = require('html-to-text')
-const { md } = require('./mdHelpers')
+const md = require('markdown-it')({
+  html: true,
+})
 
 const avgWPMForAdults = 265
 
