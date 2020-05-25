@@ -1,4 +1,4 @@
-section.header
+section#header-section
   img(width=600 height=600 src="/static/me.jpg" alt="Handdrawn portrait of Ben Holmes")
 
   .content
@@ -9,7 +9,7 @@ section.header
       li Blogger
       li Charcoal fan
 
-    a.icon-after.arrow-down(href="#iteach") More about me
+    a.icon-after.icon__arrow-down(href="#iteach") More about me
 
 .line-accents-container
   #line-accents
@@ -18,8 +18,8 @@ section.header
     div
 
 section#inbrief-section
-  .section__numbered
-    h2 In brief.
+  .social-links
+    h2.numbered In brief.
     a(href="https://twitter.com/bholmesdev")
       img(src="/static/icons/twitter.svg" alt="Twitter icon")
       span Short thoughts
@@ -52,7 +52,7 @@ section#inbrief-section
 div(style="--section-color: var(--red)")
   section#iteach-section
     .section__summary
-      h2 I teach.
+      h2.numbered I teach.
       p In brief...
       ul
         li Learning web dev sucks and I want to help
@@ -76,11 +76,12 @@ div(style="--section-color: var(--red)")
       p.title #{headline.title}
       p.cta-link.icon-after.icon__arrow-right Get to reading
     .blog-post__container
-      dl
+      dl.blog-post__list
         each post in blogPosts
-          img.mug(src=post.minReadIcon.src alt=post.minReadIcon.alt)
-          dd.min-read #{post.minRead} min
-          dt.title #{post.title}
+          a.blog-post(href=post.url)
+            img.mug(src=post.minReadIcon.src alt=post.minReadIcon.alt)
+            dd.min-read #{post.minRead} min
+            dt.title #{post.title}
       a.cta-link.icon-after.icon__devto(href='https://dev.to/bholmesdev') Find more on my blog
 
   section.subsection
