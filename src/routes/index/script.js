@@ -1,3 +1,5 @@
+import './styles.scss'
+
 export default () => {
   // in brief toggle switch
   const personalModeEl = document.getElementById('in-brief__personal-content')

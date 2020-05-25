@@ -12,9 +12,9 @@
   --body-color: #5f4b32;
   --bg-color: #f9f1db;
   --bg-color-2: #d9c7ab;
-  --section-color: var(--body-color);
   --green: #24ac6c;
   --green-faded: #5fb88e;
+  --section-color: var(--green);
   --purple: #6b56a7;
   --red: #e46a4e;
   --red-faded: #e07c64;

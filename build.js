@@ -1,9 +1,10 @@
 const filesystem = require('fs')
 const path = require('path')
 const { rollup } = require('rollup')
-const babel = require('rollup-plugin-babel')
+const rollupBabel = require('rollup-plugin-babel')
+const rollupSCSS = require('rollup-plugin-scss')
 const livereload = require('livereload')
-const { mdFileToHtmlString } = require('./utils/mdHelpers')
+const { mdFileToHtmlString, pugToHtmlString } = require('./utils/mdHelpers')
 const pageLayout = require('./src/pageLayout')
 const { appendFile, writeFile, readFile } = require('./utils/fsPromisified')
 require('dotenv').config()
@@ -28,11 +29,11 @@ const bundleHTML = async (routeNames) => {
   for (let routeName of routeNames) {
     let html = ''
     const basePath = `${routesDir}/${routeName}`
-    if (filesystem.existsSync(basePath + '/renderer.js')) {
+    if (filesystem.existsSync(basePath + '/rendere.js')) {
       const renderer = require(basePath + '/renderer.js')
       html = await renderer(basePath)
     } else {
-      html = await mdFileToHtmlString(basePath + '/page.md')
+      html = await pugToHtmlString(basePath + '/page.pug')
     }
     pages.push({ routeName, html })
   }
@@ -50,7 +51,14 @@ const bundleCSS = async (routeNames) => {
 }
 
 const bundleJS = async () => {
-  let plugins = [babel()]
+  let plugins = [
+    rollupBabel(),
+    rollupSCSS({
+      output: async (styles) => {
+        await writeFile('public/styles.css', styles)
+      },
+    }),
+  ]
   if (process.env.MODE === 'dev') {
     plugins = [...plugins, addLiveReloadScript]
   }
@@ -75,7 +83,7 @@ const bundleJS = async () => {
     const routeDirs = files.filter((fileName) =>
       filesystem.statSync(routesDir + '/' + fileName).isDirectory()
     )
-    await Promise.all([bundleHTML(routeDirs), bundleCSS(routeDirs), bundleJS()])
+    await Promise.all([bundleHTML(routeDirs), bundleJS()])
     consoleLogGreen('Built successfully!')
 
     if (process.env.MODE === 'dev') {
@@ -87,11 +95,11 @@ const bundleJS = async () => {
           process.stdout.write('Rebuilding...')
 
           const fileExtension = path.extname(filePath)
-          if (fileExtension === '.css') {
-            await bundleCSS(routeDirs)
+          if (fileExtension === '.scss' || fileExtension === '.css') {
+            bundleJS()
           } else if (fileExtension === '.js') {
             await Promise.all([bundleJS(), bundleHTML(routeDirs)])
-          } else if (fileExtension === '.md') {
+          } else if (fileExtension === '.pug') {
             await bundleHTML(routeDirs)
           } else {
             return
