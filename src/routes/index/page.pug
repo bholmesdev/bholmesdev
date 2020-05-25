@@ -67,19 +67,20 @@ div(style="--section-color: var(--red)")
 
   section.subsection
     h3.subsection__header I blog a lot.
-    a.blog-post__headline.img-link(href=headline.link)
+    a.blog-post__headline.img-link(href=headline.url)
       .img-link__img-container
-        img(src=headline.coverImg.src, alt=headline.coverImg.alt)
+        img(src=headline.coverImage.src alt=headline.coverImage.alt)
         p.min-read
-          img.mug(src=headline.icon.src, alt=headline.icon.alt)
-      p.title
+          img.mug(src=headline.minReadIcon.src alt=headline.minReadIcon.alt)
+          span #{headline.minRead} min read
+      p.title #{headline.title}
       p.cta-link.icon-after.icon__arrow-right Get to reading
     .blog-post__container
       dl
         each post in blogPosts
-          img.mug(src=post.src alt=post.alt)
-          dd.min-read {post.minRead} min
-          dt.title {post.title}
+          img.mug(src=post.minReadIcon.src alt=post.minReadIcon.alt)
+          dd.min-read #{post.minRead} min
+          dt.title #{post.title}
       a.cta-link.icon-after.icon__devto(href='https://dev.to/bholmesdev') Find more on my blog
 
   section.subsection

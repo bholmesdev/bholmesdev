@@ -29,7 +29,7 @@ const bundleHTML = async (routeNames) => {
   for (let routeName of routeNames) {
     let html = ''
     const basePath = `${routesDir}/${routeName}`
-    if (filesystem.existsSync(basePath + '/rendere.js')) {
+    if (filesystem.existsSync(basePath + '/renderer.js')) {
       const renderer = require(basePath + '/renderer.js')
       html = await renderer(basePath)
     } else {
