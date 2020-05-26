@@ -35,7 +35,7 @@ const getMinReadIcon = (minRead) => {
 module.exports = async () => {
   try {
     const res = await fetch(
-      'https://dev.to/api/articles/me/published?per_page=5',
+      'https://dev.to/api/articles/me/published?per_page=4',
       {
         method: 'GET',
         headers: {
@@ -45,15 +45,15 @@ module.exports = async () => {
       }
     )
     const articles = await res.json()
-    if (!articles || articles.length !== 5) {
+    if (!articles || articles.length !== 4) {
       throw 'API did not return expected amount of articles.'
     }
 
     const blogPosts = articles.map((article) => new BlogPost(article))
 
     const html = pug.renderFile(__dirname + '/page.pug', {
-      headline: blogPosts[1],
-      blogPosts,
+      headline: blogPosts[0],
+      blogPosts: blogPosts.slice(1),
     })
 
     return html
