@@ -23,7 +23,9 @@ module.exports = (routeName, meta, allPages) => `
       <a href="/" class="active">Me</a>
       <a href="/projects">Projects</a>
       <a href="/contact">Contact</a>
-      <div id="dashed-line" />
+      <div class="dashed-line-container">
+        <div></div>
+      </div>
     </nav>
     ${allPages.reduce((fullHtml, page) => {
       return (

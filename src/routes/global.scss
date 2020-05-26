@@ -10,6 +10,7 @@
   --header-font: rigid-square, 'Fira Code', monospace, var(--default-fonts);
 
   --body-color: #5f4b32;
+  --body-color-2: #948067;
   --bg-color: #f9f1db;
   --bg-color-2: #d9c7ab;
   --green: #24ac6c;
@@ -69,19 +70,52 @@ nav a.active {
   opacity: 1;
 }
 
-#dashed-line {
+.dashed-line-container {
   position: fixed;
   right: var(--nav-height);
-  top: 0;
-  bottom: -50px;
-  width: 2px;
-  background-image: repeating-linear-gradient(
-    var(--body-color) 0,
-    var(--body-color) 50%,
-    transparent 50%,
-    transparent 100%
-  );
-  background-size: 2px 50px;
+  top: -50px;
+  bottom: 0;
+  width: 4px;
+  display: flex;
+  align-items: center;
+  // border: 2px solid red;
+  overflow: hidden;
+  animation: move-slow 1s linear infinite;
+
+  div {
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(
+      var(--body-color-2) 0,
+      var(--body-color-2) 50%,
+      transparent 50%,
+      transparent 100%
+    );
+    background-size: 20px 50px;
+    animation: move-fast 2s ease-in-out;
+  }
+}
+
+@keyframes move-slow {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(50px);
+  }
+}
+
+@keyframes move-fast {
+  0% {
+    background-position-y: 0;
+    filter: blur(0);
+  }
+  50% {
+    filter: blur(2px);
+  }
+  100% {
+    background-position-y: 1500px;
+  }
 }
 
 h1,
