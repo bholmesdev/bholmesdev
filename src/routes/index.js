@@ -1,6 +1,6 @@
 import index from './me/script'
 import projects from './projects/script'
-import './global.css'
+import './global.scss'
 
 const routeScripts = {
   '/': index,
@@ -50,32 +50,32 @@ onpopstate = () => {
 }
 
 //global logic
-;(function navDashedLineAnim() {
-  const dashedLine = document.getElementById('dashed-line')
-  let translationY = 0
-  let speed = 100
+// ;(function navDashedLineAnim() {
+//   const dashedLine = document.getElementById('dashed-line')
+//   let translationY = 0
+//   let speed = 100
 
-  setInterval(() => {
-    translationY = (translationY - 2) % 50
-    dashedLine.style.transform = `translateY(${translationY}px)`
-  }, 35)
+//   setInterval(() => {
+//     translationY = (translationY - 2) % 50
+//     dashedLine.style.transform = `translateY(${translationY}px)`
+//   }, 35)
 
-  let waitingOnAnimRequest = false
-  let prevScrollY = 0
-  let currScrollY = 0
+//   let waitingOnAnimRequest = false
+//   let prevScrollY = 0
+//   let currScrollY = 0
 
-  window.onscroll = () => {
-    if (!waitingOnAnimRequest) {
-      window.requestAnimationFrame(() => {
-        prevScrollY = currScrollY
-        currScrollY = window.scrollY
-        speed = (prevScrollY - currScrollY) * 3
+//   window.onscroll = () => {
+//     if (!waitingOnAnimRequest) {
+//       window.requestAnimationFrame(() => {
+//         prevScrollY = currScrollY
+//         currScrollY = window.scrollY
+//         speed = (prevScrollY - currScrollY) * 3
 
-        translationY = (translationY + speed) % 50
-        dashedLine.style.transform = `translateY(${translationY}px)`
-        waitingOnAnimRequest = false
-      })
-      waitingOnAnimRequest = true
-    }
-  }
-})()
+//         translationY = (translationY + speed) % 50
+//         dashedLine.style.transform = `translateY(${translationY}px)`
+//         waitingOnAnimRequest = false
+//       })
+//       waitingOnAnimRequest = true
+//     }
+//   }
+// })()
