@@ -204,12 +204,14 @@ section {
     opacity: 0;
   }
   to {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes slidePageOut {
   from {
+    transform: translateY(0);
     opacity: 1;
   }
   to {
