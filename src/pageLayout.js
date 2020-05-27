@@ -23,7 +23,7 @@ module.exports = (routeName, meta, allPages) => `
       <a href="/" class="active">Me</a>
       <a href="/projects">Projects</a>
       <a href="/contact">Contact</a>
-      <div class="dashed-line-container">
+      <div id="dashed-line-container">
         <div></div>
       </div>
     </nav>
@@ -31,7 +31,7 @@ module.exports = (routeName, meta, allPages) => `
       return (
         fullHtml +
         `<main 
-          ${routeName !== page.routeName ? 'hidden' : ''}
+          ${routeName === page.routeName ? '' : 'hidden'}
           data-route="${page.routeName}">
           ${page.html}
         </main>`
