@@ -7,24 +7,46 @@ const routeScripts = {
   '/projects': projects,
 }
 
-let prevRouteCleanup = () => {}
+let prevPathname = location.pathname
+let prevRouteCleanup = routeScripts[prevPathname]()
 
 const baseUrl = location.origin
-const allPageEls = document.querySelectorAll('main[data-route]')
+const navDashedLine = document.getElementById('dashed-line-container')
+const animDurationMS = 800
 
 const pathToRoute = (path) => (path === '/' ? 'index' : path.slice(1))
 const setVisiblePage = (pathname) => {
-  const pageEl = document.querySelector(
+  const currPageEl = document.querySelector(
     `main[data-route="${pathToRoute(pathname)}"]`
   )
-  if (pageEl) {
-    for (let el of allPageEls) {
-      el.setAttribute('hidden', '')
-    }
-    pageEl.removeAttribute('hidden')
+  const prevPageEl = document.querySelector(
+    `main[data-route="${pathToRoute(prevPathname)}"]`
+  )
+  if (currPageEl) {
+    currPageEl.removeAttribute('hidden')
+    currPageEl.classList.add('slideIn')
+    prevPageEl.classList.add('slideOut')
+    prevPathname = pathname
+
+    setTimeout(() => {
+      prevPageEl.setAttribute('hidden', '')
+      prevPageEl.classList.remove('slideOut')
+      currPageEl.classList.remove('slideIn')
+    }, animDurationMS)
   }
+  // TODO: 404 page for invalid links
   prevRouteCleanup()
   prevRouteCleanup = routeScripts[pathname]()
+}
+
+const moveDashedLine = () => {
+  // only trigger animation once the previous animation is done
+  if (navDashedLine.classList.contains('move')) return
+
+  navDashedLine.classList.add('move')
+  setTimeout(() => {
+    navDashedLine.classList.remove('move')
+  }, animDurationMS)
 }
 
 document.addEventListener('click', (event) => {
@@ -37,13 +59,10 @@ document.addEventListener('click', (event) => {
     } else {
       history.pushState({}, null, target.href)
       setVisiblePage(target.pathname)
+      moveDashedLine()
     }
   }
 })
-
-onload = () => {
-  prevRouteCleanup = routeScripts[location.pathname]()
-}
 
 onpopstate = () => {
   setVisiblePage(location.pathname)

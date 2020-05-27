@@ -24,6 +24,8 @@
   --content-max-width: 1400px;
   --nav-height: 100px;
   --me-font-size: 24px;
+
+  --nav-anim-duration: 0.8s;
 }
 
 * {
@@ -70,7 +72,7 @@ nav a.active {
   opacity: 1;
 }
 
-.dashed-line-container {
+#dashed-line-container {
   position: fixed;
   right: var(--nav-height);
   top: -50px;
@@ -78,7 +80,6 @@ nav a.active {
   width: 4px;
   display: flex;
   align-items: center;
-  // border: 2px solid red;
   overflow: hidden;
   animation: move-slow 1s linear infinite;
 
@@ -92,29 +93,28 @@ nav a.active {
       transparent 100%
     );
     background-size: 20px 50px;
-    animation: move-fast 2s ease-in-out;
+  }
+
+  &.move > div {
+    animation: move-fast var(--nav-anim-duration) cubic-bezier(0.38, 0.02, 0, 1);
   }
 }
 
 @keyframes move-slow {
   from {
-    transform: translateY(0);
-  }
-  to {
     transform: translateY(50px);
   }
 }
 
 @keyframes move-fast {
   0% {
-    background-position-y: 0;
-    filter: blur(0);
+    background-position-y: 1000px;
   }
   50% {
-    filter: blur(2px);
+    filter: blur(8px);
   }
   100% {
-    background-position-y: 1500px;
+    background-position-y: 0;
   }
 }
 
@@ -164,7 +164,7 @@ a:hover {
 }
 
 body {
-  counter-reset: section-number;
+  margin: 0;
 }
 
 section {
@@ -174,4 +174,46 @@ section {
   padding-right: 50px;
   padding-bottom: 200px;
   margin-top: 100px;
+}
+
+[data-route] {
+  counter-reset: section-number;
+
+  &.slideOut,
+  &.slideIn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    animation-duration: var(--nav-anim-duration);
+    animation-timing-function: cubic-bezier(0.17, 0.84, 0.44, 1);
+  }
+  &.slideIn {
+    animation-name: slidePageIn;
+  }
+  &.slideOut {
+    animation-name: slidePageOut;
+  }
+}
+
+@keyframes slidePageIn {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slidePageOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
 }
