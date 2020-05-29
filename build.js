@@ -74,7 +74,7 @@ const bundleJS = async () => {
 
         const fileExtension = path.extname(filePath)
         if (fileExtension === '.pug') {
-          await bundleHTML(routes)
+          await bundleHTML()
         } else {
           await bundleJS()
         }

@@ -11,6 +11,8 @@
     height: var(--icon-size);
     width: var(--icon-size);
     background-color: var(--icon-color);
+    display: inline-block;
+    vertical-align: text-bottom;
   }
 
   .icon__devto {
@@ -513,5 +515,268 @@
     50% {
       transform: translateY(10px);
     }
+  }
+}
+
+.projects__img-container {
+  align-self: end;
+  margin-top: 50px;
+  position: relative;
+  img {
+    width: 100%;
+  }
+  img.screenshot,
+  &::after,
+  &::before {
+    position: absolute;
+    top: 6%;
+    left: 3%;
+    width: 94%;
+    height: 64%;
+  }
+
+  &::before {
+    content: '';
+    height: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    animation: computer-scan-line 4s linear infinite;
+  }
+
+  &::after {
+    content: '';
+    background: radial-gradient(transparent 0%, rgba(49, 25, 2, 0.2)),
+      linear-gradient(transparent, rgba(0, 0, 0, 0.05)) repeat;
+    background-size: 100% 100%, 100% 1%;
+  }
+}
+
+@keyframes computer-scan-line {
+  from {
+    top: 6%;
+    opacity: 1;
+  }
+  to {
+    top: 70%;
+    opacity: 0.1;
+  }
+}
+
+.projects__link-container {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  justify-items: start;
+
+  a,
+  button {
+    cursor: pointer;
+  }
+
+  button.random {
+    padding-right: 20px;
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  a.all {
+    font-family: var(--header-font);
+    text-decoration: none;
+    font-size: 20px;
+
+    &::after {
+      margin-left: 10px;
+    }
+  }
+
+  .dice-container {
+    grid-row: 1 / span 2;
+    position: relative;
+    height: 100px;
+    --anim-length: 2.5s;
+
+    .outer-wrapper.delayed {
+      --delay: 0.3s;
+      animation-name: dice-bounce-outer-delayed;
+
+      .inner-wrapper {
+        animation-name: dice-bounce-inner-delayed;
+
+        &::before,
+        img {
+          animation-name: dice-spin-delayed;
+        }
+      }
+    }
+
+    .outer-wrapper {
+      --delay: 0s;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100px;
+      animation: dice-bounce-outer var(--anim-length) linear infinite;
+      animation-delay: var(--delay);
+
+      .inner-wrapper {
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        animation: dice-bounce-inner var(--anim-length) ease-in infinite;
+        animation-delay: var(--delay);
+
+        img {
+          width: 100%;
+          height: 100%;
+          animation: dice-spin var(--anim-length) linear infinite;
+          animation-delay: var(--delay);
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -6px;
+          left: 6px;
+          width: 100%;
+          height: 100%;
+          background: #faf1d8;
+          outline: 3px solid #7931e3;
+          outline-offset: -3px;
+          animation: dice-spin var(--anim-length) linear infinite,
+            dice-spin-offset var(--anim-length) ease-out infinite;
+          animation-delay: var(--delay);
+        }
+      }
+    }
+  }
+}
+
+@keyframes dice-bounce-outer {
+  0%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-200px);
+    animation-timing-function: cubic-bezier(0, 0, 0.74, 0.98);
+  }
+  70% {
+    transform: translateX(-10px);
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes dice-bounce-outer-delayed {
+  0%,
+  60%,
+  100% {
+    transform: translateX(-15px);
+  }
+  15% {
+    transform: translateX(-200px);
+    animation-timing-function: cubic-bezier(0, 0, 0.74, 0.98);
+  }
+  55% {
+    transform: translateX(-10);
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes dice-bounce-inner {
+  0%,
+  25%,
+  45%,
+  65% {
+    transform: translateY(-5px);
+    animation-timing-function: ease-out;
+  }
+  15% {
+    transform: translateY(-80px);
+  }
+  35% {
+    transform: translateY(-70px);
+  }
+  55% {
+    transform: translateY(-30px);
+  }
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dice-bounce-inner-delayed {
+  0%,
+  20%,
+  40% {
+    transform: translateY(-5px);
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: translateY(-100px);
+  }
+  30% {
+    transform: translateY(-80px);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+  70%,
+  100% {
+    transform: translateY(-38px);
+  }
+}
+
+@keyframes dice-spin {
+  15% {
+    transform: rotate(-200deg);
+  }
+  45% {
+    transform: rotate(150deg);
+  }
+  70% {
+    transform: rotate(340deg);
+  }
+  80%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dice-spin-delayed {
+  15% {
+    transform: rotate(-200deg);
+  }
+  45% {
+    transform: rotate(250deg);
+  }
+  60% {
+    transform: rotate(380deg);
+  }
+  70%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dice-spin-offset {
+  15%,
+  25%,
+  45%,
+  65% {
+    top: 6px;
+    left: -6px;
+  }
+  35%,
+  55%,
+  75%,
+  100% {
+    top: -6px;
+    left: -6px;
   }
 }
