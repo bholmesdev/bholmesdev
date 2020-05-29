@@ -19,14 +19,14 @@ const getMinReadIcon = (minRead) => {
   const icon = new Image()
   const getSrc = (size) => `/static/icons/coffee-cup-${size}.svg`
 
-  if (minRead <= 3) {
-    icon.src = getSrc('small')
+  if (minRead <= 4) {
+    icon.src = getSrc('smol')
     icon.alt = 'Small coffee cup'
   } else if (minRead <= 9) {
-    icon.src = getSrc('med')
+    icon.src = getSrc('meed')
     icon.alt = 'Medium coffee cup'
   } else {
-    icon.src = getSrc('large')
+    icon.src = getSrc('thicc')
     icon.alt = 'Large coffee cup'
   }
   return icon
