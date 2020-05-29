@@ -11,6 +11,7 @@ export default () => {
   const sectionTargets = [
     document.getElementById('inbrief-section'),
     document.getElementById('iteach-section'),
+    document.getElementById('icreate-section'),
   ]
 
   const allStripes = document.querySelectorAll('#line-accents > *')
@@ -40,8 +41,17 @@ export default () => {
   const observer = new IntersectionObserver(observerCallback, observerOptions)
   sectionTargets.forEach((target) => observer.observe(target))
 
+  const clickListener = ({ target }) => {
+    if (target.id === 'generate-random-project') {
+      console.log('cool!')
+    }
+  }
+
+  document.addEventListener('click', clickListener)
+
   // cleanup
   return () => {
+    document.removeEventListener('click', clickListener)
     observer.disconnect()
   }
 }
