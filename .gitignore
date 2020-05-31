@@ -2,4 +2,4 @@ node_modules
 *.DS_Store
 public/*
 !public/static
-!public/favicon.ico
+!public/favicon.jpg

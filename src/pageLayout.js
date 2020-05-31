@@ -17,6 +17,10 @@ module.exports = (routeName, meta, allPages) => `
     <title>${meta.title}</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/liz3dnm.css">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" 
+      type="image/jpg" 
+      href="favicon.jpg">
   </head>
   <body>
     <nav>
