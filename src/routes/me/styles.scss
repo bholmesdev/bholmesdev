@@ -518,47 +518,71 @@
   }
 }
 
-.projects__img-container {
+.macintosh {
+  justify-self: end;
   align-self: end;
+  max-width: 400px;
   margin-top: 50px;
   position: relative;
   img {
     width: 100%;
   }
-  img.screenshot,
-  &::after,
-  &::before {
+  .img-container {
     position: absolute;
-    top: 6%;
-    left: 3%;
-    width: 94%;
-    height: 64%;
-  }
+    top: 11.5%;
+    // bottom: -10px;
+    left: 11%;
+    width: 78%;
+    overflow: hidden;
 
-  &::before {
-    content: '';
-    height: 2px;
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    animation: computer-scan-line 4s linear infinite;
-  }
+    img {
+      transform-origin: bottom center;
+      animation: macintosh-image-glitch 1s step-end infinite;
+    }
 
-  &::after {
-    content: '';
-    background: radial-gradient(transparent 0%, rgba(49, 25, 2, 0.2)),
-      linear-gradient(transparent, rgba(0, 0, 0, 0.05)) repeat;
-    background-size: 100% 100%, 100% 1%;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      animation: macintosh-scan-line 4s linear infinite;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(transparent 0%, rgba(49, 25, 2, 0.2)),
+        linear-gradient(transparent, rgba(0, 0, 0, 0.05)) repeat;
+      background-size: 100% 100%, 100% 1%;
+    }
   }
 }
 
-@keyframes computer-scan-line {
+@keyframes macintosh-scan-line {
   from {
-    top: 6%;
+    top: 0%;
     opacity: 1;
   }
   to {
-    top: 70%;
+    top: 100%;
     opacity: 0.1;
+  }
+}
+
+@keyframes macintosh-image-glitch {
+  50%,
+  80%,
+  100% {
+    transform: skew(-10deg) scaleX(1.5);
+  }
+  75% {
+    transform: translateX(10px) skew(-10deg) scaleX(1.5);
   }
 }
 
@@ -673,16 +697,16 @@
 
 @keyframes dice-bounce-outer-delayed {
   0%,
-  60%,
+  75%,
   100% {
-    transform: translateX(-15px);
+    transform: translateX(-25px);
   }
   15% {
     transform: translateX(-200px);
     animation-timing-function: cubic-bezier(0, 0, 0.74, 0.98);
   }
-  55% {
-    transform: translateX(-10);
+  65% {
+    transform: translateX(-10px);
     animation-timing-function: ease-out;
   }
 }
@@ -713,20 +737,20 @@
 @keyframes dice-bounce-inner-delayed {
   0%,
   20%,
-  40% {
+  50% {
     transform: translateY(-5px);
     animation-timing-function: ease-out;
   }
   10% {
     transform: translateY(-100px);
   }
-  30% {
+  35% {
     transform: translateY(-80px);
   }
-  50% {
-    transform: translateY(-40px);
+  65% {
+    transform: translateY(-35px);
   }
-  70%,
+  75%,
   100% {
     transform: translateY(-38px);
   }
@@ -740,7 +764,8 @@
     transform: rotate(150deg);
   }
   70% {
-    transform: rotate(340deg);
+    transform: rotate(380deg);
+    animation-timing-function: ease-in;
   }
   80%,
   100% {
@@ -755,10 +780,11 @@
   45% {
     transform: rotate(250deg);
   }
-  60% {
-    transform: rotate(380deg);
+  65% {
+    transform: rotate(370deg);
+    animation-timing-function: ease-in;
   }
-  70%,
+  75%,
   100% {
     transform: rotate(360deg);
   }
