@@ -116,19 +116,18 @@ div#icreate-section(style="--section-color: var(--purple)")
   section.subsection
     h3.subsection__header I build cool things.
 
-    div.macintosh
+    div.projects__macintosh
       img(src="/static/macintosh.svg" alt="")
       .img-container
-        img.screenshot(src="/static/test-img.jpg" alt="")
+        img#projects-img-1.screenshot.visible(src=firstProject.img.src alt=firstProject.img.alt)
+        img#projects-img-2.screenshot
 
     div
-      h4 Bits of Good
-
-      :markdown-it
-        Let's be honest, picking up web development ain't easy. I spent years banging my head against Codecademy tutorials and W3schools to vertically center a div (and the top Stack Overflow answer is still wrong 😑). What's even worse is how disconnected university CS curricula ends up feeling compared to _practical_ web development concepts.
+      h4#projects-title #{firstProject.title}
+      p#projects-body !{firstProject.body}
 
       .projects__link-container
-        .dice-container
+        #dice-container
           .outer-wrapper
             .inner-wrapper
               img(src="/static/die-1.svg" alt="")
@@ -137,5 +136,5 @@ div#icreate-section(style="--section-color: var(--purple)")
             .inner-wrapper
               img(src="/static/die-2.svg" alt="")
 
-        button#generate-random-project.random.cta-link Another random project
-        a.all.icon-after.icon__arrow-right(href="/projects") Just show me all of them
+        button#generate-random-project.cta-link Another random project
+        a.icon-after.icon__arrow-right(href="/projects") Just show me all of them

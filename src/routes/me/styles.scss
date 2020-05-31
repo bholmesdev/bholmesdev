@@ -518,12 +518,13 @@
   }
 }
 
-.macintosh {
+.projects__macintosh {
   justify-self: end;
   align-self: end;
   max-width: 400px;
   margin-top: 50px;
   position: relative;
+
   img {
     width: 100%;
   }
@@ -536,8 +537,20 @@
     overflow: hidden;
 
     img {
+      opacity: 0;
       transform-origin: bottom center;
-      animation: macintosh-image-glitch 1s step-end infinite;
+    }
+
+    img.visible {
+      animation: macintosh-image-glitch-in 0.4s step-start forwards;
+    }
+
+    #projects-img-2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
 
     &::before {
@@ -575,19 +588,28 @@
   }
 }
 
-@keyframes macintosh-image-glitch {
-  50%,
-  80%,
-  100% {
-    transform: skew(-10deg) scaleX(1.5);
+@keyframes macintosh-image-glitch-in {
+  0% {
+    transform: skew(0) scaleX(1);
+    opacity: 0;
   }
-  75% {
+  20%,
+  90% {
+    transform: skew(-10deg) scaleX(1.5);
+    opacity: 1;
+  }
+  30% {
     transform: translateX(10px) skew(-10deg) scaleX(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: skew(0) scaleX(1);
+    opacity: 1;
   }
 }
 
 .projects__link-container {
-  margin-top: 60px;
+  margin-top: 80px;
   display: grid;
   grid-template-columns: 100px 1fr;
   justify-items: start;
@@ -597,14 +619,14 @@
     cursor: pointer;
   }
 
-  button.random {
+  #generate-random-project {
     padding-right: 20px;
     font-size: 30px;
     margin-top: 0;
     margin-bottom: 20px;
   }
 
-  a.all {
+  a {
     font-family: var(--header-font);
     text-decoration: none;
     font-size: 20px;
@@ -614,22 +636,43 @@
     }
   }
 
-  .dice-container {
+  #dice-container {
     grid-row: 1 / span 2;
     position: relative;
     height: 100px;
-    --anim-length: 2.5s;
 
-    .outer-wrapper.delayed {
-      --delay: 0.3s;
-      animation-name: dice-bounce-outer-delayed;
+    &.animated {
+      --anim-length: 2.5s;
+      .outer-wrapper {
+        animation: dice-bounce-outer var(--anim-length) linear forwards;
 
-      .inner-wrapper {
-        animation-name: dice-bounce-inner-delayed;
+        .inner-wrapper {
+          animation: dice-bounce-inner var(--anim-length) ease-in forwards;
 
-        &::before,
-        img {
-          animation-name: dice-spin-delayed;
+          img {
+            animation: dice-spin var(--anim-length) linear forwards;
+          }
+          &::before {
+            animation: dice-spin var(--anim-length) linear forwards,
+              dice-spin-offset var(--anim-length) ease-out forwards;
+          }
+        }
+      }
+
+      .outer-wrapper.delayed {
+        --delay: 0.3s;
+        animation-name: dice-bounce-outer-delayed;
+        animation-delay: var(--delay);
+
+        .inner-wrapper {
+          animation-name: dice-bounce-inner-delayed;
+          animation-delay: var(--delay);
+
+          &::before,
+          img {
+            animation-name: dice-spin-delayed;
+            animation-delay: var(--delay);
+          }
         }
       }
     }
@@ -641,8 +684,18 @@
       left: 0;
       height: 100%;
       width: 100px;
-      animation: dice-bounce-outer var(--anim-length) linear infinite;
-      animation-delay: var(--delay);
+
+      &.delayed {
+        transform: translateX(-25px);
+
+        .inner-wrapper {
+          transform: translateY(-38px);
+
+          &::before {
+            left: 6px;
+          }
+        }
+      }
 
       .inner-wrapper {
         height: 40px;
@@ -650,29 +703,23 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        animation: dice-bounce-inner var(--anim-length) ease-in infinite;
-        animation-delay: var(--delay);
 
         img {
           width: 100%;
           height: 100%;
-          animation: dice-spin var(--anim-length) linear infinite;
-          animation-delay: var(--delay);
         }
 
         &::before {
           content: '';
           position: absolute;
+          z-index: -1;
           top: -6px;
-          left: 6px;
+          left: -6px;
           width: 100%;
           height: 100%;
           background: #faf1d8;
           outline: 3px solid #7931e3;
           outline-offset: -3px;
-          animation: dice-spin var(--anim-length) linear infinite,
-            dice-spin-offset var(--anim-length) ease-out infinite;
-          animation-delay: var(--delay);
         }
       }
     }
@@ -713,6 +760,10 @@
 
 @keyframes dice-bounce-inner {
   0%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
   25%,
   45%,
   65% {
@@ -728,14 +779,14 @@
   55% {
     transform: translateY(-30px);
   }
-  80%,
-  100% {
-    transform: translateY(0);
-  }
 }
 
 @keyframes dice-bounce-inner-delayed {
   0%,
+  75%,
+  100% {
+    transform: translateY(-38px);
+  }
   20%,
   50% {
     transform: translateY(-5px);
@@ -749,10 +800,6 @@
   }
   65% {
     transform: translateY(-35px);
-  }
-  75%,
-  100% {
-    transform: translateY(-38px);
   }
 }
 
