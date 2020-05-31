@@ -3,6 +3,7 @@ const path = require('path')
 const { rollup } = require('rollup')
 const babel = require('rollup-plugin-babel')
 const scss = require('rollup-plugin-scss')
+const commonjs = require('@rollup/plugin-commonjs')
 const livereload = require('livereload')
 const pageLayout = require('./src/pageLayout')
 const { writeFile } = require('./src/utils/fsPromisified')
@@ -35,6 +36,7 @@ const bundleHTML = async () => {
 const bundleJS = async () => {
   let plugins = [
     babel(),
+    commonjs(),
     scss({
       output: async (styles) => {
         await writeFile('public/styles.css', styles)

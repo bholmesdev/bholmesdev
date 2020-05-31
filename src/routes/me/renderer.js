@@ -1,6 +1,7 @@
 const pug = require('pug')
-const minutesToRead = require('../../utils/minutesToRead')
 const fetch = require('node-fetch')
+const minutesToRead = require('../../utils/minutesToRead')
+const projects = require('../projectList')
 
 function Image(src, alt) {
   this.src = src || ''
@@ -54,6 +55,7 @@ module.exports = async () => {
     const html = pug.renderFile(__dirname + '/page.pug', {
       headline: blogPosts[0],
       blogPosts: blogPosts.slice(1),
+      firstProject: projects[0],
     })
 
     return html
