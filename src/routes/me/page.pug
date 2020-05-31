@@ -116,9 +116,10 @@ div#icreate-section(style="--section-color: var(--purple)")
   section.subsection
     h3.subsection__header I build cool things.
 
-    div.projects__img-container
-      img(src="/static/projects-computer-monitor.svg" alt="")
-      img.screenshot(src="/static/test-img.jpg" alt="")
+    div.macintosh
+      img(src="/static/macintosh.svg" alt="")
+      .img-container
+        img.screenshot(src="/static/test-img.jpg" alt="")
 
     div
       h4 Bits of Good
@@ -137,4 +138,4 @@ div#icreate-section(style="--section-color: var(--purple)")
               img(src="/static/die-2.svg" alt="")
 
         button#generate-random-project.random.cta-link Another random project
-        a.all.icon-after.icon__arrow-right Just show me all of them
+        a.all.icon-after.icon__arrow-right(href="/projects") Just show me all of them
