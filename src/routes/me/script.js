@@ -68,19 +68,16 @@ export default () => {
     secondImgEl.alt = projects[index].img.alt
 
     const setProjectInfo = (nextImgEl, currImgEl) => {
-      titleEl.innerText = projects[index].title
-      bodyEl.innerHTML = projects[index].body
-
       // wait for dice to hit the computer
       setTimeout(() => {
+        titleEl.innerText = projects[index].title
+        bodyEl.innerHTML = projects[index].body
+
         index = newIndex()
         nextImgEl.classList.add('visible')
         currImgEl.classList.remove('visible')
-        // load next image once transition animation finishes
-        setTimeout(() => {
-          currImgEl.src = projects[index].img.src
-          currImgEl.alt = projects[index].img.alt
-        }, 500)
+        currImgEl.src = projects[index].img.src
+        currImgEl.alt = projects[index].img.alt
       }, 400)
     }
 
