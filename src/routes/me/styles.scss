@@ -274,34 +274,31 @@
   }
 
   .section__summary {
-    display: grid;
-    grid-template-areas:
-      'header header'
-      'in-brief description';
-    align-content: flex-start;
-    grid-template-columns: 50px 1fr;
+    padding-bottom: 125px;
+    div {
+      display: grid;
+      align-content: flex-start;
+      grid-template-columns: 50px 1fr;
+      column-gap: 25px;
+      margin-top: 100px;
 
-    h2 {
-      grid-area: header;
-      position: relative;
-      margin-top: 0;
-    }
-    p {
-      grid-area: in-brief;
-      font-family: var(--header-font);
-      font-weight: bold;
-      margin: 0;
-      color: var(--section-color);
-      writing-mode: vertical-lr;
-    }
-    ul {
-      grid-area: description;
-      list-style-type: none;
-      margin: 0;
-      padding-left: 0;
+      p {
+        font-family: var(--header-font);
+        font-weight: bold;
+        font-size: 40px;
+        margin: 0;
+        color: var(--section-color);
+        writing-mode: vertical-lr;
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding-left: 0;
+        font-size: 28px;
 
-      li {
-        margin-bottom: 15px;
+        li {
+          margin-bottom: 18px;
+        }
       }
     }
   }
