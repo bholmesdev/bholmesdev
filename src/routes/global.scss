@@ -151,7 +151,7 @@ a:visited {
 }
 
 a:hover {
-  animation: flash 0.4s linear infinite;
+  animation: flash 0.4s ease-in-out infinite;
 }
 
 @keyframes flash {
@@ -160,7 +160,7 @@ a:hover {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 }
 
