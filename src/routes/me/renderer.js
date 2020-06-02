@@ -36,7 +36,7 @@ const getMinReadIcon = (minRead) => {
 module.exports = async () => {
   try {
     const res = await fetch(
-      'https://dev.to/api/articles/me/published?per_page=4',
+      'https://dev.to/api/articles/me/published?per_page=5',
       {
         method: 'GET',
         headers: {
@@ -46,7 +46,7 @@ module.exports = async () => {
       }
     )
     const articles = await res.json()
-    if (!articles || articles.length !== 4) {
+    if (!articles || articles.length !== 5) {
       throw 'API did not return expected amount of articles.'
     }
 
