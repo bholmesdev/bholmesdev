@@ -181,6 +181,14 @@ section {
   margin-top: 100px;
 }
 
+button {
+  background: none;
+  border: none;
+  font-family: var(--header-font);
+  color: var(--body-color);
+  cursor: pointer;
+}
+
 [data-route] {
   counter-reset: section-number;
 
