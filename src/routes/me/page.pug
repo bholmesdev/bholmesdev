@@ -102,25 +102,28 @@ div#icreate-section(style="--section-color: var(--purple)")
         - Social good advocate: former **Bits of Good** Director of Engineering, **Impact Labs** contributor
 
   section.subsection
-    div.projects__macintosh
+    input#project-details-toggle(type="checkbox")
+
+    .projects__macintosh
       img(src="/static/macintosh.svg" alt="")
       .img-container
         img#projects-img-1.screenshot.visible(src=firstProject.img.src alt=firstProject.img.alt)
         img#projects-img-2.screenshot
+    
+    label.icon-after.icon__arrow-right(for="project-details-toggle")
 
-    div
-      h4#projects-title #{firstProject.title}
-      p#projects-body !{firstProject.body}
+    h4#projects-title #{firstProject.title}
+    p#projects-body !{firstProject.body}
 
-      .projects__link-container
-        #dice-container
-          .outer-wrapper
-            .inner-wrapper
-              img(src="/static/die-1.svg" alt="")
+    .projects__link-container
+      #dice-container
+        .outer-wrapper
+          .inner-wrapper
+            img(src="/static/die-1.svg" alt="")
 
-          .outer-wrapper.delayed
-            .inner-wrapper
-              img(src="/static/die-2.svg" alt="")
+        .outer-wrapper.delayed
+          .inner-wrapper
+            img(src="/static/die-2.svg" alt="")
 
-        button#generate-random-project.cta-link Another random project
-        a.icon-after.icon__arrow-right(href="/projects") Just show me all of them
+      button#generate-random-project.cta-link Another random project
+      a.icon-after.icon__arrow-right(href="/projects") Just show me all of them
