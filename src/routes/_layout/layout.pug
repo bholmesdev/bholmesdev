@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+html(lang="en-US")
+  head
+    title #{meta.title}
+    link(rel="stylesheet" href="styles.css")
+    link(rel="stylesheet" href="https://use.typekit.net/liz3dnm.css")
+    head(profile="http://www.w3.org/2005/10/profile")
+    link(rel="icon" type="img/jpg" href="favicon.jpg")
+
+  body
+    nav#primary-nav
+      ul
+        li
+          a.active(href="/") Me
+        li
+          a(href="/projects") Projects
+        li
+          a(href="/contact") Contact
+
+      button#mobile-dropdown-toggle
+        .stripe-top
+        .stripe-middle
+        .stripe-bottom
+        
+      #dashed-line-container
+        div
+
+    each page in pages
+      main(data-route=page.routeName, hidden=routeName !== page.routeName) !{page.html}
+
+  script(src="bundle.js")

@@ -5,9 +5,9 @@ const babel = require('rollup-plugin-babel')
 const scss = require('rollup-plugin-scss')
 const commonjs = require('@rollup/plugin-commonjs')
 const livereload = require('livereload')
-const pageLayout = require('./src/pageLayout')
+const pageLayout = require('./src/routes/_layout/renderer')
 const { writeFile } = require('./src/utils/fsPromisified')
-const renderer = require('./src/routes/renderer')
+const { routeRenderer } = require('./src/routes')
 require('dotenv').config()
 
 const liveReloadPort = 35729
@@ -24,7 +24,7 @@ const consoleLogGreen = (text) => {
 }
 
 const bundleHTML = async () => {
-  const routes = await renderer()
+  const routes = await routeRenderer()
   routes.forEach(async ({ routeName, meta }) => {
     await writeFile(
       `public/${routeName}.html`,
@@ -48,7 +48,7 @@ const bundleJS = async () => {
   }
 
   const bundle = await rollup({
-    input: 'src/routes/index.js',
+    input: 'src/routes/_layout/script.js',
     plugins,
   })
   await bundle.write({
