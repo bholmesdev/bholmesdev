@@ -1,7 +1,7 @@
 const pug = require('pug')
 const fetch = require('node-fetch')
 const minutesToRead = require('../../utils/minutesToRead')
-const projects = require('../projectList')
+const projects = require('../../utils/projectList')
 
 function Image(src, alt) {
   this.src = src || ''
@@ -9,10 +9,12 @@ function Image(src, alt) {
 }
 
 function BlogPost(article) {
-  this.title = article.title
-  this.url = article.url
+  this.title = article.title || ''
+  this.url = article.url || ''
   this.coverImage = new Image(article.cover_image)
-  this.minRead = minutesToRead(article.body_markdown)
+  this.minRead = article.body_markdown
+    ? minutesToRead(article.body_markdown)
+    : 0
   this.minReadIcon = getMinReadIcon(this.minRead)
 }
 
@@ -34,6 +36,7 @@ const getMinReadIcon = (minRead) => {
 }
 
 module.exports = async () => {
+  let blogPosts = []
   try {
     const res = await fetch(
       'https://dev.to/api/articles/me/published?per_page=5',
@@ -50,17 +53,16 @@ module.exports = async () => {
       throw 'API did not return expected amount of articles.'
     }
 
-    const blogPosts = articles.map((article) => new BlogPost(article))
-
-    const html = pug.renderFile(__dirname + '/page.pug', {
-      headline: blogPosts[0],
-      blogPosts: blogPosts.slice(1),
-      firstProject: projects[0],
-    })
-
-    return html
+    blogPosts = articles.map((article) => new BlogPost(article))
   } catch (e) {
     console.error(e)
-    return e
+    const emptyBlogPost = new BlogPost({})
+    blogPosts = [emptyBlogPost]
   }
+
+  return pug.renderFile(__dirname + '/page.pug', {
+    headline: blogPosts[0],
+    blogPosts: blogPosts.slice(1),
+    firstProject: projects[0],
+  })
 }

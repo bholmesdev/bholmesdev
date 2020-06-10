@@ -1,5 +1,5 @@
 import './styles.scss'
-import projects from '../projectList'
+import projects from '../../utils/projectList'
 
 export default () => {
   //colored stripe logic
