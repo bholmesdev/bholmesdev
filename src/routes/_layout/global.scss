@@ -28,6 +28,12 @@
   --nav-anim-duration: 0.8s;
 }
 
+@media (max-width: 850px) {
+  :root {
+    --nav-height: 60px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

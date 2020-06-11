@@ -67,14 +67,13 @@ nav {
     }
   }
 
-  @media (min-width: 875px) {
+  @media (min-width: 850px) {
     .mobile {
       display: none;
     }
   }
 
-  @media (max-width: 875px) {
-    --nav-height: 60px;
+  @media (max-width: 850px) {
     writing-mode: initial;
     left: 0;
     width: 100vw;
