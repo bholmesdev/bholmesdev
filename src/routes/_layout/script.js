@@ -1,5 +1,6 @@
 import index from '../me/script'
 import projects from '../projects/script'
+import { clearNavSections } from '../../utils/navSections'
 import './global.scss'
 import './navStyles.scss'
 
@@ -36,6 +37,7 @@ const setVisiblePage = (pathname) => {
     }, animDurationMS)
   }
   // TODO: 404 page for invalid links
+  clearNavSections()
   prevRouteCleanup()
   prevRouteCleanup = routeScripts[pathname]()
 }
@@ -50,20 +52,31 @@ const moveDashedLine = () => {
   }, animDurationMS)
 }
 
-const navEl = document.getElementById('primary-nav')
+const primaryNavEl = document.getElementById('primary-nav')
+const jumpToSectionEl = document.getElementById('jump-to-sections')
 
 document.addEventListener('click', (event) => {
   const { target } = event
-  if (target.id === 'mobile-dropdown-toggle') {
-    if (navEl.classList.contains('toggled')) {
-      navEl.classList.remove('toggled')
+  if (target.id === 'primary-nav-toggle') {
+    if (primaryNavEl.classList.contains('toggled')) {
+      primaryNavEl.classList.remove('toggled')
     } else {
-      navEl.classList.add('toggled')
+      primaryNavEl.classList.add('toggled')
+    }
+  }
+  if (target.id === 'jump-to-section-toggle') {
+    if (jumpToSectionEl.classList.contains('toggled')) {
+      jumpToSectionEl.classList.remove('toggled')
+    } else {
+      jumpToSectionEl.classList.add('toggled')
     }
   }
   if (target.tagName === 'A' && target.origin === baseUrl) {
-    navEl.classList.remove('toggled') // hide the mobile nav, assuming the link is inside the mobile nav
     event.preventDefault()
+
+    primaryNavEl.classList.remove('toggled')
+    jumpToSectionEl.classList.remove('toggled')
+
     if (target.hash) {
       const el = document.querySelector(target.hash)
       el && el.scrollIntoView({ behavior: 'smooth' })
