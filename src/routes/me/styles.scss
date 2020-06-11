@@ -1,5 +1,6 @@
 [data-route='index'] {
   $tablet-breakpoint: 1200px;
+  $mobile-breakpoint: 850px;
 
   .icon-before:before,
   .icon-after:after {
@@ -45,6 +46,10 @@
       justify-content: flex-start;
       margin-left: 20px;
       margin-top: -200px;
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
     }
 
     #line-accents {
@@ -146,6 +151,66 @@
           --icon-size: 1em;
           margin-left: 30px;
           animation: float-up-down ease-in-out 2s infinite;
+        }
+      }
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      grid-template-columns: 1fr;
+      position: relative;
+      height: 100vh;
+      max-width: var(--content-max-width);
+      padding-left: 0;
+      padding-right: 0;
+      min-height: 600px;
+      margin-top: var(--nav-height);
+
+      img {
+        width: 70%;
+        margin-top: 30%;
+        margin-left: auto;
+      }
+
+      .content {
+        position: absolute;
+        --margin: 20px;
+        top: var(--margin);
+        left: var(--margin);
+        right: var(--margin);
+        bottom: calc(var(--nav-height) + var(--margin));
+
+        h1 {
+          writing-mode: vertical-rl;
+          font-size: 10vh;
+          margin: 0;
+          margin-left: -20px;
+          height: 0;
+        }
+
+        ul {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          margin: 0;
+          font-size: 4vh;
+
+          li {
+            margin-bottom: 10px;
+          }
+        }
+
+        a {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+
+          span {
+            display: none;
+          }
+
+          &::after {
+            --icon-size: 6vh;
+          }
         }
       }
     }
@@ -1011,6 +1076,22 @@
 
       .img-link {
         max-width: 600px;
+      }
+    }
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    --content-max-width: 600px;
+    section {
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+
+      font-size: 20px;
+
+      h2 {
+        font-size: 64px;
       }
     }
   }
