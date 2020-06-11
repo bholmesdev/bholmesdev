@@ -104,6 +104,10 @@ button {
   font-family: var(--header-font);
   color: var(--body-color);
   cursor: pointer;
+
+  * {
+    pointer-events: none;
+  }
 }
 
 [data-route] {
