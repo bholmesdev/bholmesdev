@@ -6,18 +6,27 @@ html(lang="en-US")
     link(rel="stylesheet" href="https://use.typekit.net/liz3dnm.css")
     head(profile="http://www.w3.org/2005/10/profile")
     link(rel="icon" type="img/jpg" href="favicon.jpg")
+    meta(name='viewport' content='width=device-width,initial-scale=1.0')
 
   body
-    nav#primary-nav
-      ul
-        li
-          a.active(href="/") Me
+    nav
+      ul#jump-to-sections.mobile
+
+      button#jump-to-section-toggle.mobile
+        span 0
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M128 192l128 128 128-128z"/></svg>
+
+      p#current-section.mobile
+
+      ul#primary-nav
+        li.active
+          a(href="/") Me
         li
           a(href="/projects") Projects
         li
           a(href="/contact") Contact
 
-      button#mobile-dropdown-toggle
+      button#primary-nav-toggle.mobile
         .stripe-top
         .stripe-middle
         .stripe-bottom
