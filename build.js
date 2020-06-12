@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const { rollup } = require('rollup')
-const babel = require('rollup-plugin-babel')
 const commonjs = require('@rollup/plugin-commonjs')
 const livereload = require('livereload')
 const pageLayout = require('./src/routes/_layout')
@@ -67,7 +66,7 @@ const bundleCSS = async () => {
 }
 
 const bundleJS = async () => {
-  let plugins = [babel(), commonjs()]
+  let plugins = [commonjs()]
   if (process.env.MODE === 'dev') {
     plugins = [...plugins, addLiveReloadScript]
   }
