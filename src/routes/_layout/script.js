@@ -62,6 +62,7 @@ document.addEventListener('click', (event) => {
       primaryNavEl.classList.remove('toggled')
     } else {
       primaryNavEl.classList.add('toggled')
+      jumpToSectionEl.classList.remove('toggled')
     }
   }
   if (target.id === 'jump-to-section-toggle') {
@@ -69,6 +70,7 @@ document.addEventListener('click', (event) => {
       jumpToSectionEl.classList.remove('toggled')
     } else {
       jumpToSectionEl.classList.add('toggled')
+      primaryNavEl.classList.remove('toggled')
     }
   }
   if (target.tagName === 'A' && target.origin === baseUrl) {
