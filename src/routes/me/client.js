@@ -1,4 +1,4 @@
-import projects from '../../utils/projectList'
+import projects from '../project-list'
 import { setSectionObserver } from '../../utils/navSections'
 
 export default () => {

@@ -1,7 +1,7 @@
 const pug = require('pug')
 const fetch = require('node-fetch')
 const minutesToRead = require('../../utils/minutesToRead')
-const projects = require('../../utils/projectList')
+const projects = require('../project-list')
 
 function Image(src, alt) {
   this.src = src || ''
