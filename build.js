@@ -1,13 +1,16 @@
-const filesystem = require('fs')
+const fs = require('fs')
 const path = require('path')
 const { rollup } = require('rollup')
 const babel = require('rollup-plugin-babel')
-const scss = require('rollup-plugin-scss')
 const commonjs = require('@rollup/plugin-commonjs')
 const livereload = require('livereload')
 const pageLayout = require('./src/routes/_layout')
-const { writeFile } = require('./src/utils/fsPromisified')
-const { routeRenderer } = require('./src/routes')
+const { writeFile, readDir } = require('./src/utils/fsPromisified')
+const { routes, routeRenderer } = require('./src/routes')
+
+const sassCompiler = require('node-sass')
+const { promisify } = require('util')
+const sassRender = promisify(sassCompiler.render)
 require('dotenv').config()
 
 const liveReloadPort = 35729
@@ -24,25 +27,47 @@ const consoleLogGreen = (text) => {
 }
 
 const bundleHTML = async () => {
-  const routes = await routeRenderer()
-  routes.forEach(async ({ routeName, meta }) => {
+  const renderedRoutes = await routeRenderer()
+  renderedRoutes.forEach(async ({ routeName, meta }) => {
     await writeFile(
       `public/${routeName}.html`,
-      pageLayout(routeName, meta, routes)
+      pageLayout(routeName, meta, renderedRoutes)
     )
   })
 }
 
-const bundleJS = async () => {
-  let plugins = [
-    babel(),
-    commonjs(),
-    scss({
-      output: async (styles) => {
-        await writeFile('public/styles.css', styles)
-      },
-    }),
+const bundleCSS = async () => {
+  let sassFiles = []
+  const routeDirs = [
+    '_layout',
+    ...routes.map(({ routeName, routeDirName = routeName }) => routeDirName),
   ]
+  await Promise.all(
+    routeDirs.map(async (routeDirName) => {
+      const routeDirPath = `${__dirname}/src/routes/${routeDirName}`
+      const files = await readDir(routeDirPath)
+      for (let file of files) {
+        const extension = path.extname(file)
+        if (extension === '.scss') {
+          sassFiles = [...sassFiles, `${routeDirPath}/${file}`]
+        }
+      }
+    })
+  )
+
+  const buffer = Buffer.concat(
+    await Promise.all(
+      sassFiles.map(async (file) => {
+        const { css } = await sassRender({ file })
+        return css
+      })
+    )
+  )
+  await writeFile(__dirname + '/public/styles.css', buffer)
+}
+
+const bundleJS = async () => {
+  let plugins = [babel(), commonjs()]
   if (process.env.MODE === 'dev') {
     plugins = [...plugins, addLiveReloadScript]
   }
@@ -60,14 +85,16 @@ const bundleJS = async () => {
 
 // Build script
 ;(async () => {
-  if (!filesystem.existsSync(__dirname + '/public/')) {
-    filesystem.mkdirSync('public')
+  if (!fs.existsSync(__dirname + '/public/')) {
+    fs.mkdirSync('public')
   }
-  await Promise.all([bundleHTML(), bundleJS()])
+
+  await Promise.all([bundleHTML(), bundleCSS(), bundleJS()])
+
   consoleLogGreen('Built successfully!')
 
   if (process.env.MODE === 'dev') {
-    filesystem.watch(
+    fs.watch(
       __dirname + '/src',
       { recursive: true },
       async (event, filePath) => {
@@ -77,6 +104,8 @@ const bundleJS = async () => {
         const fileExtension = path.extname(filePath)
         if (fileExtension === '.pug') {
           await bundleHTML()
+        } else if (fileExtension === '.scss') {
+          await bundleCSS()
         } else {
           await bundleJS()
         }

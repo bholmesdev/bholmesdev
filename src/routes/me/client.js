@@ -1,4 +1,3 @@
-import './styles.scss'
 import projects from '../../utils/projectList'
 import { setSectionObserver } from '../../utils/navSections'
 
