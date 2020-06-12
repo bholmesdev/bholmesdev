@@ -5,7 +5,6 @@ const routes = [
     meta: {
       title: 'My Story',
     },
-    renderer: true,
   },
   {
     routeName: 'projects',
@@ -16,33 +15,23 @@ const routes = [
 ]
 
 const pug = require('pug')
-const defaultRenderer = (path) => () => pug.renderFile(path + '/page.pug')
+const { exists } = require('../utils/fsPromisified')
+const defaultRenderer = (path) => () => pug.renderFile(path + '/index.pug')
 
 module.exports = {
   routeRenderer: async () => {
-    const routeList = routes.reduce(
-      (
-        list,
-        { routeName, routeDirName = routeName, meta, renderer = false }
-      ) => {
-        if (renderer) {
-          var rendererScript = require(`${__dirname}/${routeDirName}/renderer`)
+    return await routes.reduce(
+      async (list, { routeName, routeDirName = routeName, meta }) => {
+        const jsRendererPath = `${__dirname}/${routeDirName}/index.js`
+        const jsRendererExists = await exists(jsRendererPath)
+        if (jsRendererExists) {
+          var renderer = require(jsRendererPath)
         } else {
-          var rendererScript = defaultRenderer(__dirname + '/' + routeDirName)
+          var renderer = defaultRenderer(__dirname + '/' + routeDirName)
         }
-        return [...list, { routeName, meta, renderer: rendererScript }]
+        return [...(await list), { routeName, meta, html: await renderer() }]
       },
       []
-    )
-
-    return await Promise.all(
-      routeList.map(async ({ routeName, meta, renderer }) => {
-        return {
-          routeName,
-          meta,
-          html: await renderer(),
-        }
-      })
     )
   },
 }

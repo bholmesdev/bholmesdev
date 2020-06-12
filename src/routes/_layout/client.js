@@ -1,5 +1,5 @@
-import index from '../me/script'
-import projects from '../projects/script'
+import index from '../me/client'
+import projects from '../projects/client'
 import { clearNavSections } from '../../utils/navSections'
 import './global.scss'
 import './navStyles.scss'

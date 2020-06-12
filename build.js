@@ -5,7 +5,7 @@ const babel = require('rollup-plugin-babel')
 const scss = require('rollup-plugin-scss')
 const commonjs = require('@rollup/plugin-commonjs')
 const livereload = require('livereload')
-const pageLayout = require('./src/routes/_layout/renderer')
+const pageLayout = require('./src/routes/_layout')
 const { writeFile } = require('./src/utils/fsPromisified')
 const { routeRenderer } = require('./src/routes')
 require('dotenv').config()
@@ -48,7 +48,7 @@ const bundleJS = async () => {
   }
 
   const bundle = await rollup({
-    input: 'src/routes/_layout/script.js',
+    input: 'src/routes/_layout/client.js',
     plugins,
   })
   await bundle.write({
