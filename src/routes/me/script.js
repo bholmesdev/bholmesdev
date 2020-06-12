@@ -1,46 +1,31 @@
 import './styles.scss'
-import projects from '../projectList'
+import projects from '../../utils/projectList'
+import { setSectionObserver } from '../../utils/navSections'
 
 export default () => {
-  //colored stripe logic
-  const observerOptions = {
-    root: null,
-    rootMargin: '-60% 0px -40% 0px',
-    threshold: 0,
-  }
-
-  const sectionTargets = [
+  const sections = [
     document.getElementById('inbrief-section'),
     document.getElementById('iteach-section'),
     document.getElementById('icreate-section'),
   ]
 
-  const allStripes = document.querySelectorAll('#line-accents > *')
-
-  const observerCallback = (entries) => {
-    entries.forEach((change) => {
-      const targettedIndex = sectionTargets.findIndex(
-        (target) => target === change.target
-      )
-      const selectedStripe = document.querySelector(
-        `#line-accents > :nth-child(${targettedIndex + 1})`
-      )
-      if (change.isIntersecting) {
-        for (let stripe of allStripes) {
-          if (stripe === selectedStripe) {
-            stripe.classList.add('active')
-          } else {
-            stripe.classList.remove('active')
-          }
+  setSectionObserver(sections, (isIntersecting, sectionIndex) => {
+    const allStripes = document.querySelectorAll('#line-accents > *')
+    const selectedStripe = document.querySelector(
+      `#line-accents > :nth-child(${sectionIndex + 1})`
+    )
+    if (isIntersecting) {
+      for (let stripe of allStripes) {
+        if (stripe === selectedStripe) {
+          stripe.classList.add('active')
+        } else {
+          stripe.classList.remove('active')
         }
-      } else if (targettedIndex === 0) {
-        selectedStripe.classList.remove('active')
       }
-    })
-  }
-
-  const observer = new IntersectionObserver(observerCallback, observerOptions)
-  sectionTargets.forEach((target) => observer.observe(target))
+    } else if (sectionIndex === 0) {
+      selectedStripe.classList.remove('active')
+    }
+  })
 
   const manageProjects = () => {
     const firstImgEl = document.getElementById('projects-img-1')
@@ -57,7 +42,6 @@ export default () => {
 
     const newIndex = () => {
       if (unusedIndices.length === 0) resetUnusedIndices()
-      console.log(unusedIndices)
 
       const randIndex = Math.floor(Math.random() * unusedIndices.length)
       return unusedIndices.splice(randIndex, 1)
@@ -112,6 +96,5 @@ export default () => {
   // cleanup
   return () => {
     document.removeEventListener('click', clickListener)
-    observer.disconnect()
   }
 }
