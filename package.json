@@ -15,10 +15,10 @@
     "markdown-it": "^11.0.0",
     "markdown-it-container": "^2.0.0",
     "node-fetch": "^2.6.0",
+    "node-sass": "^4.14.1",
     "pug": "^2.0.4",
     "rollup": "^1.27.14",
     "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-scss": "^2.5.0",
     "serve": "^11.2.0"
   },
   "babel": {

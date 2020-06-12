@@ -1,8 +1,6 @@
 import index from '../me/client'
 import projects from '../projects/client'
 import { clearNavSections } from '../../utils/navSections'
-import './global.scss'
-import './navStyles.scss'
 
 const routeScripts = {
   '/': index,

@@ -1,24 +1,10 @@
-const routes = [
-  {
-    routeName: 'index',
-    routeDirName: 'me',
-    meta: {
-      title: 'My Story',
-    },
-  },
-  {
-    routeName: 'projects',
-    meta: {
-      title: 'My Projects',
-    },
-  },
-]
-
+const routes = require('./routes')
 const pug = require('pug')
 const { exists } = require('../utils/fsPromisified')
 const defaultRenderer = (path) => () => pug.renderFile(path + '/index.pug')
 
 module.exports = {
+  routes,
   routeRenderer: async () => {
     return await routes.reduce(
       async (list, { routeName, routeDirName = routeName, meta }) => {
@@ -29,6 +15,7 @@ module.exports = {
         } else {
           var renderer = defaultRenderer(__dirname + '/' + routeDirName)
         }
+
         return [...(await list), { routeName, meta, html: await renderer() }]
       },
       []
