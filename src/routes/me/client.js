@@ -47,7 +47,7 @@ export default () => {
     }
 
     let index = newIndex()
-    secondImgEl.src = projects[index].img.src
+    secondImgEl.src = projects[index].img.gifSrc
     secondImgEl.alt = projects[index].img.alt
 
     const setProjectInfo = (nextImgEl, currImgEl) => {
@@ -59,7 +59,7 @@ export default () => {
         index = newIndex()
         nextImgEl.classList.add('visible')
         currImgEl.classList.remove('visible')
-        currImgEl.src = projects[index].img.src
+        currImgEl.src = projects[index].img.gifSrc
         currImgEl.alt = projects[index].img.alt
       }, 400)
     }
