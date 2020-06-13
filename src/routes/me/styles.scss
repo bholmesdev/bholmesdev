@@ -530,14 +530,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    @media (min-width: $tablet-breakpoint) {
-      &.headline-mobile-version {
-        display: none;
-      }
-    }
-
-    .blog-post,
-    .blog-post:visited {
+    .blog-post {
       position: relative;
       display: grid;
       grid-template-areas:
@@ -570,6 +563,12 @@
         width: 50px;
         margin: auto;
         grid-area: icon;
+      }
+
+      @media (min-width: $tablet-breakpoint) {
+        &.headline-mobile-version {
+          display: none;
+        }
       }
 
       @media (max-width: $mobile-breakpoint) {
