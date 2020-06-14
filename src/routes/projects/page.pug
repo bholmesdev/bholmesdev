@@ -1,10 +1,10 @@
 mixin project-template(project)
   if project.headline
-    a.project__headline.img-link(href=project.link)
+    button.project__headline.img-link(href=project.link)
       .img-link__img-container
-        if project.img.vidSrc
+        if project.videoSrc
           video(muted autoplay loop)
-            source(src=project.img.vidSrc type="video/webm")
+            source(src=project.videoSrc type="video/webm")
         else
           img(src=project.img.gifSrc || project.img.src, alt=project.img.alt)
       h3 #{project.title}
@@ -13,7 +13,7 @@ mixin project-template(project)
       each tag in project.tags
         short.tag #{tag}
   else
-    a.project__small(href=project.link)
+    button.project__small(href=project.link)
       img(src=project.img.src, alt=project.img.alt)
       h3 #{project.title}
       p.timeframe #{project.timeframe}
