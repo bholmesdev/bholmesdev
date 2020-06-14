@@ -1,5 +1,6 @@
 import projects from '../project-list'
 import { setSectionObserver } from '../../utils/navSections'
+import scrollIntoView from '../../utils/scrollIntoView'
 
 export default () => {
   const sections = [
@@ -85,10 +86,11 @@ export default () => {
 
   const nextProject = manageProjects()
 
-  const clickListener = ({ target }) => {
-    if (target.id === 'generate-random-project') {
+  const clickListener = (event) => {
+    if (event.target.id === 'generate-random-project') {
       nextProject()
     }
+    scrollIntoView(event)
   }
   document.addEventListener('click', clickListener)
 
