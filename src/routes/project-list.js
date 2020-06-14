@@ -1,7 +1,18 @@
 module.exports = [
   {
     title: 'Bits of Good Homepage',
-    link: 'https://bitsofgood.org',
+    hash: 'bog-homepage',
+    links: [
+      {
+        href: 'https://bitsofgood.org',
+        text: 'Explore the live site',
+      },
+      {
+        href: 'https://github.com/GTBitsOfGood/bog-web',
+        text: 'Scour the Svelt-ified codebase',
+        icon: 'github',
+      },
+    ],
     timeframe: 'May 2019 - present',
     category: 'ongoing',
     tags: ['JAMstack', 'SvelteJS'],
@@ -15,10 +26,17 @@ module.exports = [
   },
   {
     title: 'This very website',
-    link: 'https://bholmes.dev',
+    hash: 'this-website',
+    links: [
+      {
+        href: 'https://github.com/Holben888/bholmesdev',
+        text: 'Scan my way-too-complex codebase',
+        icon: 'github',
+      },
+    ],
     timeframe: 'Jan 2020 - present',
     category: 'ongoing',
-    tags: ['JAMstack', 'No frameworks'],
+    tags: ['JAMstack', 'No frameworks', 'PugJS'],
     headline: true,
     img: {
       src: '/static/projects/this-very-website.jpg',
@@ -28,7 +46,18 @@ module.exports = [
   },
   {
     title: 'Dolphin field recording visualizer',
-    link: 'https://dolphinviz.netlify.app/',
+    hash: 'dolphin-viz',
+    links: [
+      {
+        href: 'https://dolphinviz.netlify.app/',
+        text: 'Play with dolphins... in recording form',
+      },
+      {
+        href: 'https://github.com/Holben888/ng-dolphin-audio-visualizer',
+        text: 'Browse our professional, undocumented codebase',
+        icon: 'github',
+      },
+    ],
     timeframe: 'Oct - Dec 2019',
     category: 'completed',
     tags: ['Research', 'Angular 2+'],
@@ -42,7 +71,18 @@ module.exports = [
   },
   {
     title: '32 Bits Rackets - GameBoy',
-    link: 'https://gba.zucc.io',
+    hash: '32-bit-rackets',
+    links: [
+      {
+        href: 'https://gba.zucc.io',
+        text: 'Play the AAA title',
+      },
+      {
+        href: 'https://github.com/Holben888/32BitRackets',
+        text: 'Pretend to understand my C Basic codebase',
+        icon: 'github',
+      },
+    ],
     timeframe: 'Oct - Nov 2018',
     category: 'completed',
     tags: ['Video game', 'C Basic', 'Emulator'],
@@ -55,7 +95,19 @@ module.exports = [
   },
   {
     title: 'Peloton Careers Page',
-    link: 'https://onepeloton.com/careers',
+    hash: 'peloton-careers-page',
+    links: [
+      {
+        href: 'https://onepeloton.com/careers',
+        text: 'Check out the production deployment',
+      },
+      {
+        href:
+          'https://dev.to/bholmesdev/what-i-learned-planning-and-building-an-mvp-as-a-frontend-dev-at-peloton-41id',
+        text: "Read about our team's process and lessons learned",
+        icon: 'devto',
+      },
+    ],
     timeframe: 'Jul - Aug 2019',
     category: 'completed',
     tags: ['Product MVP', 'ReactJS', 'TypeScript', 'Redux'],
@@ -69,7 +121,18 @@ module.exports = [
   },
   {
     title: 'OutLink - Microsoft Hack Productivity',
-    link: 'https://devpost.com/software/outlink',
+    hash: 'outlink',
+    links: [
+      {
+        href: 'https://devpost.com/software/outlink',
+        text: 'Watch an in-depth video walkthrough',
+      },
+      {
+        href: 'https://github.com/Holben888/OutLink',
+        text: 'Fork the incredible browser extension',
+        icon: 'github',
+      },
+    ],
     timeframe: 'Oct - Dec 2017',
     category: 'completed',
     tags: ['Hackathon', 'Angular 1.x', 'Chrome extension'],
@@ -82,7 +145,18 @@ module.exports = [
   },
   {
     title: 'Roombowling',
-    link: 'https://devpost.com/software/roomballing',
+    hash: 'roombowling',
+    links: [
+      {
+        href: 'https://devpost.com/software/roomballing',
+        text: "Experience the world's suck-iest frame of bowling",
+      },
+      {
+        href: 'https://github.com/Holben888/roombowling-game-display',
+        text: 'Scour the Sveltastic instructional UI',
+        icon: 'github',
+      },
+    ],
     timeframe: 'Mar 2019',
     category: 'completed',
     tags: ['Hackathon', 'SvelteJS', 'Python server'],
@@ -97,7 +171,18 @@ module.exports = [
   },
   {
     title: 'OutLink - Microsoft Hack Productivity',
-    link: 'https://devpost.com/software/outlink',
+    hash: 'outlink',
+    links: [
+      {
+        href: 'https://devpost.com/software/outlink',
+        text: 'Watch an in-depth video walkthrough',
+      },
+      {
+        href: 'https://github.com/Holben888/OutLink',
+        text: 'Fork the incredible browser extension',
+        icon: 'github',
+      },
+    ],
     timeframe: 'Oct - Dec 2017',
     category: 'completed',
     tags: ['Hackathon', 'Angular 1.x', 'Chrome extension'],
