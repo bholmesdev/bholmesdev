@@ -1,0 +1,137 @@
+[data-route='projects'] {
+  $small-desktop-breakpoint: 1350px;
+  $tablet-breakpoint: 1200px;
+
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10%;
+    row-gap: 200px;
+    padding-top: 100px;
+
+    @media (max-width: $tablet-breakpoint) {
+      grid-template-columns: 1fr;
+    }
+
+    h2 {
+      grid-column: 1 / span 2;
+      margin: 0;
+
+      @media (max-width: $tablet-breakpoint) {
+        grid-column: 1 / span 1;
+      }
+    }
+
+    h3,
+    .tag {
+      color: var(--body-color-dark);
+    }
+
+    .project__headline,
+    .project__small {
+      img {
+        border: 5px solid var(--bg-color-2);
+      }
+
+      h3 {
+        font-family: var(--body-font);
+      }
+
+      .timeframe {
+        font-family: var(--header-font);
+      }
+
+      .tag {
+        &:first-of-type {
+          background: var(--section-color);
+          color: var(--bg-color);
+        }
+
+        font-family: var(--header-font);
+        background: var(--bg-color-2);
+        padding: 10px;
+        margin-right: 20px;
+      }
+    }
+
+    .project__headline {
+      grid-row: span 2;
+      grid-column: span 1;
+
+      &.img-link {
+        --color: var(--bg-color-2);
+      }
+
+      color: var(--body-color);
+
+      h3 {
+        font-size: 44px;
+      }
+
+      .timeframe {
+        font-size: 32px;
+        margin-top: 0;
+        margin-bottom: 40px;
+      }
+
+      .tag {
+        font-size: 24px;
+
+        @media (max-width: 1350px) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .project__small {
+      display: grid;
+      text-decoration: none;
+      color: var(--body-color);
+      grid-template-areas:
+        'img title'
+        'img timeframe'
+        'tags tags';
+
+      grid-template-columns: 200px 1fr;
+      column-gap: 30px;
+      align-items: center;
+
+      img {
+        grid-area: img;
+        width: 100%;
+      }
+
+      h3 {
+        grid-area: title;
+        font-size: 32px;
+        margin: 0;
+      }
+
+      .timeframe {
+        grid-area: timeframe;
+        margin: 0;
+      }
+
+      .tags {
+        grid-area: tags;
+        margin-top: 20px;
+
+        .tag {
+          font-size: 18px;
+
+          @media (max-width: 1350px) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 1700px) {
+      margin-right: var(--nav-height);
+    }
+
+    @media (max-width: $tablet-breakpoint) {
+      --content-max-width: 700px;
+    }
+  }
+}

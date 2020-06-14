@@ -1,0 +1,35 @@
+mixin project-template(project)
+  if project.headline
+    a.project__headline.img-link(href=project.link)
+      .img-link__img-container
+        if project.img.vidSrc
+          video(muted autoplay loop)
+            source(src=project.img.vidSrc type="video/webm")
+        else
+          img(src=project.img.gifSrc || project.img.src, alt=project.img.alt)
+      h3 #{project.title}
+      p.timeframe #{project.timeframe}
+
+      each tag in project.tags
+        short.tag #{tag}
+  else
+    a.project__small(href=project.link)
+      img(src=project.img.src, alt=project.img.alt)
+      h3 #{project.title}
+      p.timeframe #{project.timeframe}
+
+      .tags
+        each tag in project.tags
+          short.tag #{tag}
+
+section(style="--section-color: var(--green)")
+  h2.numbered Ongoing works
+
+  each project in projects.ongoing
+    +project-template(project)
+
+section(style="--section-color: var(--red)")
+  h2.numbered Completed works
+
+  each project in projects.completed
+    +project-template(project)
