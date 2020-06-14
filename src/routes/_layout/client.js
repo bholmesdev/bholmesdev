@@ -10,12 +10,13 @@ const routeScripts = {
 let prevPathname = location.pathname
 let prevRouteCleanup = routeScripts[prevPathname]()
 
-const baseUrl = location.origin
 const navDashedLine = document.getElementById('dashed-line-container')
 const animDurationMS = 800
 
 const pathToRoute = (path) => (path === '/' ? 'index' : path.slice(1))
 const setVisiblePage = (pathname) => {
+  if (pathname === prevPathname) return
+
   const currPageEl = document.querySelector(
     `main[data-route="${pathToRoute(pathname)}"]`
   )
@@ -71,20 +72,16 @@ document.addEventListener('click', (event) => {
       primaryNavEl.classList.remove('toggled')
     }
   }
-  if (target.tagName === 'A' && target.origin === baseUrl) {
+  if (target.tagName === 'A' && target.origin === location.origin) {
     event.preventDefault()
 
     primaryNavEl.classList.remove('toggled')
     jumpToSectionEl.classList.remove('toggled')
 
-    if (target.hash) {
-      const el = document.querySelector(target.hash)
-      el && el.scrollIntoView({ behavior: 'smooth' })
-    } else {
+    if (target.pathname !== prevPathname)
       history.pushState({}, null, target.href)
-      setVisiblePage(target.pathname)
-      moveDashedLine()
-    }
+    setVisiblePage(target.pathname)
+    moveDashedLine()
   }
 })
 
