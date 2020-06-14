@@ -2,6 +2,10 @@ module.exports = [
   {
     title: 'Bits of Good Homepage',
     link: 'https://bitsofgood.org',
+    timeframe: 'May 2019 - present',
+    category: 'ongoing',
+    tags: ['JAMstack', 'SvelteJS'],
+    headline: true,
     img: {
       src: '/static/projects/bog-homepage-static.jpg',
       gifSrc: '/static/projects/bog-homepage.gif',
@@ -10,11 +14,28 @@ module.exports = [
     body: `This was my first experience with rebuilding a brand from the ground up. We spend months in the design and user discovery phase to decide on the best logo, fonts, colors, and general "feel" of the website. A year later, we've built everything from a <a href=https://bitsofgood.org">reimagined splash page</a> to <a href="https://bitsofgood.org/projects">in-depth journey maps</a> for all of our nonprofit projects. Oh, and it's built on the incredible <strong>Svelte + Sapper JS</strong> framework!`,
   },
   {
+    title: 'This very website',
+    link: 'https://bholmes.dev',
+    timeframe: 'Jan 2020 - present',
+    category: 'ongoing',
+    tags: ['JAMstack', 'No frameworks'],
+    headline: true,
+    img: {
+      src: '/static/projects/this-very-website.jpg',
+      alt: 'Text saying that you are already here',
+    },
+    body: `This was a seriously big undertaking, mostly because of how I approached it. In short, this is a statically generated website with <strong>zero JS or CSS frameworks</strong> to be found. In fact, everything from client-side routing to the design were built from scratch. More than anything, this was meant as a learning experience in how JAMstack sites <em>really</em> work, but also a testament to how powerful <strong>raw CSS and ES6</strong> have become. If you're curious how I approached it, <a href="https://github.com/Holben888/bholmesdev">check out the source code + the README</a>`,
+  },
+  {
     title: 'Dolphin field recording visualizer',
     link: 'https://dolphinviz.netlify.app/',
+    timeframe: 'Oct - Dec 2019',
+    category: 'completed',
+    tags: ['Research', 'Angular 2+'],
+    headline: true,
     img: {
       src: '/static/projects/dolphin-viz.jpg',
-      gifSrc: '/static/projects/dolphin-viz.jpg',
+      gifSrc: '/static/projects/dolphin-viz.gif',
       alt: 'Dolphin audio spectrogram',
     },
     body: `This was a research project with interesting goals: a) to understand the language of dolphins, and b) to find a way to communicate with them as humans. This involved countless field recordings that needed to be compiled and analyzed for commonalities. So, I led a small dev team to build an audio visualizer using <strong>Angular 2+</strong> to view researcher annotations and AI generated models on an easy-to-understand timeline. With some added <strong>WASM</strong> magic, it's now the team's go-to resource for compiling and viewing audio files!`,
@@ -22,6 +43,9 @@ module.exports = [
   {
     title: '32 Bits Rackets - GameBoy',
     link: 'https://gba.zucc.io',
+    timeframe: 'Oct - Nov 2018',
+    category: 'completed',
+    tags: ['Video game', 'C Basic', 'Emulator'],
     img: {
       src: '/static/projects/32-bit-rackets-static.jpg',
       gifSrc: '/static/projects/32-bit-rackets.gif',
@@ -32,6 +56,9 @@ module.exports = [
   {
     title: 'Peloton Careers Page',
     link: 'https://onepeloton.com/careers',
+    timeframe: 'Jul - Aug 2019',
+    category: 'completed',
+    tags: ['Product MVP', 'ReactJS', 'TypeScript', 'Redux'],
     img: {
       src: '/static/projects/peloton-careers-static.jpg',
       gifSrc: '/static/projects/peloton-careers.gif',
@@ -40,8 +67,25 @@ module.exports = [
     body: `This is the first Peloton project I took full ownership of. I worked as the <strong>head engineer</strong> on a multi-disciplinary team, getting involved from the ideation phase to MVP deployment. I spent time researching what was technically possible using the Greenhouse job posting API, working with designers to get my breakpoints pixel-perfect, and managing tasks with a product manager. I also wrote a <a href="https://dev.to/bholmesdev/what-i-learned-planning-and-building-an-mvp-as-a-frontend-dev-at-peloton-41id">neat blog post</a> explaining the entire process + lessons learned along the way!`,
   },
   {
+    title: 'OutLink - Microsoft Hack Productivity',
+    link: 'https://devpost.com/software/outlink',
+    timeframe: 'Oct - Dec 2017',
+    category: 'completed',
+    tags: ['Hackathon', 'Angular 1.x', 'Chrome extension'],
+    img: {
+      src: '/static/projects/outlink.jpg',
+      gifSrc: '/static/projects/outlink.gif',
+      alt: 'Tagline for the Outlink app: browse, annotate, collaborate.',
+    },
+    body: `I consider this project my web dev rite of passage: taking on a ridiculously hard project with beginner-level experience. In brief, Outlink was a way to annotate web pages and send those annotations for others to view. This was a <em>seriously</em> huge task, since I wanted to allow highlighting at the <strong>DOM-element-level</strong>, and reliably highlight those same elements on someone else's computer. Oh, and I wanted to send from your email inbox via a chrome extension. Needless to say, the code is messy, the UI is horrible, and I wouldn't recommend the app. But damnit... <a href="https://www.youtube.com/watch?time_continue=16&v=ZMPBMU1IdSE&feature=emb_logo"><strong>it works.</strong></a>`,
+  },
+  {
     title: 'Roombowling',
     link: 'https://devpost.com/software/roomballing',
+    timeframe: 'Mar 2019',
+    category: 'completed',
+    tags: ['Hackathon', 'SvelteJS', 'Python server'],
+    headline: true,
     img: {
       src: '/static/projects/roombowling.gif',
       gifSrc: '/static/projects/roombowling.gif',
@@ -53,6 +97,9 @@ module.exports = [
   {
     title: 'OutLink - Microsoft Hack Productivity',
     link: 'https://devpost.com/software/outlink',
+    timeframe: 'Oct - Dec 2017',
+    category: 'completed',
+    tags: ['Hackathon', 'Angular 1.x', 'Chrome extension'],
     img: {
       src: '/static/projects/outlink.jpg',
       gifSrc: '/static/projects/outlink.gif',
