@@ -64,6 +64,7 @@ module.exports = [
       gifSrc: '/static/projects/peloton-careers.gif',
       alt: 'Peloton careers landing page with all available job openings',
     },
+    videoSrc: '/static/projects/peloton-careers-page.webm',
     body: `This is the first Peloton project I took full ownership of. I worked as the <strong>head engineer</strong> on a multi-disciplinary team, getting involved from the ideation phase to MVP deployment. I spent time researching what was technically possible using the Greenhouse job posting API, working with designers to get my breakpoints pixel-perfect, and managing tasks with a product manager. I also wrote a <a href="https://dev.to/bholmesdev/what-i-learned-planning-and-building-an-mvp-as-a-frontend-dev-at-peloton-41id">neat blog post</a> explaining the entire process + lessons learned along the way!`,
   },
   {
