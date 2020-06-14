@@ -12,5 +12,6 @@ module.exports = () => {
 
   return pug.renderFile(__dirname + '/page.pug', {
     projects: projectsByCategory,
+    projectsFlat: projects,
   })
 }
