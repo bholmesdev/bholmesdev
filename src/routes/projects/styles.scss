@@ -6,7 +6,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 10%;
-    row-gap: 200px;
+    row-gap: 150px;
     padding-top: 100px;
 
     @media (max-width: $tablet-breakpoint) {
@@ -16,6 +16,7 @@
     h2 {
       grid-column: 1 / span 2;
       margin: 0;
+      margin-bottom: -50px;
 
       @media (max-width: $tablet-breakpoint) {
         grid-column: 1 / span 1;
@@ -29,7 +30,10 @@
 
     .project__headline,
     .project__small {
-      img {
+      text-align: left;
+
+      img,
+      video {
         border: 5px solid var(--bg-color-2);
       }
 
@@ -65,7 +69,7 @@
       color: var(--body-color);
 
       h3 {
-        font-size: 44px;
+        font-size: 42px;
       }
 
       .timeframe {
@@ -95,6 +99,7 @@
       grid-template-columns: 200px 1fr;
       column-gap: 30px;
       align-items: center;
+      align-content: center;
 
       img {
         grid-area: img;
@@ -109,12 +114,13 @@
 
       .timeframe {
         grid-area: timeframe;
+        font-size: 24px;
         margin: 0;
       }
 
       .tags {
         grid-area: tags;
-        margin-top: 20px;
+        margin-top: 30px;
 
         .tag {
           font-size: 18px;
