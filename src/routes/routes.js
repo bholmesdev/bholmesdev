@@ -3,13 +3,19 @@ module.exports = [
     routeName: 'index',
     routeDirName: 'me',
     meta: {
-      title: 'My Story',
+      title: 'Ben Holmes',
     },
   },
   {
-    routeName: 'projects',
+    routeName: 'work',
     meta: {
-      title: 'My Projects',
+      title: 'My Work',
+    },
+  },
+  {
+    routeName: 'contact',
+    meta: {
+      title: 'Contact Me',
     },
   },
 ]
