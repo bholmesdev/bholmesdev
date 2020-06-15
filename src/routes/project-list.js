@@ -54,7 +54,7 @@ module.exports = [
       },
       {
         href: 'https://github.com/Holben888/ng-dolphin-audio-visualizer',
-        text: 'Browse our professional, undocumented codebase',
+        text: 'Browse our undocumented codebase',
         icon: 'github',
       },
     ],
@@ -79,7 +79,7 @@ module.exports = [
       },
       {
         href: 'https://github.com/Holben888/32BitRackets',
-        text: 'Pretend to understand my C Basic codebase',
+        text: 'Pretend to understand my C Basic',
         icon: 'github',
       },
     ],

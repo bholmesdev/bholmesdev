@@ -105,6 +105,63 @@ a:hover {
   opacity: 0.4;
 }
 
+.macintosh {
+  position: relative;
+
+  > img {
+    width: 100%;
+  }
+
+  .macintosh__img-container {
+    position: absolute;
+    top: 11.5%;
+    left: 11%;
+    width: 78%;
+    overflow: hidden;
+
+    > img,
+    > video {
+      width: 100%;
+      height: auto;
+      transform-origin: bottom center;
+      background: #333;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      animation: macintosh-scan-line 4s linear infinite;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(transparent 0%, rgba(49, 25, 2, 0.2)),
+        linear-gradient(transparent, rgba(0, 0, 0, 0.05)) repeat;
+      background-size: 100% 100%, 100% 1%;
+    }
+
+    @keyframes macintosh-scan-line {
+      from {
+        top: 0%;
+        opacity: 1;
+      }
+      to {
+        top: 100%;
+        opacity: 0.1;
+      }
+    }
+  }
+}
+
 .img-link {
   --color: var(--section-color);
   text-decoration: none;
