@@ -3,6 +3,11 @@
   $tablet-breakpoint: 1200px;
   $mobile-breakpoint: 850px;
 
+  *::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+  }
+
   .tag {
     &:first-of-type {
       background: var(--section-color);

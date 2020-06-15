@@ -9,13 +9,17 @@ mixin link-icon(icon)
     else
       <path id="link" d="M-6541.251,537.744h-26a4.005,4.005,0,0,1-4-4v-26a4.005,4.005,0,0,1,4-4h26a4.005,4.005,0,0,1,4,4v26A4.005,4.005,0,0,1-6541.251,537.744Zm-9.02-22.984-11.976,11.976,1.972,1.971,11.975-11.975.049,10.99h2.761V511.951h-15.771l-.049,2.809Z" transform="translate(6571.251 -503.743)" fill="#5f4b32"/>
 
+mixin video(project)
+  video(preload="none" poster=project.img.src muted loop playsinline)
+    source(src=project.videoSrc type="video/webm")
+    source(src=project.backupVideoSrc type="video/mp4")
+
 mixin project-template(project)
   if project.headline
     a.project__headline.img-link(href='#' + project.hash)
       .img-link__img-container
-        video(preload="none" poster=project.img.src muted loop)
-          source(src=project.videoSrc type="video/webm")
-          source(src=project.backupVideoSrc type="video/mp4")
+        +video(project)
+        
       h3 #{project.title}
       p.timeframe #{project.timeframe}
 
@@ -51,9 +55,7 @@ section#complete-section(style="--section-color: var(--red)")
           h2 #{project.title}
           img(src="/static/macintosh.svg" alt="")
           .macintosh__img-container
-            video(preload="none" poster=project.img.src muted loop)
-              source(src=project.videoSrc type="video/webm")
-              source(src=project.backupVideoSrc type="video/mp4")
+            +video(project)
 
         p.timeframe #{project.timeframe}
         .tags
