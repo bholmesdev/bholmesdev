@@ -18,15 +18,15 @@ module.exports = [
     tags: ['JAMstack', 'SvelteJS'],
     headline: true,
     img: {
-      src: '/static/projects/bog-homepage-static.jpg',
-      gifSrc: '/static/projects/bog-homepage.gif',
+      src: '/static/projects/bog.jpg',
       alt: 'Bits of Good homepage',
     },
+    videoSrc: '/static/projects/bog.webm',
     body: `This was my first experience with rebuilding a brand from the ground up. We spend months in the design and user discovery phase to decide on the best logo, fonts, colors, and general "feel" of the website. A year later, we've built everything from a <a href=https://bitsofgood.org">reimagined splash page</a> to <a href="https://bitsofgood.org/projects">in-depth journey maps</a> for all of our nonprofit projects. Oh, and it's built on the incredible <strong>Svelte + Sapper JS</strong> framework!`,
   },
   {
     title: 'This very website',
-    hash: 'this-website',
+    hash: 'this-very-website',
     links: [
       {
         href: 'https://github.com/Holben888/bholmesdev',
@@ -42,6 +42,7 @@ module.exports = [
       src: '/static/projects/this-very-website.jpg',
       alt: 'Text saying that you are already here',
     },
+    videoSrc: '/static/projects/this-very-website.webm',
     body: `This was a seriously big undertaking, mostly because of how I approached it. In short, this is a statically generated website with <strong>zero JS or CSS frameworks</strong> to be found. In fact, everything from client-side routing to the design were built from scratch. More than anything, this was meant as a learning experience in how JAMstack sites <em>really</em> work, but also a testament to how powerful <strong>raw CSS and ES6</strong> have become. If you're curious how I approached it, <a href="https://github.com/Holben888/bholmesdev">check out the source code + the README</a>`,
   },
   {
@@ -64,9 +65,9 @@ module.exports = [
     headline: true,
     img: {
       src: '/static/projects/dolphin-viz.jpg',
-      gifSrc: '/static/projects/dolphin-viz.gif',
       alt: 'Dolphin audio spectrogram',
     },
+    videoSrc: '/static/projects/dolphin-viz.webm',
     body: `This was a research project with interesting goals: a) to understand the language of dolphins, and b) to find a way to communicate with them as humans. This involved countless field recordings that needed to be compiled and analyzed for commonalities. So, I led a small dev team to build an audio visualizer using <strong>Angular 2+</strong> to view researcher annotations and AI generated models on an easy-to-understand timeline. With some added <strong>WASM</strong> magic, it's now the team's go-to resource for compiling and viewing audio files!`,
   },
   {
@@ -87,10 +88,10 @@ module.exports = [
     category: 'completed',
     tags: ['Video game', 'C Basic', 'Emulator'],
     img: {
-      src: '/static/projects/32-bit-rackets-static.jpg',
-      gifSrc: '/static/projects/32-bit-rackets.gif',
+      src: '/static/projects/32-bit-rackets.jpg',
       alt: 'Gameboy game footage of two tennis players, one about to serve',
     },
+    videoSrc: '/static/projects/32-bit-rackets.webm',
     body: `Though I've found my niche in frontend dev and design, my interest in programming started making <a href="https://imgur.com/a/edUgWnK">simple games using Java Swing.</a> I had yet to rekindle this passion until college, when a system fundamentals class tasked us with creating a game in <strong>C</strong> using a Game Boy emulator. The end result: a tennis simulator against a CPU skilled enough to send shivers down Serena William's spine. I pushed the emulator to its limits calculating arc velocities, jumpshots, angle characteristics, and match-based scoring!`,
   },
   {
@@ -112,8 +113,7 @@ module.exports = [
     category: 'completed',
     tags: ['Product MVP', 'ReactJS', 'TypeScript', 'Redux'],
     img: {
-      src: '/static/projects/peloton-careers-static.jpg',
-      gifSrc: '/static/projects/peloton-careers.gif',
+      src: '/static/projects/peloton-careers.jpg',
       alt: 'Peloton careers landing page with all available job openings',
     },
     videoSrc: '/static/projects/peloton-careers-page.webm',
@@ -138,9 +138,9 @@ module.exports = [
     tags: ['Hackathon', 'Angular 1.x', 'Chrome extension'],
     img: {
       src: '/static/projects/outlink.jpg',
-      gifSrc: '/static/projects/outlink.gif',
       alt: 'Tagline for the Outlink app: browse, annotate, collaborate.',
     },
+    videoSrc: '/static/projects/outlink.webm',
     body: `I consider this project my web dev rite of passage: taking on a ridiculously hard project with beginner-level experience. In brief, Outlink was a way to annotate web pages and send those annotations for others to view. This was a <em>seriously</em> huge task, since I wanted to allow highlighting at the <strong>DOM-element-level</strong>, and reliably highlight those same elements on someone else's computer. Oh, and I wanted to send from your email inbox via a chrome extension. Needless to say, the code is messy, the UI is horrible, and I wouldn't recommend the app. But damnit... <a href="https://www.youtube.com/watch?time_continue=16&v=ZMPBMU1IdSE&feature=emb_logo"><strong>it works.</strong></a>`,
   },
   {
@@ -149,7 +149,7 @@ module.exports = [
     links: [
       {
         href: 'https://devpost.com/software/roomballing',
-        text: "Experience the world's suck-iest frame of bowling",
+        text: 'Experience the suck-iest frame of bowling',
       },
       {
         href: 'https://github.com/Holben888/roombowling-game-display',
@@ -163,10 +163,10 @@ module.exports = [
     headline: true,
     img: {
       src: '/static/projects/roombowling.gif',
-      gifSrc: '/static/projects/roombowling.gif',
       alt:
         'Roomba in action, knocking down water bottle bowling pins and displaying your score on a web app',
     },
+    videoSrc: '/static/projects/roombowling.webm',
     body: `I attended <a href="https://devpost.com/Holben888">my fair share of hackathons</a> as a GA Tech student, but <a href="https://build.hack.gt/">BuildGT2</a> was easily my favorite win. Our team's goal was simple: <strong>reserve the Roomba dev kit ASAP and wing it from there.</strong> Inspired by the childhood classic Wii Bowling, we created an over-engineered, 1-round game with a Roomba as the ball! <br /> Some serious tech was involved: A Kinect motion camera to detect fallen pins, <a href="https://twitter.com/BHolmesDev/status/1102254956973826048">A webapp</a> using <strong>SvelteJS + web sockets</strong> for gameplay instructions and scoring, and a Raspberry Pi to communicate with the Room-ball.`,
   },
   {
@@ -191,6 +191,7 @@ module.exports = [
       gifSrc: '/static/projects/outlink.gif',
       alt: 'Tagline for the Outlink app: browse, annotate, collaborate.',
     },
+    videoSrc: '/static/projects/outlink.webm',
     body: `I consider this project my web dev rite of passage: taking on a ridiculously hard project with beginner-level experience. In brief, Outlink was a way to annotate web pages and send those annotations for others to view. This was a <em>seriously</em> huge task, since I wanted to allow highlighting at the <strong>DOM-element-level</strong>, and reliably highlight those same elements on someone else's computer. Oh, and I wanted to send from your email inbox via a chrome extension. Needless to say, the code is messy, the UI is horrible, and I wouldn't recommend the app. But damnit... <a href="https://www.youtube.com/watch?time_continue=16&v=ZMPBMU1IdSE&feature=emb_logo"><strong>it works.</strong></a>`,
   },
 ]

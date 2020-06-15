@@ -27,9 +27,14 @@ export default () => {
     }
   })
 
+  function VideoEl(elementId) {
+    this.el = document.getElementById(elementId)
+    this.source = document.querySelector(`#${elementId} > source`)
+  }
+
   const manageProjects = () => {
-    const firstImgEl = document.getElementById('projects-img-1')
-    const secondImgEl = document.getElementById('projects-img-2')
+    const firstVid = new VideoEl('projects-1')
+    const secondVid = new VideoEl('projects-2')
     const titleEl = document.getElementById('projects-title')
     const bodyEl = document.getElementById('projects-body')
     const diceEl = document.getElementById('dice-container')
@@ -48,20 +53,20 @@ export default () => {
     }
 
     let index = newIndex()
-    secondImgEl.src = projects[index].img.gifSrc
-    secondImgEl.alt = projects[index].img.alt
+    secondVid.source.src = projects[index].videoSrc
+    secondVid.el.load()
 
-    const setProjectInfo = (nextImgEl, currImgEl) => {
+    const setProjectInfo = (nextVid, currVid) => {
       // wait for dice to hit the computer
       setTimeout(() => {
         titleEl.innerText = projects[index].title
         bodyEl.innerHTML = projects[index].body
 
         index = newIndex()
-        nextImgEl.classList.add('visible')
-        currImgEl.classList.remove('visible')
-        currImgEl.src = projects[index].img.gifSrc
-        currImgEl.alt = projects[index].img.alt
+        nextVid.el.classList.add('visible')
+        currVid.el.classList.remove('visible')
+        currVid.source.src = projects[index].videoSrc
+        currVid.el.load()
       }, 400)
     }
 
@@ -74,13 +79,13 @@ export default () => {
       })
     }
 
-    let showFirstImg = false
+    let showFirst = false
     return () => {
       triggerDiceRoll()
-      const nextImgEl = showFirstImg ? firstImgEl : secondImgEl
-      const currImgEl = showFirstImg ? secondImgEl : firstImgEl
-      setProjectInfo(nextImgEl, currImgEl)
-      showFirstImg = !showFirstImg
+      const nextVid = showFirst ? firstVid : secondVid
+      const currVid = showFirst ? secondVid : firstVid
+      setProjectInfo(nextVid, currVid)
+      showFirst = !showFirst
     }
   }
 
