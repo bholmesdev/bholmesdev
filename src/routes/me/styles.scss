@@ -1015,32 +1015,4 @@
       }
     }
   }
-
-  @media (max-width: $mobile-breakpoint) {
-    --content-max-width: 600px;
-    section {
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 20px;
-      padding-right: 20px;
-
-      font-size: 20px;
-
-      h2 {
-        font-size: 64px;
-        margin-top: 16px;
-        margin-bottom: 16px;
-      }
-
-      h3 {
-        font-size: 40px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-
-      h4 {
-        font-size: 30px;
-      }
-    }
-  }
 }
