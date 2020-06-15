@@ -99,11 +99,12 @@
 
   #header-section {
     height: 95vh;
-    min-height: 820px;
+    min-height: 900px;
     max-height: 1200px;
     margin-top: 0;
     align-content: center;
     align-items: center;
+    padding-bottom: 100px;
 
     img {
       width: calc(100% + 100px);
