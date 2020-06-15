@@ -20,6 +20,12 @@ const getSectionHeader = (element) => {
   return document.querySelector(`#${element.id} h2`).innerText
 }
 
+const setCurrSection = (sectionIndex, sectionElements) => {
+  navCurrSectionNum.innerText = sectionIndex + 1
+  navCurrSectionName.innerText = getSectionHeader(sectionElements[sectionIndex])
+  setSectionColor(sectionIndex)
+}
+
 const setSectionColor = (sectionIndex) => {
   navCurrSectionToggle.style.backgroundPositionY = 50 * sectionIndex + '%'
 }
@@ -34,6 +40,8 @@ export const setNavSections = (sectionElements) => {
     link.href = '#' + section.id
     listItem.appendChild(link)
     navSectionsEl.appendChild(listItem)
+
+    setCurrSection(0, sectionElements)
   })
 }
 
@@ -49,11 +57,7 @@ const observerCallback = (callback, sectionElements) => (entries) => {
       (target) => target === change.target
     )
     if (change.isIntersecting) {
-      navCurrSectionNum.innerText = sectionIndex + 1
-      navCurrSectionName.innerText = getSectionHeader(
-        sectionElements[sectionIndex]
-      )
-      setSectionColor(sectionIndex)
+      setCurrSection(sectionIndex, sectionElements)
     }
     callback && callback(change.isIntersecting, sectionIndex)
   })

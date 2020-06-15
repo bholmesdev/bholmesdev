@@ -84,7 +84,6 @@
   }
 
   @media (max-width: 1700px) {
-    section,
     .line-accents-container {
       margin-right: var(--nav-height);
     }
@@ -99,8 +98,8 @@
   }
 
   #header-section {
-    height: 100vh;
-    min-height: 900px;
+    height: 95vh;
+    min-height: 820px;
     max-height: 1200px;
     margin-top: 0;
     align-content: center;
@@ -984,7 +983,7 @@
     }
   }
 
-  @media (max-width: 1350px) {
+  @media (max-width: 1350px) and (min-width: $tablet-breakpoint) {
     h2 {
       font-size: 80px;
     }
@@ -992,10 +991,6 @@
 
   @media (max-width: $tablet-breakpoint) {
     --content-max-width: 700px;
-
-    h2 {
-      font-size: 100px;
-    }
 
     section:not(#header-section) {
       grid-template-columns: 1fr;
