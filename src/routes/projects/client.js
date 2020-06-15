@@ -1,3 +1,5 @@
+import { setSectionObserver } from '../../utils/navSections'
+
 export default () => {
   const slideOutEl = document.getElementById('details-slide-out')
   slideOutEl.className = 'closed'
@@ -21,6 +23,13 @@ export default () => {
     videoEl.load()
     videoEl.play()
   }
+
+  const sections = [
+    document.getElementById('ongoing-section'),
+    document.getElementById('complete-section'),
+  ]
+
+  setSectionObserver(sections)
 
   document.addEventListener('click', clickListener)
 
