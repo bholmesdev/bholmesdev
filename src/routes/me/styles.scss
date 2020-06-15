@@ -596,7 +596,7 @@
     }
 
     .macintosh__img-container {
-      > img {
+      > video {
         opacity: 0;
       }
 
@@ -604,7 +604,7 @@
         animation: macintosh-image-glitch-in 0.4s step-start forwards;
       }
 
-      #projects-img-2 {
+      #projects-2 {
         position: absolute;
         top: 0;
         left: 0;

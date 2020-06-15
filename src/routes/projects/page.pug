@@ -52,7 +52,8 @@ section(style="--section-color: var(--red)")
           h2 #{project.title}
           img(src="/static/macintosh.svg" alt="")
           .macintosh__img-container
-            img(src=project.img.src alt=project.img.alt)
+            video(muted autoplay loop)
+              source(src=project.videoSrc type="video/webm")
 
         p.timeframe #{project.timeframe}
         .tags

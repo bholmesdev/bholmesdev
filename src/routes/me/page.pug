@@ -113,8 +113,10 @@ div#icreate-section(style="--section-color: var(--purple)")
     .macintosh
       img(src="/static/macintosh.svg" alt="")
       .macintosh__img-container
-        img#projects-img-1.screenshot.visible(src=firstProject.img.gifSrc alt=firstProject.img.alt)
-        img#projects-img-2.screenshot
+        video#projects-1.visible(muted autoplay loop)
+          source(src=firstProject.videoSrc type="video/webm")
+        video#projects-2(muted autoplay loop)
+          source(src='' type="video/webm")
     
     label.icon-after.icon__arrow-right(for="project-details-toggle")
 
