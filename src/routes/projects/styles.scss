@@ -3,6 +3,10 @@
   $tablet-breakpoint: 1200px;
   $mobile-breakpoint: 850px;
 
+  @media (max-width: $mobile-breakpoint) {
+    padding-top: var(--nav-height);
+  }
+
   *::-webkit-media-controls-start-playback-button {
     display: none !important;
     -webkit-appearance: none;
@@ -24,7 +28,8 @@
   }
 
   section {
-    padding-top: 20px;
+    padding-top: 75px;
+    margin: auto;
 
     h2 {
       margin-bottom: 50px;
@@ -106,7 +111,7 @@
         .tag {
           font-size: 24px;
 
-          @media (max-width: 1350px) {
+          @media (max-width: $small-desktop-breakpoint) {
             font-size: 18px;
           }
         }
@@ -150,7 +155,7 @@
           .tag {
             font-size: 18px;
 
-            @media (max-width: 1350px) {
+            @media (max-width: $small-desktop-breakpoint) {
               font-size: 14px;
             }
           }
