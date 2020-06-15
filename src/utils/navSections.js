@@ -55,12 +55,13 @@ const observerCallback = (callback, sectionElements) => (entries) => {
       )
       setSectionColor(sectionIndex)
     }
-    callback(change.isIntersecting, sectionIndex)
+    callback && callback(change.isIntersecting, sectionIndex)
   })
 }
 
 export const setSectionObserver = (sectionElements, callback) => {
   setNavSections(sectionElements)
+
   observer = new IntersectionObserver(
     observerCallback(callback, sectionElements),
     observerOptions

@@ -33,14 +33,14 @@ mixin project-template(project)
         each tag in project.tags
           short.tag #{tag}
 
-section(style="--section-color: var(--green)")
+section#ongoing-section(style="--section-color: var(--green)")
   h2.numbered Ongoing works
 
   each project in projects.ongoing
     +project-template(project)
 
-section(style="--section-color: var(--red)")
-  h2.numbered Completed works
+section#complete-section(style="--section-color: var(--red)")
+  h2.numbered Complete works
 
   each project in projects.completed
     +project-template(project)
