@@ -15,6 +15,13 @@ export default () => {
     }
   }
 
+  // lazily load videos once tab is visited
+  const videoEls = document.querySelectorAll('[data-route="projects"] video')
+  for (let videoEl of videoEls) {
+    videoEl.load()
+    videoEl.play()
+  }
+
   document.addEventListener('click', clickListener)
 
   //cleanup

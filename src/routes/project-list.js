@@ -162,7 +162,7 @@ module.exports = [
     tags: ['Hackathon', 'SvelteJS', 'Python server'],
     headline: true,
     img: {
-      src: '/static/projects/roombowling.gif',
+      src: '/static/projects/roombowling.jpg',
       alt:
         'Roomba in action, knocking down water bottle bowling pins and displaying your score on a web app',
     },
