@@ -29,7 +29,10 @@ export default () => {
 
   function VideoEl(elementId) {
     this.el = document.getElementById(elementId)
-    this.source = document.querySelector(`#${elementId} > source`)
+    this.source = document.querySelector(`#${elementId} > source:first-of-type`)
+    this.backupSource = document.querySelector(
+      `#${elementId} > source:nth-of-type(2)`
+    )
   }
 
   const manageProjects = () => {
@@ -52,9 +55,15 @@ export default () => {
       return unusedIndices.splice(randIndex, 1)
     }
 
+    const setUpVideoEl = (video, index) => {
+      video.source.src = projects[index].videoSrc
+      video.backupSource.src = projects[index].backupVideoSrc
+      video.el.poster = projects[index].img.src
+      video.el.load()
+    }
+
     let index = newIndex()
-    secondVid.source.src = projects[index].videoSrc
-    secondVid.el.load()
+    setUpVideoEl(secondVid, index)
 
     const setProjectInfo = (nextVid, currVid) => {
       // wait for dice to hit the computer
@@ -65,8 +74,7 @@ export default () => {
         index = newIndex()
         nextVid.el.classList.add('visible')
         currVid.el.classList.remove('visible')
-        currVid.source.src = projects[index].videoSrc
-        currVid.el.load()
+        setUpVideoEl(currVid, index)
       }, 400)
     }
 

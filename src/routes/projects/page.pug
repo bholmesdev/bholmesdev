@@ -13,11 +13,9 @@ mixin project-template(project)
   if project.headline
     a.project__headline.img-link(href='#' + project.hash)
       .img-link__img-container
-        if project.videoSrc
-          video(preload="none" poster=project.img.src muted loop)
-            source(src=project.videoSrc type="video/webm")
-        else
-          img(src=project.img.gifSrc || project.img.src, alt=project.img.alt)
+        video(preload="none" poster=project.img.src muted loop)
+          source(src=project.videoSrc type="video/webm")
+          source(src=project.backupVideoSrc type="video/mp4")
       h3 #{project.title}
       p.timeframe #{project.timeframe}
 
@@ -55,6 +53,7 @@ section#complete-section(style="--section-color: var(--red)")
           .macintosh__img-container
             video(preload="none" poster=project.img.src muted loop)
               source(src=project.videoSrc type="video/webm")
+              source(src=project.backupVideoSrc type="video/mp4")
 
         p.timeframe #{project.timeframe}
         .tags
