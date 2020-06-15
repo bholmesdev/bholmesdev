@@ -48,15 +48,23 @@ section(style="--section-color: var(--red)")
   each project, index in projectsFlat
     article(id=project.hash)
       .content
-        h2 #{project.title}
+        .macintosh
+          h2 #{project.title}
+          img(src="/static/macintosh.svg" alt="")
+          .macintosh__img-container
+            img(src=project.img.src alt=project.img.alt)
+
+        p.timeframe #{project.timeframe}
         .tags
           each tag in project.tags
             .tag #{tag}
 
-          each link in project.links
-            a(href=link.href)
-              +link-icon(link.icon)
-              span #{link.text}
+        each link in project.links
+          a.link(href=link.href)
+            +link-icon(link.icon)
+            span #{link.text}
+
+        p.body !{project.body}
   .background
     //- a(href='#' + projectsFlat[index + 1 % projectsFlat.length].hash)
     //- a(href='#' + projectsFlat[index - 1 % projectsFlat.length].hash)
