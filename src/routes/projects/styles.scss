@@ -12,6 +12,10 @@
     -webkit-appearance: none;
   }
 
+  a > * {
+    pointer-events: none;
+  }
+
   .tag {
     &:first-of-type {
       background: var(--section-color);
@@ -60,10 +64,6 @@
 
       .project__headline,
       .project__small {
-        * {
-          pointer-events: none;
-        }
-
         img,
         video {
           border: 5px solid var(--bg-color-2);
@@ -227,7 +227,7 @@
     nav {
       padding: 10px 20px;
 
-      .close-btn {
+      #close-btn {
         margin-left: auto;
         background: var(--bg-color);
         width: 40px;
