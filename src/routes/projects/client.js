@@ -2,26 +2,27 @@ import { setSectionObserver } from '../../utils/navSections'
 
 export default () => {
   const slideOutEl = document.getElementById('details-slide-out')
-  slideOutEl.className = 'closed'
+  if (location.hash) {
+    slideOutEl.className = ''
+  }
 
   const clickListener = (event) => {
     const { target } = event
-    if (target.tagName === 'A' && target.origin === location.origin) {
-      if (target.hash) {
-        slideOutEl.className = ''
-        event.preventDefault()
-        location.replace(target.href)
-      } else {
-        slideOutEl.className = 'closed'
-      }
+    if (
+      target.tagName === 'A' &&
+      target.origin === location.origin &&
+      target.hash
+    ) {
+      event.preventDefault()
+      slideOutEl.className = ''
+      location.replace(target.href)
     }
-  }
 
-  // lazily load videos once tab is visited
-  const videoEls = document.querySelectorAll('[data-route="projects"] video')
-  for (let videoEl of videoEls) {
-    videoEl.load()
-    videoEl.play()
+    if (target.id === 'close-btn') {
+      event.preventDefault()
+      slideOutEl.className = 'closed'
+      history.pushState('', document.title, location.pathname)
+    }
   }
 
   const sections = [
@@ -31,10 +32,20 @@ export default () => {
 
   setSectionObserver(sections)
 
+  // lazily load videos once tab is visited
+  setTimeout(() => {
+    const videoEls = document.querySelectorAll('[data-route="projects"] video')
+    for (let videoEl of videoEls) {
+      videoEl.load()
+      videoEl.play()
+    }
+  }, 0)
+
   document.addEventListener('click', clickListener)
 
   //cleanup
   return () => {
+    slideOutEl.className = 'closed'
     document.removeEventListener('click', clickListener)
   }
 }
