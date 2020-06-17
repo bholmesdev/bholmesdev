@@ -1,16 +1,17 @@
 import index from '../me/client'
-import projects from '../projects/client'
+import work from '../work/client'
 import { clearNavSections } from '../../utils/navSections'
 
 const routeScripts = {
   '/': index,
-  '/projects': projects,
+  '/work': work,
 }
+const emptyScript = () => () => {}
 
 let prevPathname = location.pathname
-let prevRouteCleanup = routeScripts[prevPathname]()
+let prevRouteCleanup = (routeScripts[prevPathname] || emptyScript)()
 
-const navDashedLine = document.getElementById('dashed-line-container')
+/*--- handle page transitions ---*/
 const animDurationMS = 800
 
 const pathToRoute = (path) => (path === '/' ? 'index' : path.slice(1))
@@ -38,9 +39,10 @@ const setVisiblePage = (pathname) => {
   // TODO: 404 page for invalid links
   clearNavSections()
   prevRouteCleanup()
-  prevRouteCleanup = routeScripts[pathname]()
+  prevRouteCleanup = (routeScripts[pathname] || emptyScript)()
 }
 
+const navDashedLine = document.getElementById('dashed-line-container')
 const moveDashedLine = () => {
   // only trigger animation once the previous animation is done
   if (navDashedLine.classList.contains('move')) return
@@ -51,26 +53,26 @@ const moveDashedLine = () => {
   }, animDurationMS)
 }
 
+/*--- handle links and navigation ---*/
 const primaryNavEl = document.getElementById('primary-nav')
 const jumpToSectionEl = document.getElementById('jump-to-sections')
+
+const toggleNavEl = (toggleEl, toggleOffEl) => {
+  if (toggleEl.classList.contains('toggled')) {
+    toggleEl.classList.remove('toggled')
+  } else {
+    toggleEl.classList.add('toggled')
+    toggleOffEl.classList.remove('toggled')
+  }
+}
 
 document.addEventListener('click', (event) => {
   const { target } = event
   if (target.id === 'primary-nav-toggle') {
-    if (primaryNavEl.classList.contains('toggled')) {
-      primaryNavEl.classList.remove('toggled')
-    } else {
-      primaryNavEl.classList.add('toggled')
-      jumpToSectionEl.classList.remove('toggled')
-    }
+    toggleNavEl(primaryNavEl, jumpToSectionEl)
   }
   if (target.id === 'jump-to-section-toggle') {
-    if (jumpToSectionEl.classList.contains('toggled')) {
-      jumpToSectionEl.classList.remove('toggled')
-    } else {
-      jumpToSectionEl.classList.add('toggled')
-      primaryNavEl.classList.remove('toggled')
-    }
+    toggleNavEl(jumpToSectionEl, primaryNavEl)
   }
   if (target.tagName === 'A' && target.origin === location.origin) {
     event.preventDefault()
