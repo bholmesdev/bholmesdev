@@ -51,7 +51,48 @@ section#inbrief-section
 
         [Take my resume](https://drive.google.com/file/d/1_Dix3-mAHaPVNEB2xIZeZ9RMkZRJ0A8O/view?usp=sharing)
 
-div#iteach-section(style="--section-color: var(--red)")
+div#icreate-section(style="--section-color: var(--red)")
+  section.section__summary
+    h2.numbered I create.
+    div
+      p In brief...
+      :markdown-it
+        - Full-time frontend dev at **Peloton**
+        - Framework-agnostic web developer, currently hyped for **SvelteJS**
+        - Social good advocate: former **Bits of Good** Director of Engineering, **Impact Labs** contributor
+
+  section.subsection
+    input#project-details-toggle(type="checkbox")
+
+    .macintosh
+      img(src="/static/macintosh.svg" alt="")
+      .macintosh__img-container
+        video#projects-1.visible(poster=firstProject.img.src muted autoplay loop playsinline)
+          source(src=firstProject.videoSrc type="video/webm")
+          source(src=firstProject.backupVideoSrc type="video/mp4")
+        video#projects-2(muted autoplay loop)
+          source(src='' type="video/webm")
+          source(src='' type="video/mp4")
+    
+    label.icon-after.icon__arrow-right(for="project-details-toggle")
+
+    h4#projects-title #{firstProject.title}
+    p#projects-body !{firstProject.body}
+
+    .projects__link-container
+      #dice-container
+        .outer-wrapper
+          .inner-wrapper
+            img(src="/static/die-1.svg" alt="")
+
+        .outer-wrapper.delayed
+          .inner-wrapper
+            img(src="/static/die-2.svg" alt="")
+
+      button#generate-random-project.cta-link Another random project
+      a.icon-after.icon__arrow-right(href="/projects") Just show me all of them
+
+div#iteach-section(style="--section-color: var(--purple)")
   section.section__summary
     h2.numbered I teach.
     div
@@ -96,44 +137,3 @@ div#iteach-section(style="--section-color: var(--red)")
         I asked around the dev community to understand how people learn best, and I found a variety of approaches from written documentation to recorded code-alongs. So, I tried to make a bootcamp that was the best of _all_ worlds, incorporating video activites, written code samples, and in-person workshops to create one **mega resource** for becoming a MERN stack sorcerer 🔮
 
         We've been teaching this material at the [Bits of Good student org](https://bitsofgood.org) for 2 semesters now, so we've had a lot of time to work out the kinks. Click through to find our videos, resources, and project templates 100% free! A huge thanks to Andre Hijouay for creating the incredible v1 of the bootcamp, Max Karpawich for our lovely backend materials, and James Wang for contributing + teaching 😁
-
-div#icreate-section(style="--section-color: var(--purple)")
-  section.section__summary
-    h2.numbered I create.
-    div
-      p In brief...
-      :markdown-it
-        - Full-time frontend dev at **Peloton**
-        - Framework-agnostic web developer, currently hyped for **SvelteJS**
-        - Social good advocate: former **Bits of Good** Director of Engineering, **Impact Labs** contributor
-
-  section.subsection
-    input#project-details-toggle(type="checkbox")
-
-    .macintosh
-      img(src="/static/macintosh.svg" alt="")
-      .macintosh__img-container
-        video#projects-1.visible(poster=firstProject.img.src muted autoplay loop playsinline)
-          source(src=firstProject.videoSrc type="video/webm")
-          source(src=firstProject.backupVideoSrc type="video/mp4")
-        video#projects-2(muted autoplay loop)
-          source(src='' type="video/webm")
-          source(src='' type="video/mp4")
-    
-    label.icon-after.icon__arrow-right(for="project-details-toggle")
-
-    h4#projects-title #{firstProject.title}
-    p#projects-body !{firstProject.body}
-
-    .projects__link-container
-      #dice-container
-        .outer-wrapper
-          .inner-wrapper
-            img(src="/static/die-1.svg" alt="")
-
-        .outer-wrapper.delayed
-          .inner-wrapper
-            img(src="/static/die-2.svg" alt="")
-
-      button#generate-random-project.cta-link Another random project
-      a.icon-after.icon__arrow-right(href="/projects") Just show me all of them
