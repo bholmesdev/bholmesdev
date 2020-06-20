@@ -255,12 +255,19 @@ a:hover {
 }
 
 .cta-link:hover,
-.img-link:hover > .cta-link {
+.cta-link:focus,
+.img-link:hover > .cta-link,
+.img-link:focus > .cta-link {
   background-position: 0;
   color: var(--bg-color);
 
   &::before {
     transform: translate(6px, -3px) scaleX(0);
+  }
+  & > svg {
+    fill: var(--bg-color);
+    transition: fill 0.2s;
+    transition-delay: 0.3s;
   }
   &::after {
     --icon-color: var(--bg-color);
@@ -313,6 +320,7 @@ section {
 }
 
 button {
+  font-size: inherit;
   background: none;
   border: none;
   font-family: var(--header-font);
