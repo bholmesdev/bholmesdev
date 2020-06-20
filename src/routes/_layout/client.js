@@ -57,6 +57,17 @@ const moveDashedLine = () => {
 const primaryNavEl = document.getElementById('primary-nav')
 const jumpToSectionEl = document.getElementById('jump-to-sections')
 
+const setActiveNavLink = (pathname) => {
+  const primaryNavLinks = primaryNavEl.querySelectorAll('a')
+  primaryNavLinks.forEach((link) => {
+    if (link.pathname === pathname) {
+      link.classList.add('active')
+    } else {
+      link.classList.remove('active')
+    }
+  })
+}
+
 const toggleNavEl = (toggleEl, toggleOffEl) => {
   if (toggleEl.classList.contains('toggled')) {
     toggleEl.classList.remove('toggled')
@@ -83,6 +94,7 @@ document.addEventListener('click', (event) => {
     if (target.pathname !== prevPathname)
       history.pushState({}, null, target.href)
     setVisiblePage(target.pathname)
+    setActiveNavLink(target.pathname)
     moveDashedLine()
   }
 })

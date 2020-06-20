@@ -19,14 +19,14 @@ html(lang="en-US")
       p#current-section.mobile
 
       ul#primary-nav
-        li.active
-          a(href="/") Me
         li
-          a(href="/work") Work
+          a(href="/" class=routeName === 'index' ? 'active' : '') Me
+        li
+          a(href="/work" class=routeName === 'work' ? 'active' : '') Work
         li
           a(href="https://dev.to/bholmesdev") Blog
         li
-          a(href="/contact") Contact
+          a(href="/contact" class=routeName === 'contact' ? 'active' : '') Contact
 
       button#primary-nav-toggle.mobile
         .stripe-top

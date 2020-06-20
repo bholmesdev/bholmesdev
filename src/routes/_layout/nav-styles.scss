@@ -59,10 +59,10 @@
   }
 
   #primary-nav {
-    li {
+    a {
       opacity: 0.5;
     }
-    li.active {
+    a.active {
       opacity: 1;
     }
   }
