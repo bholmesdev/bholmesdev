@@ -25,12 +25,9 @@ export default () => {
     }
   }
 
-  const sections = [
-    document.getElementById('ongoing-section'),
-    document.getElementById('complete-section'),
-  ]
+  const sectionIds = ['ongoing-section', 'complete-section']
 
-  setSectionObserver(sections)
+  setSectionObserver(sectionIds)
 
   // lazily load videos once tab is visited
   setTimeout(() => {

@@ -3,13 +3,9 @@ import { setSectionObserver } from '../../utils/navSections'
 import scrollIntoView from '../../utils/scrollIntoView'
 
 export default () => {
-  const sections = [
-    document.getElementById('inbrief-section'),
-    document.getElementById('iteach-section'),
-    document.getElementById('icreate-section'),
-  ]
+  const sectionIds = ['inbrief-section', 'iteach-section', 'icreate-section']
 
-  setSectionObserver(sections, (isIntersecting, sectionIndex) => {
+  setSectionObserver(sectionIds, (isIntersecting, sectionIndex) => {
     const allStripes = document.querySelectorAll('#line-accents > *')
     const selectedStripe = document.querySelector(
       `#line-accents > :nth-child(${sectionIndex + 1})`

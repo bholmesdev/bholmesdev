@@ -16,32 +16,45 @@ const observerOptions = {
 
 let observer = null
 
-const getSectionHeader = (element) => {
-  return document.querySelector(`#${element.id} h2`).innerText
+const getSectionHeader = (id) => {
+  return document.querySelector(`#${id} h2`).innerText
 }
 
-const setCurrSection = (sectionIndex, sectionElements) => {
+const setCurrSection = (sectionIndex, sectionIds) => {
   navCurrSectionNum.innerText = sectionIndex + 1
-  navCurrSectionName.innerText = getSectionHeader(sectionElements[sectionIndex])
+  navCurrSectionName.innerText = getSectionHeader(sectionIds[sectionIndex])
   setSectionColor(sectionIndex)
+
+  const sectionLinks = navSectionsEl.querySelectorAll('a')
+  sectionLinks.forEach((link) => {
+    if (link.hash === '#' + sectionIds[sectionIndex]) {
+      const sectionColor = getComputedStyle(
+        document.getElementById(sectionIds[sectionIndex])
+      ).getPropertyValue('--section-color')
+
+      link.style.color = sectionColor
+    } else {
+      link.style.color = 'var(--body-color)'
+    }
+  })
 }
 
 const setSectionColor = (sectionIndex) => {
   navCurrSectionToggle.style.backgroundPositionY = 50 * sectionIndex + '%'
 }
 
-export const setNavSections = (sectionElements) => {
+export const setNavSections = (sectionIds) => {
   navCurrSectionToggle.removeAttribute('hidden')
   navSectionsEl.appendChild(headingEl)
-  sectionElements.forEach((section) => {
+  sectionIds.forEach((id) => {
     const link = document.createElement('a')
     const listItem = document.createElement('li')
-    link.innerText = getSectionHeader(section)
-    link.href = '#' + section.id
+    link.innerText = getSectionHeader(id)
+    link.href = '#' + id
     listItem.appendChild(link)
     navSectionsEl.appendChild(listItem)
 
-    setCurrSection(0, sectionElements)
+    setCurrSection(0, sectionIds)
   })
 }
 
@@ -51,24 +64,22 @@ export const clearNavSections = () => {
   navCurrSectionToggle.setAttribute('hidden', '')
 }
 
-const observerCallback = (callback, sectionElements) => (entries) => {
+const observerCallback = (callback, sectionIds) => (entries) => {
   entries.forEach((change) => {
-    const sectionIndex = sectionElements.findIndex(
-      (target) => target === change.target
-    )
+    const sectionIndex = sectionIds.findIndex((id) => id === change.target.id)
     if (change.isIntersecting) {
-      setCurrSection(sectionIndex, sectionElements)
+      setCurrSection(sectionIndex, sectionIds)
     }
     callback && callback(change.isIntersecting, sectionIndex)
   })
 }
 
-export const setSectionObserver = (sectionElements, callback) => {
-  setNavSections(sectionElements)
+export const setSectionObserver = (sectionIds, callback) => {
+  setNavSections(sectionIds)
 
   observer = new IntersectionObserver(
-    observerCallback(callback, sectionElements),
+    observerCallback(callback, sectionIds),
     observerOptions
   )
-  sectionElements.forEach((target) => observer.observe(target))
+  sectionIds.forEach((id) => observer.observe(document.getElementById(id)))
 }
