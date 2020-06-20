@@ -61,12 +61,11 @@
 
       textarea {
         resize: none;
-        transition: border-color 0.3s;
-        min-height: 75px;
-        transition: min-height 0.2s;
+        min-height: 125px;
+        transition: min-height 0.2s, border-color 0.3s;
 
         &:focus {
-          min-height: 100px;
+          min-height: 150px;
           border-bottom-color: var(--purple);
         }
       }
