@@ -1,4 +1,7 @@
 [data-route='contact'] {
+  $tablet-breakpoint: 1100px;
+  $mobile-breakpoint: 850px;
+
   section {
     margin-top: 0;
     padding-bottom: 0;
@@ -11,6 +14,18 @@
       'heading heading'
       'tagline image'
       'form image';
+
+    @media (max-width: $tablet-breakpoint) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'heading'
+        'tagline'
+        'form'
+        'image';
+    }
+    @media (max-width: $mobile-breakpoint) {
+      padding-top: 100px;
+    }
 
     h1 {
       grid-area: heading;
@@ -25,6 +40,7 @@
     form {
       grid-area: form;
       align-self: end;
+      padding-bottom: 100px;
 
       label {
         font-family: var(--header-font);
@@ -75,11 +91,11 @@
       grid-area: image;
       width: 100%;
       height: auto;
-    }
 
-    button > svg {
-      margin-left: 15px;
-      fill: var(--section-color);
+      @media (max-width: $tablet-breakpoint) {
+        max-width: 300px;
+        margin: auto;
+      }
     }
   }
 }
