@@ -252,6 +252,11 @@ a:hover {
     transition: transform 0.5s;
     transform-origin: left;
   }
+
+  > svg {
+    fill: var(--section-color);
+    margin-left: 15px;
+  }
 }
 
 .cta-link:hover,
@@ -264,7 +269,7 @@ a:hover {
   &::before {
     transform: translate(6px, -3px) scaleX(0);
   }
-  & > svg {
+  > svg {
     fill: var(--bg-color);
     transition: fill 0.2s;
     transition-delay: 0.3s;
@@ -301,6 +306,7 @@ section {
 
     font-size: 20px;
 
+    h1,
     h2 {
       font-size: 64px;
       margin-top: 16px;
