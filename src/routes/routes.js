@@ -18,4 +18,10 @@ module.exports = [
       title: 'Contact Me',
     },
   },
+  {
+    routeName: 'contact-submitted',
+    meta: {
+      title: 'Thanks!',
+    },
+  },
 ]

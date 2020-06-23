@@ -1,0 +1,14 @@
+[data-route='contact-submitted'] {
+  section {
+    display: grid;
+
+    p,
+    .cta-link {
+      max-width: 600px;
+    }
+
+    p {
+      font-size: 30px;
+    }
+  }
+}
