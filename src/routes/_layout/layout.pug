@@ -9,6 +9,16 @@ html(lang="en-US")
     link(rel="icon" type="img/jpg" href="favicon.jpg")
     meta(name='viewport' content='width=device-width,initial-scale=1.0')
 
+    meta(name="twitter:card" content="summary" key="twcard")
+    meta(name="twitter:creator" content="bholmesdev" key="twhandle")
+    meta(property="og:url" content=routeUrl key="ogurl")
+    meta(property="og:image" content='https://bholmesdev-v3.netlify.app' + meta.imageSrc key="ogimage")
+    meta(property="og:image:width" content="1200")
+    meta(property="og:image:height" content="630")
+    meta(property="og:site_name" content="Ben Holmes" key="ogsitename")
+    meta(property="og:title" content=meta.title key="ogtitle")
+    meta(property="og:description" content=meta.description key="ogdesc")
+
   body
     nav#site-navigation
       ul#jump-to-sections.mobile
