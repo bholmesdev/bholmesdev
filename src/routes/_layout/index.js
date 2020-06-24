@@ -13,7 +13,7 @@ const pug = require('pug')
  * @param {Page[]} allPages - list of HTML pages to insert into the doc HTML
  */
 module.exports = (routeName, meta, pages) => {
-  const routeUrl = routeName === 'index' ? '/' : '/' + routeName
+  const routeUrl = routeName === 'index' ? '' : '/ ' + routeName
   return pug.renderFile(__dirname + '/layout.pug', {
     routeName,
     routeUrl,
