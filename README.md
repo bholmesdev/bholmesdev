@@ -44,9 +44,9 @@ This should create a `bundle.js`, `styles.css`, and some static HTML files in th
 
 This certainly ain't your grandma's Gatsby site! Rather than using component libraries or UI frameworks, this project just uses a from-scratch NodeJS build tool with some framework-y expectations + [Pug](https://pugjs.org) templating. This is meant to keep the project **lean** (`node_modules` come in at under 30 MB!) and **future-proof** (since I basically own the framework).
 
-To understand how it all works, let's focus on some of the main directories and files:
+To understand how it all works, let's focus on some of the main directories and files.
 
-### `src/routes`
+## `src/routes`
 
 This is the bread and butter of the site. Similar to [NextJS](https://nextjs.org) and friends, each directory represents a route on the generated site. Inside each route, you'll find:
 
@@ -75,9 +75,7 @@ This is the bread and butter of the site. Similar to [NextJS](https://nextjs.org
 
    The `data-route` attribute should correspond with the route's directory name, unless you override this name in the `routes.js` file (explained below).
 
-   
-
-### `routes/routes.js`
+## `routes/routes.js`
 
 This is where all routes are detailed for the build tool to pick up. As it stands, this is an array of objects with the following structure:
 
@@ -97,9 +95,7 @@ This is where all routes are detailed for the build tool to pick up. As it stand
 
 Note that each route directory **must have a corresponding `routes.js` entry**. Otherwise, the build tool will skip over the directory entirely. This enforces meta information on each route for better page accessibility / shareability 😁
 
-
-
-### `routes/_layout`
+## `routes/_layout`
 
 This is where all the global logic will live. The file structure is very similar to a traditional route, but the `index.js` works a bit different to accept each route as a parameter.
 
@@ -119,15 +115,23 @@ This is where all the global logic will live. The file structure is very similar
 - **It animates between pages based on the `data-route` attribute.** After analyzing the URL you're trying to visit, the script will map this URL to a corresponding `data-route`, and animate in the page with that particular attribute. Once the transition is finished, the previous page will be given the `hidden` attribute so the browser will ignore all the HTML inside that route.
 - **It runs a given route's cleanup function before transitioning to the next page.** This is the function returned from a given route's `client.js` handler (explained in the `src/routes` section above).
 
-
-
-### `build.js`
+## `build.js`
 
 This is the _big bad script_ that actually creates the static site. In order to speed up the build, this script runs three async processes in parallel:
 
-1. **`bundleHTML`**: This will look for all the route directories registered in `routes.js` and decide how to render each page. If it finds an `index.js` file, it will run the exported function and throw the outputted HTML string into the layout. If it only finds an `index.pug` file, it will quickly run `pug.render(PATH_TO_INDEX_PUG)` and do the same thing. At the end, it will create a static `route_name.html` file for each page route. Nested routing will be supported soon!
-2. **`bundleCSS`**: This will crawl through the route directories registered in `routes.js` and the bundle the `.scss` files that it finds (regardless of file name). As described in the `/routes` section, you'll need to wrap your styles with a `data-route` attribute to scope them to a given route.
-3. **`bundleJS`**: This will collect all clientside JS files into a single bundle using [Rollup](https://rollupjs.org). Right now, it treats `_layout/client.js` as the entry file, where each route's `client.js` must be imported manually. This is far from ideal, since the build tool should be smart enough to detect these `client.js` files and generate the import statements automatically. More on this in a future version!
+### `bundleHTML()`
+
+This will look for all the route directories registered in `routes.js` and decide how to render each page. If it finds an `index.js` file, it will run the exported function and throw the outputted HTML string into the layout. If it only finds an `index.pug` file, it will quickly run `pug.render(PATH_TO_INDEX_PUG)` and do the same thing. At the end, it will create a static `route_name.html` file for each page route. Nested routing will be supported soon!
+
+### `bundleCSS()`
+
+This will crawl through the route directories registered in `routes.js` and the bundle the `.scss` files that it finds (regardless of file name). As described in the `/routes` section, you'll need to wrap your styles with a `data-route` attribute to scope them to a given route.
+
+### `bundlesJS()`
+
+This will collect all clientside JS files into a single bundle using [Rollup](https://rollupjs.org). Right now, it treats `_layout/client.js` as the entry file, where each route's `client.js` must be imported manually. This is far from ideal, since the build tool should be smart enough to detect these `client.js` files and generate the import statements automatically. More on this in a future version!
+
+### Use in the dev server
 
 Since each of these processes can work independently, rebuilding file changes can be _lightning-fast_ in the dev environment ⚡️ For example, if you modify a `.scss` file, the build tool can run  `bundleCSS` alone while ignoring all the JS bundling and Pug rendering. In fact, stylesheet changes can be seen in milliseconds without a visible page refresh!
 
