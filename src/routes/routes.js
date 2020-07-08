@@ -4,7 +4,7 @@ module.exports = [
     routeDirName: 'me',
     meta: {
       title: 'Ben Holmes',
-      description: `Web dev, UX freak, teacher and restless tinkerer`,
+      description: `Web dev, UX freak, teacher and restless tinkerer. Learn about my previous + ongoing works, my blog, and how to reach me.`,
       imageSrc: '/static/og-images/me.jpg',
     },
   },
@@ -12,7 +12,7 @@ module.exports = [
     routeName: 'work',
     meta: {
       title: 'My Work',
-      description: `Everything I've built over the past few years from JAMstack to Java Swing`,
+      description: `Everything I've built over the past few years from JAMstack to Java Swing!`,
       imageSrc: '/static/og-images/work.jpg',
     },
   },
