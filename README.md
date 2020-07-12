@@ -1,5 +1,8 @@
 <h1 align="center">Welcome to Ben Holmes' personal site 👋</h1>
 <p>
+  <a href="https://app.netlify.com/sites/bholmes/deploys" target="_blank">
+    <img src="https://api.netlify.com/api/v1/badges/83df5f20-4455-4cc9-9854-8136876a3b82/deploy-status" alt="Netlify Status" />
+  </a>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
