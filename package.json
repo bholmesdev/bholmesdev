@@ -1,0 +1,29 @@
+{
+  "name": "11ty-plugin-attempt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --incremental",
+    "build": "eleventy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@11ty/eleventy": ">=0.11.0",
+    "@rollup/plugin-dynamic-import-vars": "^1.1.1",
+    "chalk": "^4.1.0",
+    "front-matter": "^4.0.2",
+    "glob": "^7.1.6",
+    "markdown-it-attrs": "^4.0.0",
+    "markdown-it-container": "^3.0.0",
+    "markdown-it-prism": "^2.1.4",
+    "postcss": "^8.2.6",
+    "postcss-prefix-selector": "^1.7.2",
+    "rollup": "^2.38.0",
+    "sass": "^1.32.7"
+  }
+}

@@ -1,0 +1,16 @@
+html(lang="en-US")
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' href=page.url + 'styles.css')
+    title #{title}
+
+  header
+    nav
+      a(href='/') Home
+      a(href='/blog') Latest post
+      a(href='/blog/another-one') More posts
+
+  main(data-page=slinkit.page) !{content}
+
+  script(src='/not-a-react-bundle.js' defer='defer')
