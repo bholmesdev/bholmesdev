@@ -10,10 +10,11 @@
   height: 100vh;
   top: 0;
   right: 0;
-  @include subheader;
 
   a,
   a:visited {
+    @include subheader;
+    font-size: inherit;
     color: var(--body-color);
     margin: 50px 30px;
     text-decoration: none;
@@ -71,7 +72,7 @@
 
   #current-section {
     font-family: var(--header-font);
-    font-size: 28px;
+    font-size: 24px;
   }
 
   @media (min-width: 850px) {
