@@ -79,6 +79,7 @@ $font-path: '/static/fonts/Atkinson/';
   font-family: var(--body-font);
   font-weight: bold;
   font-size: 48px;
+  letter-spacing: 0.03em;
 }
 
 $tablet-breakpoint: 1200px;
@@ -90,6 +91,7 @@ $mobile-breakpoint: 850px;
 
 html {
   font-family: var(--body-font);
+  line-height: 1.4;
   font-size: var(--me-font-size);
   color: var(--body-color);
   background: var(--bg-color);
@@ -266,8 +268,8 @@ a:hover {
   justify-content: space-between;
   border: 3px solid var(--section-color);
   color: var(--section-color);
-  font-family: var(--header-font);
-  font-weight: bold;
+  @include subheader;
+  font-size: inherit;
   padding: 10px;
   text-decoration: none;
   background: linear-gradient(
