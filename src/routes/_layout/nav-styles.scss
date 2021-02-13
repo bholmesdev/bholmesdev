@@ -13,7 +13,7 @@
 
   a,
   a:visited {
-    @include subheader;
+    @include header;
     font-size: inherit;
     color: var(--body-color);
     margin: 50px 30px;
@@ -67,6 +67,7 @@
     }
     a.active {
       opacity: 1;
+      font-weight: bold;
     }
   }
 
