@@ -73,6 +73,7 @@ $font-path: '/static/fonts/Atkinson/';
   font-family: var(--header-font);
   font-weight: normal;
   font-size: 100px;
+  line-height: 1.15;
 }
 
 @mixin subheader {
@@ -80,6 +81,7 @@ $font-path: '/static/fonts/Atkinson/';
   font-weight: bold;
   font-size: 48px;
   letter-spacing: 0.03em;
+  line-height: 1.15;
 }
 
 $tablet-breakpoint: 1200px;
