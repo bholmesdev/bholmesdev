@@ -1,3 +1,5 @@
+@import '../_layout/global.scss';
+
 #site-navigation {
   writing-mode: vertical-rl;
   background: var(--bg-color);
@@ -8,7 +10,7 @@
   height: 100vh;
   top: 0;
   right: 0;
-  font-family: var(--header-font);
+  @include subheader;
 
   a,
   a:visited {
@@ -65,6 +67,11 @@
     a.active {
       opacity: 1;
     }
+  }
+
+  #current-section {
+    font-family: var(--header-font);
+    font-size: 28px;
   }
 
   @media (min-width: 850px) {
