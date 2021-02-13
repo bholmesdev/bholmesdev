@@ -1,3 +1,5 @@
+@import '../_layout/global.scss';
+
 [data-route='index'] {
   $tablet-breakpoint: 1200px;
   $mobile-breakpoint: 850px;
@@ -263,9 +265,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: var(--header-font);
       color: var(--bg-color-2);
-      font-size: 36px;
+      @include subheader;
+      font-size: 34px;
       cursor: pointer;
       margin-bottom: 20px;
 
@@ -419,7 +421,7 @@
         'min-read title';
       grid-template-columns: 60px 1fr;
       grid-template-rows: 50px 1fr;
-      column-gap: 20px;
+      column-gap: 24px;
       color: var(--body-color);
       text-decoration: none;
       margin-bottom: 60px;
@@ -427,13 +429,12 @@
       .title {
         grid-area: title;
         font-size: 30px;
-        font-weight: 600;
         align-self: center;
       }
       .min-read {
+        @include subheader;
         grid-area: min-read;
         margin: 0;
-        font-family: var(--header-font);
         font-size: 16px;
         font-weight: bold;
         text-align: center;
@@ -512,7 +513,7 @@
       padding: 5px 10px;
       margin: 0;
       color: var(--body-color);
-      font-family: var(--header-font);
+      @include subheader;
       font-size: 20px;
       font-weight: bold;
 
@@ -746,7 +747,7 @@
     }
 
     a {
-      font-family: var(--header-font);
+      @include subheader;
       text-decoration: none;
       font-size: 20px;
 

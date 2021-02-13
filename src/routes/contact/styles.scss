@@ -1,3 +1,5 @@
+@import '../_layout/global.scss';
+
 [data-route='contact'] {
   $tablet-breakpoint: 1100px;
   $mobile-breakpoint: 850px;
@@ -43,7 +45,7 @@
       padding-bottom: 100px;
 
       label {
-        font-family: var(--header-font);
+        @include subheader;
         font-size: 18px;
       }
 
