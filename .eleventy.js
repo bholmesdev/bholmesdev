@@ -1,10 +1,6 @@
 const input = 'src'
 const output = 'build'
-const {
-  default: dynamicImportVariables,
-} = require('@rollup/plugin-dynamic-import-vars')
 const { rollup } = require('rollup')
-const { readdir, unlink, writeFile } = require('fs/promises')
 const cssPrefixer = require('postcss-prefix-selector')
 const postcss = require('postcss')
 const { promisify } = require('util')
@@ -24,11 +20,6 @@ const matchPathProperties = (path = '', fileExtension = '') => {
 }
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPairedShortcode(
-    'size',
-    (content, size) => `<span style="font-size: ${size}">${content}</span>`
-  )
-
   /*
     We're processing templates by hand instead of using 11ty
     This is mainly for page transitions and style scoping, since we need
