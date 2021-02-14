@@ -1,15 +1,15 @@
-import trimSlashes from './utils/trimSlashes'
-import zip from './utils/zip'
-import wipeAnimation from './utils/wipeAnimation'
+import trimSlashes from '../utils/trimSlashes'
+import zip from '../utils/zip'
+import wipeAnimation from '../utils/wipeAnimation'
 
 const noop = () => {}
 let prevPathname = location.pathname
 let cleanupFn = noop
 
+const dataPageAttrs = (page) => [...page.querySelectorAll('[data-page]')]
+
 const getPageDiff = (page, prevPage) => {
-  const [allPageEls, allPrevPageEls] = [page, prevPage].map((p) => [
-    ...p.querySelectorAll('[data-page]'),
-  ])
+  const [allPageEls, allPrevPageEls] = [page, prevPage].map(dataPageAttrs)
 
   const pageElPairs = zip(allPageEls, allPrevPageEls)
   for (let pair of pageElPairs) {
@@ -46,6 +46,7 @@ const yoinkHTML = async (href) => {
   const htmlString = await response.text()
   const page = new DOMParser().parseFromString(htmlString, 'text/html')
   const title = page.querySelector('title').innerText
+
   return { page, title }
 }
 
@@ -53,7 +54,7 @@ const yoinkJS = async (pathname) => {
   try {
     // TODO: determine base dir from eleventyConfig
     // currently hardcoded to src
-    const js = await import(`./src/${pathname}/client.js`)
+    const js = await import(`./${pathname}/client.js`)
 
     return {
       main: js.default ?? (() => noop),
