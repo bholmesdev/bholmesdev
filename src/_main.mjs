@@ -54,7 +54,7 @@ const yoinkJS = async (pathname) => {
   try {
     // TODO: determine base dir from eleventyConfig
     // currently hardcoded to src
-    const js = await import(`./${pathname}/client.js`)
+    const js = await import(`./${pathname}/__client.js`)
 
     return {
       main: js.default ?? (() => noop),

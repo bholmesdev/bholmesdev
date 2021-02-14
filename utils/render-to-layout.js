@@ -14,7 +14,7 @@ module.exports = (inputDir) => {
   const resolveLayout = async (layoutRelativePath = '') => {
     let layoutAbsolutePath = path.resolve(
       inputDir,
-      '_includes',
+      '_layouts',
       layoutRelativePath
     )
     if (

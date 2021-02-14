@@ -2,7 +2,7 @@ html(lang="en-US")
   head
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet' href=page.url + 'styles.css')
+    link(rel='stylesheet' href=page.url + '__styles.css')
     title #{title}
 
   header
@@ -13,4 +13,4 @@ html(lang="en-US")
 
   main(data-page=slinkit.page) !{content}
 
-  script(src='/not-a-react-bundle.js' defer='defer')
+  script(src='/__main.js' defer='defer')

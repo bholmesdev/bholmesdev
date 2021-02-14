@@ -38,45 +38,85 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addExtension('mjs', {
     read: false,
-    getData: () => {}, // TODO: pass data as a prop to client scripts
+    getData: (inputPath) => {
+      let { relativePath, fileName } = matchPathProperties(inputPath, 'mjs')
+      let resolvedPathWithFolder = ''
+      if (fileName === '_main') {
+        resolvedPathWithFolder = path.resolve(relativePath, '__main.js')
+      } else if (fileName === 'index') {
+        resolvedPathWithFolder = path.resolve(relativePath, '__client.js')
+      } else {
+        resolvedPathWithFolder = path.resolve(
+          relativePath,
+          fileName,
+          '__client.js'
+        )
+      }
+      return {
+        dynamicPermalink: false,
+        permalink: resolvedPathWithFolder,
+      }
+    },
     outputFileExtension: 'js',
     compile: (_, inputPath) => async ({ page: { outputPath } }) => {
-      const { relativePath, fileName } = matchPathProperties(inputPath, 'mjs')
-
       /* Runs your JS through a bundler called RollupJS.
       Check out https://rollupjs.org for a quick guide,
       and where to find any plugins you might want */
       const bundle = await rollup({
         input: inputPath,
       })
-      await bundle.write({
-        entryFileNames: `${fileName}.js`,
-        dir: `${__dirname}/${output}${relativePath}`,
-        format: 'esm',
-      })
-      console.log(chalk.green(`🔨 Built ${outputPath} from ${inputPath}`))
+      const { output } = await bundle.generate({ format: 'esm' })
+      if (output?.length && output[0]?.code) {
+        console.log(chalk.green(`🔨 Built ${outputPath} from ${inputPath}`))
+        return output[0].code
+      } else {
+        console.log(
+          chalk.red(`There was a problem generating JS for ${inputPath}`)
+        )
+        return
+      }
     },
   })
 
   eleventyConfig.addExtension('pug', {
     read: false, // don't process the file's contents. That's our job!
     getData: () => {}, // pipe data into that data object below (empty for now)
-    compile: (_, inputPath) => (data) =>
-      renderToLayout(inputPath, data.page.url, data),
+    compile: (_, inputPath) => (data) => {
+      if (inputPath.startsWith(`./${input}/_layouts`)) {
+        return
+      } else {
+        return renderToLayout(inputPath, data.page.url, data)
+      }
+    },
   })
 
   eleventyConfig.addExtension('md', {
     read: false,
     getData: () => {},
-    compile: (_, inputPath) => (data) =>
-      renderToLayout(inputPath, data.page.url, data),
+    compile: (_, inputPath) => (data) => {
+      if (inputPath.startsWith(`./${input}/_layouts`)) {
+        return
+      } else {
+        return renderToLayout(inputPath, data.page.url, data)
+      }
+    },
   })
 
   eleventyConfig.addExtension('scss', {
     read: false,
     outputFileExtension: 'css',
-    getData: () => {},
-    compile: (_, inputPath) => async () => {
+    getData: (inputPath) => {
+      let { relativePath, fileName } = matchPathProperties(inputPath, 'scss')
+      const pathWithFolder =
+        fileName === 'index'
+          ? relativePath
+          : path.resolve(relativePath, fileName)
+      return {
+        dynamicPermalink: false,
+        permalink: path.resolve(pathWithFolder, '__styles.css'),
+      }
+    },
+    compile: (_, inputPath) => async (data) => {
       const { css } = await sassRender({ file: inputPath })
       const { relativePath } = matchPathProperties(inputPath, 'css')
       return postcss()
