@@ -10,6 +10,7 @@ const path = require('path')
 const chalk = require('chalk')
 const virtual = require('@rollup/plugin-virtual')
 const { stringify } = require('javascript-stringify')
+const joinTrimSlashes = require('./utils/join-trim-slashes')
 const renderToLayout = require('./utils/render-to-layout')(
   path.resolve(__dirname, input)
 )
@@ -132,14 +133,8 @@ module.exports = function (eleventyConfig) {
     compile: (_, inputPath) => async ({ page: { outputPath } }) => {
       const { css } = await sassRender({ file: inputPath })
       const { relativePath } = matchPathProperties(outputPath, 'css', true)
+      const dataPageAttr = joinTrimSlashes(relativePath)
 
-      let dataPageAttr = relativePath
-      if (inputPath.startsWith(`./${input}/_layouts`)) {
-        const [_, layoutName = ''] = outputPath.match(
-          new RegExp(/_layouts(.*)\/__styles.css/)
-        )
-        dataPageAttr = layoutName.replace('/', '')
-      }
       return postcss()
         .use(
           cssPrefixer({

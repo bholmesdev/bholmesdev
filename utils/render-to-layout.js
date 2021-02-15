@@ -3,6 +3,7 @@ const { existsSync, lstatSync } = require('fs')
 const path = require('path')
 const frontMatter = require('front-matter')
 const pug = require('pug')
+const joinTrimSlashes = require('./join-trim-slashes')
 
 const toLayoutStylePath = (layoutAttr) =>
   path.join(
@@ -83,7 +84,7 @@ module.exports = (inputDir) => {
       // don't recursively render the index layout *again* (infinite loop!)
       layoutPath.startsWith('index') && layout === 'index' ? '' : layout,
       { ...layoutMeta, ...meta, ...slinkitMeta },
-      layoutPath,
+      joinTrimSlashes('_layouts', layoutPath),
       markupWithLayout
     )
   }
@@ -108,7 +109,7 @@ module.exports = (inputDir) => {
     const html = renderWithLayout(
       layout ?? 'index',
       { ...props, ...meta },
-      pageAttr,
+      joinTrimSlashes(pageAttr),
       markup
     )
 
