@@ -99,7 +99,11 @@ module.exports = (inputDir) => {
     const fileExt = path.extname(filePath)
     let markup = ''
     if (fileExt === '.pug') {
-      markup = pug.render(body, props)
+      markup = pug.render(body, {
+        ...props,
+        basedir: path.join(inputDir, '_includes'),
+        filename: path.join(inputDir, '_includes', 'index'),
+      })
     }
     if (fileExt === '.md') {
       const renderMd = require('./render-md')

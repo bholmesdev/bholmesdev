@@ -137,13 +137,17 @@ module.exports = function (eleventyConfig) {
       const { relativePath } = matchPathProperties(outputPath, 'css', true)
       const dataPageAttr = joinTrimSlashes(relativePath)
 
-      return postcss()
-        .use(
-          cssPrefixer({
-            prefix: dataPageAttr ? `[data-page="${dataPageAttr}"]` : '',
-          })
-        )
-        .process(css).css
+      if (dataPageAttr === '_layouts') {
+        return css
+      } else {
+        return postcss()
+          .use(
+            cssPrefixer({
+              prefix: dataPageAttr ? `[data-page="${dataPageAttr}"]` : '',
+            })
+          )
+          .process(css).css
+      }
     },
   })
 
