@@ -121,7 +121,7 @@ document.addEventListener('click', async (event) => {
   const { target } = event
   if (target.tagName === 'A' && target.origin === location.origin) {
     event.preventDefault()
-    if (target.pathname !== prevPathname) {
+    if (target.pathname !== prevPathname && target.hash === '') {
       history.pushState({}, null, target.href)
       await setVisiblePage(target)
     }
@@ -129,7 +129,9 @@ document.addEventListener('click', async (event) => {
 })
 
 onpopstate = () => {
-  setVisiblePage(location)
+  if (location.hash === '') {
+    setVisiblePage(location)
+  }
 }
 
 // on startup
