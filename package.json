@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --quiet",
-    "build": "eleventy",
+    "build": "ELEVENTY_EXPERIMENTAL=true eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
