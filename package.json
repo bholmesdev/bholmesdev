@@ -1,23 +1,35 @@
 {
-  "name": "bholmesdev",
+  "name": "11ty-plugin-attempt",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@rollup/plugin-commonjs": "^12.0.0",
-    "dotenv": "^8.2.0",
-    "html-to-text": "^5.1.1",
-    "jstransformer-markdown-it": "^2.1.0",
-    "livereload": "^0.8.2",
-    "markdown-it": "^11.0.0",
-    "node-fetch": "^2.6.0",
-    "node-sass": "^4.14.1",
-    "pug": "^2.0.4",
-    "rollup": "^1.27.14",
-    "serve": "^11.2.0"
-  },
   "scripts": {
-    "start": "(MODE=dev node build.js) & serve public -l 3000",
-    "build": "node build.js"
+    "start": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --quiet",
+    "build": "ELEVENTY_EXPERIMENTAL=true eleventy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": ">=0.11.0",
+    "@rollup/plugin-virtual": "^2.0.3",
+    "chalk": "^4.1.0",
+    "front-matter": "^4.0.2",
+    "javascript-stringify": "^2.0.1",
+    "markdown-it-attrs": "^4.0.0",
+    "markdown-it-container": "^3.0.0",
+    "markdown-it-prism": "^2.1.4",
+    "postcss": "^8.2.6",
+    "postcss-prefix-selector": "^1.7.2",
+    "rollup": "^2.38.0",
+    "sass": "^1.32.7"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "html-to-text": "^7.0.0",
+    "js-yaml": "^3.14.1",
+    "jstransformer-markdown-it": "^2.1.0",
+    "node-fetch": "^2.6.1"
   }
 }

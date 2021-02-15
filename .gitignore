@@ -1,8 +1,5 @@
-node_modules
-*.env
-*.DS_Store
-*.vscode
-public/*
-!public/static
-!public/favicon.jpg
-!public/robots.txt
+node_modules/
+.vscode/
+build/
+.DS_Store
+.env*
