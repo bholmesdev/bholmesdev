@@ -23,7 +23,7 @@ module.exports = [
     },
     videoSrc: '/static/projects/bog.webm',
     backupVideoSrc: '/static/projects/bog.mp4',
-    body: `This was my first experience with rebuilding a brand from the ground up. We spend months in the design and user discovery phase to decide on the best logo, fonts, colors, and general "feel" of the website. A year later, we've built everything from a <a href=https://bitsofgood.org">reimagined splash page</a> to <a href="https://bitsofgood.org/projects">in-depth journey maps</a> for all of our nonprofit projects. Oh, and it's built on the incredible <strong>Svelte + Sapper JS</strong> framework!`,
+    body: `This was my first experience with rebuilding a brand from the ground up. We spend months in the design and user discovery phase to decide on the best logo, fonts, colors, and general "feel" of the website. A year later, we've built everything from a <a href="https://bitsofgood.org">reimagined splash page</a> to <a href="https://bitsofgood.org/projects">in-depth journey maps</a> for all of our nonprofit projects. Oh, and it's built on the incredible <strong>Svelte + Sapper JS</strong> framework!`,
   },
   {
     title: 'This very website',
