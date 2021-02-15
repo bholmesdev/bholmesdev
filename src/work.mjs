@@ -30,7 +30,7 @@ export default () => {
 
   // lazily load videos once tab is visited
   setTimeout(() => {
-    const videoEls = document.querySelectorAll('[data-route="work"] video')
+    const videoEls = document.querySelectorAll('[data-page="work"] video')
     for (let videoEl of videoEls) {
       videoEl.load()
       videoEl.play()
