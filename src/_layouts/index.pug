@@ -31,13 +31,13 @@ html(lang="en-US")
 
       ul#primary-nav
         li
-          a(href="/" class=routeName === 'index' ? 'active' : '') Me
+          a(href="/" class=page.url === '/' ? 'active' : '') Me
         li
-          a(href="/work" class=routeName === 'work' ? 'active' : '') Work
+          a(href="/work" class=page.url === '/work/' ? 'active' : '') Work
         li
           a(href="https://dev.to/bholmesdev") Blog
         li
-          a(href="/contact" class=routeName === 'contact' ? 'active' : '') Contact
+          a(href="/contact" class=page.url === '/contact/' ? 'active' : '') Contact
 
       button#primary-nav-toggle.mobile
         .stripe-top
