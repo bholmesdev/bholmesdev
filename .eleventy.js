@@ -147,7 +147,7 @@ module.exports = function (eleventyConfig) {
         return postcss()
           .use(
             cssPrefixer({
-              prefix: dataPageAttr ? `[data-page="${dataPageAttr}"]` : '',
+              prefix: `[data-page="${dataPageAttr}"]`,
             })
           )
           .process(css).css
