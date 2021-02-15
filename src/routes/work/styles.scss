@@ -1,3 +1,5 @@
+@import '../_layout/global.scss';
+
 [data-route='work'] {
   $small-desktop-breakpoint: 1350px;
   $tablet-breakpoint: 1200px;
@@ -72,10 +74,6 @@
         h3 {
           font-family: var(--body-font);
         }
-
-        .timeframe {
-          font-family: var(--header-font);
-        }
       }
 
       .project__headline {
@@ -89,7 +87,7 @@
         color: var(--body-color);
 
         h3 {
-          font-size: 42px;
+          font-size: 40px;
         }
 
         .timeframe {
@@ -281,7 +279,7 @@
         }
 
         .timeframe {
-          font-family: var(--header-font);
+          font-family: var(--body-font);
           color: var(--body-color);
           font-weight: bold;
           font-size: 36px;

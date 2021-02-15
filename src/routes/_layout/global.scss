@@ -1,3 +1,37 @@
+$font-path: '/static/fonts/Atkinson/';
+
+@font-face {
+  font-family: Atkinson;
+  src: url($font-path + 'Atkinson-Hyperlegible-Regular.woff2'),
+    url($font-path + 'Atkinson-Hyperlegible-Regular.woff'),
+    url($font-path + 'Atkinson-Hyperlegible-Regular.ttf');
+}
+
+@font-face {
+  font-family: Atkinson;
+  src: url($font-path + 'Atkinson-Hyperlegible-Italic.woff2'),
+    url($font-path + 'Atkinson-Hyperlegible-Italic.woff'),
+    url($font-path + 'Atkinson-Hyperlegible-Italic.ttf');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Atkinson;
+  src: url($font-path + 'Atkinson-Hyperlegible-Bold.woff2'),
+    url($font-path + 'Atkinson-Hyperlegible-Bold.woff'),
+    url($font-path + 'Atkinson-Hyperlegible-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Atkinson;
+  src: url($font-path + 'Atkinson-Hyperlegible-BoldItalic.woff2'),
+    url($font-path + 'Atkinson-Hyperlegible-BoldItalic.woff'),
+    url($font-path + 'Atkinson-Hyperlegible-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
 :root {
   --spacing-xs: 8px;
   --spacing: 24px;
@@ -6,7 +40,7 @@
 
   --default-fonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  --body-font: proxima-nova, 'Open Sans', var(--default-fonts);
+  --body-font: Atkinson, 'Open Sans', var(--default-fonts);
   --header-font: rigid-square, 'Fira Code', monospace, var(--default-fonts);
 
   --body-color-dark: #311b00;
@@ -35,6 +69,21 @@
   }
 }
 
+@mixin header {
+  font-family: var(--header-font);
+  font-weight: normal;
+  font-size: 100px;
+  line-height: 1.15;
+}
+
+@mixin subheader {
+  font-family: var(--body-font);
+  font-weight: bold;
+  font-size: 48px;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+}
+
 $tablet-breakpoint: 1200px;
 $mobile-breakpoint: 850px;
 
@@ -44,25 +93,22 @@ $mobile-breakpoint: 850px;
 
 html {
   font-family: var(--body-font);
+  line-height: 1.4;
   font-size: var(--me-font-size);
   color: var(--body-color);
   background: var(--bg-color);
 }
 
 h1,
-h2,
-h3 {
-  font-family: var(--header-font);
+h2 {
+  @include header;
 }
 
-h1,
-h2 {
-  font-size: 100px;
+h1 {
+  font-weight: bold;
 }
 
 h2 {
-  font-weight: normal;
-
   &.numbered {
     position: relative;
 
@@ -86,12 +132,13 @@ h2 {
 }
 
 h3 {
-  font-size: 48px;
+  @include subheader;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
 h4 {
+  @include subheader;
   font-size: 36px;
   margin-bottom: 10px;
 }
@@ -223,8 +270,8 @@ a:hover {
   justify-content: space-between;
   border: 3px solid var(--section-color);
   color: var(--section-color);
-  font-family: var(--header-font);
-  font-weight: bold;
+  @include subheader;
+  font-size: inherit;
   padding: 10px;
   text-decoration: none;
   background: linear-gradient(
