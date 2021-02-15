@@ -51,7 +51,7 @@ module.exports = function (eleventyConfig) {
     This is mainly for page transitions and style scoping, since we need
     to apply unique HTML identifiers to *each layout file* our templates use
   */
-  eleventyConfig.templateFormats = ['md', 'pug', 'scss', 'mjs']
+  eleventyConfig.templateFormats = ['md', 'pug', 'scss', 'mjs', 'html']
 
   eleventyConfig.addExtension('pug', templateExtensionConfig)
   eleventyConfig.addExtension('md', templateExtensionConfig)

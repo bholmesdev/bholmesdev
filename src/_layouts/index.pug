@@ -4,12 +4,13 @@ html(lang="en-US")
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title #{title}
 
-  header
-    nav
-      a(href='/') Home
-      a(href='/blog') Latest post
-      a(href='/blog/another-one') More posts
+  body
+    header
+      nav
+        a(href='/') Home
+        a(href='/blog') Latest post
+        a(href='/blog/another-one') More posts
 
-  main(data-page=slinkit.page) !{content}
+    main(data-page=slinkit.page) !{content}
 
   script(src='/__main.js' defer='defer')
