@@ -1,6 +1,6 @@
-import trimSlashes from '../utils/trimSlashes'
-import zip from '../utils/zip'
-import wipeAnimation from '../utils/wipeAnimation'
+import trimSlashes from '../utils/client/trim-slashes'
+import zip from '../utils/client/zip'
+import wipeAnimation from '../utils/client/wipe-animation'
 
 const noop = () => {}
 let prevPathname = location.pathname

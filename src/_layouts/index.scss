@@ -63,7 +63,7 @@ $font-path: '/assets/fonts/Atkinson/';
   --nav-height: 100px;
   --me-font-size: 24px;
 
-  --nav-anim-duration: 0.8s;
+  --nav-anim-duration: 500ms;
 }
 
 @media (max-width: 850px) {
@@ -373,7 +373,7 @@ button {
   }
 }
 
-[data-route] {
+[data-page] {
   counter-reset: section-number;
 
   &.slideOut,
@@ -397,7 +397,7 @@ button {
 
 @keyframes slidePageIn {
   from {
-    transform: translateY(100vh);
+    transform: translateY(50vh);
     opacity: 0;
   }
   to {
@@ -412,7 +412,7 @@ button {
     opacity: 1;
   }
   to {
-    transform: translateY(-100vh);
+    transform: translateY(-50vh);
     opacity: 0;
   }
 }
