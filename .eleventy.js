@@ -10,6 +10,7 @@ const path = require('path')
 const chalk = require('chalk')
 const virtual = require('@rollup/plugin-virtual')
 const { stringify } = require('javascript-stringify')
+const yaml = require('js-yaml')
 const joinTrimSlashes = require('./utils/join-trim-slashes')
 const renderToLayout = require('./utils/render-to-layout')(
   path.resolve(__dirname, input)
@@ -53,11 +54,12 @@ module.exports = function (eleventyConfig) {
     to apply unique HTML identifiers to *each layout file* our templates use
   */
   eleventyConfig.templateFormats = ['md', 'pug', 'scss', 'mjs', 'html']
-
   eleventyConfig.addPassthroughCopy('assets')
 
   eleventyConfig.addExtension('pug', templateExtensionConfig)
   eleventyConfig.addExtension('md', templateExtensionConfig)
+
+  eleventyConfig.addDataExtension('yaml', (contents) => yaml.safeLoad(contents))
 
   eleventyConfig.addExtension('mjs', {
     read: false,
