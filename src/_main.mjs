@@ -4,19 +4,21 @@ import wipeAnimation from '../utils/wipeAnimation'
 
 const noop = () => {}
 let prevPathname = location.pathname
-let cleanupFn = noop
+let cleanupFns = []
 
-const dataPageAttrs = (page) => [...page.querySelectorAll('[data-page]')]
+const dataPageAttrs = (page) =>
+  [...page.querySelectorAll('[data-page]')].map((el) => ({
+    el,
+    value: el.getAttribute('data-page'),
+  }))
 
 const getPageDiff = (page, prevPage) => {
   const [allPageEls, allPrevPageEls] = [page, prevPage].map(dataPageAttrs)
 
   const pageElPairs = zip(allPageEls, allPrevPageEls)
-  for (let pair of pageElPairs) {
-    if (
-      pair[0].getAttribute('data-page') !== pair[1].getAttribute('data-page')
-    ) {
-      return pair
+  for (let [left, right] of pageElPairs) {
+    if (left.value !== right.value) {
+      return [left.el, right.el]
     }
   }
   return [null, null]
@@ -50,6 +52,14 @@ const yoinkHTML = async (href) => {
   return { page, title }
 }
 
+const yoinkLayoutJS = async (pageHTML = document) => {
+  const layoutNames = dataPageAttrs(pageHTML)
+    .map((attr) => attr.value)
+    .filter((dataPage) => dataPage.startsWith('_layouts'))
+  layoutNames.push('_layouts')
+  return await Promise.all(layoutNames.map((layoutName) => yoinkJS(layoutName)))
+}
+
 const yoinkJS = async (pathname) => {
   try {
     const [jsModule, pageDataModule] = await Promise.all([
@@ -78,10 +88,24 @@ const setPageTitle = (title = '') => {
   }
 }
 
+const popCleanup = () => {
+  while (cleanupFns.length) cleanupFns.pop()()
+}
+
+const pushCleanup = (...pageJSFns) => {
+  for (fn of pageJSFns) cleanupFns.push(fn())
+}
+
+const sequenceProcessHTMLLayoutJS = async (href = '') => {
+  const { page, title } = await yoinkHTML(href)
+  const layoutJSList = await yoinkLayoutJS(page)
+  return { page, title, layoutJSList }
+}
+
 const setVisiblePage = async ({ pathname = '', href = '' }) => {
-  cleanupFn()
-  const [{ page, title }, main] = await Promise.all([
-    yoinkHTML(href),
+  popCleanup()
+  const [{ page, title, layoutJSList }, mainJS] = await Promise.all([
+    sequenceProcessHTMLLayoutJS(href),
     yoinkJS(trimSlashes(pathname)),
   ])
   setPageTitle(title)
@@ -89,7 +113,7 @@ const setVisiblePage = async ({ pathname = '', href = '' }) => {
   // TODO: on quick navigation, it's possible to run the next page function
   // before the previous cleanup finishes
   // will probably need a queuing system to solve this
-  cleanupFn = main()
+  pushCleanup(mainJS, ...layoutJSList)
   prevPathname = pathname
 }
 
@@ -110,6 +134,9 @@ onpopstate = () => {
 
 // on startup
 ;(async () => {
-  const main = await yoinkJS(trimSlashes(location.pathname))
-  cleanupFn = main()
+  const [mainJS, layoutJSList] = await Promise.all([
+    yoinkJS(trimSlashes(location.pathname)),
+    yoinkLayoutJS(),
+  ])
+  pushCleanup(mainJS, ...layoutJSList)
 })()
