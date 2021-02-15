@@ -13,10 +13,10 @@
     - SvelteJS
   headline: true
   img:
-    src: '/static/projects/bog.jpg'
+    src: '/assets/works/bog.jpg'
     alt: Bits of Good homepage
-  videoSrc: '/static/projects/bog.webm'
-  backupVideoSrc: '/static/projects/bog.mp4'
+  videoSrc: '/assets/works/bog.webm'
+  backupVideoSrc: '/assets/works/bog.mp4'
   body:
     This was my first experience with rebuilding a brand from the ground up. We
     spend months in the design and user discovery phase to decide on the best logo,
@@ -38,10 +38,10 @@
     - PugJS
   headline: true
   img:
-    src: '/static/projects/this-very-website.jpg'
+    src: '/assets/works/this-very-website.jpg'
     alt: Text saying that you are already here
-  videoSrc: '/static/projects/this-very-website.webm'
-  backupVideoSrc: '/static/projects/this-very-website.mp4'
+  videoSrc: '/assets/works/this-very-website.webm'
+  backupVideoSrc: '/assets/works/this-very-website.mp4'
   body:
     This was a seriously big undertaking, mostly because of how I approached it.
     In short, this is a statically generated website with <strong>zero JS or CSS frameworks</strong>
@@ -65,10 +65,10 @@
     - Angular 2+
   headline: true
   img:
-    src: '/static/projects/dolphin-viz.jpg'
+    src: '/assets/works/dolphin-viz.jpg'
     alt: Dolphin audio spectrogram
-  videoSrc: '/static/projects/dolphin-viz.webm'
-  backupVideoSrc: '/static/projects/dolphin-viz.mp4'
+  videoSrc: '/assets/works/dolphin-viz.webm'
+  backupVideoSrc: '/assets/works/dolphin-viz.mp4'
   body:
     "This was a research project with interesting goals: a) to understand the
     language of dolphins, and b) to find a way to communicate with them as humans.
@@ -95,10 +95,10 @@
     - Social good
     - ReactJS
   img:
-    src: '/static/projects/drawchange.jpg'
+    src: '/assets/works/drawchange.jpg'
     alt: Drawchange admin portal, with view of volunteer profiles
-  videoSrc: '/static/projects/drawchange.webm'
-  backupVideoSrc: '/static/projects/drawchange.mp4'
+  videoSrc: '/assets/works/drawchange.webm'
+  backupVideoSrc: '/assets/works/drawchange.mp4'
   body:
     'This was a major milestone as a developer: my first time taking ownership
     of a production-ready project. Since this Bits of Good student team was short-staffed,
@@ -125,10 +125,10 @@
     - TypeScript
     - Redux
   img:
-    src: '/static/projects/peloton-careers.jpg'
+    src: '/assets/works/peloton-careers.jpg'
     alt: Peloton careers landing page with all available job openings
-  videoSrc: '/static/projects/peloton-careers-page.webm'
-  backupVideoSrc: '/static/projects/peloton-careers-page.mp4'
+  videoSrc: '/assets/works/peloton-careers-page.webm'
+  backupVideoSrc: '/assets/works/peloton-careers-page.mp4'
   body:
     This is the first Peloton project I took full ownership of. I worked as the
     <strong>head engineer</strong> on a multi-disciplinary team, getting involved
@@ -152,10 +152,10 @@
     - C Basic
     - Emulator
   img:
-    src: '/static/projects/32-bit-rackets.jpg'
+    src: '/assets/works/32-bit-rackets.jpg'
     alt: Gameboy game footage of two tennis players, one about to serve
-  videoSrc: '/static/projects/32-bit-rackets.webm'
-  backupVideoSrc: '/static/projects/32-bit-rackets.mp4'
+  videoSrc: '/assets/works/32-bit-rackets.webm'
+  backupVideoSrc: '/assets/works/32-bit-rackets.mp4'
   body:
     'Though I''ve found my niche in frontend dev and design, my interest in programming
     started making <a href="https://imgur.com/a/edUgWnK">simple games using Java Swing.</a>
@@ -180,12 +180,12 @@
     - Python server
   headline: true
   img:
-    src: '/static/projects/roombowling.jpg'
+    src: '/assets/works/roombowling.jpg'
     alt:
       Roomba in action, knocking down water bottle bowling pins and displaying
       your score on a web app
-  videoSrc: '/static/projects/roombowling.webm'
-  backupVideoSrc: '/static/projects/roombowling.mp4'
+  videoSrc: '/assets/works/roombowling.webm'
+  backupVideoSrc: '/assets/works/roombowling.mp4'
   body:
     'I attended <a href="https://devpost.com/Holben888">my fair share of hackathons</a>
     as a GA Tech student, but <a href="https://build.hack.gt/">BuildGT2</a> was easily
@@ -211,11 +211,11 @@
     - Angular 1.x
     - Chrome extension
   img:
-    src: '/static/projects/outlink.jpg'
-    gifSrc: '/static/projects/outlink.gif'
+    src: '/assets/works/outlink.jpg'
+    gifSrc: '/assets/works/outlink.gif'
     alt: 'Tagline for the Outlink app: browse, annotate, collaborate.'
-  videoSrc: '/static/projects/outlink.webm'
-  backupVideoSrc: '/static/projects/outlink.mp4'
+  videoSrc: '/assets/works/outlink.webm'
+  backupVideoSrc: '/assets/works/outlink.mp4'
   body:
     'I consider this project my web dev rite of passage: taking on a ridiculously
     hard project with beginner-level experience. In brief, Outlink was a way to annotate
