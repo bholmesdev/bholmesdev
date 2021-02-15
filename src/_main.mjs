@@ -52,16 +52,18 @@ const yoinkHTML = async (href) => {
 
 const yoinkJS = async (pathname) => {
   try {
-    // TODO: determine base dir from eleventyConfig
-    // currently hardcoded to src
-    const js = await import(`./${pathname}/__client.js`)
+    const [jsModule, pageDataModule] = await Promise.all([
+      import(`./${pathname}/__client.js`),
+      import(`./${pathname}/__data.js`),
+    ])
 
-    return {
-      main: js.default ?? (() => noop),
-      options: js.options ?? {},
+    if (jsModule?.default) {
+      return () => jsModule.default(pageDataModule?.default ?? {})
+    } else {
+      return () => noop
     }
   } catch (e) {
-    return { main: () => noop, options: {} }
+    return () => noop
   }
 }
 
@@ -78,7 +80,7 @@ const setPageTitle = (title = '') => {
 
 const setVisiblePage = async ({ pathname = '', href = '' }) => {
   cleanupFn()
-  const [{ page, title }, { main }] = await Promise.all([
+  const [{ page, title }, main] = await Promise.all([
     yoinkHTML(href),
     yoinkJS(trimSlashes(pathname)),
   ])
@@ -108,6 +110,6 @@ onpopstate = () => {
 
 // on startup
 ;(async () => {
-  const { main } = await yoinkJS(trimSlashes(location.pathname))
+  const main = await yoinkJS(trimSlashes(location.pathname))
   cleanupFn = main()
 })()

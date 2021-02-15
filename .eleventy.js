@@ -8,6 +8,8 @@ const sassCompiler = require('sass')
 const sassRender = promisify(sassCompiler.render)
 const path = require('path')
 const chalk = require('chalk')
+const virtual = require('@rollup/plugin-virtual')
+const { stringify } = require('javascript-stringify')
 const renderToLayout = require('./utils/render-to-layout')(
   path.resolve(__dirname, input)
 )
@@ -30,7 +32,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addExtension('mjs', {
     read: false,
     getData: (inputPath) => {
-      let { relativePath, fileName } = matchPathProperties(inputPath, 'mjs')
+      const { relativePath, fileName } = matchPathProperties(inputPath, 'mjs')
       let resolvedPathWithFolder = ''
       if (fileName === '_main') {
         resolvedPathWithFolder = path.resolve(relativePath, '__main.js')
@@ -49,7 +51,7 @@ module.exports = function (eleventyConfig) {
       }
     },
     outputFileExtension: 'js',
-    compile: (_, inputPath) => async ({ page: { outputPath } }) => {
+    compile: (_, inputPath) => async (data) => {
       /* Runs your JS through a bundler called RollupJS.
       Check out https://rollupjs.org for a quick guide,
       and where to find any plugins you might want */
@@ -58,7 +60,27 @@ module.exports = function (eleventyConfig) {
       })
       const { output } = await bundle.generate({ format: 'esm' })
       if (output?.length && output[0]?.code) {
-        console.log(chalk.green(`🔨 Built ${outputPath} from ${inputPath}`))
+        const { fileName } = matchPathProperties(inputPath, 'mjs')
+        if (fileName !== '_main') {
+          const dataBundle = await rollup({
+            input: '__data',
+            plugins: [
+              virtual({
+                __data: `export default ${stringify({
+                  ...data,
+                  collections: undefined,
+                })}`,
+              }),
+            ],
+          })
+          await dataBundle.write({
+            file: data.page.outputPath.replace('__client.js', '__data.js'),
+            format: 'esm',
+          })
+        }
+        console.log(
+          chalk.green(`🔨 Built ${data.page.outputPath} from ${inputPath}`)
+        )
         return output[0].code
       } else {
         console.log(
@@ -107,7 +129,7 @@ module.exports = function (eleventyConfig) {
         permalink: path.resolve(pathWithFolder, '__styles.css'),
       }
     },
-    compile: (_, inputPath) => async (data) => {
+    compile: (_, inputPath) => async () => {
       const { css } = await sassRender({ file: inputPath })
       const { relativePath } = matchPathProperties(inputPath, 'css')
       return postcss()
