@@ -69,14 +69,14 @@ module.exports = function (eleventyConfig) {
       const { relativePath, fileName } = matchPathProperties(inputPath, 'mjs')
       let resolvedPathWithFolder = ''
       if (fileName === '_main') {
-        resolvedPathWithFolder = path.resolve(relativePath, '__main.js')
+        resolvedPathWithFolder = path.resolve(relativePath, '__main.mjs')
       } else if (fileName === 'index') {
-        resolvedPathWithFolder = path.resolve(relativePath, '__client.js')
+        resolvedPathWithFolder = path.resolve(relativePath, '__client.mjs')
       } else {
         resolvedPathWithFolder = path.resolve(
           relativePath,
           fileName,
-          '__client.js'
+          '__client.mjs'
         )
       }
       return {
@@ -84,7 +84,7 @@ module.exports = function (eleventyConfig) {
         permalink: resolvedPathWithFolder,
       }
     },
-    outputFileExtension: 'js',
+    outputFileExtension: 'mps',
     compile: (_, inputPath) => async (data) => {
       /* Runs your JS through a bundler called RollupJS.
       Check out https://rollupjs.org for a quick guide,
@@ -108,7 +108,7 @@ module.exports = function (eleventyConfig) {
             ],
           })
           await dataBundle.write({
-            file: data.page.outputPath.replace('__client.js', '__data.js'),
+            file: data.page.outputPath.replace('__client.mjs', '__data.mjs'),
             format: 'esm',
           })
         }

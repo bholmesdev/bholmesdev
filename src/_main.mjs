@@ -63,8 +63,8 @@ const yoinkLayoutJS = async (pageHTML = document) => {
 const yoinkJS = async (pathname) => {
   try {
     const [jsModule, pageDataModule] = await Promise.all([
-      import(`./${pathname}/__client.js`),
-      import(`./${pathname}/__data.js`),
+      import(`./${pathname}/__client.mjs`),
+      import(`./${pathname}/__data.mjs`),
     ])
 
     if (jsModule?.default) {

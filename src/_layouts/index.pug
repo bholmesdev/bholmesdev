@@ -11,6 +11,14 @@ html(lang="en-US")
     link(rel="icon" type="img/jpg" href="favicon.jpg")
     meta(name='viewport' content='width=device-width,initial-scale=1.0')
 
+    // TODO: automatically generate these at buildtime
+    link(rel="modulepreload" href="/__client.mjs")
+    link(rel="modulepreload" href="/__data.mjs")
+    link(rel="modulepreload" href="/work/__client.mjs")
+    link(rel="modulepreload" href="/work/__data.mjs")
+    link(rel="modulepreload" href="/_layouts/__client.mjs")
+    link(rel="modulepreload" href="/_layouts/__data.mjs")
+
     meta(name="twitter:card" content="summary_large_image")
     meta(name="twitter:site" content="@bholmesdev")
     meta(name="twitter:creator" content="@bholmesdev")
@@ -53,4 +61,4 @@ html(lang="en-US")
 
     main(data-page=slinkit.page) !{content}
 
-  script(src='/__main.js' defer='defer')
+  script(src='/__main.mjs' defer='defer')
