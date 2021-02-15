@@ -12,6 +12,7 @@ const virtual = require('@rollup/plugin-virtual')
 const { stringify } = require('javascript-stringify')
 const yaml = require('js-yaml')
 const joinTrimSlashes = require('./utils/join-trim-slashes')
+const dotenv = require('dotenv')
 const renderToLayout = require('./utils/render-to-layout')(
   path.resolve(__dirname, input)
 )
@@ -48,6 +49,7 @@ const templateExtensionConfig = {
 }
 
 module.exports = function (eleventyConfig) {
+  dotenv.config()
   /*
     We're processing templates by hand instead of using 11ty
     This is mainly for page transitions and style scoping, since we need
