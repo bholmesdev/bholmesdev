@@ -14,31 +14,33 @@ const renderToLayout = require('./utils/render-to-layout')(
   path.resolve(__dirname, input)
 )
 
-const matchPathProperties = (path = '', fileExtension = '') => {
+const matchPathProperties = (path = '', fileExtension = '', useOutput) => {
   const [_, relativePath, fileName] = path.match(
-    new RegExp(`.*\/${input}(.*\/|\/)(.*).${fileExtension}`)
+    new RegExp(
+      `.*${useOutput ? output : './' + input}(.*\/|\/)(.*).${fileExtension}`
+    )
   )
   return { relativePath, fileName }
 }
 
 const templateExtensionConfig = {
   read: false, // don't process the file's contents. That's our job!
-  getData: async (inputPath) => {
-    const { relativePath } = matchPathProperties(inputPath)
-    return {
+  getData: () => {},
+  compile: (_, inputPath) => (data) => {
+    const { relativePath } = matchPathProperties(data.page.outputPath, '', true)
+    const pageData = {
+      ...data,
       slinkit: {
         styles: `<link rel="stylesheet" href="${path.join(
           relativePath,
           '__styles.css'
-        )}>"`,
+        )}">`,
       },
     }
-  },
-  compile: (_, inputPath) => (data) => {
     if (inputPath.startsWith(`./${input}/_layouts`)) {
       return
     } else {
-      return renderToLayout(inputPath, data.page.url, data)
+      return renderToLayout(inputPath, data.page.url, pageData)
     }
   },
 }
@@ -132,7 +134,7 @@ module.exports = function (eleventyConfig) {
     },
     compile: (_, inputPath) => async ({ page: { outputPath } }) => {
       const { css } = await sassRender({ file: inputPath })
-      const { relativePath } = matchPathProperties(inputPath, 'css')
+      const { relativePath } = matchPathProperties(outputPath, 'css', true)
 
       let dataPageAttr = relativePath
       if (inputPath.startsWith(`./${input}/_layouts`)) {
