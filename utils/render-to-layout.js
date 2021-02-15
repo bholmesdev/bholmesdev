@@ -4,6 +4,13 @@ const path = require('path')
 const frontMatter = require('front-matter')
 const pug = require('pug')
 
+const toLayoutStylePath = (layoutAttr) =>
+  path.join(
+    '/_layouts',
+    layoutAttr === 'index' ? '' : layoutAttr,
+    '__styles.css'
+  )
+
 module.exports = (inputDir) => {
   /**
    * Uses a relative path to a layout file / dir
@@ -57,18 +64,25 @@ module.exports = (inputDir) => {
       attributes: { layout = 'index', ...layoutMeta },
       body,
     } = frontMatter(rawLayout.toString())
-    const markupWithLayout = pug.render(body, {
-      ...meta,
-      content: markup,
+    const slinkitMeta = {
       slinkit: {
+        ...meta.slinkit,
+        styles:
+          `<link rel="stylesheet" href=${toLayoutStylePath(layoutPath)}>` +
+          meta.slinkit.styles,
         page: pageAttr,
       },
+    }
+    const markupWithLayout = pug.render(body, {
+      ...meta,
+      ...slinkitMeta,
+      content: markup,
     })
     return await renderWithLayout(
       // if we already rendered the index layout,
       // don't recursively render the index layout *again* (infinite loop!)
       layoutPath.startsWith('index') && layout === 'index' ? '' : layout,
-      { ...layoutMeta, ...meta },
+      { ...layoutMeta, ...meta, ...slinkitMeta },
       layoutPath,
       markupWithLayout
     )

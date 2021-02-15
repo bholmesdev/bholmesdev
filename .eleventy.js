@@ -21,6 +21,28 @@ const matchPathProperties = (path = '', fileExtension = '') => {
   return { relativePath, fileName }
 }
 
+const templateExtensionConfig = {
+  read: false, // don't process the file's contents. That's our job!
+  getData: async (inputPath) => {
+    const { relativePath } = matchPathProperties(inputPath)
+    return {
+      slinkit: {
+        styles: `<link rel="stylesheet" href="${path.join(
+          relativePath,
+          '__styles.css'
+        )}>"`,
+      },
+    }
+  },
+  compile: (_, inputPath) => (data) => {
+    if (inputPath.startsWith(`./${input}/_layouts`)) {
+      return
+    } else {
+      return renderToLayout(inputPath, data.page.url, data)
+    }
+  },
+}
+
 module.exports = function (eleventyConfig) {
   /*
     We're processing templates by hand instead of using 11ty
@@ -28,6 +50,9 @@ module.exports = function (eleventyConfig) {
     to apply unique HTML identifiers to *each layout file* our templates use
   */
   eleventyConfig.templateFormats = ['md', 'pug', 'scss', 'mjs']
+
+  eleventyConfig.addExtension('pug', templateExtensionConfig)
+  eleventyConfig.addExtension('md', templateExtensionConfig)
 
   eleventyConfig.addExtension('mjs', {
     read: false,
@@ -91,30 +116,6 @@ module.exports = function (eleventyConfig) {
     },
   })
 
-  eleventyConfig.addExtension('pug', {
-    read: false, // don't process the file's contents. That's our job!
-    getData: () => {}, // pipe data into that data object below (empty for now)
-    compile: (_, inputPath) => (data) => {
-      if (inputPath.startsWith(`./${input}/_layouts`)) {
-        return
-      } else {
-        return renderToLayout(inputPath, data.page.url, data)
-      }
-    },
-  })
-
-  eleventyConfig.addExtension('md', {
-    read: false,
-    getData: () => {},
-    compile: (_, inputPath) => (data) => {
-      if (inputPath.startsWith(`./${input}/_layouts`)) {
-        return
-      } else {
-        return renderToLayout(inputPath, data.page.url, data)
-      }
-    },
-  })
-
   eleventyConfig.addExtension('scss', {
     read: false,
     outputFileExtension: 'css',
@@ -129,13 +130,21 @@ module.exports = function (eleventyConfig) {
         permalink: path.resolve(pathWithFolder, '__styles.css'),
       }
     },
-    compile: (_, inputPath) => async () => {
+    compile: (_, inputPath) => async ({ page: { outputPath } }) => {
       const { css } = await sassRender({ file: inputPath })
       const { relativePath } = matchPathProperties(inputPath, 'css')
+
+      let dataPageAttr = relativePath
+      if (inputPath.startsWith(`./${input}/_layouts`)) {
+        const [_, layoutName = ''] = outputPath.match(
+          new RegExp(/_layouts(.*)\/__styles.css/)
+        )
+        dataPageAttr = layoutName.replace('/', '')
+      }
       return postcss()
         .use(
           cssPrefixer({
-            prefix: `[data-page="${relativePath}"]`,
+            prefix: dataPageAttr ? `[data-page="${dataPageAttr}"]` : '',
           })
         )
         .process(css).css
