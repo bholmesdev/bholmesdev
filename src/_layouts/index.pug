@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+html(lang="en-US")
+  head !{slinkit.styles}
+    title #{title}
+    link(rel="preload" href="https://use.typekit.net/liz3dnm.css" as="style")
+    link(rel="stylesheet" href="https://use.typekit.net/liz3dnm.css")
+    link(rel="icon" type="img/jpg" href="favicon.jpg")
+    meta(name='viewport' content='width=device-width,initial-scale=1.0')
+
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:site" content="@bholmesdev")
+    meta(name="twitter:creator" content="@bholmesdev")
+    meta(name="description" content=description)
+    meta(property="og:url" content='https://bholmes.dev' + routeUrl)
+    meta(property="og:image" content='https://bholmes.dev' + imageSrc)
+    meta(property="og:image:width" content="1200")
+    meta(property="og:image:height" content="630")
+    meta(property="og:site_name" content="Ben Holmes")
+    meta(property="og:title" content=title)
+    meta(property="og:description" content=description)
+
+  body
+    nav#site-navigation
+      ul#jump-to-sections.mobile
+
+      button#jump-to-section-toggle.mobile
+        span 0
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M128 192l128 128 128-128z"/></svg>
+
+      p#current-section.mobile
+
+      ul#primary-nav
+        li
+          a(href="/" class=routeName === 'index' ? 'active' : '') Me
+        li
+          a(href="/work" class=routeName === 'work' ? 'active' : '') Work
+        li
+          a(href="https://dev.to/bholmesdev") Blog
+        li
+          a(href="/contact" class=routeName === 'contact' ? 'active' : '') Contact
+
+      button#primary-nav-toggle.mobile
+        .stripe-top
+        .stripe-middle
+        .stripe-bottom
+        
+      #dashed-line-container
+        div
+
+    main(data-page=slinkit.page) !{content}
+
+  script(src='/__main.js' defer='defer')
