@@ -204,7 +204,6 @@ section {
     width: 800px;
     max-width: calc(100vw - var(--nav-height));
     transform: translateX(-100%);
-    transition: transform 0.3s;
 
     @media (max-width: $mobile-breakpoint) {
       max-width: 100vw;
@@ -308,6 +307,7 @@ section {
     &:target ~ .background,
     &:target ~ nav {
       transform: translateX(0);
+      transition: transform 0.3s;
     }
   }
 }
