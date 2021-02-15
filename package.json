@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --incremental",
+    "start": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --quiet",
     "build": "eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

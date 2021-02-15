@@ -105,9 +105,6 @@ module.exports = function (eleventyConfig) {
             format: 'esm',
           })
         }
-        console.log(
-          chalk.green(`🔨 Built ${data.page.outputPath} from ${inputPath}`)
-        )
         return output[0].code
       } else {
         console.log(
