@@ -20,23 +20,19 @@ $mobile-breakpoint: 850px;
 }
 
 .icon__devto {
-  --icon-source: url('/static/icons/devto.svg');
+  --icon-source: url('/assets/icons/devto.svg');
 }
 .icon__notion {
-  --icon-source: url('/static/icons/notion.svg');
+  --icon-source: url('/assets/icons/notion.svg');
 }
 .icon__arrow-down {
-  --icon-source: url('/static/icons/arrow-down.svg');
+  --icon-source: url('/assets/icons/arrow-down.svg');
 }
 .icon__arrow-right {
-  --icon-source: url('/static/icons/arrow-right.svg');
+  --icon-source: url('/assets/icons/arrow-right.svg');
 }
 
 .line-accents-container {
-  @media (max-width: $tablet-breakpoint) {
-    --content-max-width: 700px;
-  }
-
   max-width: var(--content-max-width);
   margin: auto;
   margin-top: -100px;
@@ -103,10 +99,6 @@ $mobile-breakpoint: 850px;
 }
 
 #header-section {
-  @media (max-width: $tablet-breakpoint) {
-    --content-max-width: 700px;
-  }
-
   height: 95vh;
   min-height: 900px;
   max-height: 1200px;
@@ -348,7 +340,6 @@ section {
     ~ .switch__text {
       .personal {
         color: inherit;
-        font-weight: normal;
       }
 
       .recruiter {
@@ -476,7 +467,7 @@ section {
       --size: 15px;
       content: '';
       position: absolute;
-      background: url('/static/icons/arrow-link-accent.svg');
+      background: url('/assets/icons/arrow-link-accent.svg');
       background-size: var(--size) var(--size);
       top: -10px;
       right: -20px;
@@ -999,6 +990,9 @@ label[for='project-details-toggle'] {
 }
 
 @media (max-width: $tablet-breakpoint) {
+  section {
+    --content-max-width: 700px;
+  }
   section:not(#header-section) {
     grid-template-columns: 1fr;
     row-gap: 50px;
