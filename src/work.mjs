@@ -1,3 +1,5 @@
+import { setSectionObserver } from '../utils/client/nav-sections'
+
 export default () => {
   const slideOutEl = document.getElementById('details-slide-out')
   if (location.hash) {
@@ -24,8 +26,7 @@ export default () => {
   }
 
   const sectionIds = ['ongoing-section', 'complete-section']
-
-  // setSectionObserver(sectionIds)
+  setSectionObserver(sectionIds)
 
   // lazily load videos once tab is visited
   setTimeout(() => {
