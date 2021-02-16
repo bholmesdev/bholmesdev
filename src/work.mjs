@@ -29,9 +29,9 @@ export default () => {
   setSectionObserver(sectionIds)
 
   // lazily load videos once tab is visited
+  const videoEls = document.querySelectorAll('[data-page="work"] video')
   setTimeout(() => {
-    const videoEls = document.querySelectorAll('[data-page="work"] video')
-    for (let videoEl of videoEls) {
+    for (const videoEl of videoEls) {
       videoEl.load()
       videoEl.play()
     }
@@ -42,6 +42,9 @@ export default () => {
   //cleanup
   return () => {
     slideOutEl.className = 'closed'
+    for (const videoEl of videoEls) {
+      videoEl.pause()
+    }
     document.removeEventListener('click', clickListener)
   }
 }

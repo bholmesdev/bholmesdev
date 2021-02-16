@@ -1,6 +1,7 @@
 import trimSlashes from '../utils/client/trim-slashes'
 import zip from '../utils/client/zip'
 import wipeAnimation from '../utils/client/wipe-animation'
+import intersection from '../utils/client/set-intersection'
 
 const noop = () => {}
 let prevPathname = location.pathname
@@ -28,7 +29,17 @@ const animatePageIntoView = async (fullPage) => {
   const stylesheetSelector = 'head > link[rel="stylesheet"]'
   const oldStyles = [...document.querySelectorAll(stylesheetSelector)]
   const newStyles = [...fullPage.querySelectorAll(stylesheetSelector)]
-  newStyles.forEach((style) => document.head.appendChild(style))
+
+  const overlappingStyles = intersection(
+    oldStyles.map(({ href }) => href),
+    newStyles.map(({ href }) => href)
+  )
+
+  newStyles.forEach((style) => {
+    if (!overlappingStyles.has(style.href)) {
+      document.head.appendChild(style)
+    }
+  })
 
   const [page, prevPage] = getPageDiff(fullPage, document)
   const layoutContainer = prevPage.parentElement
@@ -39,7 +50,11 @@ const animatePageIntoView = async (fullPage) => {
     await wipeAnimation(page, prevPage, () =>
       layoutContainer.removeChild(prevPage)
     )
-    oldStyles.forEach((style) => document.head.removeChild(style))
+    oldStyles.forEach((style) => {
+      if (!overlappingStyles.has(style.href)) {
+        document.head.removeChild(style)
+      }
+    })
   })
 }
 
