@@ -77,9 +77,10 @@ const yoinkLayoutJS = async (pageHTML = document) => {
 
 const yoinkJS = async (pathname) => {
   try {
+    const pathnameWithTrailingSlash = pathname ? pathname + '/' : pathname
     const [jsModule, pageDataModule] = await Promise.all([
-      import(`./${pathname}/__client.mjs`),
-      import(`./${pathname}/__data.mjs`),
+      import(`./${pathnameWithTrailingSlash}__client.mjs`),
+      import(`./${pathnameWithTrailingSlash}__data.mjs`),
     ])
 
     if (jsModule?.default) {

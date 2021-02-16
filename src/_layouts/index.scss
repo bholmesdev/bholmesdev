@@ -8,6 +8,7 @@ $font-path: '/assets/fonts/Atkinson/';
   src: url($font-path + 'Atkinson-Hyperlegible-Regular.woff2'),
     url($font-path + 'Atkinson-Hyperlegible-Regular.woff'),
     url($font-path + 'Atkinson-Hyperlegible-Regular.ttf');
+  font-display: swap;
 }
 
 @font-face {
@@ -16,6 +17,7 @@ $font-path: '/assets/fonts/Atkinson/';
     url($font-path + 'Atkinson-Hyperlegible-Italic.woff'),
     url($font-path + 'Atkinson-Hyperlegible-Italic.ttf');
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -24,6 +26,7 @@ $font-path: '/assets/fonts/Atkinson/';
     url($font-path + 'Atkinson-Hyperlegible-Bold.woff'),
     url($font-path + 'Atkinson-Hyperlegible-Bold.ttf');
   font-weight: bold;
+  font-display: swap;
 }
 
 @font-face {
@@ -33,6 +36,7 @@ $font-path: '/assets/fonts/Atkinson/';
     url($font-path + 'Atkinson-Hyperlegible-BoldItalic.ttf');
   font-weight: bold;
   font-style: italic;
+  font-display: swap;
 }
 
 :root {

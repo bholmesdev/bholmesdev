@@ -7,15 +7,17 @@ html(lang="en-US")
   head !{slinkit.styles}
     title #{title || defaultTitle}
     link(rel="preload" href="https://use.typekit.net/liz3dnm.css" as="style")
+    link(rel="preload" href="/assets/fonts/Atkinson/Atkinson-Hyperlegible-Regular.woff2" as="font" crossorigin="anonymous")
+    link(rel="preload" href="/assets/fonts/Atkinson/Atkinson-Hyperlegible-Bold.woff2" as="font" crossorigin="anonymous")
+    link(rel="preload" href="/assets/fonts/Atkinson/Atkinson-Hyperlegible-Italic.woff2" as="font" crossorigin="anonymous")
+    link(rel="preload" href="/assets/fonts/Atkinson/Atkinson-Hyperlegible-BoldItalic.woff2" as="font" crossorigin="anonymous")
     link(rel="stylesheet" href="https://use.typekit.net/liz3dnm.css")
     link(rel="icon" type="img/jpg" href="/assets/favicon.jpg")
     meta(name='viewport' content='width=device-width,initial-scale=1.0')
 
     // TODO: automatically generate these at buildtime
-    link(rel="modulepreload" href="/__client.mjs")
-    link(rel="modulepreload" href="/__data.mjs")
-    link(rel="modulepreload" href="/work/__client.mjs")
-    link(rel="modulepreload" href="/work/__data.mjs")
+    link(rel="modulepreload" href="__client.mjs")
+    link(rel="modulepreload" href="__data.mjs")
     link(rel="modulepreload" href="/_layouts/__client.mjs")
     link(rel="modulepreload" href="/_layouts/__data.mjs")
 

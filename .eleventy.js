@@ -2,6 +2,7 @@ const input = 'src'
 const output = 'build'
 const { rollup } = require('rollup')
 const cssPrefixer = require('postcss-prefix-selector')
+const cssClean = require('postcss-clean')
 const postcss = require('postcss')
 const { promisify } = require('util')
 const sassCompiler = require('sass')
@@ -141,16 +142,22 @@ module.exports = function (eleventyConfig) {
       const { relativePath } = matchPathProperties(outputPath, 'css', true)
       const dataPageAttr = joinTrimSlashes(relativePath)
 
-      if (dataPageAttr === '_layouts') {
-        return css
-      } else {
-        return postcss()
-          .use(
-            cssPrefixer({
-              prefix: `[data-page="${dataPageAttr}"]`,
-            })
-          )
-          .process(css).css
+      const postCssPlugins = []
+      if (process.env.ENV === 'prod') {
+        // minify CSS for production builds
+        postCssPlugins.push(cssClean())
+      }
+      if (dataPageAttr !== '_layouts') {
+        // append the data-page attribute for everything *except* global _layout styles
+        postCssPlugins.push(
+          cssPrefixer({ prefix: `[data-page="${dataPageAttr}"]` })
+        )
+      }
+
+      if (!postCssPlugins.length) return css
+      else {
+        const postCSSOutput = await postcss(postCssPlugins).process(css)
+        return postCSSOutput.css
       }
     },
   })

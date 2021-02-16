@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --quiet",
-    "build": "ELEVENTY_EXPERIMENTAL=true eleventy",
+    "build": "ENV=prod ELEVENTY_EXPERIMENTAL=true eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "html-to-text": "^7.0.0",
     "js-yaml": "^3.14.1",
     "jstransformer-markdown-it": "^2.1.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "postcss-clean": "^1.2.2"
   }
 }
