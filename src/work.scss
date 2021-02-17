@@ -64,6 +64,9 @@ section {
       img,
       video {
         border: 5px solid var(--bg-color-2);
+        aspect-ratio: 16 / 11;
+        object-fit: cover;
+        background: var(--bg-color);
       }
 
       h3 {

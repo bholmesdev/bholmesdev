@@ -7,7 +7,7 @@ image: /assets/og-images/work.jpg
 include icons
 
 mixin video(project)
-  video(preload="none" poster=project.img.src muted loop playsinline)
+  video(preload="none" poster=project.img.src muted loop playsinline width=600 height=400)
     source(src=project.videoSrc type="video/webm")
     source(src=project.backupVideoSrc type="video/mp4")
 
