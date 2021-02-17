@@ -25,6 +25,18 @@ const getPageDiff = (page, prevPage) => {
   return [null, null]
 }
 
+const loadNewStyles = (styles) =>
+  Promise.all([
+    styles.map(
+      (style) =>
+        new Promise((resolve, reject) => {
+          const newStyle = document.head.appendChild(style)
+          newStyle.onload = resolve
+          newStyle.onerror = reject
+        })
+    ),
+  ])
+
 const animatePageIntoView = async (fullPage) => {
   const stylesheetSelector = 'head > link[rel="stylesheet"]'
   const oldStyles = [...document.querySelectorAll(stylesheetSelector)]
@@ -35,11 +47,10 @@ const animatePageIntoView = async (fullPage) => {
     newStyles.map(({ href }) => href)
   )
 
-  newStyles.forEach((style) => {
-    if (!overlappingStyles.has(style.href)) {
-      document.head.appendChild(style)
-    }
-  })
+  await loadNewStyles(
+    // only load styles that *aren't already on the page*
+    newStyles.filter((style) => !overlappingStyles.has(style.href))
+  )
 
   const [page, prevPage] = getPageDiff(fullPage, document)
   const layoutContainer = prevPage.parentElement
