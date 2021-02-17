@@ -26,7 +26,7 @@ const getPageDiff = (page, prevPage) => {
 }
 
 const loadNewStyles = (styles) =>
-  Promise.all([
+  Promise.all(
     styles.map(
       (style) =>
         new Promise((resolve, reject) => {
@@ -34,8 +34,8 @@ const loadNewStyles = (styles) =>
           newStyle.onload = resolve
           newStyle.onerror = reject
         })
-    ),
-  ])
+    )
+  )
 
 const animatePageIntoView = async (fullPage) => {
   const stylesheetSelector = 'head > link[rel="stylesheet"]'
