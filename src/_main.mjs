@@ -57,14 +57,17 @@ const animatePageIntoView = async (fullPage) => {
   layoutContainer.style.position = 'relative'
   layoutContainer.insertBefore(page, prevPage)
 
-  requestAnimationFrame(async () => {
-    await wipeAnimation(page, prevPage, () =>
-      layoutContainer.removeChild(prevPage)
-    )
-    oldStyles.forEach((style) => {
-      if (!overlappingStyles.has(style.href)) {
-        document.head.removeChild(style)
-      }
+  await new Promise((resolve) => {
+    requestAnimationFrame(async () => {
+      await wipeAnimation(page, prevPage, () =>
+        layoutContainer.removeChild(prevPage)
+      )
+      oldStyles.forEach((style) => {
+        if (!overlappingStyles.has(style.href)) {
+          document.head.removeChild(style)
+        }
+      })
+      resolve()
     })
   })
 }
