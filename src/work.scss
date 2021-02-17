@@ -258,7 +258,9 @@ section {
         z-index: -1;
 
         h2 {
+          @include subheader;
           position: absolute;
+          z-index: 2;
           left: -20px;
           right: -20px;
           bottom: 0;

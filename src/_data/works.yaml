@@ -77,7 +77,7 @@
     <strong>Angular 2+</strong> to view researcher annotations and AI generated models
     on an easy-to-understand timeline. With some added <strong>WASM</strong> magic,
     it's now the team's go-to resource for compiling and viewing audio files!"
-- title: Drawchange Volunteer Management System
+- title: Volunteer Management System
   hash: drawchange
   links:
     - href: https://bitsofgood.org/projects/vms
