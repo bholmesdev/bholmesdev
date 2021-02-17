@@ -44,6 +44,7 @@ const setSectionColor = (sectionIndex) => {
 }
 
 export const setNavSections = (sectionIds) => {
+  clearNavSections()
   navCurrSectionToggle.removeAttribute('hidden')
   navSectionsEl.appendChild(headingEl)
   sectionIds.forEach((id) => {

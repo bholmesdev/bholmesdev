@@ -1,5 +1,3 @@
-import { clearNavSections } from '../../utils/client/nav-sections'
-
 export default () => {
   const navDashedLine = document.getElementById('dashed-line-container')
   const animDurationMS = 800
@@ -58,7 +56,6 @@ export default () => {
 
   return () => {
     document.removeEventListener('click', linkEventListener)
-    clearNavSections()
     primaryNavEl.classList.remove('toggled')
     jumpToSectionEl.classList.remove('toggled')
   }
