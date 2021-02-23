@@ -11,154 +11,396 @@
     <img alt="Twitter: bholmesdev" src="https://img.shields.io/twitter/follow/bholmesdev.svg?style=social" />
   </a>
 </p>
+<img style="max-width: 600px" src="assets/og-images/me.jpg" alt="Charcoal self portrait with side text: teacher, blogger, UX freak, fan of charcoal">
+
+> A statically generated, JAMStack-ified SPA using a custom build tool + 11ty 🚀
+
+✨ [Explore the live site](https://bholmes.dev)
+
+## Table of Contents <!-- omit in toc -->
+
+- [🏃‍♂️ Running this thing locally](#️-running-this-thing-locally)
+- [🏆 Goals of this project](#-goals-of-this-project)
+- [💪 Leaning on 11ty](#-leaning-on-11ty)
+- [🗂 General file structure](#-general-file-structure)
+- [🔖 The concept of `[data-page]`](#-the-concept-of-data-page)
+  - [Layout chaining](#layout-chaining)
+- [💨 Page transitions](#-page-transitions)
+  - [Layout diffing](#layout-diffing)
+- [💅 `.scss` style scoping](#-scss-style-scoping)
+  - [Layout style scoping](#layout-style-scoping)
+- [⚙️ `.mjs` scripts](#️-mjs-scripts)
+  - [Scripts on layouts](#scripts-on-layouts)
+  - [The `_main.mjs` file](#the-_mainmjs-file)
+- [🤝 Show your support](#-show-your-support)
+- [✍ Author](#-author)
+
+## 🏃‍♂️ Running this thing locally
 
 
-> A statically generated, JAMStack-ified SPA using a custom build tool + Pug templates 🚀
-
-### ✨ [Explore the live site](https://bholmes.dev)
-
-## Getting started
-
-### Install dependencies
+Make sure you have NodeJS installed first. Then, run this terminal command inside the project directory:
 
 ```sh
-yarn install
+npm i
+npm start
 ```
 
-### Spin up the dev server
+This will spin up a local development server using [Browsersync](https://browsersync.io/) with live reloading on file changes.
 
-```sh
-yarn start
+You should also notice a softly thrown exception in your console. This is totally normal! Since blog posts previewed on the homepage are pulled from [DEV](https://dev.to), you'll need an environment variable to render them properly. You can check out [DEV's API docs](https://docs.dev.to/api/#operation/getUserPublishedArticles) to pull from your personal account and see what happens 😁
+
+## 🏆 Goals of this project
+
+Well, this certainly ain't your grandma's [Gatsby](https://www.gatsbyjs.com) site! This thing is lightweight, framework-free, and full of custom configuration. I built this project with a few goals in mind:
+1. **I did _not_ want to lean on existing frameworks** to make it work, mostly as a learning exercise. So no React, Vue, Svelte, or even JQuery to be found.
+2. **I wanted a single page app feel** with sexy page transitions to boot ✨ This was not easy to pull off given the first goal, but not impossible!
+3. **I wanted to stay on the bleeding edge** of modern browser APIs. So [dynamic JS imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import), [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), [CSS grid](https://css-tricks.com/snippets/css/complete-guide-grid/)... it's all fair game.
+4. And lastly, **I have the need for speed** 🚀 Pages (and transitions between those pages) needed to stay crisp, and load times for styles, scripts, and assets should stay low. [Preloading](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content) is the name of the game here.
+
+## 💪 Leaning on 11ty
+
+My first iteration on this portfolio concept didn't use any existing frameworks at all. There were custom solutions for data fetching at build time, layout rendering, JS bundling... well, I reinvented every wheel in existence. This had a nasty consequence: every time I revisited the repo to tweak something, I needed to re-read my own docs to remember how it fit together 😬
+
+In the end, it's clear that [11ty](https://www.11ty.dev) can save me from this chaos. It has some nice out-of-the-box features that I can piggyback off of:
+- [Data fetching at buildtime](https://www.11ty.dev/docs/data-template-dir/) using `.11ydata.js` files
+- [Global data](https://www.11ty.dev/docs/data-global/) available to _all_ my templates from a `_data` folder
+- [Hot reloading](https://www.11ty.dev/docs/usage/#re-run-eleventy-when-you-save) during development using browsersync
+- Support for [fancy HTML transforms](https://www.11ty.dev/docs/config/#transforms)
+
+From this baseline, I set up a new system for layouts, styles, and JS that works nicely with their (experimental!) `addExtension` helper. You can check out that configuration [in the .eleventy.js file](/.eleventy.js) if you're so inclined, but that's beyond the scope of this README 😁
+## 🗂 General file structure
+
+Here's a breakdown of the folder hierarchy + naming conventions:
+
+```bash
+build # Build output from src
+assets # Dump for images, fonts, and icons
+src # The fun zone 🚀
+  _data # 🗄 Data globally available to all pages
+  _layouts # 🗂 Templates, styles, and scripts *wrapping around* pages
+  _includes # 🎒 Templates and SVG graphics *imported into* pages
+  _main.mjs # 🧵 A magical file that makes the whole app work
+  [route-name].* # Templates, styles, and scripts for *actual routes* on the site
+utils # Helper JS functions used server and clientside
 ```
 
-This will spin up a local development server (using [Vercel's serve](https://github.com/vercel/serve)) with live reloading for file changes. You may notice a softly thrown exception in your console. This is totally normal! Since blog posts previewed on the homepage are pulled from [DEV](https://dev.to), you'll need an environment variable to render them properly. If you're interested, you can check out [DEV's API docs](https://docs.dev.to/api/#operation/getUserPublishedArticles) to pull from your personal account 😁
+You'll also notice a general rhythm for all the `route-name` files: there's a `.pug` file, a `scss` file, and an `mjs` file of the same name.
 
-### Build for production
+This is how I "group" all my logic together by route. For instance, `contact.scss` applies styles to the `/contact` page, and `contact.mjs` runs some JavaScript whenever the `/contact` page loads. We'll explore how this works in the following sections!
 
-```sh
-yarn build
+## 🔖 The concept of `[data-page]`
+
+To understand how this system ties together, I'll need to explain one magical attribute: `[data-page]`.
+
+In short, this is an identifier I use to figure out how all my [layout chains](https://www.11ty.dev/docs/layout-chaining/) fit together. This lets me pull off animated page transitions, style scoping, JS scoping, and more!
+
+Here's a simple example. Say I'm writing a post in `cool-blog-post.md` with a template like this:
+
+```md
+---
+layout: blog-post
+---
+
+# Very cool post!
+
+With text and such.
 ```
 
-This should create a `bundle.js`, `styles.css`, and some static HTML files in the `/public` directory, without creating the dev server.
+Then, maybe I'll have a `_layouts/blog-post.pug` file that looks like this (pardon the [pug](https://pugjs.org/api/getting-started.html) syntax!):
 
+```pug
+html
+  body
+    nav
+      a(href="/") Home
 
+    main(data-page=slinkit.page)
+    | !{content}
+```
 
-## So how does this static site work?
+☝️ Here we find our first `data-page` property. This should get applied to the container _immediately_ outside of the `content` (aka our `cool-blog-post`). The actual value gets applied by that `slinkit.page` property, which my build tool passes in for you.
 
-This certainly ain't your grandma's Gatsby site! Rather than using component libraries or UI frameworks, this project just uses a from-scratch NodeJS build tool with some framework-y expectations + [Pug](https://pugjs.org) templating. This is meant to keep the project **lean** (`node_modules` come in at under 30 MB!) and **future-proof** (since I basically own the framework).
+When this page gets built, we'll end up with a file that looks like this:
 
-To understand how it all works, let's focus on some of the main directories and files.
+```html
+<html>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+    <main data-page="very-cool-post">
+      <h1>Very cool post!</h1>
+      <p>With text and such.</p>
+    </main>
+  </body>
+</html>
+```
 
-## `src/routes`
+Pretty much what you'd expect! And as you can see, that `data-page` value is taken straight from the name of the file inside. 
 
-This is the bread and butter of the site. Similar to [NextJS](https://nextjs.org) and friends, each directory represents a route on the generated site. Inside each route, you'll find:
+This brings us to what this property really is: **the value of `data-page` identifies whatever you're putting inside a given layout.**
 
-1. **Either an `index.js` or `index.pug`**: These act as the entrypoint for a given route, allowing you to complete any server-side processes you want in order to generate the page. If you have some server magic you need to run (i.e. fetch from an API, process some markdown files, etc.), you'll create an `index.js` file that returns HTML as a string. In my case, I simply create a `page.pug` that accepts to some template parameters, and render inside the `index.js` file. If you don't have any serverside code to run, you can just make an `index.pug` for the build tool to pick up and render.
+### Layout chaining
 
-2. **`client.js`**: This is where all your clientside JS will live. Since we're not using any component-based libraries here, this will be all your vanilla DOM manipulation to modify the route's HTML in the browser. Since this project uses clientside routing, you'll also need to consider any cleanup that should run when navigating to a new page (i.e. removing event listeners, killing intersection observers, etc.). This is super easy to handle! Just make sure your file has the following structure:
+This remains true for [layouts-within-layouts](https://www.11ty.dev/docs/layout-chaining/) as well. Say we have a hierarchy like this:
 
-   ```js
-   export default () => {
-     /* all your clientside code */
-     
-     return () => {
-       /* all your cleanup code */
-     }
-   }
-   ```
+```
+_layouts/
+  index.pug
+  blog-navigation.pug
+  blog-post.pug
 
-3. **`styles.scss`**: All your, well, styles for the given route. As it stands, the build tool picks up any files with the `.scss` extension in your route directories and bundles them up. So, you're free free to create as many `.scss` files you want with any filename of your choosing! Also note that these styles are not scoped to a particular route by default. To handle this, you can wrap all your styles with a data attribute representing the current route like so:
+very-cool-post.md
+```
 
-   ```scss
-   /* src/routes/work/styles.scss */
-   [data-route='work'] {
-     /* scoped styles */
-   }
-   ```
+Where `very-cool-post` uses the `blog-post` layout, which uses the `blog-navigation` layout, which uses the `index` layout.
 
-   The `data-route` attribute should correspond with the route's directory name, unless you override this name in the `routes.js` file (explained below).
+When we snap all these nested layouts together, we might get something like this:
 
-## `routes/routes.js`
+```html
+<!--index layout starts at the outermost level -->
+<html lang="en-US">
+  <head>...</head>
+  <body data-page="_layouts/blog-navigation">
+    <!--blog-navigation layout starts here -->
+    <aside>
+      <h2>Neat table of contents</h2>
+      <a href="#1">Section 1</a>
+      <a href="#2">Section 2</a>
+      <a href="#3">Section 3</a>
+    </aside>
+    <main data-page="_layouts/blog-post">
+      <!--blog-post layout starts here -->
+      <img src="thumbnail.jpg" alt="...">
+      <section data-page="very-cool-post">
+        <!--very-cool-post starts here -->
+        <h1>Very cool post!</h1>
+        <p>With text and such.</p>
+      </section>
+    </main>
+  </body>
+</html>
+```
 
-This is where all routes are detailed for the build tool to pick up. As it stands, this is an array of objects with the following structure:
+You can think of this like **fitting a bunch of lego bricks together**, where `data-page` attributes are those little teeth that hold the bricks together 🧱
+
+## 💨 Page transitions
+
+This feature is one of the main reasons for my "[Single Page App](https://huspi.com/blog-open/definitive-guide-to-spa-why-do-we-need-single-page-applications)" setup. Since I'm not reloading the browser to load a new page, I can apply whatever page transitions I want while loading new content.
+
+As it stands, there's only one page transition across the site: sliding in from the bottom of the screen. 
+
+![Page transitions clicking between home and contact pages](/readme-assets/page-transitions.gif)
+
+But as you can see, I _only_ animate in the new page, while the navigation bar stays put. How can I pull this off if I'm not using React or something similar?
+
+Well, it all comes down to the `[data-page]` property. Let's say we're animating between two pages **that both use the same layout.** The `/build` output for these pages might look like this:
+
+```html
+<!--about.html-->
+<html lang="en-US">
+  <head>...</head>
+  <body>
+    <nav>
+      <a href="/about">About Me</a>
+      <a href="/contact">Get in touch</a>
+    </nav>
+    <main data-page="about">
+      <h1>All about me</h1>
+      <p>I got a lot to say lemme tell ya...</p>
+    </main>
+  </body>
+</html>
+
+<!--contact.html-->
+<html lang="en-US">
+  <head>...</head>
+  <body>
+    <nav>
+      <a href="/about">About Me</a>
+      <a href="/contact">Get in touch</a>
+    </nav>
+    <main data-page="contact">
+      <h1>Get in touch</h1>
+      <p>Fill out this shiny form!</p>
+      <form>...</form>
+    </main>
+  </body>
+</html>
+```
+
+These pages are obviously identical until we hit that `main` tag. Inside here, we have some new content to animate into view.
+
+We _could_ walk through the page element-by-element to figure out "what's changed" (similar to how the [virtual DOM](https://reactjs.org/docs/faq-internals.html) works in React). But with our `data-page` attributes hooking our layouts together, there's no need for all that work!
+
+You can explore the layout diff-ing function in the following section, but the major takeaway: **💡 page transitions will only animate the pieces that change, and ignore the pieces that don't** (as far as layouts are concerned anyways).
+
+### Layout diffing
+
+[Source code here](/utils/client/get-page-diff.js)
+
+Here's the multi-step process I use to find what's changed:
+
+1. **Download the next page we're animating to** using a `fetch` call. This is as simple as calling `fetch("/about")` from JavaScript, and grabbing the output as a big string of HTML.
+2. **Find all the `[data-page]` elements** in both a) our current page and b) the page we just downloaded. Just querying `page.querySelectorAll('[data-page]')`, we'll get all those elements in order from outermost element to innermost. 
+3. Walk through the `[data-page]` elements, **and find the first place where they differ.** This lets us ignore all the nested layouts that are shared between pages.
+4. **Animate between those differing elements** 🎉
+
+So if we had two pages with layout chains like this:
+
+```
+index                     index
+blog-navigation           blog-navigation
+blog-post                 personal-notes
+very-cool-post.md         very-cool-note.md
+```
+
+We'd walk through the nested layouts of each, top to bottom:
+- **`index` vs `index`** ✅ Those look the same
+- **`blog-navigation` vs `blog-navigation`** ✅ Those too
+- **`blog-post` vs `personal-notes`** ✋ Oop, those are different!
+
+So, we'd grab the element with `data-page="personal-notes"`, and animate it over the `data-page="blog-post"` container on our current page.
+
+## 💅 `.scss` style scoping
+
+Any files ending in `.scss` are treated as **scoped styles** for a given route. No, this isn't achieved with gibberish `class` hashes like [CSS Modules](https://github.com/css-modules/css-modules) or [Styled Components](https://styled-components.com)! It's much simpler than this 😁
+
+For example, if we create some styles like this:
+
+```scss
+/* about-me.scss */
+main {
+  background: black;
+  color: white;
+}
+
+p {
+  font-family: 'Comic Sans MS';
+}
+```
+
+It'll output a CSS file that looks like this:
+
+```css
+[data-page="about-me"] main {
+  background: black;
+  color: white;
+}
+
+[data-page="about-me"] p {
+  font-family: 'Comic Sans MS';
+}
+```
+
+And that's it! Since our template layouts apply these `data-page` attributes already, we just use those to scope magically scope our styles.
+
+### Layout style scoping
+
+The process is super similar for layouts. For instance, say we wanted to apply some custom styles to all our blog posts using a `blog-post` layout:
+
+```scss
+/* _layouts/blog-post.scss */
+p {
+  font-family: 'Papyrus';
+}
+
+code {
+  font-family: 'Fira Code';
+
+  span.line-highlighter {
+    background: orange;
+  }
+}
+```
+
+This generates a similar output to our route-based styles:
+
+```css
+[data-page="_layouts/blog-post"] p {
+  font-family: 'Papyrus';
+}
+
+[data-page="_layouts/blog-post"] code {
+  font-family: 'Fira Code';
+}
+
+[data-page="_layouts/blog-post"] code span.line-highlighter {
+  background: orange;
+}
+```
+
+**💡 Note:** This _doesn't_ scope your styles to the layout template alone! Expect these styles to "cascade" to **the page using this layout** as well.
+
+This setup is super helpful for debugging your CSS. For instance, say I want to figure out why my fonts are getting overridden on one of my blog posts. Popping open the "styles" tab in my inpsector...
+
+![Computed styles in dev tools, showing "blog" styles overriding "_layouts/blog-post" styles](/readme-assets/computed-scoped-styles.png)
+
+...I immediately know where all my styles are coming from! To fix my problem, I just need to remove that beautiful font family from my `blog.scss` file 👍
+## ⚙️ `.mjs` scripts
+
+Any files ending in `mjs` are **client-side scripts** the run whenever a given route is loaded. Here's a simple example:
 
 ```js
-[...
-  {
-    routeName: 'index', // the name of the static HTML file / route to create
-    routeDirName: 'me', // the route's directory name (only provide this if the dir name differs from the intended route name)
-    meta: { // page meta info
-      title: 'Ben Holmes' // the page's title attribute
-      description: 'Web dev, UX freak, teacher and restless tinkerer' // the page description picked up on social media cards
-      imageSrc: '/static/og-images/me.jpg' // relative path to the page thumbnail picked up on social media cards
-    }
+// about-me.mjs
+export default () => {
+  // JS that runs on page load, once the page transition finishes
+  const onClick = () => console.log('I clicked on something!')
+  document.addEventListener('click', onClick)
+
+  return () => {
+    // "cleanup" code that runs just before transitioning to the next page
+    document.removeEventListener('click', onClick)
   }
-]
+}
 ```
 
-Note that each route directory **must have a corresponding `routes.js` entry**. Otherwise, the build tool will skip over the directory entirely. This enforces meta information on each route for better page accessibility / shareability 😁
+Unpacking this a bit:
+1. Whenever you visit the `/about-me` page, we run the `default` export function you created _once that page has animated into view._ So, once the page is fully on screen, we'll add the `click` event listener as shown here.
+2. We'll run the "cleanup" function returned by this function _just before loading + transitioning to the next page._ Detaching event listeners is a necessary evil! Since we're using clientside routing for everything (aka we never refresh the browser window), the only way to remove these listeners is through manual cleanup like this.
 
-## `routes/_layout`
+**Note:** You may notice that none of this code can run _during_ a page transition. This is to keep framerates silky smooth during animations. In the future, page transitions could be configurable enough to run whatever JS you choose!
 
-This is where all the global logic will live. The file structure is very similar to a traditional route, but the `index.js` works a bit different to accept each route as a parameter.
+### Scripts on layouts
 
-**As it stands, the render function exported by `index.js` accepts the following params:**
+This works how you might expect! If you want to run some JS on any page using a given layout... just add a `.mjs` file with the same layout name:
 
-- **`routeName`**: The name of the route as specified in the `routes.js` file. This is used to create the `data-route` attribute for style scoping and clientside routing.
+```bash
+_layouts
+  blog-post.pug # Template
+  blog-post.mjs # Scoped JavaScript
+```
 
-- **`meta`**: All the route's meta info as specified in the `routes.js` file. This will get thrown into the document `<head>` as specified in the `layout.pug` file.
+⚠️ There's just one caveat: even if the next page uses the same layout, **the layout script will clean up and re-run from scratch.**
 
-- **`pages`**: The rest of the routes on the site, passed down as a list of HTML strings. This is due to the current routing system in place, which slaps _every page_ onto the current route so they can be shown and hidden using HTML's `hidden` attribute. This means that all HTML on the site is ready to go for crazy-fast page transitions. However, as the site scales to include nested routes and even a blog, this system will probably need to change.
+Right now, there's no way to run a client script _only once_ if that layout is used across pages. Open to suggestions on how this could work!
 
+### The `_main.mjs` file
 
+[Source code here](/src/_main.mjs)
 
-**It's also worth highlighting the `client.js` file**, which handles all of the clientside routing on the site. This file does some fancy things:
+In short, this is the puppetmaster that makes everything possible. This script gets applied to all pages of the site, and manages some important functionality:
+1. **It listens for link clicks across the site** and prevents the "default" browser behavior (i.e. instead of refreshing the page, we want to animate the next page into view)
+2. **It fetches the HTML for the next page.** This is pulled off with a plane ole `fetch` call for the route you're visiting.
+3. **It animates whatever content that's changed.** Visit the layout diffing section to understand this process.
+4. **It figures out which `.mjs` scripts to run** for a given route. For instance, say we were visiting `/about` which has both an `about.mjs` _and_ a layout with its own `.mjs` file. For this, we'll need to import both of those and execute them after the page transition.
+5. **It throws any new styles into the document `<head>`.** In order for our fancy scoped styles to load, we need to fetch that stylesheet and apply it.
 
-- **It listens for all `<a>` tag clicks to handle clientside routing for relative URLs.** If it notices you're trying to visit a site with the current base URL (aka bholmes.dev/something), it will override the default behavior and trigger a page transition using JS. This also means that routing with continue to work when you have JS disabled in your browser! It simply offers a cleaner experience for those that do have JS enabled by overriding serverside routing.
-- **It animates between pages based on the `data-route` attribute.** After analyzing the URL you're trying to visit, the script will map this URL to a corresponding `data-route`, and animate in the page with that particular attribute. Once the transition is finished, the previous page will be given the `hidden` attribute so the browser will ignore all the HTML inside that route.
-- **It runs a given route's cleanup function before transitioning to the next page.** This is the function returned from a given route's `client.js` handler (explained in the `src/routes` section above).
+...In other words, it does everything I've described in the previous sections 😁
 
-## `build.js`
+## 🤝 Show your support
 
-This is the _big bad script_ that actually creates the static site. In order to speed up the build, this script runs three async processes in parallel:
-
-### `bundleHTML()`
-
-This will look for all the route directories registered in `routes.js` and decide how to render each page. If it finds an `index.js` file, it will run the exported function and throw the outputted HTML string into the layout. If it only finds an `index.pug` file, it will quickly run `pug.render(PATH_TO_INDEX_PUG)` and do the same thing. At the end, it will create a static `route_name.html` file for each page route. Nested routing will be supported soon!
-
-### `bundleCSS()`
-
-This will crawl through the route directories registered in `routes.js` and the bundle the `.scss` files that it finds (regardless of file name). As described in the `/routes` section, you'll need to wrap your styles with a `data-route` attribute to scope them to a given route.
-
-### `bundlesJS()`
-
-This will collect all clientside JS files into a single bundle using [Rollup](https://rollupjs.org). Right now, it treats `_layout/client.js` as the entry file, where each route's `client.js` must be imported manually. This is far from ideal, since the build tool should be smart enough to detect these `client.js` files and generate the import statements automatically. More on this in a future version!
-
-### Use in the dev server
-
-Since each of these processes can work independently, rebuilding file changes can be _lightning-fast_ in the dev environment ⚡️ For example, if you modify a `.scss` file, the build tool can run  `bundleCSS` alone while ignoring all the JS bundling and Pug rendering. In fact, stylesheet changes can be seen in milliseconds without a visible page refresh!
-
-
-
-## Contributing
+Give a ⭐️ if this project helped you!
 
 This project is still pretty in-flux, so I won't be opening issues for newcomers just yet. Still, if any of my current issues peak your interest or you want to talk shop, feel free to [DM me on Twitter](https://twitter.com/bholmesdev) or use [the contact form on this very site!](https://bholmes.dev/contact)
 
-
-
-## Author
+## ✍ Author
 
 👤 **Ben Holmes**
 
 * Twitter: [@bholmesdev](https://twitter.com/bholmesdev)
 * Github: [@Holben888](https://github.com/Holben888)
 * LinkedIn: [@bholmesdev](https://linkedin.com/in/bholmesdev)
-
-
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
