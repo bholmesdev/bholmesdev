@@ -1,29 +1,11 @@
 import trimSlashes from '../utils/client/trim-slashes'
-import zip from '../utils/client/zip'
 import wipeAnimation from '../utils/client/wipe-animation'
 import intersection from '../utils/client/set-intersection'
+import { getPageDiff, dataPageAttrs } from '../utils/client/get-page-diff'
 
 const noop = () => {}
 let prevPathname = location.pathname
 let cleanupFns = []
-
-const dataPageAttrs = (page) =>
-  [...page.querySelectorAll('[data-page]')].map((el) => ({
-    el,
-    value: el.getAttribute('data-page'),
-  }))
-
-const getPageDiff = (page, prevPage) => {
-  const [allPageEls, allPrevPageEls] = [page, prevPage].map(dataPageAttrs)
-
-  const pageElPairs = zip(allPageEls, allPrevPageEls)
-  for (let [left, right] of pageElPairs) {
-    if (left.value !== right.value) {
-      return [left.el, right.el]
-    }
-  }
-  return [null, null]
-}
 
 const loadNewStyles = (styles) =>
   Promise.all(
