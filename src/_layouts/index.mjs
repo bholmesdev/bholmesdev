@@ -1,17 +1,4 @@
 export default () => {
-  const navDashedLine = document.getElementById('dashed-line-container')
-  const animDurationMS = 800
-
-  ;(function moveDashedLine() {
-    // only trigger animation once the previous animation is done
-    if (navDashedLine.classList.contains('move')) return
-
-    navDashedLine.classList.add('move')
-    setTimeout(() => {
-      navDashedLine.classList.remove('move')
-    }, animDurationMS)
-  })()
-
   /*--- handle links and navigation ---*/
   const primaryNavEl = document.getElementById('primary-nav')
   const jumpToSectionEl = document.getElementById('jump-to-sections')
