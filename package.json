@@ -32,7 +32,6 @@
     "js-yaml": "^3.14.1",
     "jstransformer-markdown-it": "^2.1.0",
     "livereload": "^0.9.1",
-    "node-fetch": "^2.6.1",
     "postcss-clean": "^1.2.2",
     "serve": "^11.3.2"
   }

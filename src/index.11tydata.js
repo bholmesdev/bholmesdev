@@ -1,4 +1,3 @@
-const fetch = require('node-fetch')
 const minutesToRead = require('../utils/minutes-to-read')
 const Cache = require('@11ty/eleventy-cache-assets')
 
