@@ -1,5 +1,6 @@
 const fetch = require('node-fetch')
 const minutesToRead = require('../utils/minutes-to-read')
+const Cache = require('@11ty/eleventy-cache-assets')
 
 function Image(src, alt) {
   this.src = src || ''
@@ -36,17 +37,20 @@ const getMinReadIcon = (minRead) => {
 module.exports = async () => {
   let blogPosts = []
   try {
-    const res = await fetch(
+    const articles = await Cache(
       'https://dev.to/api/articles/me/published?per_page=5',
       {
-        method: 'GET',
-        headers: {
-          'api-key': process.env.DEVTO_API_KEY,
-          'Content-Type': 'application/json',
+        duration: '1d',
+        type: 'json',
+        fetchOptions: {
+          method: 'GET',
+          headers: {
+            'api-key': process.env.DEVTO_API_KEY,
+            'Content-Type': 'application/json',
+          },
         },
       }
     )
-    const articles = await res.json()
     if (!articles || articles.length !== 5) {
       throw 'API did not return expected amount of articles.'
     }
