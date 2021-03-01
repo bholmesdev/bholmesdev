@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ELEVENTY_EXPERIMENTAL=true eleventy --serve --quiet",
+    "start": "(serve build -l 3000) & ELEVENTY_EXPERIMENTAL=true MODE=dev eleventy --watch --quiet",
     "build": "ENV=prod ELEVENTY_EXPERIMENTAL=true eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,7 +31,9 @@
     "html-to-text": "^7.0.0",
     "js-yaml": "^3.14.1",
     "jstransformer-markdown-it": "^2.1.0",
+    "livereload": "^0.9.1",
     "node-fetch": "^2.6.1",
-    "postcss-clean": "^1.2.2"
+    "postcss-clean": "^1.2.2",
+    "serve": "^11.3.2"
   }
 }

@@ -17,6 +17,9 @@ const dotenv = require('dotenv')
 const renderToLayout = require('./utils/render-to-layout')(
   path.resolve(__dirname, input)
 )
+const livereload = require('livereload')
+
+const liveReloadPort = 35729
 
 const matchPathProperties = (path = '', fileExtension = '', useOutput) => {
   const [_, relativePath, fileName] = path.match(
@@ -39,6 +42,14 @@ const templateExtensionConfig = {
           relativePath,
           '__styles.css'
         )}">`,
+        scripts: `
+        <script src="/__main.mjs" defer></script>
+        ${
+          process.env.MODE === 'dev'
+            ? `<script src="http://localhost:${liveReloadPort}/livereload.js?snipver=1"></script>`
+            : ``
+        }
+        `,
       },
     }
     if (inputPath.startsWith(`./${input}/_layouts`)) {
@@ -85,7 +96,6 @@ module.exports = function (eleventyConfig) {
         permalink: resolvedPathWithFolder,
       }
     },
-    outputFileExtension: 'mps',
     compile: (_, inputPath) => async (data) => {
       /* Runs your JS through a bundler called RollupJS.
       Check out https://rollupjs.org for a quick guide,
@@ -161,6 +171,13 @@ module.exports = function (eleventyConfig) {
       }
     },
   })
+
+  if (process.env.MODE === 'dev') {
+    const server = livereload.createServer({ port: liveReloadPort }, () =>
+      console.log(chalk.green('Live reload enabled'))
+    )
+    server.watch(output)
+  }
 
   return {
     dir: { input, output },
