@@ -37,6 +37,11 @@ $mobile-breakpoint: 850px;
   #primary-nav {
     $base-duration: 200ms;
     $delay-duration: 40ms;
+    // these were *all* going to be CSS variables originally,
+    // but it turns out you can't compose variables using calc()!
+    // so, I turned $base and $delay into SASS variables with #{}
+    // for the calculation.
+    // --anim-duration is accessed from JS for toggling visibility
     --anim-duration: #{$base-duration + 4 * $delay-duration};
     a {
       opacity: 0.5;
