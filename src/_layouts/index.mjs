@@ -17,7 +17,14 @@ export default () => {
   const toggleNavEl = (toggleEl, toggleOffEl) => {
     if (toggleEl.classList.contains('toggled')) {
       toggleEl.classList.remove('toggled')
+      const cssAnimDuration = getComputedStyle(toggleEl).getPropertyValue(
+        '--anim-duration'
+      )
+      setTimeout(() => {
+        toggleEl.style.visibility = 'hidden'
+      }, parseInt(cssAnimDuration))
     } else {
+      toggleEl.style.visibility = 'visible'
       toggleEl.classList.add('toggled')
       toggleOffEl.classList.remove('toggled')
     }
