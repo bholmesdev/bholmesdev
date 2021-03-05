@@ -1,7 +1,9 @@
-import { clearNavSections } from '../utils/client/nav-sections'
+import { setSectionObserver } from '../utils/client/nav-sections'
 
 export default () => {
-  clearNavSections()
+  const cleanupSectionObserver = setSectionObserver([])
 
-  return () => {}
+  return () => {
+    cleanupSectionObserver()
+  }
 }

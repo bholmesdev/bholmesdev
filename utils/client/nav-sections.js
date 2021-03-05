@@ -12,7 +12,8 @@ jumpToSection.heading.className = 'heading'
 // We need to set hide the other labels so they aren't
 // picked up by screenreaders
 let currentSectionIndex = 0
-jumpToSection.labelContainer.addEventListener('transitionend', () => {
+const onJumpToSectionTransition = () => {
+  console.log(currentSectionIndex)
   for (let [
     index,
     label,
@@ -21,7 +22,7 @@ jumpToSection.labelContainer.addEventListener('transitionend', () => {
       label.style.visibility = 'hidden'
     }
   }
-})
+}
 
 let observer = null
 const observerOptions = {
@@ -76,7 +77,6 @@ const setSectionColor = () => {
 
 export const setNavSections = (sectionIds) => {
   clearNavSections()
-  jumpToSection.toggle.removeAttribute('hidden')
   jumpToSection.linkContainer.appendChild(jumpToSection.heading)
   sectionIds.forEach((id) => {
     const link = document.createElement('a')
@@ -100,6 +100,15 @@ export const clearNavSections = () => {
   jumpToSection.toggle.setAttribute('hidden', '')
 }
 
+const cleanUpObservers = () => {
+  observer?.disconnect()
+
+  jumpToSection.labelContainer.removeEventListener(
+    'transitionend',
+    onJumpToSectionTransition
+  )
+}
+
 const observerCallback = (callback, sectionIds) => (entries) => {
   entries.forEach((change) => {
     const sectionIndex = sectionIds.findIndex((id) => id === change.target.id)
@@ -113,9 +122,16 @@ const observerCallback = (callback, sectionIds) => (entries) => {
 export const setSectionObserver = (sectionIds, callback) => {
   setNavSections(sectionIds)
 
+  jumpToSection.labelContainer.addEventListener(
+    'transitionend',
+    onJumpToSectionTransition
+  )
+
   observer = new IntersectionObserver(
     observerCallback(callback, sectionIds),
     observerOptions
   )
   sectionIds.forEach((id) => observer.observe(document.getElementById(id)))
+
+  return cleanUpObservers
 }

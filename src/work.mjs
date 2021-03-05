@@ -48,7 +48,7 @@ export default () => {
   }
 
   const sectionIds = ['ongoing-section', 'complete-section']
-  setSectionObserver(sectionIds)
+  const cleanupSectionObserver = setSectionObserver(sectionIds)
 
   // lazily load videos once tab is visited
   const videoEls = document.querySelectorAll('[data-page="work"] video')
@@ -58,6 +58,7 @@ export default () => {
 
   //cleanup
   return () => {
+    cleanupSectionObserver()
     slideOutEl.className = 'closed'
     videoObserver.disconnect()
     document.removeEventListener('click', clickListener)
