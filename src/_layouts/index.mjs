@@ -1,7 +1,7 @@
 export default () => {
   /*--- handle links and navigation ---*/
   const primaryNavEl = document.getElementById('primary-nav')
-  const jumpToSectionEl = document.getElementById('jump-to-sections')
+  const jumpToSectionEl = document.getElementById('jump-to-section__links')
 
   ;(function setActiveNavLink() {
     const primaryNavLinks = primaryNavEl.querySelectorAll('a')
@@ -35,7 +35,7 @@ export default () => {
     if (target.id === 'primary-nav-toggle') {
       toggleNavEl(primaryNavEl, jumpToSectionEl)
     }
-    if (target.id === 'jump-to-section-toggle') {
+    if (target.id === 'jump-to-section__toggle') {
       toggleNavEl(jumpToSectionEl, primaryNavEl)
     }
     if (
