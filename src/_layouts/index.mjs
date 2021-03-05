@@ -48,9 +48,18 @@ export default () => {
   }
   document.addEventListener('click', linkEventListener)
 
+  const scrollDownListener = () => {
+    if (window.scrollY > 0) {
+      primaryNavEl.classList.remove('toggled')
+    } else {
+      primaryNavEl.classList.add('toggled')
+    }
+  }
+  document.addEventListener('scroll', scrollDownListener)
+  scrollDownListener()
+
   return () => {
     document.removeEventListener('click', linkEventListener)
-    primaryNavEl.classList.remove('toggled')
-    jumpToSectionEl.classList.remove('toggled')
+    document.removeEventListener('scroll', scrollDownListener)
   }
 }

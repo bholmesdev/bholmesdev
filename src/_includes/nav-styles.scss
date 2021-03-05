@@ -180,6 +180,7 @@ $mobile-breakpoint: 850px;
     }
 
     &.toggled {
+      background-color: var(--bg-color);
       li {
         opacity: 1;
         transform: translateX(0);
