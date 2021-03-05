@@ -1,35 +1,65 @@
-const headingEl = document.createElement('li')
-headingEl.innerText = 'Sections on this page:'
-headingEl.className = 'heading'
-const navSectionsEl = document.getElementById('jump-to-sections')
-const navCurrSectionName = document.getElementById('current-section')
-const navCurrSectionNum = document.querySelector(
-  '#jump-to-section-toggle > span'
-)
-const navCurrSectionToggle = document.getElementById('jump-to-section-toggle')
+const jumpToSection = {
+  number: document.querySelector('#jump-to-section__toggle > span'),
+  linkContainer: document.getElementById('jump-to-section__links'),
+  labelContainer: document.getElementById('jump-to-section__label'),
+  toggle: document.getElementById('jump-to-section__toggle'),
+  heading: document.createElement('li'),
+}
+jumpToSection.heading.innerText = 'Jump to section'
+jumpToSection.heading.className = 'heading'
 
+// Once we've scrolled our current section label into view,
+// We need to set hide the other labels so they aren't
+// picked up by screenreaders
+let currentSectionIndex = 0
+jumpToSection.labelContainer.addEventListener('transitionend', () => {
+  for (let [
+    index,
+    label,
+  ] of jumpToSection.labelContainer.childNodes.entries()) {
+    if (currentSectionIndex !== index) {
+      label.style.visibility = 'hidden'
+    }
+  }
+})
+
+let observer = null
 const observerOptions = {
   root: null,
   rootMargin: '-60% 0px -40% 0px',
   threshold: 0,
 }
 
-let observer = null
-
 const getSectionHeader = (id) => {
   return document.querySelector(`#${id} h2`).innerText
 }
 
 const setCurrSection = (sectionIndex, sectionIds) => {
-  navCurrSectionNum.innerText = sectionIndex + 1
-  navCurrSectionName.innerText = getSectionHeader(sectionIds[sectionIndex])
-  setSectionColor(sectionIndex)
+  currentSectionIndex = sectionIndex
+  setSectionColor()
+  jumpToSection.number.innerText = currentSectionIndex + 1
 
-  const sectionLinks = navSectionsEl.querySelectorAll('a')
+  for (let [
+    index,
+    label,
+  ] of jumpToSection.labelContainer.childNodes.entries()) {
+    label.style.visibility = 'visible'
+    if (currentSectionIndex === index) {
+      label.style.opacity = 1
+      jumpToSection.labelContainer.style.setProperty(
+        '--translate',
+        label.offsetTop
+      )
+    } else {
+      label.style.opacity = 0
+    }
+  }
+
+  const sectionLinks = jumpToSection.linkContainer.querySelectorAll('a')
   sectionLinks.forEach((link) => {
-    if (link.hash === '#' + sectionIds[sectionIndex]) {
+    if (link.hash === '#' + sectionIds[currentSectionIndex]) {
       const sectionColor = getComputedStyle(
-        document.getElementById(sectionIds[sectionIndex])
+        document.getElementById(sectionIds[currentSectionIndex])
       ).getPropertyValue('--section-color')
 
       link.style.color = sectionColor
@@ -39,30 +69,35 @@ const setCurrSection = (sectionIndex, sectionIds) => {
   })
 }
 
-const setSectionColor = (sectionIndex) => {
-  navCurrSectionToggle.style.backgroundPositionY = 50 * sectionIndex + '%'
+const setSectionColor = () => {
+  jumpToSection.toggle.style.backgroundPositionY =
+    50 * currentSectionIndex + '%'
 }
 
 export const setNavSections = (sectionIds) => {
   clearNavSections()
-  navCurrSectionToggle.removeAttribute('hidden')
-  navSectionsEl.appendChild(headingEl)
+  jumpToSection.toggle.removeAttribute('hidden')
+  jumpToSection.linkContainer.appendChild(jumpToSection.heading)
   sectionIds.forEach((id) => {
     const link = document.createElement('a')
     const listItem = document.createElement('li')
     link.innerText = getSectionHeader(id)
     link.href = '#' + id
     listItem.appendChild(link)
-    navSectionsEl.appendChild(listItem)
+    jumpToSection.linkContainer.appendChild(listItem)
+
+    const labelSpan = document.createElement('span')
+    labelSpan.innerText = link.innerText
+    jumpToSection.labelContainer.appendChild(labelSpan)
 
     setCurrSection(0, sectionIds)
   })
 }
 
 export const clearNavSections = () => {
-  navSectionsEl.innerHTML = ''
-  navCurrSectionName.innerText = ''
-  navCurrSectionToggle.setAttribute('hidden', '')
+  jumpToSection.linkContainer.innerHTML = ''
+  jumpToSection.labelContainer.innerText = ''
+  jumpToSection.toggle.setAttribute('hidden', '')
 }
 
 const observerCallback = (callback, sectionIds) => (entries) => {

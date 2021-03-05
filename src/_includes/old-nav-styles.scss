@@ -36,7 +36,7 @@ $mobile-breakpoint: 850px;
     }
   }
 
-  #jump-to-sections > .heading {
+  #jump-to-section__links > .heading {
     font-weight: normal;
     font-size: 24px;
   }
@@ -193,7 +193,7 @@ $mobile-breakpoint: 850px;
       }
     }
 
-    #jump-to-sections.toggled {
+    #jump-to-section__links.toggled {
       height: 100vh;
     }
   }
