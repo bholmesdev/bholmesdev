@@ -260,12 +260,12 @@ section {
     align-items: center;
     color: var(--bg-color-2);
     @include subheader;
-    font-size: 34px;
+    font-size: 30px;
     cursor: pointer;
     margin-bottom: 20px;
 
     @media (min-width: $tablet-breakpoint) and (max-width: 1450px) {
-      font-size: 29px;
+      font-size: 28px;
     }
 
     @media (max-width: $mobile-breakpoint) {
@@ -367,7 +367,7 @@ section {
     p {
       font-family: var(--header-font);
       font-weight: bold;
-      font-size: 40px;
+      font-size: 36px;
       margin: 0;
       color: var(--section-color);
       writing-mode: vertical-lr;
@@ -380,7 +380,7 @@ section {
       list-style-type: none;
       margin: 0;
       padding-left: 0;
-      font-size: 28px;
+      font-size: 24px;
 
       @media (max-width: $mobile-breakpoint) {
         font-size: 20px;
@@ -400,11 +400,12 @@ section {
   }
 }
 
-.blog-post__list {
+.blog-post__container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
 
+.blog-post__list {
   .blog-post {
     position: relative;
     display: grid;
@@ -416,11 +417,11 @@ section {
     column-gap: 24px;
     color: var(--body-color);
     text-decoration: none;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 
     .title {
       grid-area: title;
-      font-size: 30px;
+      font-size: 24px;
       align-self: center;
     }
     .min-read {
@@ -464,7 +465,7 @@ section {
       background: url('/assets/icons/arrow-link-accent.svg');
       background-size: var(--size) var(--size);
       top: -10px;
-      right: -20px;
+      right: -10px;
       width: var(--size);
       height: var(--size);
       transition: transform 0.2s;
@@ -486,13 +487,13 @@ section {
   }
 
   .title {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 600;
     color: var(--body-color);
   }
 
   .img-link__img-container > img {
-    height: 350px;
+    aspect-ratio: 12 / 9;
     object-fit: cover;
     object-position: left;
   }
@@ -979,7 +980,7 @@ label[for='project-details-toggle'] {
 
 @media (max-width: 1350px) and (min-width: $tablet-breakpoint) {
   h2 {
-    font-size: 80px;
+    font-size: 72px;
   }
 }
 
