@@ -59,6 +59,8 @@ $mobile-breakpoint: 850px;
         transform: translateY(calc(var(--translate, 0) * -1px + 20px));
 
         span {
+          opacity: 0;
+          visibility: hidden;
           transition: opacity 0.2s;
         }
       }
