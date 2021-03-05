@@ -13,7 +13,6 @@ jumpToSection.heading.className = 'heading'
 // picked up by screenreaders
 let currentSectionIndex = 0
 const onJumpToSectionTransition = () => {
-  console.log(currentSectionIndex)
   for (let [
     index,
     label,
@@ -87,7 +86,7 @@ export const setNavSections = (sectionIds) => {
     jumpToSection.linkContainer.appendChild(listItem)
 
     const labelSpan = document.createElement('span')
-    labelSpan.innerText = link.innerText
+    labelSpan.innerText = getSectionHeader(id)
     jumpToSection.labelContainer.appendChild(labelSpan)
 
     setCurrSection(0, sectionIds)
