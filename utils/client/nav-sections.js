@@ -22,6 +22,11 @@ const onJumpToSectionTransition = () => {
     }
   }
 }
+const onCloseTableOfContents = () => {
+  if (!jumpToSection.linkContainer.classList.contains('toggled')) {
+    jumpToSection.linkContainer.style.visibility = 'hidden'
+  }
+}
 
 let observer = null
 const observerOptions = {
@@ -106,6 +111,10 @@ const cleanUpObservers = () => {
     'transitionend',
     onJumpToSectionTransition
   )
+  jumpToSection.linkContainer.removeEventListener(
+    'transitionend',
+    onCloseTableOfContents
+  )
 }
 
 const observerCallback = (callback, sectionIds) => (entries) => {
@@ -124,6 +133,10 @@ export const setSectionObserver = (sectionIds, callback) => {
   jumpToSection.labelContainer.addEventListener(
     'transitionend',
     onJumpToSectionTransition
+  )
+  jumpToSection.linkContainer.addEventListener(
+    'transitionend',
+    onCloseTableOfContents
   )
 
   observer = new IntersectionObserver(

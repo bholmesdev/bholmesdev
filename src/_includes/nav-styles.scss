@@ -55,6 +55,7 @@ $mobile-breakpoint: 850px;
     opacity: 0;
 
     &.toggled {
+      visibility: visible;
       transform: translateX(0);
       opacity: 1;
     }
