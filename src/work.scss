@@ -29,6 +29,10 @@ a > * {
 }
 
 section {
+  &:first-child {
+    margin-top: var(--nav-height);
+  }
+
   padding-top: 75px;
   margin: auto;
 
