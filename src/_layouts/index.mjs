@@ -2,6 +2,9 @@ export default () => {
   /*--- handle links and navigation ---*/
   const primaryNavEl = document.getElementById('primary-nav')
   const jumpToSectionEl = document.getElementById('jump-to-section__links')
+  const jumpToSectionContainer = document.querySelector(
+    '.jump-to-section__container'
+  )
 
   ;(function setActiveNavLink() {
     const primaryNavLinks = primaryNavEl.querySelectorAll('a')
@@ -51,8 +54,10 @@ export default () => {
   const scrollDownListener = () => {
     if (window.scrollY > 0) {
       primaryNavEl.classList.remove('toggled')
+      jumpToSectionContainer.classList.add('showing')
     } else {
       primaryNavEl.classList.add('toggled')
+      jumpToSectionContainer.classList.remove('showing')
     }
   }
   document.addEventListener('scroll', scrollDownListener)

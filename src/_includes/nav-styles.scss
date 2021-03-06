@@ -73,9 +73,18 @@ $mobile-breakpoint: 850px;
   }
 
   .jump-to-section__container {
+    margin-left: 10px;
     position: relative;
     width: 48px;
     height: 48px;
+    transition: opacity 0.2s, transform 0.2s;
+    transform: translateY(-40px);
+    opacity: 0;
+
+    &.showing {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
     .jump-to-section__label-container {
       overflow: hidden;
