@@ -1,5 +1,4 @@
 import { setSectionObserver } from '../utils/client/nav-sections'
-import scrollIntoView from '../utils/client/scroll-into-view'
 
 export default ({ works }) => {
   const sectionIds = ['inbrief-section', 'iteach-section', 'icreate-section']
@@ -101,7 +100,6 @@ export default ({ works }) => {
     if (event.target.id === 'generate-random-project') {
       nextProject()
     }
-    scrollIntoView(event)
   }
   document.addEventListener('click', clickListener)
 
