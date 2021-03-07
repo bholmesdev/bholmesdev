@@ -13,7 +13,7 @@ mixin video(project)
 
 mixin project-template(project)
   if project.headline
-    a.project__headline.img-link(href='#' + project.hash)
+    a.project__headline.img-link(href='#' + project.hash data-proj-link)
       .img-link__img-container
         +video(project)
         
@@ -23,7 +23,7 @@ mixin project-template(project)
       each tag in project.tags
         short.tag #{tag}
   else
-    a.project__small(href='#' + project.hash)
+    a.project__small(href='#' + project.hash data-proj-link)
       img(src=project.img.src, alt=project.img.alt)
       h3 #{project.title}
       p.timeframe #{project.timeframe}

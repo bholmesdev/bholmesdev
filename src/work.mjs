@@ -1,5 +1,9 @@
 import { setSectionObserver } from '../utils/client/nav-sections'
 
+const elements = {
+  detailsSlideOut: document.getElementById('details-slide-out'),
+}
+
 const setVideoObserver = (videos) => {
   const observer = new IntersectionObserver(
     (changes) => {
@@ -22,28 +26,32 @@ const setVideoObserver = (videos) => {
   return observer
 }
 
-export default () => {
-  const slideOutEl = document.getElementById('details-slide-out')
-  if (location.hash) {
-    slideOutEl.className = ''
-  }
+const showSlideOut = () => {
+  elements.detailsSlideOut.style.visibility = 'visible'
+}
 
+const hideSlideOutOnEmptyHash = () => {
+  if (location.hash === '') {
+    elements.detailsSlideOut.style.visibility = 'hidden'
+  }
+}
+
+export default () => {
   const clickListener = (event) => {
     const { target } = event
     if (
       target.tagName === 'A' &&
       target.origin === location.origin &&
-      target.hash
+      target.hash &&
+      target.hasAttribute('data-proj-link')
     ) {
-      event.preventDefault()
-      slideOutEl.className = ''
+      showSlideOut()
       location.replace(target.href)
     }
 
     if (target.id === 'close-btn') {
       event.preventDefault()
-      slideOutEl.className = 'closed'
-      history.pushState('', document.title, location.pathname)
+      location.replace(target.href)
     }
   }
 
@@ -56,11 +64,23 @@ export default () => {
 
   document.addEventListener('click', clickListener)
 
+  if (window.location.hash) {
+    showSlideOut()
+  }
+
+  elements.detailsSlideOut.addEventListener(
+    'transitionend',
+    hideSlideOutOnEmptyHash
+  )
+
   //cleanup
   return () => {
     cleanupSectionObserver()
-    slideOutEl.className = 'closed'
     videoObserver.disconnect()
     document.removeEventListener('click', clickListener)
+    elements.detailsSlideOut.removeEventListener(
+      'transitionend',
+      hideSlideOutOnEmptyHash
+    )
   }
 }
