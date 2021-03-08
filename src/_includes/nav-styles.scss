@@ -22,7 +22,7 @@ $mobile-breakpoint: 850px;
 
   a,
   a:visited {
-    @include header;
+    @include header-font;
     font-size: 24px;
     color: var(--body-color);
     margin: 50px 30px;

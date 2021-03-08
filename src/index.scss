@@ -1,8 +1,5 @@
 @import './_includes/mixins.scss';
 
-$tablet-breakpoint: 1200px;
-$mobile-breakpoint: 850px;
-
 .icon-before:before,
 .icon-after:after {
   --icon-size: 1.5em;
@@ -44,27 +41,24 @@ $mobile-breakpoint: 850px;
   justify-content: center;
 
   @media (max-width: $tablet-breakpoint) {
-    justify-content: flex-start;
-    margin-left: 20px;
-    margin-top: -200px;
-  }
-
-  @media (max-width: $mobile-breakpoint) {
     display: none;
   }
 
   #line-accents {
     display: flex;
     margin-right: 10%;
+    $width: 7px;
 
     * {
-      width: 10px;
+      width: $width;
       position: relative;
-      margin-right: 10px;
       transition: transform 0.5s;
       transform-origin: top;
       height: 100px;
       opacity: 0.8;
+    }
+    * + * {
+      margin-left: $width;
     }
     :nth-child(1) {
       background-color: var(--green);
@@ -215,7 +209,7 @@ $mobile-breakpoint: 850px;
 section {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
-  column-gap: 200px;
+  column-gap: 160px;
 }
 
 #inbrief-section {
@@ -425,7 +419,7 @@ section {
       align-self: center;
     }
     .min-read {
-      @include header;
+      @include header-font;
       grid-area: min-read;
       margin: 0;
       font-size: 16px;
@@ -568,6 +562,7 @@ section {
 }
 
 #projects-title {
+  @include subheader;
   grid-area: title;
 }
 
@@ -740,7 +735,7 @@ label[for='project-details-toggle'] {
   }
 
   a {
-    @include subheader;
+    @include subheader-font;
     text-decoration: none;
     font-size: 20px;
 
@@ -975,12 +970,6 @@ label[for='project-details-toggle'] {
   100% {
     top: -6px;
     left: -6px;
-  }
-}
-
-@media (max-width: 1350px) and (min-width: $tablet-breakpoint) {
-  h2 {
-    font-size: 72px;
   }
 }
 

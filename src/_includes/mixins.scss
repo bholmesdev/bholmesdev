@@ -1,14 +1,33 @@
-@mixin header {
+$tablet-breakpoint: 1300px;
+$mobile-breakpoint: 850px;
+
+@mixin header-font {
   font-family: var(--header-font);
   font-weight: normal;
+  line-height: 1.15;
+}
+
+@mixin header {
+  @include header-font;
   font-size: 84px;
+
+  @media (max-width: $tablet-breakpoint) {
+    font-size: 72px;
+  }
+}
+
+@mixin subheader-font {
+  font-family: var(--body-font);
+  font-weight: bold;
+  letter-spacing: 0.03em;
   line-height: 1.15;
 }
 
 @mixin subheader {
-  font-family: var(--body-font);
-  font-weight: bold;
-  font-size: 48px;
-  letter-spacing: 0.03em;
-  line-height: 1.15;
+  @include subheader-font;
+  font-size: 44px;
+
+  @media (max-width: $tablet-breakpoint) {
+    font-size: 36px;
+  }
 }
