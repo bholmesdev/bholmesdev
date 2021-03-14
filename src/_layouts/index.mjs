@@ -1,3 +1,6 @@
+const getCSSVariable = (element = document.getRootNode(), propertyName = '') =>
+  parseInt(getComputedStyle(element).getPropertyValue(propertyName))
+
 export default () => {
   /*--- handle links and navigation ---*/
   const primaryNavEl = document.getElementById('primary-nav__links')
@@ -20,12 +23,10 @@ export default () => {
   const toggleNavEl = (toggleEl, toggleOffEl) => {
     if (toggleEl.classList.contains('toggled')) {
       toggleEl.classList.remove('toggled')
-      const cssAnimDuration = getComputedStyle(toggleEl).getPropertyValue(
-        '--anim-duration'
-      )
+      const cssAnimDuration = getCSSVariable(toggleEl, '--anim-duration')
       setTimeout(() => {
         toggleEl.style.visibility = 'hidden'
-      }, parseInt(cssAnimDuration))
+      }, cssAnimDuration)
     } else {
       toggleEl.style.visibility = 'visible'
       toggleEl.classList.add('toggled')
@@ -51,11 +52,17 @@ export default () => {
   }
   document.addEventListener('click', linkEventListener)
 
+  // expand primary navigation when scrolling to top of the page,
+  // only above the mobile breakpoint
+  const mobileBreakpointWidth = getCSSVariable(
+    primaryNavEl,
+    '--mobile-breakpoint'
+  )
   const scrollDownListener = () => {
     if (window.scrollY > 0) {
       primaryNavEl.classList.remove('toggled')
       jumpToSectionContainer.classList.add('showing')
-    } else {
+    } else if (document.body.clientWidth > mobileBreakpointWidth) {
       primaryNavEl.classList.add('toggled')
       jumpToSectionContainer.classList.remove('showing')
     }

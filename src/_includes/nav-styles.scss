@@ -227,6 +227,10 @@
     }
 
     #primary-nav__links {
+      // used in JS to decide whether the primary nav
+      // should be automatically expanded
+      --mobile-breakpoint: #{$mobile-breakpoint};
+
       $base-duration: 200ms;
       $delay-duration: 40ms;
       // these were *all* going to be CSS variables originally,
