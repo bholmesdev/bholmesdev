@@ -31,3 +31,15 @@ $mobile-breakpoint: 850px;
     font-size: 36px;
   }
 }
+
+@mixin mobile {
+  @media (max-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin tablet-and-up {
+  @media (min-width: $mobile-breakpoint + 1) {
+    @content;
+  }
+}

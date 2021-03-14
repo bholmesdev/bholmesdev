@@ -1,7 +1,5 @@
 @import './mixins.scss';
 
-$mobile-breakpoint: 850px;
-
 #site-navigation {
   button {
     transition: opacity 0.2s;
@@ -35,7 +33,7 @@ $mobile-breakpoint: 850px;
     padding: 0;
   }
 
-  @media (max-width: $mobile-breakpoint) {
+  @include mobile {
     background: var(--bg-color);
     border-bottom: 2px solid var(--bg-color-2);
   }
@@ -46,7 +44,7 @@ $mobile-breakpoint: 850px;
 
     $desktop-btn-size: 48px;
 
-    @media (max-width: $mobile-breakpoint) {
+    @include mobile {
       overflow: hidden;
       margin-left: 0;
       width: 100%;
@@ -55,7 +53,7 @@ $mobile-breakpoint: 850px;
       align-items: center;
     }
 
-    @media (min-width: $mobile-breakpoint + 1) {
+    @include tablet-and-up {
       width: $desktop-btn-size;
       height: $desktop-btn-size;
       transition: opacity 0.2s, transform 0.2s;
@@ -72,7 +70,7 @@ $mobile-breakpoint: 850px;
       overflow: hidden;
       flex: 1;
 
-      @media (min-width: $mobile-breakpoint + 1) {
+      @include tablet-and-up {
         position: absolute;
         top: 20px;
         width: max-content;
@@ -88,7 +86,7 @@ $mobile-breakpoint: 850px;
         transform: translateX(calc(var(--translate, 0) * -1px));
         white-space: nowrap;
 
-        @media (min-width: $mobile-breakpoint + 1) {
+        @include tablet-and-up {
           line-height: $desktop-btn-size;
         }
 
@@ -120,7 +118,7 @@ $mobile-breakpoint: 850px;
       justify-content: center;
       position: relative;
 
-      @media (min-width: $mobile-breakpoint + 1) {
+      @include tablet-and-up {
         width: $desktop-btn-size;
         height: $desktop-btn-size;
         border-radius: 100%;
@@ -138,7 +136,7 @@ $mobile-breakpoint: 850px;
         }
       }
 
-      @media (max-width: $mobile-breakpoint) {
+      @include mobile {
         border-radius: 0;
         width: 80px;
 
@@ -196,7 +194,7 @@ $mobile-breakpoint: 850px;
     max-width: calc(var(--content-max-width) + 40px);
     height: 100%;
 
-    @media (min-width: $mobile-breakpoint + 1) {
+    @include tablet-and-up {
       width: 100%;
     }
 
@@ -210,7 +208,7 @@ $mobile-breakpoint: 850px;
       padding: 0;
       margin: 0 20px;
 
-      @media (max-width: $mobile-breakpoint) {
+      @include mobile {
         margin-left: auto;
       }
 
@@ -245,7 +243,7 @@ $mobile-breakpoint: 850px;
         font-weight: bold;
       }
 
-      @media (min-width: $mobile-breakpoint + 1) {
+      @include tablet-and-up {
         width: 100%;
         height: 100%;
         display: flex;
@@ -266,7 +264,7 @@ $mobile-breakpoint: 850px;
           }
         }
       }
-      @media (max-width: $mobile-breakpoint) {
+      @include mobile {
         position: fixed;
         top: 0;
         left: 0;
@@ -301,7 +299,7 @@ $mobile-breakpoint: 850px;
 
       &.toggled {
         background-color: var(--bg-color);
-        @media (min-width: $mobile-breakpoint + 1) {
+        @include tablet-and-up {
           li {
             opacity: 1;
             transform: translateX(0);
@@ -309,7 +307,7 @@ $mobile-breakpoint: 850px;
             pointer-events: all;
           }
         }
-        @media (max-width: $mobile-breakpoint) {
+        @include mobile {
           opacity: 1;
           transform: translateY(0);
         }
