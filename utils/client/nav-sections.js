@@ -53,7 +53,7 @@ const setCurrSection = (sectionIndex, sectionIds) => {
       label.style.opacity = 1
       jumpToSection.labelContainer.style.setProperty(
         '--translate',
-        label.offsetTop
+        label.offsetLeft
       )
     } else {
       label.style.opacity = 0

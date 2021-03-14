@@ -48,23 +48,22 @@ html(lang="en-US")
         .jump-to-section__label-container
           p#jump-to-section__label
 
-      ul#primary-nav
-        li
-          a(href="/" class=page.url === '/' ? 'active' : '') Me
-        li
-          a(href="/work/" class=page.url === '/work/' ? 'active' : '') Work
-        li
-          a(href="https://dev.to/bholmesdev") Blog
-        li
-          a(href="/contact/" class=page.url === '/contact/' ? 'active' : '') Contact
 
-      button#primary-nav-toggle.mobile
-        .stripe-top
-        .stripe-middle
-        .stripe-bottom
-        
-      #dashed-line-container
-        div
+      .primary-nav__container
+        ul#primary-nav__links
+          li
+            a(href="/" class=page.url === '/' ? 'active' : '') Me
+          li
+            a(href="/work/" class=page.url === '/work/' ? 'active' : '') Work
+          li
+            a(href="https://dev.to/bholmesdev") Blog
+          li
+            a(href="/contact/" class=page.url === '/contact/' ? 'active' : '') Contact
+
+        button#primary-nav__toggle
+          .stripe-top
+          .stripe-middle
+          .stripe-bottom
 
     main(data-page=slinkit.page) !{content}
 
