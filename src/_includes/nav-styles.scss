@@ -213,6 +213,7 @@
       }
 
       * {
+        width: inherit;
         border-bottom: 4px solid var(--body-color);
         transition: transform 0.2s, opacity 0.2s;
       }
