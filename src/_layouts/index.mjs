@@ -1,13 +1,14 @@
 const getCSSVariable = (element = document.getRootNode(), propertyName = '') =>
   parseInt(getComputedStyle(element).getPropertyValue(propertyName))
 
+const primaryNavEl = document.getElementById('primary-nav__links')
+const jumpToSectionEl = document.getElementById('jump-to-section__links')
+const jumpToSectionContainer = document.querySelector(
+  '.jump-to-section__container'
+)
+
 export default () => {
   /*--- handle links and navigation ---*/
-  const primaryNavEl = document.getElementById('primary-nav__links')
-  const jumpToSectionEl = document.getElementById('jump-to-section__links')
-  const jumpToSectionContainer = document.querySelector(
-    '.jump-to-section__container'
-  )
 
   ;(function setActiveNavLink() {
     const primaryNavLinks = primaryNavEl.querySelectorAll('a')
@@ -59,6 +60,7 @@ export default () => {
     '--mobile-breakpoint'
   )
   const scrollDownListener = () => {
+    console.log(window.scrollY)
     if (window.scrollY > 0) {
       primaryNavEl.classList.remove('toggled')
       jumpToSectionContainer.classList.add('showing')

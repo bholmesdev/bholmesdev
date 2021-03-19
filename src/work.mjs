@@ -1,7 +1,5 @@
 import { setSectionObserver } from '../utils/client/nav-sections'
 
-const detailsSlideOut = document.getElementById('details-slide-out')
-
 const setVideoObserver = (videos) => {
   const observer = new IntersectionObserver(
     (changes) => {
@@ -24,17 +22,19 @@ const setVideoObserver = (videos) => {
   return observer
 }
 
-const showSlideOut = () => {
-  detailsSlideOut.style.visibility = 'visible'
-}
-
-const hideSlideOutOnEmptyHash = () => {
-  if (location.hash === '') {
-    detailsSlideOut.style.visibility = 'hidden'
-  }
-}
-
 export default () => {
+  const detailsSlideOut = document.getElementById('details-slide-out')
+
+  const showSlideOut = () => {
+    detailsSlideOut.style.visibility = 'visible'
+  }
+
+  const hideSlideOutOnEmptyHash = () => {
+    if (location.hash === '') {
+      detailsSlideOut.style.visibility = 'hidden'
+    }
+  }
+
   const clickListener = (event) => {
     const { target } = event
     if (
