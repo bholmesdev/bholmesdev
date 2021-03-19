@@ -80,6 +80,7 @@
       }
 
       #jump-to-section__label {
+        position: relative;
         transition: transform 0.5s;
         margin: 0;
         line-height: 1;
