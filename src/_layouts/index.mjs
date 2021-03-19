@@ -73,5 +73,11 @@ export default () => {
   return () => {
     document.removeEventListener('click', linkEventListener)
     document.removeEventListener('scroll', scrollDownListener)
+
+    // if we're leaving the current page and we're on mobile,
+    // we should collapse the dropdown nav
+    if (document.body.clientWidth <= mobileBreakpointWidth) {
+      primaryNavEl.classList.remove('toggled')
+    }
   }
 }
