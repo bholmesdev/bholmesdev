@@ -23,9 +23,16 @@ const setVideoObserver = (videos) => {
 }
 
 export default () => {
-  const slideOutEl = document.getElementById('details-slide-out')
-  if (location.hash) {
-    slideOutEl.className = ''
+  const detailsSlideOut = document.getElementById('details-slide-out')
+
+  const showSlideOut = () => {
+    detailsSlideOut.style.visibility = 'visible'
+  }
+
+  const hideSlideOutOnEmptyHash = () => {
+    if (location.hash === '') {
+      detailsSlideOut.style.visibility = 'hidden'
+    }
   }
 
   const clickListener = (event) => {
@@ -33,22 +40,21 @@ export default () => {
     if (
       target.tagName === 'A' &&
       target.origin === location.origin &&
-      target.hash
+      target.hash &&
+      target.hasAttribute('data-proj-link')
     ) {
-      event.preventDefault()
-      slideOutEl.className = ''
+      showSlideOut()
       location.replace(target.href)
     }
 
     if (target.id === 'close-btn') {
       event.preventDefault()
-      slideOutEl.className = 'closed'
-      history.pushState('', document.title, location.pathname)
+      location.replace(target.href)
     }
   }
 
   const sectionIds = ['ongoing-section', 'complete-section']
-  setSectionObserver(sectionIds)
+  const cleanupSectionObserver = setSectionObserver(sectionIds)
 
   // lazily load videos once tab is visited
   const videoEls = document.querySelectorAll('[data-page="work"] video')
@@ -56,10 +62,20 @@ export default () => {
 
   document.addEventListener('click', clickListener)
 
+  if (window.location.hash) {
+    showSlideOut()
+  }
+
+  detailsSlideOut.addEventListener('transitionend', hideSlideOutOnEmptyHash)
+
   //cleanup
   return () => {
-    slideOutEl.className = 'closed'
+    cleanupSectionObserver()
     videoObserver.disconnect()
     document.removeEventListener('click', clickListener)
+    detailsSlideOut.removeEventListener(
+      'transitionend',
+      hideSlideOutOnEmptyHash
+    )
   }
 }

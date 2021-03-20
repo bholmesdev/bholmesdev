@@ -1,8 +1,5 @@
 @import './_includes/mixins.scss';
 
-$tablet-breakpoint: 1200px;
-$mobile-breakpoint: 850px;
-
 .icon-before:before,
 .icon-after:after {
   --icon-size: 1.5em;
@@ -44,27 +41,24 @@ $mobile-breakpoint: 850px;
   justify-content: center;
 
   @media (max-width: $tablet-breakpoint) {
-    justify-content: flex-start;
-    margin-left: 20px;
-    margin-top: -200px;
-  }
-
-  @media (max-width: $mobile-breakpoint) {
     display: none;
   }
 
   #line-accents {
     display: flex;
     margin-right: 10%;
+    $width: 7px;
 
     * {
-      width: 10px;
+      width: $width;
       position: relative;
-      margin-right: 10px;
       transition: transform 0.5s;
       transform-origin: top;
       height: 100px;
       opacity: 0.8;
+    }
+    * + * {
+      margin-left: $width;
     }
     :nth-child(1) {
       background-color: var(--green);
@@ -81,12 +75,6 @@ $mobile-breakpoint: 850px;
       opacity: 1;
       transform: scaleY(5);
     }
-  }
-}
-
-@media (max-width: 1700px) {
-  .line-accents-container {
-    margin-right: var(--nav-height);
   }
 }
 
@@ -221,7 +209,7 @@ $mobile-breakpoint: 850px;
 section {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
-  column-gap: 200px;
+  column-gap: 160px;
 }
 
 #inbrief-section {
@@ -266,12 +254,12 @@ section {
     align-items: center;
     color: var(--bg-color-2);
     @include subheader;
-    font-size: 34px;
+    font-size: 30px;
     cursor: pointer;
     margin-bottom: 20px;
 
     @media (min-width: $tablet-breakpoint) and (max-width: 1450px) {
-      font-size: 29px;
+      font-size: 28px;
     }
 
     @media (max-width: $mobile-breakpoint) {
@@ -373,7 +361,7 @@ section {
     p {
       font-family: var(--header-font);
       font-weight: bold;
-      font-size: 40px;
+      font-size: 36px;
       margin: 0;
       color: var(--section-color);
       writing-mode: vertical-lr;
@@ -386,7 +374,7 @@ section {
       list-style-type: none;
       margin: 0;
       padding-left: 0;
-      font-size: 28px;
+      font-size: 24px;
 
       @media (max-width: $mobile-breakpoint) {
         font-size: 20px;
@@ -406,11 +394,12 @@ section {
   }
 }
 
-.blog-post__list {
+.blog-post__container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
 
+.blog-post__list {
   .blog-post {
     position: relative;
     display: grid;
@@ -422,15 +411,15 @@ section {
     column-gap: 24px;
     color: var(--body-color);
     text-decoration: none;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 
     .title {
       grid-area: title;
-      font-size: 30px;
+      font-size: 24px;
       align-self: center;
     }
     .min-read {
-      @include header;
+      @include header-font;
       grid-area: min-read;
       margin: 0;
       font-size: 16px;
@@ -470,7 +459,7 @@ section {
       background: url('/assets/icons/arrow-link-accent.svg');
       background-size: var(--size) var(--size);
       top: -10px;
-      right: -20px;
+      right: -10px;
       width: var(--size);
       height: var(--size);
       transition: transform 0.2s;
@@ -492,13 +481,13 @@ section {
   }
 
   .title {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 600;
     color: var(--body-color);
   }
 
   .img-link__img-container > img {
-    height: 350px;
+    aspect-ratio: 12 / 9;
     object-fit: cover;
     object-position: left;
   }
@@ -573,6 +562,7 @@ section {
 }
 
 #projects-title {
+  @include subheader;
   grid-area: title;
 }
 
@@ -745,7 +735,7 @@ label[for='project-details-toggle'] {
   }
 
   a {
-    @include subheader;
+    @include subheader-font;
     text-decoration: none;
     font-size: 20px;
 
@@ -980,12 +970,6 @@ label[for='project-details-toggle'] {
   100% {
     top: -6px;
     left: -6px;
-  }
-}
-
-@media (max-width: 1350px) and (min-width: $tablet-breakpoint) {
-  h2 {
-    font-size: 80px;
   }
 }
 

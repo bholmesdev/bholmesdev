@@ -1,20 +1,27 @@
 @import './mixins.scss';
 
 #site-navigation {
-  writing-mode: vertical-rl;
-  background: var(--bg-color);
+  button {
+    transition: opacity 0.2s;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
   z-index: 9;
+  width: 100%;
 
   position: fixed;
-  width: var(--nav-height);
-  height: 100vh;
+  height: var(--nav-height);
   top: 0;
-  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   a,
   a:visited {
-    @include header;
-    font-size: inherit;
+    @include header-font;
+    font-size: 24px;
     color: var(--body-color);
     margin: 50px 30px;
     text-decoration: none;
@@ -22,82 +29,86 @@
 
   ul {
     list-style-type: none;
-    display: flex;
-    align-items: center;
-    font-size: 30px;
     font-weight: bold;
+    padding: 0;
   }
 
-  #jump-to-sections > .heading {
-    font-weight: normal;
-    font-size: 24px;
-  }
-
-  #dashed-line-container {
-    position: relative;
-    top: -50px;
-    height: calc(100% + 50px);
-    width: 4px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    animation: move-slow 1s linear infinite;
-
-    div {
-      width: 20px;
-      height: 100%;
-      background: linear-gradient(
-        var(--body-color-2) 0,
-        var(--body-color-2) 50%,
-        transparent 50%,
-        transparent 100%
-      );
-      background-size: 20px 50px;
-    }
-
-    &.move > div {
-      animation: move-fast var(--nav-anim-duration)
-        cubic-bezier(0.38, 0.02, 0, 1);
-    }
-  }
-
-  #primary-nav {
-    a {
-      opacity: 0.5;
-    }
-    a.active {
-      opacity: 1;
-      font-weight: bold;
-    }
-  }
-
-  #current-section {
-    font-family: var(--header-font);
-    font-size: 24px;
-  }
-
-  @media (min-width: 850px) {
-    .mobile {
-      display: none;
-    }
-  }
-
-  @media (max-width: 850px) {
-    writing-mode: initial;
-    left: 0;
-    width: 100vw;
-    height: var(--nav-height);
-    display: flex;
-    align-items: center;
+  @include mobile {
+    background: var(--bg-color);
     border-bottom: 2px solid var(--bg-color-2);
+  }
 
-    #dashed-line-container {
-      display: none;
+  .jump-to-section__container {
+    $desktop-btn-size: 48px;
+
+    .jump-to-section__navigation {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      @include mobile {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
     }
 
-    #jump-to-section-toggle {
-      font-size: 24px;
-      transition: background-position-y 0.3s;
+    @include mobile {
+      margin-left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    @include tablet-and-up {
+      margin-left: 10px;
+      width: $desktop-btn-size;
+      height: $desktop-btn-size;
+      transition: opacity 0.2s, transform 0.2s;
+      transform: translateY(-40px);
+      opacity: 0;
+
+      &.showing {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .jump-to-section__label-container {
+      overflow: hidden;
+      flex: 1;
+
+      @include tablet-and-up {
+        position: absolute;
+        top: 20px;
+        width: max-content;
+        // make text vertical
+        transform: rotate(0.25turn);
+        transform-origin: bottom left;
+      }
+
+      #jump-to-section__label {
+        position: relative;
+        transition: transform 0.5s;
+        margin: 0;
+        line-height: 1;
+        transform: translateX(calc(var(--translate, 0) * -1px));
+        white-space: nowrap;
+
+        @include tablet-and-up {
+          line-height: $desktop-btn-size;
+        }
+
+        span {
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.2s;
+        }
+      }
+    }
+
+    #jump-to-section__toggle {
+      font-size: 20px;
+      transition: background-position-y 0.3s, opacity 0.2s;
       background: linear-gradient(
         var(--green) 33.33%,
         var(--red) 33.33%,
@@ -107,22 +118,95 @@
       background-size: 100% 300%;
       margin-right: 20px;
 
-      height: 100%;
-      padding: 0;
-      padding-left: 20px;
-      padding-right: 15px;
+      height: inherit;
       color: var(--bg-color);
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
 
-      svg {
-        margin-left: 5px;
-        width: 30px;
-        vertical-align: middle;
-        fill: var(--bg-color);
+      @include tablet-and-up {
+        width: $desktop-btn-size;
+        height: $desktop-btn-size;
+        border-radius: 100%;
+        padding: 0;
+
+        svg {
+          position: absolute;
+          height: 100%;
+          right: 0;
+          top: 0;
+          margin-left: 5px;
+          width: 20px;
+          fill: var(--bg-color);
+          transform: rotate(0.75turn);
+        }
+      }
+
+      @include mobile {
+        border-radius: 0;
+        width: 80px;
+
+        svg {
+          height: 1.5em;
+          margin-left: 5px;
+          vertical-align: middle;
+          fill: var(--bg-color);
+        }
       }
     }
+  }
 
-    #primary-nav-toggle {
+  #jump-to-section__links {
+    --anim-duration: 200ms;
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    left: 4px;
+    font-size: 22px;
+    background: var(--bg-color);
+    border: 2px solid var(--body-color-2);
+    box-shadow: -4px 4px 0 var(--body-color-2);
+    padding: 10px 20px;
+    margin: 0;
+    margin-top: 20px;
+
+    transition: transform, opacity;
+    transition-duration: var(--anim-duration);
+    transform: translateX(-80px);
+    opacity: 0;
+
+    &.toggled {
+      visibility: visible;
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .heading {
+      font-size: 18px;
+    }
+
+    li {
+      margin-bottom: 24px;
+      white-space: nowrap;
+      a {
+        margin: 0;
+      }
+    }
+  }
+
+  .primary-nav__container {
+    display: flex;
+    align-items: center;
+    max-width: calc(var(--content-max-width) + 40px);
+    height: 100%;
+
+    @include tablet-and-up {
+      width: 100%;
+    }
+
+    #primary-nav__toggle {
       height: 24px;
       width: 30px;
       display: flex;
@@ -130,10 +214,14 @@
       justify-content: space-between;
       align-items: stretch;
       padding: 0;
-      margin-left: auto;
-      margin-right: 30px;
+      margin: 0 20px;
+
+      @include mobile {
+        margin-left: auto;
+      }
 
       * {
+        width: inherit;
         border-bottom: 4px solid var(--body-color);
         transition: transform 0.2s, opacity 0.2s;
       }
@@ -147,76 +235,118 @@
       }
     }
 
-    ul {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 0; /* hide until mobile nav toggled */
-      margin-top: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: stretch;
-      overflow: hidden;
-      background: var(--bg-color);
-      transition: height 0.3s, opacity 0.4s;
-      z-index: -1;
-      font-size: 36px;
+    #primary-nav__links {
+      // used in JS to decide whether the primary nav
+      // should be automatically expanded
+      --mobile-breakpoint: #{$mobile-breakpoint};
 
-      li {
-        margin: 30px;
-        margin-left: 0;
+      $base-duration: 200ms;
+      $delay-duration: 40ms;
+      // these were *all* going to be CSS variables originally,
+      // but it turns out you can't compose variables using calc()!
+      // so, I turned $base and $delay into SASS variables with #{}
+      // for the calculation.
+      // --anim-duration is accessed from JS for toggling visibility
+      --anim-duration: #{$base-duration + 4 * $delay-duration};
+      a {
+        opacity: 0.5;
+      }
+      a.active {
+        opacity: 1;
+        font-weight: bold;
       }
 
-      a {
-        display: block;
+      @include tablet-and-up {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        transition: background-color var(--anim-duration);
+
+        li {
+          opacity: 0;
+          transition-property: opacity, transform;
+          transition-duration: $base-duration;
+          pointer-events: none;
+          @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+              transform: translateX(80px * (5 - $i));
+              transition-delay: $delay-duration * (5 - $i);
+            }
+          }
+        }
+      }
+      @include mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        /* fix nav height on mobile safari, where 100vh is a little off */
+        height: -webkit-fill-available;
         margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        overflow: hidden;
+        background: var(--bg-color);
+        transition: transform 0.2s, opacity 0.2s;
+        transform: translateY(-100%);
+        z-index: -1;
+        font-size: 36px;
+
+        li {
+          margin: 30px;
+          margin-left: 0;
+
+          text-align: right;
+        }
+
+        a {
+          display: block;
+          margin: 0;
+        }
+      }
+
+      &.toggled {
+        background-color: var(--bg-color);
+        @include tablet-and-up {
+          li {
+            opacity: 1;
+            transform: translateX(0);
+            transition-timing-function: ease-out;
+            pointer-events: all;
+          }
+        }
+        @include mobile {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        ~ #primary-nav__toggle {
+          .stripe-top {
+            transform: rotate(-45deg);
+          }
+          .stripe-bottom {
+            transform: rotate(45deg);
+          }
+          .stripe-middle {
+            transform: scaleX(0);
+          }
+        }
       }
     }
+  }
 
-    #primary-nav {
-      a {
-        text-align: end;
-      }
+  #current-section {
+    font-family: var(--header-font);
+    font-size: 24px;
+  }
+
+  @media (min-width: $mobile-breakpoint) {
+    .mobile {
+      display: none;
     }
-
-    #primary-nav.toggled {
-      height: 100vh;
-
-      ~ #primary-nav-toggle {
-        .stripe-top {
-          transform: rotate(-45deg);
-        }
-        .stripe-bottom {
-          transform: rotate(45deg);
-        }
-        .stripe-middle {
-          transform: scaleX(0);
-        }
-      }
-    }
-
-    #jump-to-sections.toggled {
-      height: 100vh;
-    }
-  }
-}
-
-@keyframes move-slow {
-  from {
-    transform: translateY(50px);
-  }
-}
-
-@keyframes move-fast {
-  0% {
-    background-position-y: 1000px;
-  }
-  50% {
-    filter: blur(8px);
-  }
-  100% {
-    background-position-y: 0;
   }
 }

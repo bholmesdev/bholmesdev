@@ -2,6 +2,7 @@ import trimSlashes from '../utils/client/trim-slashes'
 import wipeAnimation from '../utils/client/wipe-animation'
 import intersection from '../utils/client/set-intersection'
 import { getPageDiff, dataPageAttrs } from '../utils/client/get-page-diff'
+import scrollIntoView from '../utils/client/scroll-into-view'
 
 const noop = () => {}
 let prevPathname = location.pathname
@@ -133,7 +134,8 @@ document.addEventListener('click', async (event) => {
   const { target } = event
   if (target.tagName === 'A' && target.origin === location.origin) {
     event.preventDefault()
-    if (target.pathname !== prevPathname && target.hash === '') {
+    scrollIntoView(event)
+    if (target.pathname !== prevPathname) {
       history.pushState({}, null, target.href)
       await setVisiblePage(target)
     }
@@ -141,7 +143,7 @@ document.addEventListener('click', async (event) => {
 })
 
 onpopstate = () => {
-  if (location.hash === '') {
+  if (location.hash === '' && location.pathname !== prevPathname) {
     setVisiblePage(location)
   }
 }

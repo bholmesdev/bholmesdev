@@ -39,31 +39,32 @@ html(lang="en-US")
 
   body
     nav#site-navigation
-      ul#jump-to-sections.mobile
 
-      button#jump-to-section-toggle.mobile
-        span 0
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M128 192l128 128 128-128z"/></svg>
+      .jump-to-section__container
+        .jump-to-section__navigation
+          button#jump-to-section__toggle
+            span 0
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M128 192l128 128 128-128z"/></svg>
+          .jump-to-section__label-container
+            p#jump-to-section__label
+        ul#jump-to-section__links
 
-      p#current-section.mobile
 
-      ul#primary-nav
-        li
-          a(href="/" class=page.url === '/' ? 'active' : '') Me
-        li
-          a(href="/work/" class=page.url === '/work/' ? 'active' : '') Work
-        li
-          a(href="https://dev.to/bholmesdev") Blog
-        li
-          a(href="/contact/" class=page.url === '/contact/' ? 'active' : '') Contact
+      .primary-nav__container
+        ul#primary-nav__links
+          li
+            a(href="/" class=page.url === '/' ? 'active' : '') Me
+          li
+            a(href="/work/" class=page.url === '/work/' ? 'active' : '') Work
+          li
+            a(href="https://dev.to/bholmesdev") Blog
+          li
+            a(href="/contact/" class=page.url === '/contact/' ? 'active' : '') Contact
 
-      button#primary-nav-toggle.mobile
-        .stripe-top
-        .stripe-middle
-        .stripe-bottom
-        
-      #dashed-line-container
-        div
+        button#primary-nav__toggle
+          .stripe-top
+          .stripe-middle
+          .stripe-bottom
 
     main(data-page=slinkit.page) !{content}
 

@@ -29,6 +29,10 @@ a > * {
 }
 
 section {
+  &:first-child {
+    margin-top: var(--nav-height);
+  }
+
   padding-top: 75px;
   margin: auto;
 
@@ -172,10 +176,6 @@ section {
     }
   }
 
-  @media (max-width: 1700px) and (min-width: $tablet-breakpoint) {
-    margin-right: var(--nav-height);
-  }
-
   @media (max-width: $tablet-breakpoint) {
     --content-max-width: 700px;
   }
@@ -185,10 +185,10 @@ section {
   position: fixed;
   top: 0;
   left: 0;
-  margin-right: var(--nav-height);
+  z-index: 9999;
+  visibility: hidden;
 
   @media (max-width: $mobile-breakpoint) {
-    margin-right: 0;
     margin-top: var(--nav-height);
   }
 
@@ -205,12 +205,9 @@ section {
   article,
   nav {
     width: 800px;
-    max-width: calc(100vw - var(--nav-height));
+    max-width: 100vw;
     transform: translateX(-100%);
-
-    @media (max-width: $mobile-breakpoint) {
-      max-width: 100vw;
-    }
+    transition: transform 0.3s;
   }
 
   .background {
@@ -239,6 +236,12 @@ section {
   }
 
   article {
+    &:target,
+    &:target ~ .background,
+    &:target ~ nav {
+      transform: translateX(0);
+    }
+
     .content {
       max-width: 600px;
       width: 100%;
@@ -304,15 +307,6 @@ section {
       .body {
         margin-top: 60px;
       }
-    }
-  }
-
-  &:not(.closed) > article {
-    &:target,
-    &:target ~ .background,
-    &:target ~ nav {
-      transform: translateX(0);
-      transition: transform 0.3s;
     }
   }
 }

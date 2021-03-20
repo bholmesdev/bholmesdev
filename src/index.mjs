@@ -1,26 +1,28 @@
 import { setSectionObserver } from '../utils/client/nav-sections'
-import scrollIntoView from '../utils/client/scroll-into-view'
 
 export default ({ works }) => {
   const sectionIds = ['inbrief-section', 'iteach-section', 'icreate-section']
 
-  setSectionObserver(sectionIds, (isIntersecting, sectionIndex) => {
-    const allStripes = document.querySelectorAll('#line-accents > *')
-    const selectedStripe = document.querySelector(
-      `#line-accents > :nth-child(${sectionIndex + 1})`
-    )
-    if (isIntersecting) {
-      for (let stripe of allStripes) {
-        if (stripe === selectedStripe) {
-          stripe.classList.add('active')
-        } else {
-          stripe.classList.remove('active')
+  const cleanupSectionObserver = setSectionObserver(
+    sectionIds,
+    (isIntersecting, sectionIndex) => {
+      const allStripes = document.querySelectorAll('#line-accents > *')
+      const selectedStripe = document.querySelector(
+        `#line-accents > :nth-child(${sectionIndex + 1})`
+      )
+      if (isIntersecting) {
+        for (let stripe of allStripes) {
+          if (stripe === selectedStripe) {
+            stripe.classList.add('active')
+          } else {
+            stripe.classList.remove('active')
+          }
         }
+      } else if (sectionIndex === 0) {
+        selectedStripe.classList.remove('active')
       }
-    } else if (sectionIndex === 0) {
-      selectedStripe.classList.remove('active')
     }
-  })
+  )
 
   function VideoEl(elementId) {
     this.el = document.getElementById(elementId)
@@ -98,11 +100,11 @@ export default ({ works }) => {
     if (event.target.id === 'generate-random-project') {
       nextProject()
     }
-    scrollIntoView(event)
   }
   document.addEventListener('click', clickListener)
 
   return () => {
+    cleanupSectionObserver()
     document.removeEventListener('click', clickListener)
   }
 }

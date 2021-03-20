@@ -44,7 +44,7 @@ section {
     padding-bottom: 100px;
 
     label {
-      @include subheader;
+      @include subheader-font;
       font-size: 18px;
     }
 

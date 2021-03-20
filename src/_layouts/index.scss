@@ -40,11 +40,6 @@ $font-path: '/assets/fonts/Atkinson/';
 }
 
 :root {
-  --spacing-xs: 8px;
-  --spacing: 24px;
-  --spacing-s: 12px;
-  --spacing-m: 36px;
-
   --default-fonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   --body-font: Atkinson, 'Open Sans', var(--default-fonts);
@@ -63,9 +58,9 @@ $font-path: '/assets/fonts/Atkinson/';
   --red-faded: #e07c64;
   --red-dim: #e4694e71;
 
-  --content-max-width: 1400px;
-  --nav-height: 100px;
-  --me-font-size: 24px;
+  --content-max-width: 1300px;
+  --nav-height: 70px;
+  --me-font-size: 22px;
 
   --nav-anim-duration: 500ms;
 }
@@ -75,9 +70,6 @@ $font-path: '/assets/fonts/Atkinson/';
     --nav-height: 60px;
   }
 }
-
-$tablet-breakpoint: 1200px;
-$mobile-breakpoint: 850px;
 
 * {
   box-sizing: border-box;
@@ -145,6 +137,10 @@ a:visited {
 
 a:hover {
   opacity: 0.4;
+}
+
+.visually-hidden {
+  visibility: hidden;
 }
 
 .macintosh {
@@ -262,7 +258,7 @@ a:hover {
   justify-content: space-between;
   border: 3px solid var(--section-color);
   color: var(--section-color);
-  @include subheader;
+  @include subheader-font;
   font-size: inherit;
   padding: 10px;
   text-decoration: none;
@@ -327,13 +323,14 @@ body {
 section {
   max-width: var(--content-max-width);
   margin: auto;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 80px;
+  padding-right: 80px;
   padding-bottom: 200px;
   margin-top: 100px;
 
-  @media (max-width: 1700px) {
-    margin-right: var(--nav-height);
+  @media (max-width: $tablet-breakpoint) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   @media (max-width: $mobile-breakpoint) {
