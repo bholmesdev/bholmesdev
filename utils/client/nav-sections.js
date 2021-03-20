@@ -1,4 +1,5 @@
 const jumpToSection = {
+  container: document.querySelector('.jump-to-section__container'),
   number: document.querySelector('#jump-to-section__toggle > span'),
   linkContainer: document.getElementById('jump-to-section__links'),
   labelContainer: document.getElementById('jump-to-section__label'),
@@ -81,6 +82,11 @@ const setSectionColor = () => {
 
 export const setNavSections = (sectionIds) => {
   clearNavSections()
+  if (sectionIds.length === 0) {
+    jumpToSection.container.classList.add('visually-hidden')
+  } else {
+    jumpToSection.container.classList.remove('visually-hidden')
+  }
   jumpToSection.linkContainer.appendChild(jumpToSection.heading)
   sectionIds.forEach((id) => {
     const link = document.createElement('a')
@@ -101,7 +107,6 @@ export const setNavSections = (sectionIds) => {
 export const clearNavSections = () => {
   jumpToSection.linkContainer.innerHTML = ''
   jumpToSection.labelContainer.innerText = ''
-  jumpToSection.toggle.setAttribute('hidden', '')
 }
 
 const cleanUpObservers = () => {
