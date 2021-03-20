@@ -60,7 +60,6 @@ export default () => {
     '--mobile-breakpoint'
   )
   const scrollDownListener = () => {
-    console.log(window.scrollY)
     if (window.scrollY > 0) {
       primaryNavEl.classList.remove('toggled')
       jumpToSectionContainer.classList.add('showing')
