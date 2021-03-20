@@ -55,6 +55,7 @@
     }
 
     @include tablet-and-up {
+      visibility: hidden;
       margin-left: 10px;
       width: $desktop-btn-size;
       height: $desktop-btn-size;
@@ -166,6 +167,7 @@
     padding: 10px 20px;
     margin: 0;
     margin-top: 20px;
+    visibility: hidden;
 
     transition: transform, opacity;
     transition-duration: var(--anim-duration);
@@ -277,9 +279,9 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 100vh;
         /* fix nav height on mobile safari, where 100vh is a little off */
         height: -webkit-fill-available;
+        height: 100vh;
         margin: 0;
         display: flex;
         flex-direction: column;
@@ -291,6 +293,7 @@
         transform: translateY(-100%);
         z-index: -1;
         font-size: 36px;
+        visibility: hidden;
 
         li {
           margin: 30px;

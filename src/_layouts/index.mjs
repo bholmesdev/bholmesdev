@@ -7,7 +7,21 @@ const jumpToSectionContainer = document.querySelector(
   '.jump-to-section__container'
 )
 
+const onHideJumpToSectionToggle = ({ target }) => {
+  if (
+    target === jumpToSectionContainer &&
+    !jumpToSectionContainer.classList.contains('showing')
+  ) {
+    jumpToSectionContainer.style.visibility = 'hidden'
+  }
+}
+
 export default () => {
+  const mobileBreakpointWidth = getCSSVariable(
+    primaryNavEl,
+    '--mobile-breakpoint'
+  )
+
   /*--- handle links and navigation ---*/
 
   ;(function setActiveNavLink() {
@@ -21,16 +35,34 @@ export default () => {
     })
   })()
 
-  const toggleNavEl = (toggleEl, toggleOffEl) => {
+  const expandNavEl = (toggleEl) => {
+    if (toggleEl.classList.contains('toggled')) return
+
+    toggleEl.style.visibility = 'visible'
+    toggleEl.classList.add('toggled')
+  }
+
+  const collapseNavEl = (toggleEl) => {
+    if (!toggleEl.classList.contains('toggled')) return
+
+    toggleEl.classList.remove('toggled')
+    const cssAnimDuration = getCSSVariable(toggleEl, '--anim-duration')
+    setTimeout(() => {
+      toggleEl.style.visibility = 'hidden'
+    }, cssAnimDuration)
+  }
+
+  /**
+   * Handle clicks on either the primary nav toggle or "jump to section" nav toggle
+   *
+   * @param toggleEl Element directly clicked on (primary toggle or "jump to section" toggle)
+   * @param toggleOffEl Opposite nav element that was *not* clicked on. Used for hiding the opposing element (ex. table of contents) to avoid overlaying on the toggled nav element (ex. the primary nav)
+   */
+  const toggleNavEls = (toggleEl, toggleOffEl) => {
     if (toggleEl.classList.contains('toggled')) {
-      toggleEl.classList.remove('toggled')
-      const cssAnimDuration = getCSSVariable(toggleEl, '--anim-duration')
-      setTimeout(() => {
-        toggleEl.style.visibility = 'hidden'
-      }, cssAnimDuration)
+      collapseNavEl(toggleEl)
     } else {
-      toggleEl.style.visibility = 'visible'
-      toggleEl.classList.add('toggled')
+      expandNavEl(toggleEl)
       toggleOffEl.classList.remove('toggled')
     }
   }
@@ -38,10 +70,10 @@ export default () => {
   const linkEventListener = (event) => {
     const { target } = event
     if (target.id === 'primary-nav__toggle') {
-      toggleNavEl(primaryNavEl, jumpToSectionEl)
+      toggleNavEls(primaryNavEl, jumpToSectionEl)
     }
     if (target.id === 'jump-to-section__toggle') {
-      toggleNavEl(jumpToSectionEl, primaryNavEl)
+      toggleNavEls(jumpToSectionEl, primaryNavEl)
     }
     if (
       target.tagName === 'A' &&
@@ -52,19 +84,20 @@ export default () => {
     }
   }
   document.addEventListener('click', linkEventListener)
+  jumpToSectionContainer.addEventListener(
+    'transitionend',
+    onHideJumpToSectionToggle
+  )
 
   // expand primary navigation when scrolling to top of the page,
   // only above the mobile breakpoint
-  const mobileBreakpointWidth = getCSSVariable(
-    primaryNavEl,
-    '--mobile-breakpoint'
-  )
   const scrollDownListener = () => {
     if (window.scrollY > 0) {
-      primaryNavEl.classList.remove('toggled')
+      collapseNavEl(primaryNavEl)
       jumpToSectionContainer.classList.add('showing')
+      jumpToSectionContainer.style.visibility = 'visible'
     } else if (document.body.clientWidth > mobileBreakpointWidth) {
-      primaryNavEl.classList.add('toggled')
+      expandNavEl(primaryNavEl)
       jumpToSectionContainer.classList.remove('showing')
     }
   }
@@ -74,6 +107,10 @@ export default () => {
   return () => {
     document.removeEventListener('click', linkEventListener)
     document.removeEventListener('scroll', scrollDownListener)
+    jumpToSectionContainer.removeEventListener(
+      'transitionend',
+      onHideJumpToSectionToggle
+    )
 
     // if we're leaving the current page and we're on mobile,
     // we should collapse the dropdown nav
