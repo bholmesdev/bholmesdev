@@ -40,22 +40,17 @@
 
   .jump-to-section__container {
     $desktop-btn-size: 48px;
-
-    .jump-to-section__navigation {
-      position: relative;
-      width: 100%;
-      height: 100%;
-
-      @include mobile {
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-      }
-    }
+    position: relative;
 
     @include mobile {
       margin-left: 0;
-      width: 100%;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      // ideally, we wouldn't need this 50px offset...
+      // but otherwise, the width of the label-container
+      // forces this container to overflow!
+      width: calc(100% - 50px);
       height: 100%;
     }
 
