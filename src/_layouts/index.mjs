@@ -46,6 +46,13 @@ export default () => {
     }, cssAnimDuration)
   }
 
+  const onEscapePressed = ({ key }) => {
+    if (key === 'Escape') {
+      collapseNavEl(primaryNavEl)
+      collapseNavEl(jumpToSectionEl)
+    }
+  }
+
   /**
    * Handle clicks on either the primary nav toggle or "jump to section" nav toggle
    *
@@ -78,6 +85,7 @@ export default () => {
     }
   }
   document.addEventListener('click', linkEventListener)
+  document.addEventListener('keyup', onEscapePressed)
   jumpToSectionContainer.addEventListener(
     'transitionend',
     onHideJumpToSectionToggle
@@ -103,6 +111,7 @@ export default () => {
   return () => {
     document.removeEventListener('click', linkEventListener)
     document.removeEventListener('scroll', scrollDownListener)
+    document.removeEventListener('keyup', onEscapePressed)
     jumpToSectionContainer.removeEventListener(
       'transitionend',
       onHideJumpToSectionToggle
