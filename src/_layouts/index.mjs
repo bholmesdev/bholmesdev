@@ -1,5 +1,4 @@
-const getCSSVariable = (element = document.getRootNode(), propertyName = '') =>
-  parseInt(getComputedStyle(element).getPropertyValue(propertyName))
+import { isMobile, getCSSVariable } from '../_includes/css-helpers'
 
 const primaryNavEl = document.getElementById('primary-nav__links')
 const jumpToSectionEl = document.getElementById('jump-to-section__links')
@@ -17,11 +16,6 @@ const onHideJumpToSectionToggle = ({ target }) => {
 }
 
 export default () => {
-  const mobileBreakpointWidth = getCSSVariable(
-    primaryNavEl,
-    '--mobile-breakpoint'
-  )
-
   /*--- handle links and navigation ---*/
 
   ;(function setActiveNavLink() {
@@ -46,7 +40,7 @@ export default () => {
     if (!toggleEl.classList.contains('toggled')) return
 
     toggleEl.classList.remove('toggled')
-    const cssAnimDuration = getCSSVariable(toggleEl, '--anim-duration')
+    const cssAnimDuration = getCSSVariable('--anim-duration', toggleEl)
     setTimeout(() => {
       toggleEl.style.visibility = 'hidden'
     }, cssAnimDuration)
@@ -92,13 +86,15 @@ export default () => {
   // expand primary navigation when scrolling to top of the page,
   // only above the mobile breakpoint
   const scrollDownListener = () => {
-    if (window.scrollY > 0) {
-      collapseNavEl(primaryNavEl)
-      jumpToSectionContainer.classList.add('showing')
-      jumpToSectionContainer.style.visibility = 'visible'
-    } else if (document.body.clientWidth > mobileBreakpointWidth) {
-      expandNavEl(primaryNavEl)
-      jumpToSectionContainer.classList.remove('showing')
+    if (!isMobile()) {
+      if (window.scrollY > 0) {
+        collapseNavEl(primaryNavEl)
+        jumpToSectionContainer.classList.add('showing')
+        jumpToSectionContainer.style.visibility = 'visible'
+      } else {
+        expandNavEl(primaryNavEl)
+        jumpToSectionContainer.classList.remove('showing')
+      }
     }
   }
   document.addEventListener('scroll', scrollDownListener)
@@ -114,7 +110,7 @@ export default () => {
 
     // if we're leaving the current page and we're on mobile,
     // we should collapse the dropdown nav
-    if (document.body.clientWidth <= mobileBreakpointWidth) {
+    if (isMobile()) {
       primaryNavEl.classList.remove('toggled')
     }
   }

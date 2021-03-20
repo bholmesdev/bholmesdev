@@ -63,6 +63,9 @@ $font-path: '/assets/fonts/Atkinson/';
   --me-font-size: 22px;
 
   --nav-anim-duration: 500ms;
+  // used in JS to decide whether the primary nav
+  // should be automatically expanded
+  --mobile-breakpoint: #{$mobile-breakpoint};
 }
 
 @media (max-width: 850px) {
