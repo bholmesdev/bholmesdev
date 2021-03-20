@@ -76,10 +76,12 @@ export default () => {
     if (target.id === 'jump-to-section__toggle') {
       toggleNavEls(jumpToSectionEl, primaryNavEl)
     }
+    // on mobile: collapse the "jump to section" slideout when you click a link
     if (
       target.tagName === 'A' &&
       target.origin === location.origin &&
-      target.hash
+      target.hash &&
+      isMobile()
     ) {
       jumpToSectionEl.classList.remove('toggled')
     }
