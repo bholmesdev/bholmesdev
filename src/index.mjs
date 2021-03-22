@@ -1,28 +1,23 @@
-import { setSectionObserver } from '../utils/client/nav-sections'
+import { watchSectionHeaders } from './_includes/table-of-contents-observer'
+
+const animateColoredAccent = (sectionIndex, headers) => {
+  const allStripes = document.querySelectorAll('#line-accents > *')
+  // in the case that sectionIndex = -1 (no section on screen),
+  // this will come back null
+  const selectedStripe = document.querySelector(
+    `#line-accents > :nth-child(${sectionIndex + 1})`
+  )
+  for (let stripe of allStripes) {
+    if (stripe === selectedStripe) {
+      stripe.classList.add('active')
+    } else {
+      stripe.classList.remove('active')
+    }
+  }
+}
 
 export default ({ works }) => {
-  const sectionIds = ['inbrief-section', 'iteach-section', 'icreate-section']
-
-  const cleanupSectionObserver = setSectionObserver(
-    sectionIds,
-    (isIntersecting, sectionIndex) => {
-      const allStripes = document.querySelectorAll('#line-accents > *')
-      const selectedStripe = document.querySelector(
-        `#line-accents > :nth-child(${sectionIndex + 1})`
-      )
-      if (isIntersecting) {
-        for (let stripe of allStripes) {
-          if (stripe === selectedStripe) {
-            stripe.classList.add('active')
-          } else {
-            stripe.classList.remove('active')
-          }
-        }
-      } else if (sectionIndex === 0) {
-        selectedStripe.classList.remove('active')
-      }
-    }
-  )
+  const unobserveHeaders = watchSectionHeaders(animateColoredAccent)
 
   function VideoEl(elementId) {
     this.el = document.getElementById(elementId)
@@ -104,7 +99,7 @@ export default ({ works }) => {
   document.addEventListener('click', clickListener)
 
   return () => {
-    cleanupSectionObserver()
+    unobserveHeaders()
     document.removeEventListener('click', clickListener)
   }
 }

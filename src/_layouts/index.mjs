@@ -1,23 +1,116 @@
 import { isMobile, getCSSVariable } from '../_includes/css-helpers'
+import {
+  watchSectionHeaders,
+  getPageHeaders,
+} from '../_includes/table-of-contents-observer'
 
 const primaryNavEl = document.getElementById('primary-nav__links')
-const jumpToSectionEl = document.getElementById('jump-to-section__links')
-const jumpToSectionContainer = document.querySelector(
-  '.jump-to-section__container'
-)
+
+const jumpToSection = {
+  container: document.querySelector('.jump-to-section__container'),
+  number: document.querySelector('#jump-to-section__toggle > span'),
+  linkContainer: document.getElementById('jump-to-section__links'),
+  labelContainer: document.getElementById('jump-to-section__label'),
+  toggle: document.getElementById('jump-to-section__toggle'),
+  heading: document.createElement('li'),
+}
+jumpToSection.heading.innerText = 'Jump to section'
+jumpToSection.heading.className = 'heading'
+
+// Once we've scrolled our current section label into view,
+// We need to set hide the other labels so they aren't
+// picked up by screenreaders
+let currentSectionIndex = 0
+const onJumpToSectionTransition = () => {
+  for (let [
+    index,
+    label,
+  ] of jumpToSection.labelContainer.childNodes.entries()) {
+    if (currentSectionIndex !== index) {
+      label.style.visibility = 'hidden'
+    }
+  }
+}
+const onCloseTableOfContents = () => {
+  if (!jumpToSection.linkContainer.classList.contains('toggled')) {
+    jumpToSection.linkContainer.style.visibility = 'hidden'
+  }
+}
 
 const onHideJumpToSectionToggle = ({ target }) => {
   if (
-    target === jumpToSectionContainer &&
-    !jumpToSectionContainer.classList.contains('showing')
+    target === jumpToSection.container &&
+    !jumpToSection.container.classList.contains('showing')
   ) {
-    jumpToSectionContainer.style.visibility = 'hidden'
+    jumpToSection.container.style.visibility = 'hidden'
   }
+}
+
+const clearNavSections = () => {
+  jumpToSection.linkContainer.innerHTML = ''
+  jumpToSection.labelContainer.innerText = ''
+}
+
+const setNavSections = () => {
+  const headers = getPageHeaders()
+  clearNavSections()
+  if (headers.length <= 1) {
+    jumpToSection.container.classList.add('visually-hidden')
+  } else {
+    jumpToSection.container.classList.remove('visually-hidden')
+  }
+  jumpToSection.linkContainer.appendChild(jumpToSection.heading)
+  headers.forEach((header) => {
+    const link = document.createElement('a')
+    const listItem = document.createElement('li')
+    link.innerText = header.innerText
+    link.href = '#' + header.id
+    listItem.appendChild(link)
+    jumpToSection.linkContainer.appendChild(listItem)
+
+    const labelSpan = document.createElement('span')
+    labelSpan.innerText = header.innerText
+    jumpToSection.labelContainer.appendChild(labelSpan)
+  })
+}
+
+const setCurrentSection = (sectionIndex, headers) => {
+  currentSectionIndex = Math.max(0, sectionIndex)
+  jumpToSection.number.innerText = currentSectionIndex + 1
+  for (let [
+    index,
+    label,
+  ] of jumpToSection.labelContainer.childNodes.entries()) {
+    label.style.visibility = 'visible'
+    if (currentSectionIndex === index) {
+      label.style.opacity = 1
+      jumpToSection.labelContainer.style.setProperty(
+        '--translate',
+        label.offsetLeft
+      )
+    } else {
+      label.style.opacity = 0
+    }
+  }
+
+  // set toggle color
+  jumpToSection.toggle.style.backgroundPositionY =
+    50 * currentSectionIndex + '%'
+
+  const sectionLinks = jumpToSection.linkContainer.querySelectorAll('a')
+  sectionLinks.forEach((link) => {
+    if (link.hash === '#' + headers[currentSectionIndex].id) {
+      link.style.color = 'red'
+    } else {
+      link.style.color = 'var(--body-color)'
+    }
+  })
 }
 
 export default () => {
   /*--- handle links and navigation ---*/
-
+  const unobserveHeaders = watchSectionHeaders(setCurrentSection)
+  setNavSections()
   ;(function setActiveNavLink() {
     const primaryNavLinks = primaryNavEl.querySelectorAll('a')
     primaryNavLinks.forEach((link) => {
@@ -49,7 +142,7 @@ export default () => {
   const onEscapePressed = ({ key }) => {
     if (key === 'Escape') {
       collapseNavEl(primaryNavEl)
-      collapseNavEl(jumpToSectionEl)
+      collapseNavEl(jumpToSection.linkContainer)
     }
   }
 
@@ -71,10 +164,10 @@ export default () => {
   const linkEventListener = (event) => {
     const { target } = event
     if (target.id === 'primary-nav__toggle') {
-      toggleNavEls(primaryNavEl, jumpToSectionEl)
+      toggleNavEls(primaryNavEl, jumpToSection.linkContainer)
     }
     if (target.id === 'jump-to-section__toggle') {
-      toggleNavEls(jumpToSectionEl, primaryNavEl)
+      toggleNavEls(jumpToSection.linkContainer, primaryNavEl)
     }
     // on mobile: collapse the "jump to section" slideout when you click a link
     if (
@@ -83,14 +176,22 @@ export default () => {
       target.hash &&
       isMobile()
     ) {
-      jumpToSectionEl.classList.remove('toggled')
+      jumpToSection.linkContainer.classList.remove('toggled')
     }
   }
   document.addEventListener('click', linkEventListener)
   document.addEventListener('keyup', onEscapePressed)
-  jumpToSectionContainer.addEventListener(
+  jumpToSection.container.addEventListener(
     'transitionend',
     onHideJumpToSectionToggle
+  )
+  jumpToSection.labelContainer.addEventListener(
+    'transitionend',
+    onJumpToSectionTransition
+  )
+  jumpToSection.linkContainer.addEventListener(
+    'transitionend',
+    onCloseTableOfContents
   )
 
   // expand primary navigation when scrolling to top of the page,
@@ -99,11 +200,11 @@ export default () => {
     if (!isMobile()) {
       if (window.scrollY > 0) {
         collapseNavEl(primaryNavEl)
-        jumpToSectionContainer.classList.add('showing')
-        jumpToSectionContainer.style.visibility = 'visible'
+        jumpToSection.container.classList.add('showing')
+        jumpToSection.container.style.visibility = 'visible'
       } else {
         expandNavEl(primaryNavEl)
-        jumpToSectionContainer.classList.remove('showing')
+        jumpToSection.container.classList.remove('showing')
       }
     }
   }
@@ -111,12 +212,21 @@ export default () => {
   scrollDownListener()
 
   return () => {
+    unobserveHeaders()
     document.removeEventListener('click', linkEventListener)
     document.removeEventListener('scroll', scrollDownListener)
     document.removeEventListener('keyup', onEscapePressed)
-    jumpToSectionContainer.removeEventListener(
+    jumpToSection.container.removeEventListener(
       'transitionend',
       onHideJumpToSectionToggle
+    )
+    jumpToSection.labelContainer.removeEventListener(
+      'transitionend',
+      onJumpToSectionTransition
+    )
+    jumpToSection.linkContainer.removeEventListener(
+      'transitionend',
+      onCloseTableOfContents
     )
 
     // if we're leaving the current page and we're on mobile,
