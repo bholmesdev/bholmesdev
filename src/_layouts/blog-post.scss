@@ -1,0 +1,42 @@
+@import '../_includes/mixins.scss';
+article {
+  padding-top: var(--nav-height);
+  max-width: 800px;
+  margin: auto;
+
+  img {
+    max-width: 100%;
+  }
+
+  h1 {
+    @include header-font;
+
+    font-weight: bold;
+    font-size: 64px;
+
+    @include mobile {
+      font-size: 48px;
+    }
+  }
+
+  h2 {
+    margin-top: 40px;
+    @include subheader;
+  }
+
+  h3 {
+    margin-top: 36px;
+    @include subheader-font;
+
+    font-size: 36px;
+
+    @include mobile {
+      font-size: 28px;
+    }
+  }
+
+  ul > li,
+  ol > li {
+    margin-bottom: 16px;
+  }
+}
