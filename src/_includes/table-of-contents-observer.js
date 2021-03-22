@@ -16,7 +16,9 @@ const options = {
   threshold: 0,
 }
 
-export const getPageHeaders = () => [...document.querySelectorAll('main h2')]
+export const getPageHeaders = () => [
+  ...document.querySelectorAll('main h2.numbered'),
+]
 
 /**
  *

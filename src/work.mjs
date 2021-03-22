@@ -1,5 +1,3 @@
-import { setSectionObserver } from '../utils/client/nav-sections'
-
 const setVideoObserver = (videos) => {
   const observer = new IntersectionObserver(
     (changes) => {
@@ -53,9 +51,6 @@ export default () => {
     }
   }
 
-  const sectionIds = ['ongoing-section', 'complete-section']
-  const cleanupSectionObserver = setSectionObserver(sectionIds)
-
   // lazily load videos once tab is visited
   const videoEls = document.querySelectorAll('[data-page="work"] video')
   const videoObserver = setVideoObserver(videoEls)
@@ -70,7 +65,6 @@ export default () => {
 
   //cleanup
   return () => {
-    cleanupSectionObserver()
     videoObserver.disconnect()
     document.removeEventListener('click', clickListener)
     detailsSlideOut.removeEventListener(

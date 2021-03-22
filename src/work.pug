@@ -33,7 +33,7 @@ mixin project-template(project)
           short.tag #{tag}
 
 section#ongoing-section(style="--section-color: var(--green)")
-  h2.numbered Ongoing works
+  h2.numbered#ongoing-works Ongoing works
   p.tagline
     :markdown-it(inline)
       I've been going all-in on [JAMstack apps](https://jamstack.org) this past year. My foray into [Svelte + Sapper](https://sapper.svelte.dev) was easily my favorite venture; it's just so much simplier than React in my opinion. Also, my heavy frontend focus gave me some [valuable CSS learnings](https://dev.to/bholmesdev/flexbox-diehards-here-s-some-concrete-examples-of-when-css-grid-is-just-better-n7k)!
@@ -43,7 +43,7 @@ section#ongoing-section(style="--section-color: var(--green)")
       +project-template(project)
 
 section#complete-section(style="--section-color: var(--red)")
-  h2.numbered Complete works
+  h2.numbered#complete-works Complete works
   p.tagline
     :markdown-it(inline)
       I've touched a lot of CS corners these past few years. Web tech was definitely a theme, but I never settled on any frontend framework in particular (Angular's the worst one though 😛). I also found some time for games, whether it be a [virtual tennis match](#32-bit-rackets) or [real life roomba bowling](#roombowling)!
