@@ -12,7 +12,7 @@ jumpToSection.heading.className = 'heading'
 const INTERSECTION_MARGIN = 100
 
 const options = {
-  rootMargin: `-${INTERSECTION_MARGIN}px 0px -${INTERSECTION_MARGIN}px 0px`,
+  rootMargin: `0px 0px -${INTERSECTION_MARGIN}px 0px`,
   threshold: 0,
 }
 

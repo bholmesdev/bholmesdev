@@ -6,6 +6,8 @@ import {
 
 const primaryNavEl = document.getElementById('primary-nav__links')
 
+const jumpToSectionColors = ['--green', '--red', '--purple']
+
 const jumpToSection = {
   container: document.querySelector('.jump-to-section__container'),
   number: document.querySelector('#jump-to-section__toggle > span'),
@@ -98,13 +100,12 @@ const setCurrentSection = (sectionIndex, headers) => {
     50 * currentSectionIndex + '%'
 
   const sectionLinks = jumpToSection.linkContainer.querySelectorAll('a')
-  sectionLinks.forEach((link) => {
-    if (link.hash === '#' + headers[currentSectionIndex].id) {
-      link.style.color = 'red'
-    } else {
-      link.style.color = 'var(--body-color)'
-    }
-  })
+  for (const link of sectionLinks) {
+    link.style.color = 'var(--body-color)'
+  }
+  sectionLinks[currentSectionIndex].style.color = `var(${
+    jumpToSectionColors[currentSectionIndex % 3]
+  })`
 }
 
 export default () => {
@@ -133,7 +134,9 @@ export default () => {
     if (!toggleEl.classList.contains('toggled')) return
 
     toggleEl.classList.remove('toggled')
-    const cssAnimDuration = getCSSVariable('--anim-duration', toggleEl)
+    const cssAnimDuration = parseInt(
+      getCSSVariable('--anim-duration', toggleEl)
+    )
     setTimeout(() => {
       toggleEl.style.visibility = 'hidden'
     }, cssAnimDuration)
