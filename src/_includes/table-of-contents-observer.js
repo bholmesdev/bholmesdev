@@ -6,7 +6,7 @@ const options = {
 }
 
 export const getPageHeaders = () => [
-  ...document.querySelectorAll('main h2.numbered'),
+  ...document.querySelectorAll('main h2:not(.omit-from-toc)'),
 ]
 
 /**
