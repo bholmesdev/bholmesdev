@@ -6,6 +6,15 @@ article {
   max-width: 800px;
   margin: auto;
   font-size: 20px;
+  line-height: 1.45;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  @media (max-width: 600px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+  }
 
   img {
     display: block;
@@ -34,10 +43,10 @@ article {
     margin-top: 36px;
     @include subheader-font;
 
-    font-size: 36px;
+    font-size: 32px;
 
     @include mobile {
-      font-size: 28px;
+      font-size: 24px;
     }
   }
 

@@ -28,11 +28,15 @@ cyan      #2aa198
 green     #859900
 */
 
-code[class*='language-'],
-pre[class*='language-'] {
-  color: #657b83; /* base00 */
+pre,
+code {
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.9em;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: var(--body-color); /* base00 */
   text-align: left;
   white-space: pre;
   word-spacing: normal;

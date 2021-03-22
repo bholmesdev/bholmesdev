@@ -49,7 +49,7 @@ $mobile-breakpoint: 850px;
   @include subheader-font;
   font-size: 44px;
 
-  @media (max-width: $tablet-breakpoint) {
+  @media (max-width: $mobile-breakpoint) {
     font-size: 36px;
   }
 }
