@@ -1,11 +1,16 @@
 @import '../_includes/mixins.scss';
+@import '../_includes/prism-code-styling.scss';
+
 article {
   padding-top: var(--nav-height);
   max-width: 800px;
   margin: auto;
+  font-size: 20px;
 
   img {
+    display: block;
     max-width: 100%;
+    margin: auto;
   }
 
   h1 {
@@ -20,8 +25,9 @@ article {
   }
 
   h2 {
-    margin-top: 40px;
+    margin-top: calc(60px + 1em);
     @include subheader;
+    @include numbered-header;
   }
 
   h3 {

@@ -7,6 +7,28 @@ $mobile-breakpoint: 850px;
   line-height: 1.15;
 }
 
+@mixin numbered-header {
+  position: relative;
+
+  &::before {
+    font-family: var(--header-font);
+    counter-increment: section-number;
+    content: counter(section-number);
+    background: var(--bg-color-2);
+    border-radius: 100%;
+
+    position: absolute;
+    top: -1.3em;
+    left: -1em;
+    width: 2.5em;
+    height: 2.5em;
+    display: flex;
+    justify-content: center;
+    color: var(--bg-color);
+    z-index: -1;
+  }
+}
+
 @mixin header {
   @include header-font;
   font-size: 84px;

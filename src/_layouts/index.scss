@@ -95,27 +95,8 @@ h1 {
   font-weight: bold;
 }
 
-h2 {
-  &.numbered {
-    position: relative;
-
-    &::before {
-      counter-increment: section-number;
-      content: counter(section-number);
-      background: var(--bg-color-2);
-      border-radius: 100%;
-
-      position: absolute;
-      top: -1.3em;
-      left: -1em;
-      width: 2.5em;
-      height: 2.5em;
-      display: flex;
-      justify-content: center;
-      color: var(--bg-color);
-      z-index: -1;
-    }
-  }
+h2.numbered {
+  @include numbered-header;
 }
 
 h3 {
