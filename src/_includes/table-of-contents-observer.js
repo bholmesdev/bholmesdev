@@ -1,14 +1,3 @@
-const jumpToSection = {
-  container: document.querySelector('.jump-to-section__container'),
-  number: document.querySelector('#jump-to-section__toggle > span'),
-  linkContainer: document.getElementById('jump-to-section__links'),
-  labelContainer: document.getElementById('jump-to-section__label'),
-  toggle: document.getElementById('jump-to-section__toggle'),
-  heading: document.createElement('li'),
-}
-jumpToSection.heading.innerText = 'Jump to section'
-jumpToSection.heading.className = 'heading'
-
 const INTERSECTION_MARGIN = 100
 
 const options = {
