@@ -78,6 +78,8 @@ module.exports = (inputDir) => {
       ...meta,
       ...slinkitMeta,
       content: markup,
+      basedir: path.join(inputDir, '_includes'),
+      filename: path.join(inputDir, '_includes', 'index'),
     })
     return await renderWithLayout(
       // if we already rendered the index layout,
