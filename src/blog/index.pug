@@ -1,6 +1,11 @@
+- var formattedPosts = collections.blogPost.filter(post => post.data.title != null).sort((a, b) => new Date(b.data.publishedOn) - new Date(a.data.publishedOn))
+
 section
-  h1 Ben's blog posts
-  each item in collections.blogPost
-    if item.data.title
-      p
-        a(href=item.url) #{item.data.title}
+  h1 Ben's latest posts
+  p.post-count #[strong= formattedPosts.length] posts and counting 💪 
+  each item in formattedPosts
+    - var formattedDate = `${new Date(item.data.publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`
+    article
+      h2.omit-from-toc
+        a(href=item.url)= item.data.title
+      p #[time(pubdate datetime=publishedOn)= formattedDate] • #{item.data.description}
