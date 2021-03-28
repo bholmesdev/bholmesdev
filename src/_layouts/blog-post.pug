@@ -1,1 +1,12 @@
-article(data-page=slinkit.page) !{content}
+- var formattedDate = `${new Date(publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`
+
+article(data-page=slinkit.page)
+  header
+    img(src=image alt=description)
+    h1 #{title}
+    p.details
+      span #[strong #{minuteRead(content)}] minute read
+      span.spacer #{"•"}
+      span Last updated 
+        time(pubdate datetime=publishedOn) #{formattedDate}
+  div !{content}

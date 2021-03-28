@@ -2,7 +2,38 @@
 @import '../_includes/prism-code-styling.scss';
 
 article {
-  padding-top: var(--nav-height);
+  header {
+    margin-bottom: 40px;
+    img {
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0;
+      margin-bottom: 24px;
+    }
+    .details {
+      .spacer {
+        margin: 0 10px;
+      }
+      time {
+        font-weight: bold;
+      }
+      span {
+        margin-bottom: 10px;
+      }
+
+      @include mobile {
+        .spacer {
+          display: none;
+        }
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+
+  padding-top: calc(var(--nav-height) + 40px);
   max-width: 800px;
   margin: auto;
   font-size: 20px;

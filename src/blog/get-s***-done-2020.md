@@ -2,9 +2,9 @@
 title: The web dev tools that helped me get s*** done in 2020
 description: Everything I've built over the years, from JAMstack apps to Java Swing!
 layout: blog-post
+image: https://raw.githubusercontent.com/Holben888/personal-blog/main/get-s***-done-2020/thumbnail.jpg
+publishedOn: 2021-01-04
 ---
-
-# The web dev tools that helped me get s*** done in 2020
 
 At long last... the great dumpster fire that was 2020 is no more. There's certainly _a lot_ I'd like to leave behind us. But like a phoenix rising from the ashes, I want to highlight some amazing tools and practices that actually made my life **better** as a web developer 🚀
 
