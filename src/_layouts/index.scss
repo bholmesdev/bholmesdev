@@ -386,6 +386,113 @@ button {
   }
 }
 
+body > [data-page] > footer {
+  margin-top: 140px;
+  background: #f2e9cd;
+  padding-top: 48px;
+  padding-bottom: 60px;
+  // TODO: figure out why I need this
+  // It's the only way to fix the CTA-link ::before
+  position: relative;
+  z-index: 0;
+
+  .content {
+    margin: auto;
+    max-width: 900px;
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+      font-size: 18px;
+    }
+  }
+
+  .newsletter {
+    position: relative;
+    z-index: 0;
+    padding: 24px;
+    margin-top: -100px;
+    margin-bottom: 30px;
+    max-width: 400px;
+    h2 {
+      @include subheader-font;
+      margin-top: 10px;
+      font-size: 40px;
+
+      @include mobile {
+        font-size: 36px;
+      }
+    }
+    background: var(--bg-color);
+    border: 2px solid var(--body-color-2);
+
+    form {
+      --section-color: var(--red);
+      label {
+        @include subheader-font;
+        font-size: 18px;
+      }
+      .cta-link {
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: inherit;
+
+        @include mobile {
+          font-size: 18px;
+          padding: 7px;
+
+          svg {
+            height: 24px;
+            margin: 0;
+          }
+        }
+      }
+      input {
+        display: block;
+        background: none;
+        border: none;
+        border-bottom: 2px solid var(--bg-color-2);
+        width: 100%;
+        margin-top: 15px;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        font-size: 20px;
+        font-family: inherit;
+
+        transition: border-color 0.3s;
+
+        &:focus {
+          outline: none;
+          border-bottom-color: var(--section-color);
+        }
+      }
+    }
+  }
+  .socials {
+    max-width: 340px;
+
+    @include mobile {
+      max-width: 400px;
+    }
+    .socials__links {
+      display: flex;
+      align-items: baseline;
+      a + a {
+        margin-left: 24px;
+      }
+    }
+    p {
+      font-style: italic;
+    }
+  }
+}
+
 @keyframes slidePageIn {
   from {
     transform: translateY(50vh);

@@ -3,6 +3,8 @@
 - var defaultDescription = "I'm a web dev, UX freak, and restless tinkerer. Let me teach you the art of building websites!"
 - var defaultImage = "/assets/og-images/me.jpg"
 
+include icons
+
 html(lang="en-US")
   head !{slinkit.styles}
     title #{title || defaultTitle}
@@ -65,6 +67,26 @@ html(lang="en-US")
           .stripe-middle
           .stripe-bottom
 
-    main(data-page=slinkit.page) !{content}
+    div(data-page=slinkit.page)
+      main !{content}
+      footer
+        .content
+          .newsletter
+            h2 Woah, there's a newsletter too!
+            form
+              label(for="email") Email
+              input#email(type="email" name="email" placeholder="10xengineer@genius.club" required)
+              button.cta-link(type="submit")
+                | Yes please, more content
+                +icon('send')
+          .socials
+            .socials__links
+              a(href="https://dev.to/bholmesdev" target="_blank" rel="noreferrer" aria-label="Ben's DEV.to blog")
+                +icon('devto')
+              a(href="https://twitter.com/bholmesdev" target="_blank" rel="noreferrer" aria-label="Ben's Twitter")
+                +icon('twitter')
+              a(href="https://github.com/holben888" target="_blank" rel="noreferrer" aria-label="Ben's GitHub")
+                +icon('github')
+            p Follow along with #[strong Ben] for the fun, for the whimsy, and for the love of building websites ♥ 
 
   | !{slinkit.scripts}
