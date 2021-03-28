@@ -85,4 +85,47 @@ article {
   ol > li {
     margin-bottom: 16px;
   }
+
+  hr {
+    margin: 40px 0;
+  }
+  footer {
+    .about-the-author {
+      margin: 0;
+      margin-top: 40px;
+      padding: 0;
+      display: flex;
+      align-items: flex-start;
+      font-size: 18px;
+
+      @include mobile {
+        font-size: 16px;
+      }
+
+      address {
+        font-weight: bold;
+        display: inline;
+
+        a,
+        a:visited,
+        a:hover {
+          opacity: 1;
+          color: inherit;
+          text-decoration: none;
+          font-style: normal;
+        }
+      }
+
+      img {
+        width: 100px;
+        height: auto;
+        margin: 0;
+        margin-right: 24px;
+
+        @include mobile {
+          width: 60px;
+        }
+      }
+    }
+  }
 }

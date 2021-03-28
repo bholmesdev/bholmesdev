@@ -86,6 +86,12 @@ html {
   background: var(--bg-color);
 }
 
+hr {
+  background: var(--bg-color-2);
+  border: none;
+  height: 2px;
+}
+
 h1,
 h2 {
   @include header;
