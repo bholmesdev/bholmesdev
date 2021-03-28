@@ -28,14 +28,10 @@ cyan      #2aa198
 green     #859900
 */
 
-pre,
-code {
+code,
+pre {
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.9em;
-}
-
-code[class*='language-'],
-pre[class*='language-'] {
   color: var(--body-color); /* base00 */
   text-align: left;
   white-space: pre;
@@ -55,22 +51,22 @@ pre[class*='language-'] {
   hyphens: none;
 }
 
-pre[class*='language-']::-moz-selection,
-pre[class*='language-'] ::-moz-selection,
-code[class*='language-']::-moz-selection,
-code[class*='language-'] ::-moz-selection {
+pre::-moz-selection,
+pre ::-moz-selection,
+code::-moz-selection,
+code ::-moz-selection {
   background: #073642; /* base02 */
 }
 
-pre[class*='language-']::selection,
-pre[class*='language-'] ::selection,
-code[class*='language-']::selection,
-code[class*='language-'] ::selection {
+pre::selection,
+pre ::selection,
+code::selection,
+code ::selection {
   background: #073642; /* base02 */
 }
 
 /* Code blocks */
-pre[class*='language-'] {
+pre {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
@@ -78,7 +74,7 @@ pre[class*='language-'] {
 }
 
 :not(pre) > code,
-pre[class*='language-'] {
+pre {
   background-color: #fdf6e3; /* base3 */
 }
 
