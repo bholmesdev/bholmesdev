@@ -14,7 +14,7 @@ const { stringify } = require('javascript-stringify')
 const yaml = require('js-yaml')
 const joinTrimSlashes = require('./utils/join-trim-slashes')
 const dotenv = require('dotenv')
-const renderToLayout = require('./utils/render-to-layout')(
+const { readFrontMatter, renderToLayout } = require('./utils/render-to-layout')(
   path.resolve(__dirname, input)
 )
 const livereload = require('livereload')
@@ -32,30 +32,35 @@ const matchPathProperties = (path = '', fileExtension = '', useOutput) => {
 
 const templateExtensionConfig = {
   read: false, // don't process the file's contents. That's our job!
-  getData: () => {},
+  getData: (inputPath) =>
+    readFrontMatter(inputPath, {
+      slinkit: {
+        scripts: `
+          <script src="/__main.mjs" defer></script>
+          ${
+            process.env.MODE === 'dev'
+              ? `<script src="http://localhost:${liveReloadPort}/livereload.js?snipver=1"></script>`
+              : ``
+          }
+          `,
+      },
+    }),
   compile: (_, inputPath) => (data) => {
     const { relativePath } = matchPathProperties(data.page.outputPath, '', true)
-    const pageData = {
-      ...data,
-      slinkit: {
-        styles: `<link rel="stylesheet" href="${path.join(
-          relativePath,
-          '__styles.css'
-        )}">`,
-        scripts: `
-        <script src="/__main.mjs" defer></script>
-        ${
-          process.env.MODE === 'dev'
-            ? `<script src="http://localhost:${liveReloadPort}/livereload.js?snipver=1"></script>`
-            : ``
-        }
-        `,
-      },
-    }
     if (inputPath.startsWith(`./${input}/_layouts`)) {
       return
     } else {
-      return renderToLayout(inputPath, data.page.url, pageData)
+      return renderToLayout(inputPath, {
+        ...data,
+        slinkit: {
+          ...data.slinkit,
+          styles:
+            `<link rel="stylesheet" href="${path.join(
+              relativePath,
+              '__styles.css'
+            )}">` + (data.slinkit.styles ?? ''),
+        },
+      })
     }
   },
 }
