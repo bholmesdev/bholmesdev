@@ -54,11 +54,11 @@ html(lang="en-US")
           li
             a(href="/" class=page.url === '/' ? 'active' : '') Me
           li
-            a(href="/work/" class=page.url === '/work/' ? 'active' : '') Work
+            a(href="/work/" class=page.url.startsWith('/work') ? 'active' : '') Work
           li
-            a(href="https://dev.to/bholmesdev") Blog
+            a(href="/blog/" class=page.url.startsWith('/blog') ? 'active' : '') Blog
           li
-            a(href="/contact/" class=page.url === '/contact/' ? 'active' : '') Contact
+            a(href="/contact/" class=page.url.startsWith('/contact') ? 'active' : '') Contact
 
         button#primary-nav__toggle
           .stripe-top

@@ -115,7 +115,11 @@ export default () => {
   ;(function setActiveNavLink() {
     const primaryNavLinks = primaryNavEl.querySelectorAll('a')
     primaryNavLinks.forEach((link) => {
-      if (link.pathname === location.pathname) {
+      const isHomePageLink = link.pathname === '/'
+      if (
+        (isHomePageLink && location.pathname === '/') ||
+        (!isHomePageLink && location.pathname.startsWith(link.pathname))
+      ) {
         link.classList.add('active')
       } else {
         link.classList.remove('active')
