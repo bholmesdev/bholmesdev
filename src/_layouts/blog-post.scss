@@ -128,4 +128,18 @@ article {
       }
     }
   }
+
+  // embed default styling
+  blockquote.twitter-tweet,
+  p.codepen {
+    margin: auto;
+    max-width: 500px;
+    min-height: 450px;
+    border-radius: 10px;
+    background: #fdf6e3;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
