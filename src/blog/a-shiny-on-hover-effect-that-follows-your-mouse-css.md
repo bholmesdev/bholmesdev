@@ -1,18 +1,17 @@
-layout: blog-post
-publishedOn: 2021-01-28T17:40:13.392Z---
+---
 title: A shiny-on-hover effect that follows your mouse (CSS) ✨
-published: true
 description: Using CSS variables + any frontend framework to add a metallic shine to your UI
-tags: css, javascript, webdev, showdev
 series: Building hack4impact.org
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/css-shiny-buttons/thumbnail.png
+layout: blog-post
+publishedOn: 2021-01-28T17:40:13.392Z
 ---
 
 Hover states are probably the most fun a developer can have when a designer isn't looking. You've seen the basics at this point; fade-ins, growing and shrinking, color shifts, [animated rainbow gradients](https://www.joshwcomeau.com/react/rainbow-button/), etc etc etc.
 
 But there was one animation that inspired me recently (props [to Keyframers](https://www.youtube.com/watch?v=VBkGe1TxEuI&t=225s) for shouting it out!)
 
-{% twitter 1278384065087893505 %}
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Has anyone done this directional lighting cursor interaction with CSS? <a href="https://t.co/zLL7Sk6kW5">pic.twitter.com/zLL7Sk6kW5</a></p>&mdash; Jed Bridges (@JedBridges) <a href="https://twitter.com/JedBridges/status/1278384065087893505?ref_src=twsrc%5Etfw">July 1, 2020</a></blockquote>
 
 This isn't some "static" hover state that always looks the same. It actually *tracks your mouse moment* to make the page even more interactive. This seemed like such a cool idea... that we threw it all over our [Hack4Impact](https://hack4impact.org) site 😁
 
@@ -149,7 +148,7 @@ Great! With this in place, we should see a subtle, stationary gradient covering 
 
 {% codepen https://codepen.io/bholmesdev/pen/LYbPjNQ default-tab=css,result %}
 
-##🪤 Now, lets track some mouse cursors
+## 🪤 Now, lets track some mouse cursors
 
 We'll need to dig into some native browser APIs for this. You probably just listen for `click` 99% of the time, so it's easy to forget the dozens of other event listeners at our disposal! We'll need to use the [`mousemove` event](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event) for our purposes:
 
