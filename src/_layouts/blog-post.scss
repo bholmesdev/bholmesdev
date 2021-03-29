@@ -6,6 +6,10 @@ article {
     margin-bottom: 40px;
     img {
       margin-bottom: 16px;
+      aspect-ratio: 7 / 3;
+      height: auto;
+      width: 100%;
+      background: #f2e9cd;
     }
     h1 {
       margin: 0;

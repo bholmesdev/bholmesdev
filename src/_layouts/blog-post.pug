@@ -3,7 +3,8 @@
 
 article(data-page=slinkit.page)
   header
-    img(src=image alt=description)
+    if image
+      img(height=320 src=image alt=description)
     h1 #{title}
     p.details
       span #[strong #{minuteRead(content)}] minute read
