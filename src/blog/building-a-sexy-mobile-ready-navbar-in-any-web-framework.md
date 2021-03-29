@@ -56,7 +56,7 @@ Let's define the general structure of our navbar first.
 
 For those following along at home, you should have something like this:
 
-{% codepen https://codepen.io/bholmesdev/pen/zYqQvxj %}
+{% codepen https://codepen.io/bholmesdev/pen/zYqQvxj default-tab=html,result %}
 
 ## Now, some CSS
 
@@ -99,7 +99,7 @@ The `max-width` property is an important piece here. Without it, our nav links w
 
 Of course, you can add padding, margins, and background colors to-taste 👨‍🍳 But as long as you have a `max-width` and `margin: auto` for centering the nav on the page, you're 90% done already! Here's another pen to see it in action:
 
-{% codepen https://codepen.io/bholmesdev/pen/eYZapdM %}
+{% codepen https://codepen.io/bholmesdev/pen/eYZapdM default-tab=result %}
 
 ### Adding the dropdown
 
@@ -167,7 +167,7 @@ Finally, let's make sure our logo and dropdown buttons actually appear *on top o
 ```
 
 Squoosh this CodePen to our breakpoint size to see these styles at work:
-{% codepen https://codepen.io/bholmesdev/pen/KKzLdbR %}
+{% codepen https://codepen.io/bholmesdev/pen/KKzLdbR default-tab=css,result %}
 
 ## Let's animate that dropdown
 
@@ -211,7 +211,7 @@ Now, we'll animate our dropdown into view whenever that `dropdown-opened` class 
 
 Nice! With just a few lines of CSS, we just defined a little fade + slide in effect whenever we click our dropdown. You can mess around with it here. Modify the transitions however you wish!
 
-{% codepen https://codepen.io/bholmesdev/pen/jOqoQRZ %}
+{% codepen https://codepen.io/bholmesdev/pen/jOqoQRZ default-tab=css,result %}
 
 ### Adapting for *big boy* components
 
