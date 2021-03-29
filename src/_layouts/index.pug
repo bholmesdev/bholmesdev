@@ -73,7 +73,7 @@ html(lang="en-US")
         .content
           .newsletter
             h2 Woah, there's a newsletter too!
-            form
+            form(action='https://tinyletter.com/bholmesdev' method='post' target='_blank')
               label(for="email") Email
               input#email(type="email" name="email" placeholder="10xengineer@genius.club" required)
               button.cta-link(type="submit")
