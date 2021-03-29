@@ -90,13 +90,13 @@ Generally, you'll use a `<section>` to group elements under common themes, like 
 
 ## Try these elements yourself!
 
-Hop over to [codepen.io](http://codepen.io) and make a new Pen. Start pasting some of the tags above into the HTML section to see what they display in the preview box!
+Hop over to [codepen.io](https://codepen.io) and make a new Pen. Start pasting some of the tags above into the HTML section to see what they display in the preview box!
 
 ## See these tags in action
 
 Now, let's take a look at a completed website to see how the HTML is structured. We'll be using your browser's "inspector" for this, and you can follow along by visiting the live site at https://gsg.surge.sh. I encourage you to open this tool on some of your favorite website as well to see how they structure their own markup!
 
-[![Screenshot of the Golden Swarm Games club splash page](http://img.youtube.com/vi/I4FK_7pZJV8/0.jpg)](http://www.youtube.com/watch?v=I4FK_7pZJV8 'Intro to HTML - inspecting how a real website is structured!')
+[![Screenshot of the Golden Swarm Games club splash page](https://img.youtube.com/vi/I4FK_7pZJV8/0.jpg)](http://www.youtube.com/watch?v=I4FK_7pZJV8 'Intro to HTML - inspecting how a real website is structured!')
 **Intro to HTML - inspecting how a real website is structured!**
 [https://www.youtube.com/watch?v=I4FK_7pZJV8](https://www.youtube.com/watch?v=I4FK_7pZJV8)
 
