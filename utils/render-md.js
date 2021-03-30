@@ -31,7 +31,7 @@ const formatCodepenEmbeds = (rawMarkdown = '') => {
   return markdown
 }
 
-module.exports = (filePath) => {
+module.exports = (rawMarkdown) => {
   // open all links in a new tab
   md.renderer.rules.link_open = (tokens, idx) => {
     const attrsAsString = tokens[idx].attrs.reduce((str, [attr, value]) => {
@@ -54,5 +54,5 @@ module.exports = (filePath) => {
           .replace(/-+$/, ''),
     })
 
-  return md.render(formatCodepenEmbeds(filePath))
+  return md.render(formatCodepenEmbeds(rawMarkdown))
 }
