@@ -115,7 +115,7 @@ const uppercaseSongs = songs.map(song => song.toUppercase())
 
 ![MF DOOM giving finger guns](https://raw.githubusercontent.com/Holben888/personal-blog/main/thinking-about-array-reduce/mf-doom-finger-guns.gif)
 
-_All caps when you spell the man name. Rest in piece [MF DOOM](https://open.spotify.com/artist/2pAWfrd7WFF3XhVt9GooDL?si=McgDfNnbTJK5yIdKB_EHGQ)_
+_All caps when you spell the man name. Rest in peace [MF DOOM](https://open.spotify.com/artist/2pAWfrd7WFF3XhVt9GooDL?si=McgDfNnbTJK5yIdKB_EHGQ)_
 
 This is fine, but what if we could "chain" these 2 modifications _together_?
 
