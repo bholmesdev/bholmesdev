@@ -162,4 +162,13 @@ article {
     flex-direction: column;
     justify-content: center;
   }
+
+  iframe[data-embed-type='youtube'] {
+    width: 100%;
+    height: 375px;
+
+    @include mobile {
+      height: 250px;
+    }
+  }
 }

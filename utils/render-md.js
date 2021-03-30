@@ -14,6 +14,13 @@ const toCodepenEmbed = (url = '', params = '') => {
 `
 }
 
+const toYoutubeEmbed = (videoSlug = '') => {
+  return `<iframe width="375" height="300" src="https://www.youtube-nocookie.com/embed/${videoSlug}"
+          title="YouTube video player" frameborder="0" data-embed-type="youtube"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>`
+}
+
 const formatCodepenEmbeds = (rawMarkdown = '') => {
   const embeds = rawMarkdown.match(/{% codepen (.*) (.*) %}/g)
   if (!embeds) return rawMarkdown
@@ -26,6 +33,23 @@ const formatCodepenEmbeds = (rawMarkdown = '') => {
       markdown = markdown.replace(embed, toCodepenEmbed(url, params))
     } catch (e) {
       console.error('There was a problem processing a Codepen embed', e)
+    }
+  }
+  return markdown
+}
+
+const formatYoutubeEmbeds = (rawMarkdown = '') => {
+  const embeds = rawMarkdown.match(/{% youtube (.*) %}/g)
+  if (!embeds) return rawMarkdown
+
+  let markdown = rawMarkdown
+
+  for (const embed of embeds) {
+    try {
+      const [_, videoSlug] = embed.match(/{% youtube (.*) %}/)
+      markdown = markdown.replace(embed, toYoutubeEmbed(videoSlug))
+    } catch (e) {
+      console.error('There was a problem processing a Youtube embed', e)
     }
   }
   return markdown
@@ -54,5 +78,5 @@ module.exports = (rawMarkdown) => {
           .replace(/-+$/, ''),
     })
 
-  return md.render(formatCodepenEmbeds(rawMarkdown))
+  return md.render(formatYoutubeEmbeds(formatCodepenEmbeds(rawMarkdown)))
 }
