@@ -86,9 +86,24 @@ article {
     }
   }
 
+  h4 {
+    margin-top: 24px;
+    @include subheader-font;
+
+    font-size: 28px;
+
+    @include mobile {
+      font-size: 22px;
+    }
+  }
+
   ul > li,
   ol > li {
     margin-bottom: 16px;
+  }
+
+  blockquote {
+    font-style: italic;
   }
 
   hr {
