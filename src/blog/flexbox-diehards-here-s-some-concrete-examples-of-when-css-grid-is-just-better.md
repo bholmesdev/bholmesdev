@@ -13,7 +13,7 @@ Still, I slowly forced myself to implement CSS Grid in some choice areas of my w
 
 Posts comparing flexbox to Grid sometimes use simplified examples that don't get to the heart of flexbox's flaws. So, to convince all you flexers out there to join the dark side, here's some concrete examples of when CSS Grid really is **alot** simpler in my own experience.
 
-# 1. When layouts have some reordering to do
+## 1. When layouts have some reordering to do
 
 Let's consider a common scenario: you have a 2 column layout for desktop / laptop users, and you want it to wrap nicely to a single column for narrow screens.
 
@@ -53,7 +53,7 @@ But sometimes, your design team my have other ideas. Let's consider the layout b
 
 Well, that's a lot less fun. Not only should we reverse the ordering of our header and image, but we also need to move the final element of the first column (the "find us in person" address) to the end of our _second column_. This is definitely a nail in our flexbox coffin 😕
 
-## Time to gridazzle
+### Time to gridazzle
 
 **Fear not!** CSS grid has an elegant solution to the problem: [**grid template areas**]([Grid template areas - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Grid_Template_Areas)) ✨
 
@@ -119,7 +119,7 @@ Of course, we'll need a few finishing touches to get all the spacing right (heig
 
 _**Accessibility note:** CSS grid changes the **visual** order of elements on the page, but not the actual order of elements in the DOM. So, when we wrap our address-container to the bottom on mobile, it still appears **above** the form element in the underlying HTML. This shouldn't be much of an issue in our case, but before you start reordering text boxes on our own site, make sure this won't confuse screen readers!_
 
-# 2. When you want things _kind of_ centered
+## 2. When you want things _kind of_ centered
 
 I've run into this a few times trying to make a nice container of "cards," dynamically wrapping to a new row depending on the screen width. This conundrum is awkward to explain with words, so let's understand the problem visually:
 
@@ -138,7 +138,7 @@ If you've attempted this layout before, you can probably predict the `@media` qu
 1. We need a `@media` query to adjust our container width for each change in column-count. This requires some wacky mental math based on a) the width of each card, and b) the margin between elements. Adjusting the width of a card by even `1px`, we'll need to run all these calculations again! And no, we can't use `calc()` in a media query 😑
 2. This doesn't consider screen sizes _below_ the width of a single card. We could add yet another `@media` query to change this, but as we'll see soon, CSS Grid can remove this need entirely!
 
-## Time to gridificate
+### Time to gridificate
 
 Now, let's see a sample implementation of the same layout with CSS grid:
 
@@ -161,14 +161,14 @@ Now, let's see a sample implementation of the same layout with CSS grid:
 }
 ```
 
-### Some big takeaways here...
+#### Some big takeaways here...
 
 1. `grid-template-columns` lets us create as many columns as we can fit in a given container. In our case, we want to create columns `340px` wide, and `auto-fill` our container with however many cards we have (wrapping to a new row as necessary).
 2. `justify-content` works a bit differently in Grid land. Rather than changing the alignment _within_ each row a-la Flexbox, it actually adjusts the alignment of the _entire Grid container_ relative to the page; exactly what we wanted! As an FYI, Grid uses a separate property called `justify-items` to align items within a row. 
 
 3. Grid can assign the `gap` between items in our container, essentially applying margins between each element. This is an _absolute godsend_ that's [worth explaining in its own section](#21whenyouwantthatgap)!
 
-### Considering screen widths below `340px`
+#### Considering screen widths below `340px`
 
 As mentioned previously, flexbox usually needs an extra `@media` query to shrink our layout for smaller screen sizes. Thankfully, CSS offers yet another magical operator for this: [**minmax**](https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) ✨
 
@@ -181,7 +181,7 @@ As mentioned previously, flexbox usually needs an extra `@media` query to shrink
 
 Breaking this down: the first parameter represents the minimum width each grid item can have, and the second represents the maximum width we should try to reach. In our case, we want cards to be `340px` wide if possible, but shrink to 100% the width of the screen for layouts < `340px` wide. In Grid land, we use `max-content` to represent this minimum.
 
-## 2.5 When you want that "gap"
+### 2.5 When you want that "gap"
 
 This is a frustrating one: we want to apply a constant margin _between_ each element in a row, but not a margin at the start and end of the row.
 
@@ -233,7 +233,7 @@ We have a few options to remedy this...
 }
 ```
 
-# 3. When you want that collage effect
+## 3. When you want that collage effect
 
 This is a hallmark CSS Grid feature you've probably seen by now, but it's definitely worth repeating.
 
@@ -278,12 +278,10 @@ img.tall {
 
 There are countless examples of Grid-heavy layouts to expand your realm of stylesheet possibilities. [This collection of Pens](https://codepen.io/collection/XRRJGq/) is a great place to start!
 
-# Thanks for reading!
+## Thanks for reading!
 
 I hope this post got your gears turning on applying Grid to your own applications. I will confess, adopting Grid [tends to break layouts on IE 11](https://caniuse.com/#feat=css-grid), so make an informed decision before applying this to production applications!
 
 Also, expect some more posts from me over the next few months. I finally graduated college, which I have... [mixed feelings about to say the least](https://twitter.com/BHolmesDev/status/1258771501647646722?s=20). Now, I'm trying to pump out quarantine-ridden content before I start my first _adult job._
 
-**My current schedule: a new post every other Tuesday at 1 PM EST.** No set topics; just anything in web development that I wish I knew sooner 😁
-
-So, drop a follow if this helped you! More to come soon.
+So, follow the newsletter below if this helped you! More to come soon.

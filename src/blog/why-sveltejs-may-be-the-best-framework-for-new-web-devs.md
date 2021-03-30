@@ -59,7 +59,7 @@ The other nice thing about these components is that they're just as import-able 
 </script>
 ```
 
-###Neat, but hang on a minute...
+### Neat, but hang on a minute...
 
 Some readers may find this concept as mind-blowing as I do, but others probably have their pitchforks ready at the thought of throwing this at beginners. Won't this confuse them about how DOM manipulation really works? 
 
@@ -67,9 +67,9 @@ The answer is... maybe. But when someone's just starting out (at least from pers
 
 Also, just as languages like Java and JS have abstracted away pointer management with garbage collection, it feels like most every modern web development tool has abstracted away DOM manipulation, save for more advanced edge cases beginners likely won't need to face. Btw, if you are scratching your head at what pointer management is, I think that kind of proves my point 😛 Thus, rather than forcing beginners to manipulate the DOM or grasping framework-specific state wrappers, why not just let them access variables directly from markup? Now they can learn the basic principles of component state without getting caught in the weeds.
 
-##Okay I see your basic example, but Svelte must have some framework-specific weirdness to make everything work
+## Okay, but how much "special syntax" is there?
 
-Admittedly, this is true, but it's a lot less than you might think. One Svelte-y syntax is for looping and conditionals for displaying DOM elements. This works a lot like the JSX way of returning elements from a `map`, but without all the nested brackets beginners (and myself) can easily get lost in. Here's a basic one that generates a list of a elements from an array:
+There's some templating to pick up here admittedly, but it's a lot less than you might think! One Svelte-y syntax is for looping and conditionals for displaying DOM elements. This works a lot like the JSX way of returning elements from a `map`, but without all the nested brackets beginners (and myself) can easily get lost in. Here's a basic one that generates a list of a elements from an array:
 
 ```html
 <ul>
@@ -105,9 +105,9 @@ There's another Svelte oddity worth mentioning that I'm admittedly not as thrill
 ```
 I totally understand if some are turned off by abusing "export" like this, but it does at least follow the way beginners should conceptualize modules: we export what we should access outside of the component, and import what we want to show in our component. 
 
-##I might be able to get past that strange-ness... but how about that build step?
+## What about the build process though?
 
-So another criticism about getting beginners started with frameworks is the need to use a package manager. Which means... *gasp* using the terminal! 
+Another criticism about getting beginners started with frameworks is the need to use a package manager. Which means... *gasp* using the terminal! 
 
 Look, I get it, popping that thing open can be intimidating, with its monospace font and that spooky "cd" to jump directories. But to be fair, it's really not a huge hurdle when you only need a single command to get running. Additionally, the [integrated terminal within VS Code](https://code.visualstudio.com/docs/editor/integrated-terminal) makes it dead simple to get started with; it even plops you down in your current project directory! 
 
@@ -127,7 +127,7 @@ package.json
 
 Just add a command to run the build step in the `package.json` and you're all set! You could certainly say that all the extra modules and files other frameworks need aren't a problem if beginners don't touch them, but in my eyes, the less extra stuff for newbies to wonder about, the better. 
 
-##Okay fine, it's cool and beginner-friendly. But is it a stable framework?
+## But is it a stable framework?
 
 This is a very relevant question for a framework as young as Svelte. All examples I have shown use the syntax of Svelte version 3, which ~~is still in beta as of the time of this writing~~ has a relatively small following compared to framework behemoths like ReactJS and VueJS. So as exciting as it is, I would wait another few months before rushing to teach code workshops with it. Still, Svelte offers a [really concise page for documentation](https://svelte.dev/docs) for version 3 that can ease beginners into the framework without getting overwhelmed by subpage after subpage of explanation.
 
@@ -141,7 +141,3 @@ So let's go over some of the main selling points for learning web development wi
 - Hardly any files are needed in a base project
 
 Of course, it's totally fine if I haven't convinced you with this post; all good posts stoke a little controversy! But I hope it at least showed you how freaking cool and simple Svelte can be to learn.
-
-##Thanks for reading! 😊
-
-I'm a frontend webdev-in-training always tinkering with something. I'll try to post regularly here, so drop a follow if you enjoyed!

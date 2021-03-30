@@ -77,9 +77,3 @@ I'd consider this sort of framework to be **a master-class on [inversion of cont
 Overall, I think writing off CSS frameworks is a bit of a hand-wavy statement to make given the huge landscape of tools out there right now. There will always be a place for prebuilt solutions like Material UI; if anything, I see them as one step removed from powerhouses like SquareSpace or Wordpress (closer to the code, but with a lot of details abstracted away). And for teams that don't want to be tied down, solutions like Tailwind and Reach UI should fit the bill for adding handrails without losing visual identity.
 
 Still, keep hacking away Uriel! We all have opinions, so just use what works best for you and your team 😁
-
-## Thanks for reading! If this article was helpful...
-
-I love writing about this sort of stuff 👨‍💻
-🐦 [**Follow my Twitter for random web dev tips and articles I find cool**](https://twitter.com/bholmesdev)
-📗 [**Follow my blog for new posts every 2-3 weeks**](https://dev.to/bholmesdev)

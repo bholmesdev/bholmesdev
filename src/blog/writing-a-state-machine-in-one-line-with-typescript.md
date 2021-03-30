@@ -214,9 +214,3 @@ To get your feet wet, I found a couple high quality demos around the Internet wo
 - **[This one](https://www.youtube.com/watch?v=czi24DqUfSA) on building a more complex ReactJS form.** It's long, but worth your time!
 - **[This one](https://www.youtube.com/watch?v=osaszd2aU9U) on creating a Vanilla JS drag-and-drop interaction.** This is more CSS-intensive and speaks to the `className` trick I showed above.
 - **[This one](https://www.youtube.com/watch?v=hiT4Q1ntvzg) on modeling UI with state machines across frameworks.** Best conference talk on the subject hands down.
-
-## Thanks for reading! If this article was helpful...
-
-I love writing about this sort of stuff 👨‍💻
-🐦 [**Follow my Twitter for random web dev tips and articles I find cool**](https://twitter.com/bholmesdev)
-📗 [**Follow my blog for new posts every 2-3 weeks**](https://dev.to/bholmesdev)

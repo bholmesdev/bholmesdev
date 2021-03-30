@@ -89,6 +89,3 @@ Building websites is hard. That shouldn't surprise anyone. It can be easy to see
 2. What navigation, layout, buttons, etc. could best help you do that?
 3. Is there any overlap between that and the CSS framework you are using?
 4. If so, does the styling best suit your needs, or could it use a 🌶 switch-up?
-
-## Thanks for reading! 😊
-I'm a frontend webdev-in-training always tinkering with something. I'll try to post regularly here, so drop a follow if you enjoyed!

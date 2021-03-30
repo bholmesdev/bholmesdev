@@ -12,14 +12,6 @@ There are [P](https://datree.io/github-best-practices/) [L](https://yeti.co/blog
 
 Note that Bits of Good is a college-level organization, so my opinions are based on experiences with smaller teams rather than working at large companies. So, issues like backlogs, ticketing, and user feedback are not covered here given my limited exposure. 
 
-## Contents
-1. [Creating and Organizing Issues](#issues)
-2. [Branch flow using Gitflow](#flow)
-3. [Branching best practices](#branching)
-4. [Committing best practices](#committing)
-5. [Pull request best practices](#pull-requests)
-
-<a name="issues"></a>
 ## Creating and Organizing Issues
 
 Before jumping into modifying the codebase, let's talk about organizing what needs to be done first. A nifty GitHub feature is the option to create "issues" to break down tasks into assignable chunks. This is helpful in a team setting to decide on deadlines and priorities to keep everyone on track.
@@ -58,7 +50,6 @@ To view these, look for the "milestones" button within the "Issues" tab. From he
 
 _A look at our team's past milestones working on an Agile development schedule. We found emojis can help focus milestone objectives_ 😛 
 
-<a name="flow"></a>
 ## Branch flow using Gitflow
 
 It's easy to jump into a new project and immediately think "screw the formalities, I'm gonna jump into some code!" Well, it's easy to forget an important detail when blinded by excitement: you should always branch off of a development branch first!
@@ -69,7 +60,6 @@ This process is known as [Gitflow](https://www.atlassian.com/git/tutorials/compa
 
 Setting up this flow is extremely easy in Git. Just leave the default `master` branch, treating it as the production branch, and checkout a new `develop` branch off of `master` to branch from going forward. Also make sure all pull requests made to the project are targeted at this branch instead of master! The only PR to master should be from the develop branch itself most of the time.
 
-<a name="branching"></a>
 ## Branching best practices 
 
 If you've been through a workshop or basic Git tutorial before, you've probably made branch names like `Ben-Holmes`, `bug-fix`, or `homepage-57`. **Please don't do this!**
@@ -94,7 +84,6 @@ git checkout -b pr0H@ck3r.154.my_account_edit_profile_pic
 
 Yes, this is a pretty rigid structure for a simple branch name. However, it really improves scan-ability when there are tens or even hundreds of branches open at a given time!
 
-<a name="committing"></a>
 ## Committing best practices
 
 It's the end of the day. You've exhausted your third cup of coffee and finally squashed an Internet Explorer bug that took hours to track down. Now you're ready to push up your changes and finally shut your computer. So, what's the best way to communicate all the pain and suffering you worked through with the team?
@@ -130,9 +119,6 @@ This can be a tedious process for larger commits, but is super helpful when just
 _Extended reading: Much of this section comes from experience and various Stack Overflow sources, but [this](https://who-t.blogspot.com/2009/12/on-commit-messages.html) is a great long-form read on quality commit messages._
 
 ## Pull request best practices
-<a name="pull-requests"></a>
-
-
 
 Everything about Git we've talked about so far has been pretty standard fare: you read through an issue, you make a branch, you commit code to it, you push it up. It's easy at this point to push everything to the development branch and call it a day... but hang on a minute! If you're working on a team, it's probably best to have someone else review the changes you've made before merging them in. 
 
@@ -152,6 +138,3 @@ Here's an example of what I'd consider a good pull request. First, note that the
 2. Write a bulleted / numbered breakdown of each feature added, or changes made to resolve a bug
 
 Below this, there is a log of each commit made in the branch requested for merging. This shows how important quality commit messages are! 
-
-## Thanks for reading! 😊
-I'm a frontend webdev-in-training always tinkering with something. I'll try to post regularly here, so drop a follow if you enjoyed!

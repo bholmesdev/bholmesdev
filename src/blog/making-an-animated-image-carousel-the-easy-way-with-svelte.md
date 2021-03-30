@@ -10,7 +10,7 @@ Ah image carousels... the classic web dev conundrum. Back in the dark ages (so l
 
 I've build carousels in a couple settings (React, Angular 1.x, vanilla ES6) with varying degrees of simplicity, but nothing compares to a neat trick I found using [Svelte](https://svelte.dev). I'll start by walking through a solution you can use in any framework you choose, then cover the *super slick* solution I found. This article should help whether you're already using Svelte, or you're considering it for your next web project. Since some Svelte newbies might find themselves here, I'll try to explain any Svelte-isms that pop up. Onwards!
 
-# What we'll be building
+## What we'll be building
 
 Let's see what kind of carousel we're talking here.
 
@@ -24,7 +24,7 @@ Let's see what kind of carousel we're talking here.
 
 3. The animation shouldn't break when we click really fast!
 
-# TLDR 
+## TLDR 
 
 I get it. You're excited and what to copy / paste some working code into your project. Well, head over here to see a sandbox of the solution running with a nice browser preview!
 
@@ -34,7 +34,7 @@ _**Note:** the images may load somewhat slowly. I'm using picsum.photos to gener
 
 [🚀 Check out the finished REPL](https://svelte.dev/repl/78bee610166a486a9304b9bfbeb77887?version=3.20.1)
 
-# The framework-agnostic approach: flip-flop between image elements
+## The framework-agnostic approach: flip-flop between image elements
 
 Before jumping into the real Svelte magic, let's see how we'd approach a carousel traditionally. I include this example since it's framework agnostic ([easily made with vanilla JavaScript too!](https://codepen.io/bholmesdev/pen/abOeVMY)), and similar to carousel tutorials you may have seen before. Still, we'll implement the algorithm using Svelte as a demo 🕺
 
@@ -68,9 +68,7 @@ Here's a visual demonstration of how all that works!
 
 ![Visual demo of changing the image source](https://res.cloudinary.com/bog/image/upload/v1586276545/blog/bog-logo-showdev/zehqkroq8cxvudz3xhhm.gif)
 
-
-
-## The code
+### The code
 
 If you've worked with component-based frameworks before, you've probably identified the state variables we need to keep track of: 
 
@@ -160,18 +158,18 @@ All we need is a dynamically applied CSS class depending on our `showFirst` vari
 
 [😎 See the solution using vanilla JS with few modifications!](https://codepen.io/bholmesdev/pen/abOeVMY)
 
-## Cool solution! Is it the best one though?
+### Cool solution! Is it the best one though?
 
 So in the end, this code is ready-to-use in your project no problem. I have a few complaints with it though:
 
 1. We have to write out two image elements in our markup, which feels a little repetitive. This will get more noticeable as we add more classes, attributes, and inevitable container `<div>`s around each of them.
 2. We're using three state variables for one piece of functionality. This may not sound like a lot, but it hurts the readability of our solution a bit. I bet if you stumbled across this code in someone's repository and didn't have shiny GIFs to understand the algorithm, it would be pretty confusing on first sight.
 
-# Using a Svelte-y approach
+## Using a Svelte-y approach
 
 Now, let's start using some Svelte-specific magic. There's two approaches that I find cleaner than the image flip-flop: one that's pretty readable but a little longer, and another that's *super sleek* with a little added magic.
 
-## Simple array mapping
+### Simple array mapping
 
 So you're probably familiar with how to render a list of content to the page, whether that means a `.map`, an `*ngRepeat`, a `v-for`... you name it. You're also probably familiar with conditionally rendering elements with an if statement (`{condition && ...}`, `*ngIf`, `v-if`, etc.). So what can we do with these powers combined?
 
@@ -234,7 +232,7 @@ And yes, you can customize the transition to your heart's content. Svelte has [a
 
 In the end, this is my favorite solution. But I bet we can do it with even fewer lines of code...
 
-## Modification: The array key trick
+### Modification: The array key trick
 
 _**Note:** kudos to the incredible [Rishov Sarkar](https://github.com/ArkaneMoose) for finding this trick!_
 
@@ -272,7 +270,7 @@ Feel free to edit the sandbox code to try out both solutions. Also take a peak a
 
 [🚀 See the full solution running at this REPL](https://svelte.dev/repl/78bee610166a486a9304b9bfbeb77887?version=3.20.1)
 
-# That's it!
+## That's it!
 
 In the end, all solutions presented here should be good enough for a production-ready site. But I hope this post taught you some neat tricks that Svelte offers out-of-the-box to create some pretty complex UIs in just a few lines. In the end, our "key trick" solution comes in at under 30 lines of HTML, CSS, and JS *combined!*
 
@@ -286,6 +284,4 @@ You can check out the [source code for this component here](https://github.com/G
 
 I'm writing this post in the thick of COVID-19 social distancing. You may be a student grieving over missed opportunities or graduations, a mother or father spending too much time with your kids, or a recently unemployed household trying to make ends meet.
 
-This is definitely a difficult time for all of us, but if there's any silver lining, it's all of these online learning opportunities at our disposal. So, I'll be using the next month(s?) to pump out one new blog post **every week.** I doubt many will be as long and involved as this one, but they'll all cover learning experiences that I find valuable. So, follow along if you can, and thanks for your reader-ship!
-
-You can also [follow my Twitter](https://twitter.com/BHolmesDev) to shout at me whenever I'm wrong or late to post 😉
+This is definitely a difficult time for all of us, but if there's any silver lining, it's all of these online learning opportunities at our disposal. So I'm glad you took the time to give this a read! If you've never used Svelte before, I hope it inspires you to pick it up 😁

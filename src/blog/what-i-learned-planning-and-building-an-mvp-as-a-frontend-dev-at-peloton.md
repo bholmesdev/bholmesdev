@@ -138,9 +138,3 @@ My time at Peloton this summer was an amazing and rewarding experience. It's rar
 And to check out the finished product, [go here](https://www.onepeloton.com/careers)!
 
 Overall, I am extremely grateful for my time at the company, and I'm excited to see how the careers project progresses. I hope these lessons I learned along the way help you on your MVP development journey! 🚀
-
-## Thanks for reading!
-
-I'm a frontend web dev and designer always tinkering with something. I just snagged a shiny "dot dev" URL for my portfolio, so head over there for all my socials and a little more about my dev journey!
-
-👉 [https://bholmes.dev](https://bholmes.dev/)

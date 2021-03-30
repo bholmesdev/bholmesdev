@@ -169,9 +169,3 @@ That said, I'm *definitely* not suggesting you give up your beautiful Gatsby sit
 Anyhow, whatever you end up using, I hope this article got you thinking a bit more about what static site generators *really* do. With that, I'll leave you with this cute pug photo to stick in your mind 🐶
 
 ![Cute pug sitting on a bed](https://dev-to-uploads.s3.amazonaws.com/i/0rs79ok8vmppv9k66moi.jpg)
-
-## If this article was helpful...
-
-I love writing about this sort of stuff!
-🐦 [**Follow my Twitter for random web dev tips and articles I find cool**](https://twitter.com/bholmesdev)
-📗 [**Follow my blog for new posts every 2-3 weeks**](https://dev.to/bholmesdev)

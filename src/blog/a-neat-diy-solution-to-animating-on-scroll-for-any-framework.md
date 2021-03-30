@@ -6,10 +6,8 @@ layout: blog-post
 publishedOn: 2019-04-09T15:46:47.093Z
 ---
 
-~
-_Update 4.10.19_
-A recent comment below blew my mind name dropping the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This was essentially built for exactly what this article's about, allowing you to fire a callback whenever an element is in a certain position on the screen! The latter parts of the article about centralizing logic with a store are still totally applicable to this, but intersection observers clean up things a great deal over `requestAnimationFrame` while also being more performant. However, note there is no IE support and Safari support only just recently. Alrighty, enjoy the rest of this post 😊
-~
+
+> **Update 4.10.19** A recent comment below blew my mind name dropping the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This was essentially built for exactly what this article's about, allowing you to fire a callback whenever an element is in a certain position on the screen! The latter parts of the article about centralizing logic with a store are still totally applicable to this, but intersection observers clean up things a great deal over `requestAnimationFrame` while also being more performant. However, note there is no IE support and Safari support only just recently. Alrighty, enjoy the rest of this post 😊
 
 Looking around the world wide web for inspiration, I've found that many sites I love incorporate fun little "reveal" animations whenever I scroll to certain elements. Though subtle, these extra touches make the page feel much less static and more **responsive**. The question is though... what's the best way to implement this?
 
@@ -96,7 +94,9 @@ const animChecker = (target) => {
 
 Now our scroll animation checker should be able to handle any element we throw at it!
 
-## Neat! But I use X framework, and I don't think I could use this because of Y
+## Neat! But I use X framework...
+
+...and I don't think I could use this because of Y 🤷‍♀️
 
 Now hold it right there. I understand everyone's tooling has its own set of quirks, so let's try to address some of them.
 
@@ -208,10 +208,4 @@ Now we can subscribe to our array of animationTriggers (or grab the context, dep
 
 So before you protest that you could have gotten your favorite animate-on-scroll library working in the time it took to read this article... I get it. But I would say taking this feature as a fun little challenge to build out yourself is super helpful for understanding how to make sleek, efficient DOM listeners. It also means you will have one less dependency to worry about in your package, so no breaking changes and a lot of flexibility for adding new features!
 
-To see this solution in action, it is used all over the place on our Georgia Tech club's homepage: Golden Swarm Games. Visit the site https://gsg.surge.sh or [the repo](https://github.com/Holben888/gsg-site) to see how our scroll animations work under the hood. 
-
-## Thanks for reading! 😊 
-
-I'm a frontend webdev-in-training always tinkering with something. I try to post regularly here, so drop a follow if you enjoyed!
-
-Also check out my [Twitter](https://twitter.com/BHolmesDev) to see what I am up to :)
+To see this solution in action, it is used all over the place on our Georgia Tech club's homepage: Golden Swarm Games. [Visit the site](https://gsg.surge.sh) or [the repo](https://github.com/Holben888/gsg-site) to see how our scroll animations work under the hood. 

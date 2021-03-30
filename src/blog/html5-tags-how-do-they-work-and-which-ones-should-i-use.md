@@ -11,7 +11,7 @@ publishedOn: 2019-12-02T23:01:19.723Z
 
 _This article is a snippet from **Bits of Good's web dev bootcamp.** If you like what you see, [head over here](https://www.notion.so/gtbitsofgood/Curriculum-ca431096426b4fd1968ac49121ff2fdb) to view the full course (with written resources, video walkthroughs, and project activities) for free!_
 
-# Starting with definitions
+## Starting with definitions
 
 HTML, or _Hypertext Markup Language,_ is a language used to define the "skeleton" of a webpage. It isn't meant to include any bells and whistles, and it definitely won't look pretty on its own! It's simply meant to define _what_ gets shown on the page, from images to text and everything in between.
 
@@ -53,11 +53,11 @@ Next, we add our body for all of our website's content to live. This is denoted 
 
 _**Note:** If you use CodePen, each Pen automatically adds these `html` and `body` wrappers for you around whatever code you put inside the "HTML" box, complete with the language specification. So, no need to use it on every CodePen you create, but know it's an important concept when building website outside of this tool!_
 
-# Important tags
+## Important tags
 
 There are **many** HTML tags worth knowing. You can find the full list [here](https://www.tutorialrepublic.com/html-reference/html5-tags.php), but these are some highlights you should know for getting started 🏃‍♂️
 
-## Tags for content
+### Tags for content
 
 - `<p>` A paragraph block; the most general block when you want some text on the page
 - `<h1>` ... `<h6>` A header block, with `h1` being the highest level header, `h2` being the second highest, and so on. A newspaper article is a solid example of this, where the article title would be an `h1`, each section heading would be an `h2`, and each subheading would be an `h3`
@@ -75,7 +75,7 @@ There are **many** HTML tags worth knowing. You can find the full list [here](ht
 - `<img src="https://cute_cat.gif" alt="gif of a cat eating ice cream" />` An image, with the actual image file coming from the `src` link and the `alt` describing the image. You can read the `alt` when hovering over an image or when using a screen reader
 - `<button>` A button you can click. You'll use JavaScript to get buttons to actually do something, but we'll leave that as a mystery for now 😁
 
-## Tags for the layout of that content
+### Tags for the layout of that content
 
 - `<header>` A page header, often with the site banner and navigation bar
 - `<footer>` A page footer, often with important links that couldn't go anywhere else
@@ -92,7 +92,7 @@ Generally, you'll use a `<section>` to group elements under common themes, like 
 
 Hop over to [codepen.io](https://codepen.io) and make a new Pen. Start pasting some of the tags above into the HTML section to see what they display in the preview box!
 
-## See these tags in action
+### See these tags in action
 
 Now, let's take a look at a completed website to see how the HTML is structured. We'll be using your browser's "inspector" for this, and you can follow along by visiting the live site at https://gsg.surge.sh. I encourage you to open this tool on some of your favorite website as well to see how they structure their own markup!
 
@@ -103,13 +103,15 @@ Now, let's take a look at a completed website to see how the HTML is structured.
 ## Found this helpful?
 
 Great! This article is part of a _huge_ suite of resources used by the Bits of Good organization to teach newbies the ropes. If you want to...
-💅 **learn how to write better CSS with your bare hands**
-⚙️ **get the hang of array functions in JS**
-📶 **figure out how to talk to APIs**
-👩‍💻 **build feature-rich frontends and backends using JS frameworks**
-🏃‍♂️ **_and most anything else in the world of web dev_,**
-Check out the Bits of Good bootcamp! All activities, written resources, and projects are free for you to explore and share with others 😁
 
-## Access the curriculum [here](https://www.notion.so/gtbitsofgood/Curriculum-ca431096426b4fd1968ac49121ff2fdb)!
+- 💅 **learn how to write better CSS with your bare hands**
+- ⚙️ **get the hang of array functions in JS**
+- 📶 **figure out how to talk to APIs**
+- 👩‍💻 **build feature-rich frontends and backends using JS frameworks**
+- 🏃‍♂️ **_and most anything else in the world of web dev_,**
+
+Check out the Bits of Good bootcamp. All activities, written resources, and projects are free for you to explore and share with others 😁
+
+👉 You can access the curriculum [here](https://www.notion.so/gtbitsofgood/Curriculum-ca431096426b4fd1968ac49121ff2fdb)!
 
 If you have any feedback, criticisms, or content suggestions, message us at hello@bitsofgood.org.

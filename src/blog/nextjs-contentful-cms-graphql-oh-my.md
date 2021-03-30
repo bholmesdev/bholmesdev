@@ -105,7 +105,7 @@ Clicking into the yellow `ExecutiveBoardMemberCollection` link (following the co
 
 This looks really similar to the content model we wrote in Contentful! As you can see, we can query for any of these fields to retrieve a response (most of them being strings in this example).
 
-###Writing your first query
+### Writing your first query
 
 Alright, we've walked through the docs and found the queries we want... so how do we get that data?
 
@@ -375,13 +375,3 @@ If you're interested, we deployed our entire project to a CodeSandbox for you to
 **[Head over here](https://codesandbox.io/s/hack4impact-website-0kn5m?file=/pages/about/index.tsx)** to see how we retrieve our executive board members on [our about page](https://hack4impact.org/about). Also, check out the `utils/contentful` directory to see how we defined our schemas using TypeScript.
 
 [Our repo](https://github.com/hack4impact/hack4impact-website) is 100% open as well, so give it a ⭐️ if this article helped you!
-
-## Thanks for reading! If this article was helpful...
-
-I love writing about this sort of stuff 👨‍💻
-
-❤️ [**First, please check out the incredible work Hack4Impact is cooking up!**](https://hack4impact.org/)
-
-🐦 [**Follow my Twitter for random web dev tips and articles I find cool**](https://twitter.com/bholmesdev)
-
-📗 [**Follow my personal blog for new posts every 2-3 weeks**](https://dev.to/bholmesdev)

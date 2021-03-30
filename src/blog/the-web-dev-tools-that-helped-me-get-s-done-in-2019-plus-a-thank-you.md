@@ -7,13 +7,13 @@ publishedOn: 2020-01-03T20:13:06.115Z
 
 Now that we're turning over a new year (a new decade even!), I wanted to take a minute to remember all the tools that made my life easier in 2019. "Best of" lists for web dev tend to summarize the technologies in general terms. So for this, I want to focus more on the projects I worked on this year, and how these technologies helped me do them. Onwards!
 
-# Netlify
+## Netlify
 
 I'm probably not alone in absolutely *gushing* over [Netlify](https://www.netlify.com) all year. It's just so freaking easy to get from zero to deployed! In brief, Netlify is for deploying a website frontend, along with a ton of extra goodies: continuous deployment, support for hooks, custom domains with automatic SSL certificates... all wrapped in a gorgeous dashboard that's easy to navigate.
 
 I deployed two pretty big projects over there: my portfolio website at https://bholmes.dev, and the landing page for our Bits of Good organization over on https://bitsofgood.org. I hadn't managed custom domains in my life before this, but Netlify walked me through every step of copying DNS configs and other network-y things. I also highly recommend allowing Netlify to manage your domain over your domain provider, since they make setting up subdomains and SSL certificates so much easier 😁
 
-## Rapid testing on mobile Safari
+### Rapid testing on mobile Safari
 
 Bet you've heard this one before: the website looks great on the "mobile view" in Chrome dev tools, but the layout completely breaks on the actual phone 🤦‍♂️
 
@@ -21,7 +21,7 @@ Well, Netlify actually has a solution for this: [manual deployment from the comm
 
 This was pivotal for our [Bits of Good homepage](https://bitsofgood.org), where we had some magical CSS to reorganize our swooping vector graphics on mobile views. Also helped us [catch a screen sizing issue](https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser) well before pushing a PR!
 
-## Using Netlify Forms
+### Using Netlify Forms
 
 I just dipped my toes into this, but [Netlify forms](https://docs.netlify.com/forms/setup/) proved a super quick and easy solution to storing HTML form responses without a backend. This came in clutch for our new Bits of Good "Contact Us" page. Originally, we planned to make an API request once the form's submitted to `POST` to a serverless function, which could then forward messages to our email. Not terrible, but sounds like a good 6-7 hours of work (we're bad at backends, so hold the I-could-do-this-in-negative-3-hours 😆).
 
@@ -34,7 +34,7 @@ Now with Netlify, here's all we have to do (for **free** mind you!)
 
 Boom! All form responses now get stored on Netlify, complete with pretty solid spam detection. We can also deploy our serverless function for email forwarding directly to Netlify, which already has hooks for detecting form submissions. Nice!
 
-# Svelte v3
+## Svelte v3
 
 I stumbled across this library at the end of last year, when it was the #1 write-in for the [State of JS 2018](https://2018.stateofjs.com/introduction/) survey. It was running on v2 at the time, but I was still blown away by it's mission statement: the magical disappearing framework ✨
 
@@ -46,28 +46,28 @@ Now, I've built more projects with it than I can count! Here's the gist of why i
 
 **For a quick rundown on how easy Svelte is to learn and use, [check out my blog post](https://dev.to/bholmesdev/why-sveltejs-may-be-the-best-framework-for-new-web-devs-205i) exploring the tool from a teacher's perspective!**
 
-## Svelte for quick projects
+### Svelte for quick projects
 
 Svelte has become my new go-to for getting small projects up and running fast. I've been to a few hackathons at my university ([go Yellow Jackets!](https://gfycat.com/thornyoblonganemone)), and I use [this Svelte template](https://github.com/Holben888/svelte-starter-template) to start working on a web UI. I started reaching for Svelte over, say, React because of how easy it is to make new components. Each component is basically "sandboxed" in its own file, where you write vanilla HTML, CSS, and JS while having all your styles and scripts scoped to that component alone. It's almost like whipping up a CodePen, if you could compose CodePens to create a mega-Pen for your entire website 😁
 
 One of my favorite highlights was for a hardware hackathon called [BuildGT](https://build.hack.gt). The premise: play a frame of bowling with a Roomba as the ball! The end product is something that never should have existed, but it was super fun to get everything talking to each other. We handled communication between the Roomba and the Kinect sensor (for fallen pin detection) via web sockets, but the icing on the cake was the instructional UI built on Svelte in a matter of hours. 
 
-### The hack
+#### The hack
 
 {% twitter 1102251893110333440 %}
 
-### The UI
+#### The UI
 
 {% twitter 1102254956973826048 %}
 
-## Svelte for static sites
+### Svelte for static sites
 
 Aside from getting out ideas quickly, Svelte has some tricks up its sleeve for static site generation too. We use this for our Bits of Good org website ([full repo here](https://github.com/GTBitsOfGood/bog-web)), built on Svelte and the [Contentful CMS](https://www.contentful.com). To help with routing and prerendering the actual static site, we're using the magical [Sapper](https://sapper.svelte.dev) framework to manage it all for us. This acts a lot like [NextJS](https://nextjs.org), but offers some really nice benefits:
 
 - Management of server-side rendering to make that initial page load *fast.* Similar to NextJS, you can specify all the API calls you want to fire before the page loads [like so](https://sapper.svelte.dev/docs#Preloading).
 - Management of routing behind the scenes. It even lets you use a regular old `a` tag to link to other routes on the site, rather than importing some special `Link` component.
 
-### Sapper also uses a build tool you can actually understand: Rollup!
+#### Sapper also uses a build tool you can actually understand: Rollup!
 
 > _**If you're wondering what a CMS is,** it's an external tool for storing all the text and images used by your website. This comes in handy working with non-techy team members who want to edit the content of the site, but don't know how to code. Instead of asking a developer, they can just open a web portal and edit the content themselves! [Headless Wordpress](https://wordpress.org) is one of the most popular examples of this._
 
@@ -81,7 +81,7 @@ import projects from '@contentful-entries/project'
 
 Bam! Now `projects` is an array of JavaScript objects with all the text and image URLs we need. As you can see, Rollup also helped us add an alias called `@contentful-entries` to make content retrieval a little easier. For those curious about the nitty-gritty details, here's our [final RollupJS plugin](https://github.com/GTBitsOfGood/bog-web/blob/master/rollup-plugin-content-loader.js) ✨
 
-# CSS variables / custom properties
+## CSS variables / custom properties
 
 This was a big win for CSS when it hit browsers in 2018. In 2019, the feature's matured a ton and scored some pretty great browser adoption. Yes, IE is still the problem child... but there's [some good polyfills](https://stackoverflow.com/questions/46429937/ie11-does-a-polyfill-script-exist-for-css-variables) at this point if you need them 🙃
 
@@ -95,7 +95,7 @@ This was super useful when I moved some complex style calculations from JavaScri
 
 **To see CSS variables in action, [check out my blog post](https://dev.to/bholmesdev/how-using-css-variables-cut-down-on-my-javascript-dc4) on a practical application!**
 
-# Contraste
+## Contraste
 
 *Disclaimer: This is an app only available for Macs at the moment*
 
@@ -107,7 +107,7 @@ I freaking love this tool just for how simple it is, and the fact that it's a gl
 
 ![Contraste color picker in action, with color adjustent to fix accessibility compliance](https://thepracticaldev.s3.amazonaws.com/i/9jshlsek63tu4nnhffb2.gif)
 
-# Before I go, thanks for all the support this year 😁
+## Before I go, thanks for all the support this year 😁
 
 I started this blog back in March with a quick little post: [Why I'm using Surge and not GitHub pages](https://dev.to/bholmesdev/why-im-using-surge-and-not-github-pages-4lf5). I threw it out there not really knowing what I was doing (even managed to write some technical inaccuracies on a 3 minute read 😆), and expected maybe a couple likes by the morning.
 

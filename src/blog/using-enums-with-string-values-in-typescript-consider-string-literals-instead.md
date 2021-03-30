@@ -58,9 +58,3 @@ You can see from the informative gif above that autocomplete works as well!
 Admittedly, string literals aren't the silver bullet for every situation. Notably, using string literals doesn't improve on the verbose nature of enums. In fact, it'll often provide more information than necessary when assigning the literal type.
 
 It's also more visually unclear what all possible values are when assigning `'random string'` instead of `SpecificTypes.Enum`. This requires team communication to decide if string literals work best for smooth PR reviewing and text editor / IDE support.
-
-## Thanks for reading!
-
-I'm a frontend webdev and designer always tinkering with something. I just snagged a shiny "dot dev" URL for my portfolio, so head over there for all my socials and a little more about my dev journey!
-
-👉 https://bholmes.dev

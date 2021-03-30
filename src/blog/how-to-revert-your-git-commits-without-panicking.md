@@ -100,9 +100,3 @@ You may have heard using `--force` on a push isn't best practice since it involv
 Hopefully by the end of this you've gotten your branch back on track! Mainly, always make super sure of what commands you're about to run when modifying commits, especially when editing git history directly. This can be a very daunting task for beginners and experts alike, so making sure of the diff and viewing the commit log are a must!
 
 I actually wrote this article after having to go through the same process for my job, wanting to give my hastily written notes some clarity. Hope this helps others stuck in the same boat 😊 
-
-## Thanks for reading!
-
-I'm a frontend webdev and designer always tinkering with something. I just snagged a shiny "dot dev" URL for my portfolio, so head over there for all my socials and a little more about my dev journey!
-
-👉 https://bholmes.dev

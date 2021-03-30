@@ -5,10 +5,9 @@ layout: blog-post
 publishedOn: 2019-03-06T22:40:16.011Z
 ---
 
-*Update*
-Will leave a small disclaimer here that Surge hasn't seen many updates to its repo recently so be aware of that. Certainly safe to use now (haven't seen any vulnerability warnings), but worth looking out for in the future. If the project ends dying off [Netlify](https://www.netlify.com/docs/cli/) and [Zeit Now](https://zeit.co/now) are **great** alternatives that offer similar benefits over GitHub Pages 👍 
+> **Update:** I've noticed that Surge hasn't seen many updates to its repo recently. It seems safe to use for now (I haven't seen any vulnerability warnings), but if the project ends dying off, [Netlify](https://www.netlify.com/docs/cli/) and [Zeit Now](https://zeit.co/now) are **great** alternatives that offer similar benefits over GitHub Pages
 
-##Hm, so what's a "surge" exactly? 🤔
+## Hm, so what's a "surge" exactly? 🤔
 
 GitHub Pages is so prolific at this point it likely needs no introduction. [Surge](https://github.com/sintaxi/surge), on the other hand, is a much lower profile project. It accomplishes the same goal as GitHub Pages, allowing one to publish their static site on an accessible URL of whatever name they choose complete with an "https." Where surge differs is in how that website gets put on the world wide web.
 
@@ -29,7 +28,7 @@ enter your domain to deploy to...
 ```
 and boom 💥! You're up and running. Note I'm using a custom URL extension here as well. You can of course specify this if you have the rights to that domain, but you can omit the extension to use the totally free `surge.sh`.
 
-##Looks easy, but where are my git hooks?
+## Looks easy, but where are my git hooks?
 
 The beauty of GitHub Pages is it will simply track your master branch and rebuild / publish your site whenever it gets updated. Thankfully, surge offers the option to hook into pushes and commits with a little addition to your `package.json`. This snippet will do the trick for redeploying on push:
 ```
@@ -40,7 +39,7 @@ The beauty of GitHub Pages is it will simply track your master branch and rebuil
        }
 ```
 
-##Neat. But what are the benefits exactly?
+## Neat. But what are the benefits exactly?
 
 Surge offers a few niceties that GitHub Pages won't out of the box. For one, you obviously don't need to use GitHub to manage your version control, so you can use any custom solution you desire and still deploy with the same `surge` command.
 
@@ -58,11 +57,8 @@ Notice our `200.html` added at the bottom. This acts as a fallback to serve up w
 
 The last major benefit is one shared by Zeit Now: deploying whenever you want in a matter of seconds. Rather than dirtying up your commit history, you can just deploy your changes instantly and see how they look. This was super useful recently when testing out a mobile layout for a site I was developing, where mobile Safari was being a bit more finicky than my mobile viewer in Chrome. I could just deploy my changes to whatever URL I chose and see my edits as soon as I refreshed the page!
 
-##Okay I'm starting to see it. What are the limitations?
+## Okay I'm starting to see it. What are the limitations?
 
 So Surge was built to be really good at doing a very specific task. If you have anything more than a static site or client side application, there's sadly not much you can do with this tool. Any fancy backend you have would need to be deployed separately, or you can use the aforementioned Zeit Now to deploy everything in one place. Now is a much more flexible tool that's quickly gaining traction, but I've stayed loyal to Surge because of the routing niceties and lack of any necessary `config` files.
 
 Of course you should use whatever tool that works best in your workflow. But the next time you're building v175 of your portfolio site, consider giving Surge a try 😊 
-
-###Thanks for reading!
-I'm a frontend webdev-in-training always tinkering with something. I'll try to post regularly here, so drop a follow if you enjoyed :)

@@ -20,7 +20,7 @@ So yes, the pattern I'm about to detail isn't a _direct_ translation of SASS / S
 1. You have some CSS you want to reuse in a bunch of places
 2. You want to pass some **parameters** to that reusable CSS to adjust its behavior
 
-# Alright, expectations lowered. What do ya got?
+## Alright, expectations lowered. What do ya got?
 
 Well, it all starts with our friend, [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
 
@@ -45,7 +45,7 @@ p {
 
 Now, each paragraph will have a different color, depending on the variable value assigned by the parent `div`. Nice!
 
-# A concrete example
+## A concrete example
 
 Say you have some social links on your site. You want all of these links to have a uniform layout, but you want to adjust the coloring to match the site you're linking to. In this case, we have two links to consider:
 
@@ -88,9 +88,9 @@ Now, if we ever have a new link color to add, we can write a nice one-liner in a
 ```
 
 **Here's a Pen to show this solution in action:**
-{% codepen https://codepen.io/bholmesdev/pen/Yzyavop %}
+{% codepen https://codepen.io/bholmesdev/pen/Yzyavop default-tab=css,result %}
 
-## Alright, but plain CSS can't do that...
+### Alright, but plain CSS can't do that...
 
 That's where you're _wrong!_ Though CSS lacks our nifty `@include` syntax, we can still pass variables to a `color-link` ruleset in a similar way.
 
@@ -168,9 +168,9 @@ _Boom._ With CSS variables, we can just assign a value to our `color` variable i
 Our `color-link` "mixin" will apply the appropriate colors where we need them!
 
 **Here's another CodePen to see this working:**
-{% codepen https://codepen.io/bholmesdev/pen/LYpdMyr %}
+{% codepen https://codepen.io/bholmesdev/pen/LYpdMyr default-tab=css,result %}
 
-# Yes, there are still limitations
+## Yes, there are still limitations
 
 This definitely makes your plain CSS stylesheets more DRY, but it fails to address some funkier use cases.
 
@@ -193,7 +193,7 @@ We also have to modify our HTML by applying more classes. Depending on who you a
 
 I agree with this somewhat, but this post should at least show off how powerful CSS variables really are. They can even store complicated styles with spacing and commas, like `--crazy-padding: 12px 12px 0 0` or `--dope-box-shadow: 1px 2px 3px #abcabc`. The same can't be said for SASS mixin parameters!
 
-# Thanks for reading!
+## Thanks for reading!
 
 This post is part of my hard-headed goal to ditch CSS preprocessors. I definitely miss nested styles... but the power of CSS variables, combined with literal _microseconds_ of build time whenever I save, make me happy enough with raw CSS these days 😁
 
@@ -201,4 +201,4 @@ In case you're interested, I have another post taking a deeper dive into CSS var
 
 Also, expect some more posts over the next few months. I finally graduated college, which I have... [mixed feelings about to say the least](https://twitter.com/BHolmesDev/status/1258771501647646722?s=20). This month should be nothing but pumping out quarantine-ridden content before I start my first _adult job._ 
 
-**So, drop a follow if this helped you!** More to come soon.
+**So, join the newsletter below if this helped you!** More to come soon.

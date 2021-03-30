@@ -45,7 +45,8 @@ The goal was simple: I wanted an accent bar to cycle through a set of gradients 
 
 Before diving into the example, note that this project was built on Svelte. This shouldn't affect the readability of the code too badly; just accept that the lesser details involve some magic ✨
 
-![](https://thepracticaldev.s3.amazonaws.com/i/dlxut0dvc69sx06dzuzp.gif)
+![Animated gradient of colors](https://thepracticaldev.s3.amazonaws.com/i/dlxut0dvc69sx06dzuzp.gif)
+
 _The end goal_ 
 
 ## My old way of doing it
@@ -120,9 +121,3 @@ Of course, this can start to have a negative impact on readability, with variabl
 ## Wrapping up
 
 With that, it should be clear that custom properties can be pretty powerful to take your JavaScript logic over to the stylesheet. Additionally, now that CSS variables are compatible with most all modern browsers (except IE of course 😢), they should be pretty safe to experiment with even in production code. So go forth and get to styling!
-
-## Thanks for reading!
-
-I'm a frontend webdev-in-training always tinkering with something. I just snagged a shiny "dot dev" URL for my portfolio, so head over there for all my socials and a little more about my dev journey! 
-
-👉 https://bholmes.dev

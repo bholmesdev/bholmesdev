@@ -321,11 +321,4 @@ If you're curious how this could all fit together in a React app, our entire [Ha
 
 **To check out the Nav component, [head over here](https://codesandbox.io/s/hack4impact-website-0kn5m?file=/components/shared/Nav/index.tsx).** 
 
-## Thanks for reading! If this article was helpful...
-
-I love writing about this sort of stuff 👨‍💻
-❤️ [**First, please check out the incredible work Hack4Impact is cooking up!**](https://hack4impact.org)
-🐦 [**Follow my Twitter for random web dev tips and articles I find cool**](https://twitter.com/bholmesdev)
-📗 [**Follow my blog for new posts every 2-3 weeks**](https://dev.to/bholmesdev)
-
 _And thanks to [James Wang](https://thejameswang.me) for nudging me to write this article. Might have sparked a whole mini-series on how we built our splash page_

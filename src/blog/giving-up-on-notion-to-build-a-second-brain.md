@@ -143,11 +143,3 @@ Notion had these issues too, so it's definitely not a step back for me (yes I kn
 Still, I'm seriously impressed with how much I can accomplish with just a text editor and a couple extensions. It's also comforting to actually _own_ my notes instead of using a cloud-based system.
 
 So, I'll definitely be sticking with Foam as I enter 2021 🎉 If you have any tips on getting more out of a "second brain," please leave them in the comments!
-
-## Thanks for reading! If this article was helpful...
-
-I love writing about this sort of stuff 👨‍💻
-
-🐦 [**Follow my Twitter for random web dev tips and articles I find cool**](https://twitter.com/bholmesdev)
-
-📗 [**Follow my personal blog for new posts every week**](https://dev.to/bholmesdev)

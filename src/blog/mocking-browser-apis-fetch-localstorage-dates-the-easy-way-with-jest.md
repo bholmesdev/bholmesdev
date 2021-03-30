@@ -201,7 +201,7 @@ it('returns an empty array on bad fetch', async () => {
 
 And since we're mocking implementation *once,* there's no `afterAll` cleanup to worry about! Pays to clean your dishes as soon as you're done with them 🧽
 
-##🔎 Addendum: using "spies"
+## 🔎 Addendum: using "spies"
 
 Before wrapping up, I want to point out an alternative approach: mocking `global` using [Jest spies](https://jestjs.io/docs/en/jest-object#jestspyonobject-methodname).
 
@@ -239,4 +239,4 @@ This might feel a little "safer" to some people, since we're not explicitly over
 
 ## Thanks for reading! If this article was helpful...
 
-I love writing about this sort of stuff. With this, I'm officially 3 posts into my goal to post once a week in 2021! So, go ahead and [**drop a follow**](https://dev.to/bholmesdev) to hold me accountable 😁
+I love writing about this sort of stuff. With this, I'm officially 3 posts into my goal to post once a week in 2021! So, go ahead and join the newsletter below to hold me accountable 😁
