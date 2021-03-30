@@ -3,6 +3,8 @@ const attrs = require('markdown-it-attrs')
 const prism = require('markdown-it-prism')
 const headingAnchors = require('markdown-it-anchor')
 
+const wrapWithNewlines = (str = '') => `\n\n${str}\n\n`
+
 const toCodepenEmbed = (url = '', params = '') => {
   const defaultTabs = params.replace('default-tab=', '')
   const [_, slug] = url.match(/\/pen\/([\w|\d]*)$/)
@@ -22,7 +24,7 @@ const toYoutubeEmbed = (videoSlug = '') => {
 }
 
 const formatCodepenEmbeds = (rawMarkdown = '') => {
-  const embeds = rawMarkdown.match(/{% codepen (.*) (.*) %}/g)
+  const embeds = rawMarkdown.match(/\n\n{% codepen (.*) (.*) %}\n\n/g)
   if (!embeds) return rawMarkdown
 
   let markdown = rawMarkdown
@@ -30,7 +32,10 @@ const formatCodepenEmbeds = (rawMarkdown = '') => {
   for (const embed of embeds) {
     try {
       const [_, url, params] = embed.match(/{% codepen (.*) (.*) %}/)
-      markdown = markdown.replace(embed, toCodepenEmbed(url, params))
+      markdown = markdown.replace(
+        embed,
+        wrapWithNewlines(toCodepenEmbed(url, params))
+      )
     } catch (e) {
       console.error('There was a problem processing a Codepen embed', e)
     }
@@ -39,7 +44,7 @@ const formatCodepenEmbeds = (rawMarkdown = '') => {
 }
 
 const formatYoutubeEmbeds = (rawMarkdown = '') => {
-  const embeds = rawMarkdown.match(/{% youtube (.*) %}/g)
+  const embeds = rawMarkdown.match(/\n\n{% youtube (.*) %}\n\n/g)
   if (!embeds) return rawMarkdown
 
   let markdown = rawMarkdown
@@ -47,7 +52,10 @@ const formatYoutubeEmbeds = (rawMarkdown = '') => {
   for (const embed of embeds) {
     try {
       const [_, videoSlug] = embed.match(/{% youtube (.*) %}/)
-      markdown = markdown.replace(embed, toYoutubeEmbed(videoSlug))
+      markdown = markdown.replace(
+        embed,
+        wrapWithNewlines(toYoutubeEmbed(videoSlug))
+      )
     } catch (e) {
       console.error('There was a problem processing a Youtube embed', e)
     }
