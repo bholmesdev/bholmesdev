@@ -32,6 +32,14 @@ const formatCodepenEmbeds = (rawMarkdown = '') => {
 }
 
 module.exports = (filePath) => {
+  // open all links in a new tab
+  md.renderer.rules.link_open = (tokens, idx) => {
+    const attrsAsString = tokens[idx].attrs.reduce((str, [attr, value]) => {
+      return str + `${attr}="${value}" `
+    }, '')
+    return `<a ${attrsAsString}target="_blank" rel="noreferrer">`
+  }
+
   md.use(prism)
     .use(attrs)
     .use(headingAnchors, {
