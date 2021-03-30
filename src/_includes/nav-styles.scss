@@ -72,6 +72,7 @@
     .jump-to-section__label-container {
       overflow: hidden;
       flex: 1;
+      margin-right: 20px;
 
       @include tablet-and-up {
         position: absolute;
@@ -160,6 +161,8 @@
     position: absolute;
     top: 100%;
     left: 4px;
+    width: 98vw;
+    max-width: 500px;
     font-size: 22px;
     background: var(--bg-color);
     border: 2px solid var(--body-color-2);
@@ -186,7 +189,6 @@
 
     li {
       margin-bottom: 24px;
-      white-space: nowrap;
       a {
         margin: 0;
       }
