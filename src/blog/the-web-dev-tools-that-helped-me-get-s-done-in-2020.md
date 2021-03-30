@@ -263,4 +263,4 @@ There's some serious benefits to this approach. Not only can we omit keys we don
 
 I know 2020 hit a lot of people hard this year. If you're struggling with family, dealing with kids at home, finding a new job, losing your mind indoors... well, at least you made it through to today 🙂
 
-If you have anything else that made your life better as a developer or as a person, please drop them in the comments below. Would love to hear some fresh perspectives as we all take a fresh start for 2021!
+If you have anything else that made your life better as a developer or as a person, please drop them in the comments on the [DEV version](https://dev.to/bholmesdev/the-web-dev-tools-that-helped-me-get-s-done-in-2020-gpl) of this post. Would love to hear some fresh perspectives as we all take a fresh start for 2021!

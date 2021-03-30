@@ -176,9 +176,3 @@ App.click() // sets the state at stateValues[0] to 3
 App.click() // sets the state at stateValues[0] to 4
 React.render(Component) // logs { count: 4 }
 ```
-
-## Thanks for reading! If this post helped you...
-
-I love writing about this sort of stuff. With this, I'm officially 6 posts into my goal to **post once a week in 2021!** Go ahead and [**drop a follow**](https://dev.to/bholmesdev) to hold me accountable 😁
-
-You can also 🐦 [find me on Twitter](https://twitter.com/BHolmesDev) for tens of tweets of month.

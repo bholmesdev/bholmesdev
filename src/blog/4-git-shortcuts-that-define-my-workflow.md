@@ -128,9 +128,3 @@ _Shout out to "lord of boops" [Jason Lengstorf](https://www.jason.af) for the in
 This command goes full-circle. If you're somehow too lazy to check out the latest `main` branch before starting anew, this will let you `gimme` and `woosh` all in one go!
 
 Not much to explain with this one. Just go forth into perfect boop-dom.
-
-## Thanks for reading! If this post helped you...
-
-I love writing about this sort of stuff. With this, I'm officially 7 posts into my goal to **post once a week in 2021!** Go ahead and [**drop a follow**](https://dev.to/bholmesdev) to hold me accountable 😁
-
-You can also 🐦 [find me on Twitter](https://twitter.com/BHolmesDev) for tens of tweets of month, and [visit my site](https://bholmes.dev) to learn more about my web dev journey.

@@ -236,7 +236,3 @@ afterAll(() => {
 Overall, this is pretty much identical to our original approach. The only difference is in the semantics; instead of **assigning new behavior** to these global functions (i.e. `= jest.fn()`), we're **intercepting requests to these functions** and using our own implementation.
 
 This might feel a little "safer" to some people, since we're not explicitly overwriting the behavior of these functions anymore. But as long as you pay attention to your cleanup in the `afterAll` block, either approach is valid 😁
-
-## Thanks for reading! If this article was helpful...
-
-I love writing about this sort of stuff. With this, I'm officially 3 posts into my goal to post once a week in 2021! So, go ahead and join the newsletter below to hold me accountable 😁

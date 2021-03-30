@@ -320,8 +320,4 @@ If you want to see how this works in-context, check out this CodeSandbox for our
 
 **To check out the component, [head over here](https://codesandbox.io/s/hack4impact-website-0kn5m?file=/components/shared/Nav/index.tsx).** 
 
-## Thanks for reading! If this article was helpful...
-
-I love writing about this sort of stuff. With this, I'm officially 4 posts into my goal to **post once a week in 2021!** Go ahead and [**drop a follow**](https://dev.to/bholmesdev) to hold me accountable 😁
-
-You can also 🐦 [find me on Twitter](https://twitter.com/BHolmesDev) for tens of tweets of month, and learn more about ❤️ [Hack4Impact here](https://hack4impact.org)!
+And if this helped you out, you can learn more about ❤️ [Hack4Impact here](https://hack4impact.org).
