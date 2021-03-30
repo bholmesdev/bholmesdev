@@ -442,6 +442,7 @@ body > [data-page] > footer {
         width: 100%;
         margin-bottom: 20px;
         font-size: inherit;
+        margin-top: 30px;
 
         @include mobile {
           font-size: 18px;
@@ -460,7 +461,7 @@ body > [data-page] > footer {
         border-bottom: 2px solid var(--bg-color-2);
         width: 100%;
         margin-top: 15px;
-        margin-bottom: 30px;
+        margin-bottom: 16px;
         padding-bottom: 10px;
         font-size: 20px;
         font-family: inherit;
@@ -471,6 +472,10 @@ body > [data-page] > footer {
           outline: none;
           border-bottom-color: var(--section-color);
         }
+      }
+      .newsletter__never-spam {
+        font-style: italic;
+        font-size: 16px;
       }
     }
   }
