@@ -1,7 +1,7 @@
 ---
 title: Ben's Work
 description: Everything I've built over the years, from JAMstack apps to Java Swing!
-image: /assets/og-images/work.jpg
+image: https://bholmes.dev/assets/og-images/work.jpg
 ---
 
 include icons
@@ -57,7 +57,7 @@ section#complete-section(style="--section-color: var(--red)")
     article(id=project.hash)
       .content
         .macintosh
-          h2 #{project.title}
+          h2.omit-from-toc #{project.title}
           img(src="/assets/svgs/macintosh.svg" alt="")
           .macintosh__img-container
             +video(project)

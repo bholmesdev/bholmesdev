@@ -1,0 +1,23 @@
+- var formattedDate = `${new Date(publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`
+- var tweet = `Woah, I learned so much from this! "${title}" by @bholmesdev https://bholmes.dev${page.url}`
+
+article(data-page=slinkit.page)
+  header
+    if image
+      img(height=320 src=image alt=description)
+    h1 #{title}
+    p.details
+      span #[strong #{minuteRead(content)}] minute read
+      span.spacer #{"•"}
+      span Last updated 
+        time(pubdate datetime=publishedOn) #{formattedDate}
+  div !{content}
+  hr
+  footer
+    p Learn a little something? 
+      strong #[a(href="https://twitter.com/intent/tweet?text=" + encodeURI(tweet) target="_blank" rel="noreferrer") Share this post] on Twitter!
+    section.about-the-author
+      img(src="/assets/images/me.jpg" alt="Hand drawn portrait of Ben Holmes")
+      div
+        address #[a(rel="author" href="/") Ben Holmes ]
+        | is a web developer + UI designer by trade from Charleston SC. He's been tinkering with JavaScript and CSS since 2014, and has lead a #[a(href="https://hack4impact.org/dev-bootcamp") full stack bootcamp curriculum] used by universities across the country. Now, he's working fulltime at Peloton and teaching the world a bit of web whimsy in his spare time.

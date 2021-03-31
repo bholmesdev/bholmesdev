@@ -1,0 +1,174 @@
+@import '../_includes/mixins.scss';
+@import '../_includes/prism-code-styling.scss';
+
+article {
+  header {
+    margin-bottom: 40px;
+    img {
+      margin-bottom: 16px;
+      aspect-ratio: 7 / 3;
+      object-fit: cover;
+      height: auto;
+      width: 100%;
+      background: #f2e9cd;
+    }
+    h1 {
+      margin: 0;
+      margin-bottom: 24px;
+    }
+    .details {
+      .spacer {
+        margin: 0 10px;
+      }
+      time {
+        font-weight: bold;
+      }
+      span {
+        margin-bottom: 10px;
+      }
+
+      @include mobile {
+        .spacer {
+          display: none;
+        }
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+
+  padding-top: calc(var(--nav-height) + 40px);
+  max-width: 800px;
+  margin: auto;
+  font-size: 20px;
+  line-height: 1.45;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  @media (max-width: 600px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  h1 {
+    @include header-font;
+
+    font-weight: bold;
+    font-size: 64px;
+
+    @include mobile {
+      font-size: 48px;
+    }
+  }
+
+  h2 {
+    margin-top: calc(60px + 1em);
+    @include subheader;
+    @include numbered-header;
+  }
+
+  h3 {
+    margin-top: 36px;
+    @include subheader-font;
+
+    font-size: 32px;
+
+    @include mobile {
+      font-size: 24px;
+    }
+  }
+
+  h4 {
+    margin-top: 24px;
+    @include subheader-font;
+
+    font-size: 28px;
+
+    @include mobile {
+      font-size: 22px;
+    }
+  }
+
+  ul > li,
+  ol > li {
+    margin-bottom: 16px;
+  }
+
+  blockquote {
+    font-style: italic;
+  }
+
+  hr {
+    margin: 40px 0;
+  }
+  footer {
+    .about-the-author {
+      margin: 0;
+      margin-top: 40px;
+      padding: 0;
+      display: flex;
+      align-items: flex-start;
+      font-size: 18px;
+
+      @include mobile {
+        font-size: 16px;
+      }
+
+      address {
+        font-weight: bold;
+        display: inline;
+
+        a,
+        a:visited,
+        a:hover {
+          opacity: 1;
+          color: inherit;
+          text-decoration: none;
+          font-style: normal;
+        }
+      }
+
+      img {
+        width: 100px;
+        height: auto;
+        margin: 0;
+        margin-right: 24px;
+
+        @include mobile {
+          width: 60px;
+        }
+      }
+    }
+  }
+
+  // embed default styling
+  blockquote.twitter-tweet,
+  p.codepen {
+    margin: auto;
+    max-width: 500px;
+    min-height: 450px;
+    border-radius: 10px;
+    background: #fdf6e3;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  iframe[data-embed-type='youtube'] {
+    width: 100%;
+    height: 375px;
+
+    @include mobile {
+      height: 250px;
+    }
+  }
+}

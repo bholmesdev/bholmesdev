@@ -15,7 +15,9 @@ const loadNewStyles = (styles) =>
         new Promise((resolve, reject) => {
           const newStyle = document.head.appendChild(style)
           newStyle.onload = resolve
-          newStyle.onerror = reject
+          // TODO: stop silently failing on bad stylesheets
+          // Necessary evil right now, since we always have styles even when the file is nonexistent!
+          newStyle.onerror = resolve
         })
     )
   )

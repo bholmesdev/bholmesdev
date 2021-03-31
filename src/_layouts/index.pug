@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 - var defaultTitle = "Ben Holmes"
 - var defaultDescription = "I'm a web dev, UX freak, and restless tinkerer. Let me teach you the art of building websites!"
-- var defaultImage = "/assets/og-images/me.jpg"
+- var defaultImage = "https://bholmes.dev/assets/og-images/me.jpg"
+
+include icons
 
 html(lang="en-US")
   head !{slinkit.styles}
@@ -30,7 +32,7 @@ html(lang="en-US")
     meta(name="twitter:creator" content="@bholmesdev")
     meta(name="description" content=description || defaultDescription)
     meta(property="og:url" content=page.url)
-    meta(property="og:image" content='https://bholmes.dev' + (image || defaultImage))
+    meta(property="og:image" content=image || defaultImage)
     meta(property="og:image:width" content="1200")
     meta(property="og:image:height" content="630")
     meta(property="og:site_name" content="Ben Holmes")
@@ -54,17 +56,38 @@ html(lang="en-US")
           li
             a(href="/" class=page.url === '/' ? 'active' : '') Me
           li
-            a(href="/work/" class=page.url === '/work/' ? 'active' : '') Work
+            a(href="/blog/" class=page.url.startsWith('/blog') ? 'active' : '') Blog
           li
-            a(href="https://dev.to/bholmesdev") Blog
+            a(href="/work/" class=page.url.startsWith('/work') ? 'active' : '') Works
           li
-            a(href="/contact/" class=page.url === '/contact/' ? 'active' : '') Contact
+            a(href="/contact/" class=page.url.startsWith('/contact') ? 'active' : '') Contact
 
         button#primary-nav__toggle
           .stripe-top
           .stripe-middle
           .stripe-bottom
 
-    main(data-page=slinkit.page) !{content}
+    div(data-page=slinkit.page)
+      main !{content}
+      footer
+        .content
+          .newsletter
+            h2 Woah, there's a newsletter too!
+            form(action='https://tinyletter.com/bholmesdev' method='post' target='_blank')
+              label(for="email") Email
+              input#email(type="email" name="email" placeholder="10xengineer@genius.club" required)
+              p.newsletter__never-spam Don't worry, I won't spam you
+              button.cta-link(type="submit")
+                | Yes please, more content
+                +icon('send')
+          .socials
+            .socials__links
+              a(href="https://dev.to/bholmesdev" target="_blank" rel="noreferrer" aria-label="Ben's DEV.to blog")
+                +icon('devto')
+              a(href="https://twitter.com/bholmesdev" target="_blank" rel="noreferrer" aria-label="Ben's Twitter")
+                +icon('twitter')
+              a(href="https://github.com/holben888" target="_blank" rel="noreferrer" aria-label="Ben's GitHub")
+                +icon('github')
+            p Follow along with #[strong Ben] for the fun, for the whimsy, and for the love of building websites ♥ 
 
   | !{slinkit.scripts}

@@ -36,6 +36,32 @@ module.exports = (inputDir) => {
     return await readFile(layoutAbsolutePath)
   }
 
+  const _readFrontMatter = async (layoutPath = '', meta = {}) => {
+    if (!layoutPath) return meta
+    let rawLayout = ''
+    try {
+      rawLayout = await resolveLayout(layoutPath)
+    } catch (e) {
+      console.log(`Oop! We couldn't find this layout: ${layoutPath}`, e)
+      return meta
+    }
+    const {
+      attributes: { layout = 'index', ...layoutMeta },
+    } = frontMatter(rawLayout.toString())
+    const slinkitMeta = {
+      slinkit: {
+        ...meta.slinkit,
+        styles:
+          `<link rel="stylesheet" href=${toLayoutStylePath(layoutPath)}>` +
+          (meta.slinkit?.styles ?? ''),
+      },
+    }
+    return await _readFrontMatter(
+      layoutPath.startsWith('index') && layout === 'index' ? '' : layout,
+      { ...layoutMeta, ...meta, ...slinkitMeta }
+    )
+  }
+
   /**
    * Renders a given template to the layout specified in its frontmatter.
    * Layouts can inherit other layouts, so this function will recursively
@@ -47,7 +73,7 @@ module.exports = (inputDir) => {
    * @param {string} markup HTML markup to render with layout
    * @return {string} The HTML markup rendered within all specified layouts
    */
-  const renderWithLayout = async (
+  const _renderToLayout = async (
     layoutPath = '',
     meta = {},
     pageAttr = '',
@@ -62,61 +88,69 @@ module.exports = (inputDir) => {
       return markup
     }
     const {
-      attributes: { layout = 'index', ...layoutMeta },
+      attributes: { layout = 'index' },
       body,
     } = frontMatter(rawLayout.toString())
-    const slinkitMeta = {
-      slinkit: {
-        ...meta.slinkit,
-        styles:
-          `<link rel="stylesheet" href=${toLayoutStylePath(layoutPath)}>` +
-          meta.slinkit.styles,
-        page: pageAttr,
-      },
-    }
+
     const markupWithLayout = pug.render(body, {
       ...meta,
-      ...slinkitMeta,
+      slinkit: {
+        ...meta.slinkit,
+        page: pageAttr,
+      },
+      layout,
       content: markup,
+      basedir: path.join(inputDir, '_includes'),
+      filename: path.join(inputDir, '_includes', 'index'),
     })
-    return await renderWithLayout(
+    return await _renderToLayout(
       // if we already rendered the index layout,
       // don't recursively render the index layout *again* (infinite loop!)
       layoutPath.startsWith('index') && layout === 'index' ? '' : layout,
-      { ...layoutMeta, ...meta, ...slinkitMeta },
+      { ...meta, layout },
       joinTrimSlashes('_layouts', layoutPath),
       markupWithLayout
     )
   }
 
-  return async (filePath = '', pageAttr = '', props) => {
-    const template = await readFile(filePath)
-    const {
-      attributes: { layout, ...meta },
-      body,
-    } = frontMatter(template.toString())
+  return {
+    readFrontMatter: async (filePath = '', extraMeta = {}) => {
+      const template = await readFile(filePath)
+      const {
+        attributes: { layout, ...meta },
+      } = frontMatter(template.toString())
 
-    const fileExt = path.extname(filePath)
-    let markup = ''
-    if (fileExt === '.pug') {
-      markup = pug.render(body, {
-        ...props,
-        basedir: path.join(inputDir, '_includes'),
-        filename: path.join(inputDir, '_includes', 'index'),
-      })
-    }
-    if (fileExt === '.md') {
-      const renderMd = require('./render-md')
-      markup = renderMd(body)
-    }
+      return _readFrontMatter(layout ?? 'index', { ...extraMeta, ...meta })
+    },
+    renderToLayout: async (filePath = '', meta = {}) => {
+      const template = await readFile(filePath)
+      const {
+        attributes: { layout },
+        body,
+      } = frontMatter(template.toString())
 
-    const html = renderWithLayout(
-      layout ?? 'index',
-      { ...props, ...meta },
-      joinTrimSlashes(pageAttr),
-      markup
-    )
+      const fileExt = path.extname(filePath)
+      let markup = ''
+      if (fileExt === '.pug') {
+        markup = pug.render(body, {
+          ...meta,
+          basedir: path.join(inputDir, '_includes'),
+          filename: path.join(inputDir, '_includes', 'index'),
+        })
+      }
+      if (fileExt === '.md') {
+        const renderMd = require('./render-md')
+        markup = renderMd(body)
+      }
 
-    return html
+      const html = _renderToLayout(
+        layout ?? 'index',
+        meta,
+        joinTrimSlashes(meta.page.url),
+        markup
+      )
+
+      return html
+    },
   }
 }

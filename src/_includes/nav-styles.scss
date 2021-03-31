@@ -199,6 +199,7 @@
     display: flex;
     align-items: center;
     max-width: calc(var(--content-max-width) + 40px);
+    transition: max-width 0.3s;
     height: 100%;
 
     @include tablet-and-up {
