@@ -148,7 +148,7 @@ For example, you can create a navigation bar in one file...
 
 ...in other words, **we get to make our UIs with components, but without sending a bunch of libraries to the client!**
 
-##But wait, this idea is nothing new!
+### But wait, this idea is nothing new!
 
 I know! Backend servers have been doing this for decades.
 
