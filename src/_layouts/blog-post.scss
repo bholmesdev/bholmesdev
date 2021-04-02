@@ -52,9 +52,11 @@ article {
     font-size: 18px;
   }
 
-  img {
+  img,
+  picture {
     display: block;
     max-width: 100%;
+    height: auto;
     margin: auto;
   }
 

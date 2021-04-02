@@ -140,7 +140,7 @@ module.exports = (inputDir) => {
       }
       if (fileExt === '.md') {
         const renderMd = require('./render-md')
-        markup = renderMd(body)
+        markup = await renderMd(body)
       }
 
       const html = _renderToLayout(
