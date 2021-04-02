@@ -1,9 +1,15 @@
-const minuteRead = require('../../utils/minute-read')
+const {
+  toMinuteRead,
+  toFormattedDate,
+  toSortedPosts,
+} = require('../../utils/formatters')
 
 module.exports = async () => {
   // provide minuteRead function to blog-post layout
   return {
-    minuteRead,
+    toMinuteRead,
+    toFormattedDate,
+    toSortedPosts,
     tags: 'blogPost',
   }
 }

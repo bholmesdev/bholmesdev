@@ -1,4 +1,3 @@
-- var formattedDate = `${new Date(publishedOn).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`
 - var tweet = `Woah, I learned so much from this! "${title}" by @bholmesdev https://bholmes.dev${page.url}`
 
 article(data-page=slinkit.page)
@@ -7,10 +6,10 @@ article(data-page=slinkit.page)
       img(height=320 src=image alt=description)
     h1 #{title}
     p.details
-      span #[strong #{minuteRead(content)}] minute read
+      span #[strong #{toMinuteRead(content)}] minute read
       span.spacer #{"•"}
       span Last updated 
-        time(pubdate datetime=publishedOn) #{formattedDate}
+        time(pubdate datetime=publishedOn) #{toFormattedDate(publishedOn)}
   div !{content}
   hr
   footer
