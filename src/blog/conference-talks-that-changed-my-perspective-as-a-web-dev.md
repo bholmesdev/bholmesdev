@@ -3,6 +3,7 @@ title: 4 Conference talks that changed my perspective as a web dev
 description: Let's explore architecture complexity, when abstractions are bad, how React Hooks work, and the importance of SvelteJS
 image: https://dev-to-uploads.s3.amazonaws.com/i/tiratfjm1965aff32k0g.png
 layout: blog-post
+featured: true
 publishedOn: 2021-02-10T21:44:22.056Z
 ---
 

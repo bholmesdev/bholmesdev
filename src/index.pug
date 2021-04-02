@@ -64,27 +64,35 @@ div#iteach-section(style="--section-color: var(--red)")
         - Built a fullstack bootcamp with online resources + in-person workshops
 
   section.subsection
+    - var blogPosts = toSortedPosts(collections.blogPost)
+    - var headline = blogPosts[0]
     h3.subsection__header I blog a lot.
     a.blog-post__headline.img-link(href=headline.url)
       .img-link__img-container
-        img(src=headline.coverImage.src alt=headline.coverImage.alt)
+        img(src=headline.data.image alt=headline.data.description)
         p.min-read
-          img.mug(src=headline.minReadIcon.src alt=headline.minReadIcon.alt)
-          span #{headline.minRead} min read
-      p.title #{headline.title}
+          - var minuteRead = toMinuteRead(headline.templateContent)
+          - var icon = toMinReadIcon(minuteRead)
+          img.mug(src=icon.src alt=icon.alt)
+          span #{minuteRead} min read
+      p.title #{headline.data.title}
       p.cta-link.icon-after.icon__arrow-right Get to reading
     .blog-post__container
       dl.blog-post__list
         a.blog-post.headline-mobile-version(href=headline.url)
-            img.mug(src=headline.minReadIcon.src alt=headline.minReadIcon.alt)
-            dd.min-read #{headline.minRead} min
-            dt.title #{headline.title}
-        each post in blogPosts
+            - var minuteRead = toMinuteRead(headline.templateContent)
+            - var icon = toMinReadIcon(minuteRead)
+            img.mug(src=icon.src alt=icon.alt)
+            dd.min-read #{minuteRead} min
+            dt.title #{headline.data.title}
+        each post in blogPosts.filter((post) => post.data.featured)
           a.blog-post(href=post.url)
-            img.mug(src=post.minReadIcon.src alt=post.minReadIcon.alt)
-            dd.min-read #{post.minRead} min
-            dt.title #{post.title}
-      a.cta-link.icon-after.icon__devto(href='https://dev.to/bholmesdev') Find more on my blog
+            - var minuteRead = toMinuteRead(post.templateContent)
+            - var icon = toMinReadIcon(minuteRead)
+            img.mug(src=icon.src alt=icon.alt)
+            dd.min-read #{minuteRead} min
+            dt.title #{post.data.title}
+      a.cta-link.icon-after.icon__arrow-right(href='/blog/') Find more on my blog
 
   section.subsection
     h3.subsection__header I led a bootcamp.
