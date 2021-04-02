@@ -78,20 +78,20 @@ div#iteach-section(style="--section-color: var(--red)")
       p.title #{headline.data.title}
       p.cta-link.icon-after.icon__arrow-right Get to reading
     .blog-post__container
-      dl.blog-post__list
+      .blog-post__list
         a.blog-post.headline-mobile-version(href=headline.url)
             - var minuteRead = toMinuteRead(headline.templateContent)
             - var icon = toMinReadIcon(minuteRead)
             img.mug(src=icon.src alt=icon.alt)
-            dd.min-read #{minuteRead} min
-            dt.title #{headline.data.title}
+            strong.min-read #{minuteRead} min
+            span.title #{headline.data.title}
         each post in blogPosts.filter((post) => post.data.featured)
           a.blog-post(href=post.url)
             - var minuteRead = toMinuteRead(post.templateContent)
             - var icon = toMinReadIcon(minuteRead)
             img.mug(src=icon.src alt=icon.alt)
-            dd.min-read #{minuteRead} min
-            dt.title #{post.data.title}
+            strong.min-read #{minuteRead} min
+            span.title #{post.data.title}
       a.cta-link.icon-after.icon__arrow-right(href='/blog/') Find more on my blog
 
   section.subsection

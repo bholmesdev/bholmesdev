@@ -123,6 +123,10 @@ a:visited {
   text-decoration: underline dashed;
   cursor: pointer;
   transition: opacity 0.2s;
+
+  > * {
+    pointer-events: none;
+  }
 }
 
 a:hover {
