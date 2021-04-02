@@ -4,6 +4,7 @@ description: Using CSS variables + any frontend framework to add a metallic shin
 series: Building hack4impact.org
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/css-shiny-buttons/thumbnail.png
 layout: blog-post
+featured: true
 publishedOn: 2021-01-28T17:40:13.392Z
 ---
 

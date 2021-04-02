@@ -4,6 +4,7 @@ description: Let's build a slick navbar you can use in React, Svelte, or vanilla
 series: Building hack4impact.org
 image: https://dev-to-uploads.s3.amazonaws.com/i/wln4kfatcbriu7lkdx06.jpg
 layout: blog-post
+featured: true
 publishedOn: 2020-10-06T22:44:09.290Z
 ---
 
