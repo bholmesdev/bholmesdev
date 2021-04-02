@@ -46,7 +46,7 @@ const pancake = new Pancake()
 
 pancake.mixItUp([ flour, eggs, milk, butter ])
 pancake.cook()
-pancake.applyToppings([blueberries, syrup])
+pancake.applyToppings([ blueberries, syrup ])
 ```
 
 And "flattening" the import / export chains into a big bundle pancake 🥞
@@ -66,7 +66,7 @@ const pancake = new Pancake()
 
 pancake.mixItUp([ flour, eggs, milk, butter ])
 pancake.cook()
-pancake.applyToppings([blueberries, syrup])
+pancake.applyToppings([ blueberries, syrup ])
 ```
 
 So we're compressing all the JavaScript files we're developing into a _single_ file for the browser to consume. Back in 2015-era web development, this really was the only way to pull off "importing" one JS file into another. `import` wasn't even valid JavaScript! It was just some neat trickery that build tools like webpack could pick up and understand.
@@ -88,7 +88,7 @@ That file is ready to `import` all the other scripts it wants! Well, as long as 
 This concept of importing what's needed over "flattening all the things" has some nice benefits:
 
 1. **You don't need to load and parse _everything_ up front.** By default, anything `import`ed is ["deferred" for loading as needed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#other_differences_between_modules_and_standard_scripts). In other words, your computer won't turn into a fighter jet trying to load JS when you first visit your website.
-2. **The need for tooling like webpack can (one day) disappear ✨** Bringing browsers closure to how _humans_ write their code is a huge win for newbies and pros alike 🏆
+2. **The need for tooling like webpack can (one day) disappear ✨** Bringing browsers closer to how _humans_ write their code is a huge win for newbies and pros alike 🏆
 
 ### Dynamic imports take it a step further
 
