@@ -7,6 +7,9 @@ import scrollIntoView from '../utils/client/scroll-into-view'
 const noop = () => {}
 let prevPathname = location.pathname
 let cleanupFns = []
+let onLoadingFns = []
+let onLoadedFns = []
+let loading = false
 
 const loadNewStyles = (styles) =>
   Promise.all(
@@ -22,7 +25,7 @@ const loadNewStyles = (styles) =>
     )
   )
 
-const animatePageIntoView = async (fullPage) => {
+const resolveStyles = async (fullPage) => {
   const stylesheetSelector = 'head > link[rel="stylesheet"]'
   const oldStyles = [...document.querySelectorAll(stylesheetSelector)]
   const newStyles = [...fullPage.querySelectorAll(stylesheetSelector)]
@@ -37,6 +40,15 @@ const animatePageIntoView = async (fullPage) => {
     newStyles.filter((style) => !overlappingStyles.has(style.href))
   )
 
+  return () =>
+    oldStyles.forEach((style) => {
+      if (!overlappingStyles.has(style.href)) {
+        document.head.removeChild(style)
+      }
+    })
+}
+
+const animatePageIntoView = async (fullPage) => {
   const [page, prevPage] = getPageDiff(fullPage, document)
   const layoutContainer = prevPage.parentElement
   layoutContainer.style.position = 'relative'
@@ -47,11 +59,6 @@ const animatePageIntoView = async (fullPage) => {
       await wipeAnimation(page, prevPage, () =>
         layoutContainer.removeChild(prevPage)
       )
-      oldStyles.forEach((style) => {
-        if (!overlappingStyles.has(style.href)) {
-          document.head.removeChild(style)
-        }
-      })
       resolve()
     })
   })
@@ -81,9 +88,13 @@ const yoinkJS = async (pathname) => {
       import(`./${pathnameWithTrailingSlash}__client.mjs`),
       import(`./${pathnameWithTrailingSlash}__data.mjs`),
     ])
+    const onLoading = (callback = () => {}) => {
+      onLoadingFns.push(callback)
+    }
 
     if (jsModule?.default) {
-      return () => jsModule.default(pageDataModule?.default ?? {})
+      return () =>
+        jsModule.default({ data: pageDataModule?.default ?? {}, onLoading })
     } else {
       return () => noop
     }
@@ -103,12 +114,12 @@ const setPageTitle = (title = '') => {
   }
 }
 
-const popCleanup = () => {
-  while (cleanupFns.length) cleanupFns.pop()()
+const popAndRun = (cleanupArr = []) => {
+  while (cleanupArr.length) cleanupArr.pop()()
 }
 
-const pushCleanup = (...pageJSFns) => {
-  for (fn of pageJSFns) cleanupFns.push(fn())
+const runAndPushReturn = (jsArr = [], cleanupArr = []) => {
+  for (const fn of jsArr) cleanupArr.push(fn() ?? noop)
 }
 
 const sequenceProcessHTMLLayoutJS = async (href = '') => {
@@ -118,17 +129,25 @@ const sequenceProcessHTMLLayoutJS = async (href = '') => {
 }
 
 const setVisiblePage = async ({ pathname = '', href = '' }) => {
-  popCleanup()
+  loading = true
+  setTimeout(() => {
+    if (loading === true) runAndPushReturn(onLoadingFns, onLoadedFns)
+  }, 100)
   const [{ page, title, layoutJSList }, mainJS] = await Promise.all([
     sequenceProcessHTMLLayoutJS(href),
     yoinkJS(trimSlashes(pathname)),
   ])
   setPageTitle(title)
-  await (page && animatePageIntoView(page))
+  const removeOldStyles = await resolveStyles(page)
+  loading = false
+  popAndRun(onLoadedFns)
+  popAndRun(cleanupFns)
+  await animatePageIntoView(page)
+  removeOldStyles()
   // TODO: on quick navigation, it's possible to run the next page function
   // before the previous cleanup finishes
   // will probably need a queuing system to solve this
-  pushCleanup(mainJS, ...layoutJSList)
+  runAndPushReturn([mainJS, ...layoutJSList], cleanupFns)
   prevPathname = pathname
 }
 
@@ -156,5 +175,5 @@ onpopstate = () => {
     yoinkJS(trimSlashes(location.pathname)),
     yoinkLayoutJS(),
   ])
-  pushCleanup(mainJS, ...layoutJSList)
+  runAndPushReturn([mainJS, ...layoutJSList], cleanupFns)
 })()

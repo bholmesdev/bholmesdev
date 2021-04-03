@@ -16,7 +16,7 @@ const animateColoredAccent = (sectionIndex, headers) => {
   }
 }
 
-export default ({ works }) => {
+export default ({ data: { works } }) => {
   const unobserveHeaders = watchSectionHeaders(animateColoredAccent)
 
   function VideoEl(elementId) {
