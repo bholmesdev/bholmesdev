@@ -140,6 +140,7 @@ a:hover {
   left: 0;
   width: 100%;
   transition: opacity 0.3s;
+  z-index: 10;
 
   &.loading {
     opacity: 1;
