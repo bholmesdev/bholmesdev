@@ -19,6 +19,8 @@ const jumpToSection = {
 jumpToSection.heading.innerText = 'Jump to section'
 jumpToSection.heading.className = 'heading'
 
+const loadingSpinner = document.getElementById('loading-spinner')
+
 // Once we've scrolled our current section label into view,
 // We need to set hide the other labels so they aren't
 // picked up by screenreaders
@@ -108,7 +110,15 @@ const setCurrentSection = (sectionIndex, headers) => {
   })`
 }
 
-export default () => {
+export default ({ onLoading }) => {
+  onLoading(() => {
+    loadingSpinner.classList.add('loading')
+
+    return () => {
+      loadingSpinner.classList.remove('loading')
+    }
+  })
+
   /*--- handle links and navigation ---*/
   const unobserveHeaders = watchSectionHeaders(setCurrentSection)
   setNavSections()

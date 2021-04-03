@@ -25,7 +25,7 @@ const loadNewStyles = (styles) =>
     )
   )
 
-const animatePageIntoView = async (fullPage) => {
+const resolveStyles = async (fullPage) => {
   const stylesheetSelector = 'head > link[rel="stylesheet"]'
   const oldStyles = [...document.querySelectorAll(stylesheetSelector)]
   const newStyles = [...fullPage.querySelectorAll(stylesheetSelector)]
@@ -40,6 +40,15 @@ const animatePageIntoView = async (fullPage) => {
     newStyles.filter((style) => !overlappingStyles.has(style.href))
   )
 
+  return () =>
+    oldStyles.forEach((style) => {
+      if (!overlappingStyles.has(style.href)) {
+        document.head.removeChild(style)
+      }
+    })
+}
+
+const animatePageIntoView = async (fullPage) => {
   const [page, prevPage] = getPageDiff(fullPage, document)
   const layoutContainer = prevPage.parentElement
   layoutContainer.style.position = 'relative'
@@ -50,11 +59,6 @@ const animatePageIntoView = async (fullPage) => {
       await wipeAnimation(page, prevPage, () =>
         layoutContainer.removeChild(prevPage)
       )
-      oldStyles.forEach((style) => {
-        if (!overlappingStyles.has(style.href)) {
-          document.head.removeChild(style)
-        }
-      })
       resolve()
     })
   })
@@ -128,17 +132,18 @@ const setVisiblePage = async ({ pathname = '', href = '' }) => {
   loading = true
   setTimeout(() => {
     if (loading === true) runAndPushReturn(onLoadingFns, onLoadedFns)
-  }, 0)
+  }, 100)
   const [{ page, title, layoutJSList }, mainJS] = await Promise.all([
     sequenceProcessHTMLLayoutJS(href),
     yoinkJS(trimSlashes(pathname)),
   ])
   setPageTitle(title)
-
+  const removeOldStyles = await resolveStyles(page)
   loading = false
   popAndRun(onLoadedFns)
   popAndRun(cleanupFns)
-  await (page && animatePageIntoView(page))
+  await animatePageIntoView(page)
+  removeOldStyles()
   // TODO: on quick navigation, it's possible to run the next page function
   // before the previous cleanup finishes
   // will probably need a queuing system to solve this
