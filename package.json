@@ -1,16 +1,16 @@
 {
-  "name": "11ty-plugin-attempt",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "bholmesdev",
+  "version": "2.1.0",
+  "description": "Ben Holmes' personal portfolio site",
+  "main": ".eleventy.js",
   "scripts": {
     "start": "(serve build -l 3000) & ELEVENTY_EXPERIMENTAL=true MODE=dev eleventy --watch --quiet",
     "build": "ENV=prod ELEVENTY_EXPERIMENTAL=true eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["11ty", "scss", "slinkit"],
+  "author": "Ben Holmes",
+  "license": "unlicensed",
   "devDependencies": {
     "@11ty/eleventy": ">=0.11.0",
     "@rollup/plugin-virtual": "^2.0.3",

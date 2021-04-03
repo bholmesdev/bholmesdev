@@ -59,7 +59,7 @@ Well, this certainly ain't your grandma's [Gatsby](https://www.gatsbyjs.com) sit
 
 ## 💪 Leaning on 11ty
 
-My first iteration on this portfolio concept didn't use any existing frameworks at all. There were custom solutions for data fetching at build time, layout rendering, JS bundling... well, I reinvented every wheel in existence. This had a nasty consequence: every time I revisited the repo to tweak something, I needed to re-read my own docs to remember how it fit together 😬
+[My first iteration](https://github.com/Holben888/bholmesdev/tree/v1) on this portfolio concept didn't use any existing frameworks at all. There were custom solutions for data fetching at build time, layout rendering, JS bundling... well, I reinvented every wheel in existence. This had a nasty consequence: every time I revisited the repo to tweak something, I needed to re-read my own docs to remember how it fit together 😬
 
 In the end, it's clear that [11ty](https://www.11ty.dev) can save me from this chaos. It has some nice out-of-the-box features that I can piggyback off of:
 - [Data fetching at buildtime](https://www.11ty.dev/docs/data-template-dir/) using `.11ydata.js` files
