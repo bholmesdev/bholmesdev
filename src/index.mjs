@@ -16,8 +16,14 @@ const animateColoredAccent = (sectionIndex, headers) => {
   }
 }
 
-export default ({ works }) => {
+export default ({ data: { works }, onLoading }) => {
   const unobserveHeaders = watchSectionHeaders(animateColoredAccent)
+
+  onLoading(() => {
+    console.log('loading!')
+
+    return () => console.log('done!')
+  })
 
   function VideoEl(elementId) {
     this.el = document.getElementById(elementId)
