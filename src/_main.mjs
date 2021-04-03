@@ -84,22 +84,18 @@ const yoinkLayoutJS = async (pageHTML = document) => {
 const yoinkJS = async (pathname) => {
   try {
     const pathnameWithTrailingSlash = pathname ? pathname + '/' : pathname
-    const [jsModule, pageDataModule] = await Promise.all([
-      import(`./${pathnameWithTrailingSlash}__client.mjs`),
-      import(`./${pathnameWithTrailingSlash}__data.mjs`),
-    ])
+    const jsModule = await import(`./${pathnameWithTrailingSlash}__client.mjs`)
     const onLoading = (callback = () => {}) => {
       onLoadingFns.push(callback)
     }
+    if (!jsModule) return noop
+    const data = jsModule.use11tyData
+      ? await import(`./${pathnameWithTrailingSlash}__data.mjs`)
+      : {}
 
-    if (jsModule?.default) {
-      return () =>
-        jsModule.default({ data: pageDataModule?.default ?? {}, onLoading })
-    } else {
-      return () => noop
-    }
+    return () => jsModule.default({ data: data.default, onLoading })
   } catch (e) {
-    return () => noop
+    return noop
   }
 }
 

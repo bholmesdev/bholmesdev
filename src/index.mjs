@@ -16,6 +16,8 @@ const animateColoredAccent = (sectionIndex, headers) => {
   }
 }
 
+export const use11tyData = true
+
 export default ({ data: { works } }) => {
   const unobserveHeaders = watchSectionHeaders(animateColoredAccent)
 
