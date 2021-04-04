@@ -5,6 +5,9 @@ const Image = require('@11ty/eleventy-img')
 const widths = [600, 800, 1400]
 const formats = ['webp', 'jpg']
 
+// for relative asset paths, make sure we start with "./" instead of just "/"
+const toFormattedSrc = (src = '') => src.replace(/^\//, './')
+
 const toMetadataByImageSrc = async (rawPug, props) => {
   let imageSrcToMetadata = {}
   let asyncQueue = []
@@ -15,7 +18,7 @@ const toMetadataByImageSrc = async (rawPug, props) => {
     }
     asyncQueue.push({
       src,
-      callback: Image(src, {
+      callback: Image(toFormattedSrc(src), {
         widths,
         formats,
         outputDir: './build/assets/pug-images',
