@@ -189,6 +189,11 @@ a:hover {
   }
 }
 
+picture > img {
+  max-width: 100%;
+  height: auto;
+}
+
 .visually-hidden {
   visibility: hidden !important;
 }
@@ -258,10 +263,12 @@ a:hover {
     position: relative;
 
     > img,
+    > picture > img,
     > video {
       width: 100%;
       transition: transform 0.5s;
     }
+
     &::after {
       content: '';
       position: absolute;
@@ -286,7 +293,7 @@ a:hover {
     }
   }
   &:hover > .img-link__img-container {
-    > img,
+    > picture > img,
     > video {
       transform: translate(20px, -20px);
     }

@@ -95,11 +95,11 @@
   align-items: center;
   padding-bottom: 100px;
 
-  img {
+  .header-section__picture {
     width: calc(100% + 100px);
     height: auto;
   }
-  .content {
+  .header-section__content {
     font-size: 44px;
     font-family: var(--header-font);
 
@@ -120,9 +120,8 @@
       font-weight: bold;
       margin-top: 75px;
 
-      img {
-        height: 1em;
-        width: auto;
+      &::after {
+        --icon-size: 1em;
         margin-left: 30px;
         animation: float-up-down ease-in-out 2s infinite;
       }
@@ -132,7 +131,7 @@
   @media (max-width: $tablet-breakpoint) {
     max-width: 1200px;
     column-gap: 110px;
-    .content {
+    .header-section__content {
       font-size: 36px;
 
       a {
@@ -155,13 +154,13 @@
     min-height: 600px;
     margin-top: var(--nav-height);
 
-    img {
+    .header-section__picture {
       width: 70%;
       margin-top: 30%;
       margin-left: auto;
     }
 
-    .content {
+    .header-section__content {
       position: absolute;
       --margin: 20px;
       top: var(--margin);
@@ -198,8 +197,8 @@
           display: none;
         }
 
-        img {
-          height: 6vh;
+        &::after {
+          --icon-size: 6vh;
         }
       }
     }
@@ -486,7 +485,7 @@ section {
     color: var(--body-color);
   }
 
-  .img-link__img-container > img {
+  .img-link__img-container > picture > img {
     aspect-ratio: 12 / 9;
     object-fit: cover;
     object-position: left;
