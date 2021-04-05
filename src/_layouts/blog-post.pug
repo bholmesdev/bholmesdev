@@ -3,7 +3,7 @@
 article(data-page=slinkit.page)
   header
     if image
-      img(height=320 src=image alt=description)
+      | !{toOptimizedImg({ src: image, alt: description, widths: [800, 1000, 1400], sizes: '(min-width: 800px) 720px, 100vw' })}
     h1 #{title}
     p.details
       span #[strong #{toMinuteRead(content)}] minute read
