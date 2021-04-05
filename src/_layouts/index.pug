@@ -52,7 +52,7 @@ html(lang="en-US")
         .loading-spinner__graphic--dash
     nav#site-navigation
       .jump-to-section__container
-        button#jump-to-section__toggle
+        button#jump-to-section__toggle(aria-label="Reveal table of contents")
           span 0
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M128 192l128 128 128-128z"/></svg>
         .jump-to-section__label-container
@@ -71,7 +71,7 @@ html(lang="en-US")
           li
             a(href="/contact/" class=page.url.startsWith('/contact') ? 'active' : '') Contact
 
-        button#primary-nav__toggle
+        button#primary-nav__toggle(aria-label="Reveal navigation links")
           .stripe-top
           .stripe-middle
           .stripe-bottom

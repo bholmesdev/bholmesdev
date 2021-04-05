@@ -9,8 +9,8 @@ section#header-section
       li Blogger
       li Charcoal fan
 
-    a.icon-after.icon__arrow-down(href="#inbrief-section") 
-      span More about me
+    a.icon-after.icon__arrow-down(href="#inbrief-section" aria-labelledby="more-about-me") 
+      span(id="more-about-me") More about me
 
 .line-accents-container
   #line-accents
@@ -117,7 +117,7 @@ div#icreate-section(style="--section-color: var(--purple)")
 
   section.subsection
     - var firstProject = works[0]
-    input#project-details-toggle(type="checkbox")
+    input#project-details-toggle(type="checkbox" aria-label="Show project details")
 
     .macintosh
       img(src="/assets/svgs/macintosh.svg" alt="")
@@ -131,7 +131,7 @@ div#icreate-section(style="--section-color: var(--purple)")
     
     label.icon-after.icon__arrow-right(for="project-details-toggle")
 
-    h4#projects-title #{firstProject.title}
+    h3#projects-title #{firstProject.title}
     p#projects-body !{firstProject.body}
 
     .projects__link-container
