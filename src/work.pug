@@ -24,7 +24,7 @@ mixin project-template(project)
         short.tag #{tag}
   else
     a.project__small(href='#' + project.hash data-proj-link)
-      img(src=project.img.src, alt=project.img.alt)
+      .project__thumbnail !{toOptimizedImg(project.img)}
       h3 #{project.title}
       p.timeframe #{project.timeframe}
 

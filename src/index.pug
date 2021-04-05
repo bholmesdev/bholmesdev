@@ -1,7 +1,7 @@
 section#header-section
-  img(width=600 height=600 src="/assets/images/me.jpg" alt="Handdrawn portrait of Ben Holmes")
+  .header-section__picture !{toOptimizedImg({ src: './assets/images/me.jpg', alt: 'Charcoal portrait of Ben Holmes', width: 600, height: 600 })}
 
-  .content
+  .header-section__content
     h1 Ben Holmes
     ul
       li Web dev
@@ -9,9 +9,8 @@ section#header-section
       li Blogger
       li Charcoal fan
 
-    a(href="#inbrief-section") 
+    a.icon-after.icon__arrow-down(href="#inbrief-section") 
       span More about me
-      img(src="/assets/icons/arrow-down.svg" alt="")
 
 .line-accents-container
   #line-accents
@@ -69,7 +68,7 @@ div#iteach-section(style="--section-color: var(--red)")
     h3.subsection__header I blog a lot.
     a.blog-post__headline.img-link(href=headline.url)
       .img-link__img-container
-        img(src=headline.data.image alt=headline.data.description)
+        | !{toOptimizedImg({ src: headline.data.image, alt: headline.data.description })}
         p.min-read
           - var minuteRead = toMinuteRead(headline.templateContent)
           - var icon = toMinReadIcon(minuteRead)
@@ -97,8 +96,7 @@ div#iteach-section(style="--section-color: var(--red)")
   section.subsection
     h3.subsection__header I led a bootcamp.
     a.img-link(href='https://www.notion.so/gtbitsofgood/Bootcamp-b1fe164df73e42d3b9c2ab0755e4ca49')
-      .img-link__img-container
-        img(src='/assets/images/bootie-squad.jpg', alt='Group photo with bootcampers')
+      .img-link__img-container !{toOptimizedImg({ src: './assets/images/bootie-squad.jpg', alt: 'Group photo with bootcampers' })}
       p.cta-link.icon-after.icon__notion Browse the curriculum
 
     div

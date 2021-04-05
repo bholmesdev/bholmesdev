@@ -2,15 +2,24 @@ const md = require('markdown-it')({ html: true })
 const attrs = require('markdown-it-attrs')
 const prism = require('markdown-it-prism')
 const headingAnchors = require('markdown-it-anchor')
+const { extname } = require('path')
+
+const Image = require('@11ty/eleventy-img')
+const widths = [600, 1000, 1400]
+const formats = ['webp', 'jpg']
 
 const wrapWithNewlines = (str = '') => `\n\n${str}\n\n`
+const attrsToString = (attrs = []) =>
+  attrs.reduce((str, [attr, value]) => {
+    return str + `${attr}="${value}" `
+  }, '')
 
 const toCodepenEmbed = (url = '', params = '') => {
   const defaultTabs = params.replace('default-tab=', '')
   const [_, slug] = url.match(/\/pen\/([\w|\d]*)$/)
   const height = 400
   return `<p class="codepen" data-height="${height}" data-theme-id="light" data-default-tab="${defaultTabs}" data-user="bholmesdev" data-slug-hash="${slug}" style="height: ${height}px; text-align: center" data-pen-title="Detect current section">
-  <span><a href="${url}">See the Pen</a> by Benjamin Holmes (<a href="https://codepen.io/bholmesdev">@bholmesdev</a>)
+<span><a href="${url}">See the Pen</a> by Benjamin Holmes (<a href="https://codepen.io/bholmesdev">@bholmesdev</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 `
@@ -63,13 +72,63 @@ const formatYoutubeEmbeds = (rawMarkdown = '') => {
   return markdown
 }
 
-module.exports = (rawMarkdown) => {
+const toMetadataByImageSrc = async (rawMarkdown) => {
+  let imageSrcToMetadata = {}
+  let asyncQueue = []
+
+  md.renderer.rules.image = async (tokens, idx) => {
+    const { attrs } = tokens[idx]
+    const src = attrs.find((attr) => attr[0] === 'src')[1]
+    const alt = attrs.find((attr) => attr[0] === 'alt')[1]
+
+    asyncQueue.push({
+      src,
+      callback: Image(src, {
+        widths,
+        formats,
+        outputDir: './build/assets/md-images',
+        urlPath: '/assets/md-images',
+      }),
+      options: {
+        alt,
+        sizes: '(min-width: 800px) 720px, 100vw',
+        loading: 'lazy',
+        decoding: 'async',
+      },
+    })
+  }
+  md.render(rawMarkdown)
+  await Promise.all(
+    asyncQueue.map(async ({ src, callback, options }) => {
+      imageSrcToMetadata[src] = {
+        metadata: await callback,
+        options,
+      }
+    })
+  )
+  return imageSrcToMetadata
+}
+
+module.exports = async (rawMarkdown) => {
+  const imageSrcToMetadata = await toMetadataByImageSrc(rawMarkdown)
+
   // open all links in a new tab
   md.renderer.rules.link_open = (tokens, idx) => {
-    const attrsAsString = tokens[idx].attrs.reduce((str, [attr, value]) => {
-      return str + `${attr}="${value}" `
-    }, '')
+    const attrsAsString = attrsToString(tokens[idx].attrs)
     return `<a ${attrsAsString}target="_blank" rel="noreferrer">`
+  }
+
+  md.renderer.rules.image = (tokens, idx) => {
+    const { attrs } = tokens[idx]
+    const src = attrs.find((attr) => attr[0] === 'src')[1]
+    const imageFormat = extname(src).replace('.', '')
+    if (!formats.includes(imageFormat)) {
+      return `<img ${attrsToString(attrs)} />`
+    }
+
+    const { metadata, options } = imageSrcToMetadata[src]
+
+    return Image.generateHTML(metadata, options)
   }
 
   md.use(prism)

@@ -2,7 +2,7 @@ const { readFile } = require('fs').promises
 const { existsSync, lstatSync } = require('fs')
 const path = require('path')
 const frontMatter = require('front-matter')
-const pug = require('pug')
+const renderPug = require('../utils/render-pug')
 const joinTrimSlashes = require('./join-trim-slashes')
 
 const toLayoutStylePath = (layoutAttr) =>
@@ -92,7 +92,7 @@ module.exports = (inputDir) => {
       body,
     } = frontMatter(rawLayout.toString())
 
-    const markupWithLayout = pug.render(body, {
+    const markupWithLayout = await renderPug(body, {
       ...meta,
       slinkit: {
         ...meta.slinkit,
@@ -132,7 +132,7 @@ module.exports = (inputDir) => {
       const fileExt = path.extname(filePath)
       let markup = ''
       if (fileExt === '.pug') {
-        markup = pug.render(body, {
+        markup = await renderPug(body, {
           ...meta,
           basedir: path.join(inputDir, '_includes'),
           filename: path.join(inputDir, '_includes', 'index'),
@@ -140,7 +140,7 @@ module.exports = (inputDir) => {
       }
       if (fileExt === '.md') {
         const renderMd = require('./render-md')
-        markup = renderMd(body)
+        markup = await renderMd(body)
       }
 
       const html = _renderToLayout(
