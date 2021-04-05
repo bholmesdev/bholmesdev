@@ -16,6 +16,8 @@ const toMetadataByImageSrc = async (rawPug, props) => {
     if (!src) {
       throw 'All uses of toOptimizedImg must have a src!'
     }
+    const imageFormat = extname(src).replace('.', '')
+    if (!formats.includes(imageFormat)) return
     asyncQueue.push({
       src,
       callback: Image(toFormattedSrc(src), {
@@ -51,8 +53,7 @@ const toMetadataByImageSrc = async (rawPug, props) => {
 module.exports = async (rawPug, props) => {
   const imageSrcToMetadata = await toMetadataByImageSrc(rawPug, props)
   const toOptimizedImg = ({ src, alt }) => {
-    const imageFormat = extname(src).replace('.', '')
-    if (!formats.includes(imageFormat)) {
+    if (!imageSrcToMetadata[src]) {
       return `<img src=${src} alt=${alt} />`
     }
     const { metadata, options } = imageSrcToMetadata[src]

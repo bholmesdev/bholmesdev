@@ -76,10 +76,12 @@ const toMetadataByImageSrc = async (rawMarkdown) => {
   let imageSrcToMetadata = {}
   let asyncQueue = []
 
-  md.renderer.rules.image = async (tokens, idx) => {
+  md.renderer.rules.image = (tokens, idx) => {
     const { attrs } = tokens[idx]
     const src = attrs.find((attr) => attr[0] === 'src')[1]
     const alt = attrs.find((attr) => attr[0] === 'alt')[1]
+    const imageFormat = extname(src).replace('.', '')
+    if (!formats.includes(imageFormat)) return
 
     asyncQueue.push({
       src,
@@ -121,8 +123,7 @@ module.exports = async (rawMarkdown) => {
   md.renderer.rules.image = (tokens, idx) => {
     const { attrs } = tokens[idx]
     const src = attrs.find((attr) => attr[0] === 'src')[1]
-    const imageFormat = extname(src).replace('.', '')
-    if (!formats.includes(imageFormat)) {
+    if (!imageSrcToMetadata[src]) {
       return `<img ${attrsToString(attrs)} />`
     }
 
