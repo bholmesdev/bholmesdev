@@ -1,5 +1,5 @@
 ---
-title: Mocking browser APIs (fetch, localStorage, Dates...) the easy way with Jest
+title: Mocking browser APIs in Jest (localStorage, fetch and more!)
 description: Turns out, Jest gives you access to all sorts of browser APIs (fetch, localStorage, etc) that you can mock at a moment's notice! Let's see how.
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/mocking-global-in-jest/thumbnail.png
 layout: blog-post
