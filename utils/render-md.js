@@ -7,6 +7,7 @@ const { extname } = require('path')
 const Image = require('@11ty/eleventy-img')
 const widths = [600, 1000, 1400]
 const formats = ['webp', 'jpg']
+const inputFormats = [...formats, 'png']
 
 const wrapWithNewlines = (str = '') => `\n\n${str}\n\n`
 const attrsToString = (attrs = []) =>
@@ -80,8 +81,11 @@ const toMetadataByImageSrc = async (rawMarkdown) => {
     const { attrs } = tokens[idx]
     const src = attrs.find((attr) => attr[0] === 'src')[1]
     const alt = attrs.find((attr) => attr[0] === 'alt')[1]
+    if (src.startsWith('assets')) {
+      console.log(src)
+    }
     const imageFormat = extname(src).replace('.', '')
-    if (!formats.includes(imageFormat)) return
+    if (!inputFormats.includes(imageFormat)) return
 
     asyncQueue.push({
       src,
