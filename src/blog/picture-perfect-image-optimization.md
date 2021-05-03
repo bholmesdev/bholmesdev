@@ -34,7 +34,7 @@ This just to show that **there's much more to image optimization than compressio
 
 I learned a bit about addressing those format and size problems using `picture` elements, and my lighthouse definitely thanked me for it 😄
 
-https://twitter.com/BHolmesDev/status/1378869249930842116
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Dang, at first my performance on <a href="https://t.co/iTZUPe5aBp">https://t.co/iTZUPe5aBp</a> was getting destroyed by a *ton* of fat JPGs I never condensed down (especially on blog posts). Installed <a href="https://twitter.com/eleven_ty?ref_src=twsrc%5Etfw">@eleven_ty</a> &#39;s image plugin, put in an hour of work... and just look at it 🤩 <a href="https://t.co/l5GLACk8F7">pic.twitter.com/l5GLACk8F7</a></p>&mdash; Ben Holmes (@BHolmesDev) <a href="https://twitter.com/BHolmesDev/status/1378869249930842116?ref_src=twsrc%5Etfw">April 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## 🌅 Fixing format + size problems with the `picture` element
 
