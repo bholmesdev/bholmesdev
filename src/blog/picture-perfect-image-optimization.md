@@ -2,6 +2,7 @@
 title: Picture perfect image optimization for any web framework
 description: Image optimization is never fun to deal with. Let's learn how the picture element + 11ty can save any static site from bloated load times.
 layout: blog-post
+image: https://bholmes.dev/assets/blog/picture-perfect-image-optimization.png
 publishedOn: 2021-03-31T20:01:36.550Z
 ---
 
