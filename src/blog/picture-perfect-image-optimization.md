@@ -272,6 +272,12 @@ const Image = ({ fileName, sizes, ...imageProps }) => (
 
 Assuming all my images get generated with this file naming convention (and I always have images at 600, 1000, and 1400 widths), this should pull all our optimized images no problem 👍
 
+### Go try it yourself
+
+You can check out a running example of `create-react-app` + 11ty image in [**this CodeSandbox**](https://codesandbox.io/s/little-tree-dmr1w?file=/App.js) 🪄
+
+This version will listen for new images during development as well. Feel free to [fork the source code](https://github.com/Holben888/create-react-app-with-11ty-image) to try in your own project (and find the edge cases I inevitably missed 😉).
+
 ### Other options for Next, Nuxt, Gatsby and more
 
 As cool as 11ty image can be, I should definitely highlight some "native" options for popular meta-frameworks: 
