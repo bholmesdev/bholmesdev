@@ -41,16 +41,18 @@ I learned a bit about addressing those format and size problems using `picture` 
 So how can we deliver different image files for the right people? Well, let's start with a humble image element like this one:
 
 ```html
-<img src="/assets/mega-chonker.jpg" width="2000" height="1000" alt="Mega chonker" />
+<img src="/assets/mega-chonker.jpg" width="1000" height="600" alt="A perfectly sized cat" />
 ```
 
-_Refer to [this handy chart](/assets/blog/heckin-chonker.jpg) for understanding "chonk" levels_
+_Refer to [this handy chart](https://i.kym-cdn.com/photos/images/original/001/417/621/d9f.jpg) for understanding "chonk" levels_
 
-Now, say we've opened our image editor and saved a smaller version of the same file for mobile users sitting at, say, 600x300. You could probably set up some CSS to hot-swap your images depending on your screen width:
+Now, say we've opened our image editor and saved a smaller version for mobile users sitting at, say, 600 pixels wide. You could probably set up some CSS to hot-swap your images depending on your screen width:
 
 ```html
-<img class="desktop" src="/assets/mega-chonker.jpg" width="2000" height="1000" alt="Mega chonker" />
-<img class="mobile" src="/assets/fine-boi.jpg" width="600" height="300" alt="A fine boi" />
+<img class="desktop" src="/assets/chonker-1000w.jpg"
+    width="1000" height="600" alt="A perfectly sized cat" />
+<img class="mobile" src="/assets/chonker-600w.jpg"
+    width="600" height="300" alt="A perfectly sized cat" />
 ```
 
 ```css
