@@ -148,8 +148,6 @@ Luckily, there's a lot of tools to handle this process for us, and I'm going to 
 
 ### Generating optimized images
 
-{% youtube RAzXB-qu22s %}
-
 Let's play along at home! Seriously, drop everything and go open your code editor 🧑‍💻 Then, make a fresh directory / folder and create a basic `package.json`. We'll be installing the `@11ty/eleventy-img` dependency:
 
 ```bash
@@ -223,8 +221,13 @@ With any luck, we should see a beautiful `picture` we can use anywhere on our si
 
 ```html
 <picture>
-	<source type="image/webp" srcset="/img/6dfd7ac6-300.webp 300w, /img/6dfd7ac6-1000.webp 1000w, /img/6dfd7ac6-1400.webp 1400w" sizes="100vw">
-	<source type="image/jpeg" srcset="/img/6dfd7ac6-300.jpeg 300w, /img/6dfd7ac6-1000.jpeg 1000w, /img/6dfd7ac6-1400.jpeg 1400w" sizes="100vw">
+	<source type="image/webp"
+    srcset="/img/6dfd7ac6-300.webp 300w, /img/6dfd7ac6-1000.webp 1000w,
+            /img/6dfd7ac6-1400.webp 1400w"
+    sizes="100vw">
+	<source type="image/jpeg" srcset="/img/6dfd7ac6-300.jpeg 300w, /img/6dfd7ac6-1000.jpeg 1000w,
+                /img/6dfd7ac6-1400.jpeg 1400w"
+                sizes="100vw">
 	<img alt="A blue and purple galaxy of stars" src="/img/6dfd7ac6-300.jpeg" width="1400" height="1402">
 </picture>
 ```
@@ -285,6 +288,10 @@ const Image = ({ fileName, sizes, ...imageProps }) => (
 ```
 
 Assuming all my images get generated with this file naming convention (and I always have images at 600, 1000, and 1400 widths), this should pull all our optimized images no problem 👍
+
+**Here's a brief rundown** on applying these learnings to `create-react-app`:
+
+{% youtube RAzXB-qu22s %}
 
 ### Go try it yourself
 
