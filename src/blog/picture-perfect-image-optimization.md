@@ -98,14 +98,31 @@ Remember those `mobile` and `desktop` helper classes from earlier? Well, `sizes`
 
 {% youtube uGiG2VWkeSs %}
 
-**Key takeaways:**
+**Key takeaways from the video:**
 
-- you should usually have a "default" (smallest) option sitting at `100vw`, assuming your image takes up all or most of the screen width on smaller devices
-- you should choose your widths based on the **size of the image container** at a given screen size. If your image width always matches the screen size, you can probably stick with `100vw` alone
-- For extra breakpoints, you place either a `min` or `max` width media query in parens `()`, followed by the image width the use. The browser will match this width with the best image for the job from `srcset` options. **For example,** say our image is the full width of the screen for mobile and tablet displays, but _always_ `720px` wide once we hit a desktop screen width of `1440px`: `sizes="(min-width: 1440px) 720px, 100vw"`
-- to reiterate, **high density displays use an image that's _twice_ the width you specify.** So if you have a sizes attribute like this: `sizes="(min-width: 2000px) 720px, 100vw"`, you should have a `1440px` wide image (or something close) for that `720px` option
+In general, the `sizes` attribute is a way to tell the browser **which image to use for a given screen size.**
 
-_**Note:** You may be wondering why browsers can't do all this work for us. Well, this comes down to the unpredictable nature of "width" when you're throwing around CSS everywhere. If you're like me, you tend to use a lot of percentages like `with: 100%` for image blocks, which may adjust depending on the container, padding, margins, etc that get applied. If the browser tried to decipher all this styling before loading an image, you'd be waiting a lot longer than you might want!_ 
+Let's say we have a banner image that takes up the full width of the screen for mobile users, but we have a table of contents that takes up half the width at `500px` wide and above.
+
+![Table of contents taking up half the width of the screen](assets/blog/image-sizes-table-of-contents-demo.png)
+
+Putting on our CSS hat, this means our image is `100vw` (100% screen width) below `500px`, and `50vw` when we hit `@media (min-width: 500px)`. This perfectly translates to `sizes` 👉 `sizes="(min-width: 500px) 50vw, 100vw"`
+
+And in the context of a `picture` element:
+
+```html
+<picture>
+  <!--stack up your media queries as sizes, delineated by commas ","-->
+  <source type="image/webp"
+    srcset="/img/6dfd7ac6-600.webp 600w, /img/6dfd7ac6-900.webp 900w..."
+    sizes="(min-width: 500px) 50vw, 100vw">
+  <img alt="Blue and purple cluster of stars" src="/img/6dfd7ac6-600.jpeg">
+</picture>
+```
+
+As a rule-of-thumb, you should probably use `100vw` as a "base case" for smaller devices, and rack up media queries on top depending on how your layout changes. This does mean `sizes` will be different depending on the _context_ your images are living in, so look out for that if you're using a component-based framework!
+
+_**Note:** You may be wondering why browsers can't do all this work for us. Well, this comes down to the unpredictable nature of "width" when you're throwing around CSS everywhere. If you're like me, you tend to use a lot of percentages like `width: 100%` for image blocks, which may adjust depending on the container, padding, margins, etc that get applied. If the browser tried to decipher all this styling before loading an image, you'd be waiting a lot longer than you might want!_ 
 
 ## 🔨 Applying this to your site with 11ty image
 
