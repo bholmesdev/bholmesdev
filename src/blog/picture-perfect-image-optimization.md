@@ -24,7 +24,7 @@ Before getting into the tips, let me remind you have just how badly images can h
 
 ![List of poor image loadtimes from Chromium Lighthouse performance report](assets/blog/image-opt-bad-lighthouse-score.png)
 
-_Yikes!_ 10 seconds to grab all those images? Chromium definitely does some throtting to test on "slower" internet connections, but it's clear those KB rating are quite high (especially for mobile users).
+_Yikes!_ 10 seconds to grab all those images? Chromium definitely does some throttling to test on "slower" internet connections, but it's clear those KB rating are quite high (especially for mobile users).
 
 This just to show that **there's much more to image optimization than compression!** There's also:
 
@@ -223,12 +223,13 @@ With any luck, we should see a beautiful `picture` we can use anywhere on our si
 ```html
 <picture>
 	<source type="image/webp"
-    srcset="/img/6dfd7ac6-300.webp 300w, /img/6dfd7ac6-1000.webp 1000w,
-            /img/6dfd7ac6-1400.webp 1400w"
-    sizes="100vw">
-	<source type="image/jpeg" srcset="/img/6dfd7ac6-300.jpeg 300w, /img/6dfd7ac6-1000.jpeg 1000w,
-                /img/6dfd7ac6-1400.jpeg 1400w"
-                sizes="100vw">
+          srcset="/img/6dfd7ac6-300.webp 300w, /img/6dfd7ac6-1000.webp 1000w,
+                  /img/6dfd7ac6-1400.webp 1400w"
+          sizes="100vw">
+	<source type="image/jpeg"
+          srcset="/img/6dfd7ac6-300.jpeg 300w, /img/6dfd7ac6-1000.jpeg 1000w,
+                  /img/6dfd7ac6-1400.jpeg 1400w"
+          sizes="100vw">
 	<img alt="A blue and purple galaxy of stars" src="/img/6dfd7ac6-300.jpeg" width="1400" height="1402">
 </picture>
 ```
