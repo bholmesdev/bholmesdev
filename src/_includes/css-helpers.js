@@ -16,4 +16,5 @@ const mobileBreakpointWidth = parseInt(getCSSVariable('--mobile-breakpoint'))
  * as specified by the --mobile-breakpoint CSS variable
  * @returns {boolean} Whether the screen size is mobile width
  */
-export const isMobile = () => window.innerWidth <= mobileBreakpointWidth
+export const isMobile = () =>
+  document.documentElement.clientWidth <= (mobileBreakpointWidth || 850)
