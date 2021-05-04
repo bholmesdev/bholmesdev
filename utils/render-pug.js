@@ -4,6 +4,7 @@ const Image = require('@11ty/eleventy-img')
 
 const widths = [600, 800, 1400]
 const formats = ['webp', 'jpg']
+const inputFormats = [...formats, 'png']
 
 // for relative asset paths, make sure we start with "./" instead of just "/"
 const toFormattedSrc = (src = '') => src.replace(/^\//, './')
@@ -17,7 +18,7 @@ const toMetadataByImageSrc = async (rawPug, props) => {
       throw 'All uses of toOptimizedImg must have a src!'
     }
     const imageFormat = extname(src).replace('.', '')
-    if (!formats.includes(imageFormat)) return
+    if (!inputFormats.includes(imageFormat)) return
     asyncQueue.push({
       src,
       callback: Image(toFormattedSrc(src), {
