@@ -3,7 +3,7 @@ title: Picture perfect image optimization for any web framework
 description: Image optimization is never fun to deal with. Let's learn how the picture element + 11ty can save any static site from bloated load times.
 layout: blog-post
 image: assets/blog/picture-perfect-image-optimization.png
-publishedOn: 2021-03-31T20:01:36.550Z
+publishedOn: 2021-05-04T20:01:36.550Z
 ---
 
 💁 **Intended audience:** _This is meant for developers building "template-driven"  static sites (11ty, Jekyll, Hugo, plain HTML) or "component-driven" web apps (NextJS, Gatsby, etc). If you're working with site builders like Wordpress or Shopify, this probably isn't the article for you!_
