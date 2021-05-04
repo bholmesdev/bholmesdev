@@ -71,26 +71,24 @@ This is where the `picture` element comes in. Take this example here:
 ```html
 <picture>
   <!-- List out all the WEBP images + WEBP sizes we can choose from -->
-  <source type="image/webp" srcset="/assets/fine-boi.jpeg 600w, /assets/mega-chonker.jpg 1000w" sizes="100vw">
+  <source type="image/webp"
+    srcset="/assets/chonker-600w.webp 600w, /assets/chonker-1000w.webp 1000w"
+    sizes="100vw">
   <!-- In case a browser doesn't support WEBP, fall back to this set of JPG sources -->
-  <source type="image/jpeg" srcset="/assets/fine-boi.jpeg 600w, /assets/mega-chonker.jpg 1000w" sizes="100vw">
+  <source type="image/jpeg"
+    srcset="/assets/chonker-600w.jpg 600w, /assets/chonker-1000w.jpg 1000w"
+    sizes="100vw">
   <!-- The actual, style-able img element that "receives" these sources -->
   <!-- Also includes a default src in case no <source> can be applied -->
-  <img src="/assets/fine-boi.png" alt="A perfectly sized cat" />
+  <img src="/assets/chonker-600.png" alt="A perfectly sized cat" />
 </picture>
 ```
 
 **Some big takeaways:**
 
-1. We can wrap our image tags in a `picture` to unlock a "switch" case of sorts, with your browser picking the first `source` that it's able to render. But admittedly, _most_ modern browsers will reach for those shiny `.webp` files without needing the JPG fallbacks ([current browser support here](https://caniuse.com/?search=webp)).
-2. Each source has a **`srcset` property**, which takes in a list of source URLs for a given image format. These sources are comma-separated, plus a pixel-value width using that `w` on the end. By default, the browser will compare the browser width against those `w` values to decide which URL to use.*****
+1. We can wrap our image tags in a `picture` to unlock a "switch" case of sorts, with your browser picking the first `source` element that it's able to render. But admittedly, _most_ modern browsers will reach for those shiny `.webp` files listed under `type="image/webp"` without needing the JPG fallbacks ([current browser support here](https://caniuse.com/?search=webp)).
+2. Each source has a **`srcset` property**, which takes in a list of source URLs for a given image format. These sources are comma-separated, plus a pixel-value width using that `w` on the end. The browser will then decide which source to use based on the `sizes` property (more on that in the next section)
 3. **Picture elements are not images themselves!** This is an interesting gotcha when you start trying to style those images. So, you'll want to keep putting all your image-specific CSS (ex. `object-fit`) on that `img` element instead of the `picture`.
-
-_* Your screen's pixel density can also affect which image gets picked. For high-density mobile displays or 4k panels, it'll actually choose an image that's **double** the width of the screen! So if you have, say, an image targeted at a `600px` screen width, make sure you have a `1200px` option ready-to-go._
-
-You also may have noticed that `sizes="100vw"` property on the end of each `source`. This is nice default if you _don't_ understand how the `sizes` property works...
-
-But maybe we can address that knowledge gap 😁
 
 ### The `sizes` attribute
 
@@ -125,6 +123,20 @@ And in the context of a `picture` element:
 As a rule-of-thumb, you should probably use `100vw` as a "base case" for smaller devices, and rack up media queries on top depending on how your layout changes. This does mean `sizes` will be different depending on the _context_ your images are living in, so look out for that if you're using a component-based framework!
 
 _**Note:** You may be wondering why browsers can't do all this work for us. Well, this comes down to the unpredictable nature of "width" when you're throwing around CSS everywhere. If you're like me, you tend to use a lot of percentages like `width: 100%` for image blocks, which may adjust depending on the container, padding, margins, etc that get applied. If the browser tried to decipher all this styling before loading an image, you'd be waiting a lot longer than you might want!_ 
+
+### Respecting HD displays
+
+Note that our screen's pixel density can also affect which image gets picked from a given `srcset`. For high-density mobile displays, it'll actually choose an image that's **roughly double** the width you specify! Say we have a simple `picture` declaration like this for instance:
+
+```html
+<picture>
+  <source type="image/webp"
+    srcset="/img/galaxy-600.webp 600w, /img/galaxy-1200.webp 1200w"
+    sizes="100vw">
+</picture>
+```
+
+We're using `100vw` here, so the browser should match the image source's width to the width of the display. Intuitively, we'd think that a `600px` wide display would receive `/img/galaxy-600.webp`... but for HD displays like Macbooks or modern smartphones, it'll actually reach for an image at 600 x 2 pixels wide (`/img/galaxy-1200.webp 1200w` in this case). So when you're generating multiple image sizes, always reach for those higher values 💡
 
 ## 🔨 Applying this to your site with 11ty image
 
