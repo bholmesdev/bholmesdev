@@ -151,6 +151,10 @@ article {
     }
   }
 
+  p > code {
+    white-space: normal;
+  }
+
   // embed default styling
   blockquote.twitter-tweet,
   p.codepen {
