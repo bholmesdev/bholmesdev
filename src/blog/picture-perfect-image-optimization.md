@@ -35,7 +35,7 @@ This just to show that **there's much more to image optimization than compressio
 
 I learned a bit about addressing those format and size problems using `picture` elements, and my lighthouse definitely thanked me for it 😄
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Dang, at first my performance on <a href="https://t.co/iTZUPe5aBp">https://t.co/iTZUPe5aBp</a> was getting destroyed by a *ton* of fat JPGs I never condensed down (especially on blog posts). Installed <a href="https://twitter.com/eleven_ty?ref_src=twsrc%5Etfw">@eleven_ty</a> &#39;s image plugin, put in an hour of work... and just look at it 🤩 <a href="https://t.co/l5GLACk8F7">pic.twitter.com/l5GLACk8F7</a></p>&mdash; Ben Holmes (@BHolmesDev) <a href="https://twitter.com/BHolmesDev/status/1378869249930842116?ref_src=twsrc%5Etfw">April 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Dang, at first my performance on <a href="https://t.co/iTZUPe5aBp">https://t.co/iTZUPe5aBp</a> was getting destroyed by a *ton* of fat JPGs I never condensed down (especially on blog posts). Installed <a href="https://twitter.com/eleven_ty?ref_src=twsrc%5Etfw">@eleven_ty</a> &#39;s image plugin, put in an hour of work... and just look at it 🤩 <a href="https://t.co/l5GLACk8F7">pic.twitter.com/l5GLACk8F7</a></p>&mdash; Ben Holmes (@BHolmesDev) <a href="https://twitter.com/BHolmesDev/status/1378869249930842116?ref_src=twsrc%5Etfw">April 5, 2021</a></blockquote>
 
 ## 🌅 Fixing format + size problems with the `picture` element
 
@@ -45,7 +45,7 @@ So how can we deliver different image files for the right people? Well, let's st
 <img src="/assets/mega-chonker.jpg" width="1000" height="600" alt="A perfectly sized cat" />
 ```
 
-_Refer to [this handy chart](https://i.kym-cdn.com/photos/images/original/001/417/621/d9f.jpg) for understanding "chonk" levels_
+_Refer to [this handy chart](https://i.imgur.com/sNqNi9E.png) for understanding "chonk" levels_
 
 Now, say we've opened our image editor and saved a smaller version for mobile users sitting at, say, 600 pixels wide. You could probably set up some CSS to hot-swap your images depending on your screen width:
 
