@@ -6,21 +6,19 @@ image: assets/blog/picture-perfect-image-optimization.png
 publishedOn: 2021-05-04T20:01:36.550Z
 ---
 
+This entry comes from my web wizardry newsletter, where I explore evergreen solutions to common web dev problems (no matter your favorite framework). If you like what you see, [**go sign up for free**](http://tinyletter.com/bholmesdev) 🪄
+
+---
+
+If you've been building websites for a while, "optimize your images" probably sounds like "eat your veggies." It's good for your website's health, it'll make your SEO big and strong... but compressing every image by hand doesn't sound appetizing to me 🤢
+
+So we're going to talk **easy wins** for 1) optimizing image file formats and sizes with the `picture` element, and 2) an automation process using 11ty that you can take with you to your build setup of choice 💪
+
 💁 **Intended audience:** _This is meant for developers building "template-driven"  static sites (11ty, Jekyll, Hugo, plain HTML) or "component-driven" web apps (NextJS, Gatsby, etc). If you're working with site builders like Wordpress or Shopify, this probably isn't the article for you!_
-
-If you've been building websites for a while, "optimize your images" probably sounds like "eat your veggies." It's good for your website's health, it'll make your SEO big and strong... but that `.webp` broccoli doesn't sound appetizing to me 🤢
-
-What we need are some "easy wins." Some cheese to melt over that beautifully compressed brussel sprouts. So let's explore:
-
-- 🥦 (Briefly) Why you should care about those pesky 4K images
-- 🌅 How the `picture` element can change your optimization game
-- 🔨 A helpful 11ty script you can add to your static site generator of choice
-
-*Onwards!*
 
 ## 🥦 So what's wrong with my images right now?
 
-Before getting into the tips, let me remind you have just how badly images can hurt the performance of your website. Here's a lighthouse rating from one of my recent blog posts (images compressed with [tinyJPG](https://tinyjpg.com/) mind you!)
+To show what's at stake, here's the lighthouse rating from one of my recent blog posts (images compressed with [tinyJPG](https://tinyjpg.com/) mind you!)
 
 ![List of poor image loadtimes from Chromium Lighthouse performance report](assets/blog/image-opt-bad-lighthouse-score.png)
 
@@ -31,7 +29,7 @@ This just to show that **there's much more to image optimization than compressio
 - **Serving the right format,** with JPGs preferrable and `.webp` or `.avi` *especially* so
 - **Serving the right size,** ideally with _multiple copies_ of the same image at different widths and heights
 - **Loading at the right time,** reaching for "lazy" loading when we can
-- Heck, even **including `alt` text** can affect your site from both accessibility and SEO standpoints! 
+- Heck, even **including `alt` text** can affect your site from both accessibility and SEO standpoints
 
 I learned a bit about addressing those format and size problems using `picture` elements, and my lighthouse definitely thanked me for it 😄
 
