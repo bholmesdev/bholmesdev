@@ -14,7 +14,7 @@ $mobile-breakpoint: 850px;
     font-family: var(--header-font);
     counter-increment: section-number;
     content: counter(section-number);
-    background: var(--bg-color-2);
+    background: var(--bg-color-3);
     border-radius: 100%;
 
     position: absolute;
