@@ -78,7 +78,7 @@ const setNavSections = () => {
   })
 }
 
-const setCurrentSection = (sectionIndex, headers) => {
+const setCurrentSection = (sectionIndex) => {
   currentSectionIndex = Math.max(0, sectionIndex)
   jumpToSection.number.innerText = currentSectionIndex + 1
   for (let [
@@ -122,6 +122,7 @@ export default ({ onLoading }) => {
   /*--- handle links and navigation ---*/
   const unobserveHeaders = watchSectionHeaders(setCurrentSection)
   setNavSections()
+  setCurrentSection(0)
   ;(function setActiveNavLink() {
     const primaryNavLinks = primaryNavEl.querySelectorAll('a')
     primaryNavLinks.forEach((link) => {
