@@ -2,6 +2,8 @@
 title: Ben Holmes
 ---
 
+include icons
+
 section#header-section
   .header-section__picture !{toOptimizedImg({ src: './assets/images/me.jpg', alt: 'Charcoal portrait of Ben Holmes', width: 600, height: 600 })}
 
@@ -13,8 +15,21 @@ section#header-section
       li Blogger
       li Charcoal fan
 
-    a.icon-after.icon__arrow-down(href="#inbrief-section" aria-labelledby="more-about-me") 
+    a.header-section__cta.icon-after.icon__arrow-down(href="#inbrief-section" aria-labelledby="more-about-me") 
       span(id="more-about-me") More about me
+
+.newsletter-callout__container
+  section#newsletter-callout
+    .newsletter-callout__heading
+      h2.omit-from-toc Join the web wizardry newsletter
+      include crystal-ball.svg
+    p.newsletter-callout__tagline Written by a Top 500 author on dev.to
+    p You'll learn <strong>universal solutions</strong> to common web developer problems, no matter your frontend framework of choice. Preview the <a href="https://tinyletter.com/bholmesdev/letters/">latest issue here</a>!
+    form.newsletter-callout__input(action='https://tinyletter.com/bholmesdev' method='post' target='_blank')
+      input#email(type="email" name="email" placeholder="fellowsorceror@webwizardry.club" aria-label="email" required)
+      button.cta-link(type="submit")
+        | Subscribe
+        +icon('send')
 
 .line-accents-container
   #line-accents
