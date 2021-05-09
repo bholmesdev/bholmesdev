@@ -286,7 +286,9 @@ section {
         border: none;
         padding-left: 20px;
 
-        &:hover {
+        &:hover,
+        &:focus {
+          border: none;
           background-position-x: -100%;
         }
         svg {
