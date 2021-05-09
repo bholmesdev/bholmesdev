@@ -21,7 +21,7 @@ a > * {
 
   display: inline-block;
   font-family: var(--header-font);
-  background: var(--bg-color-2);
+  background: var(--bg-color-3);
   color: var(--body-color-dark);
   padding: 10px;
   margin-right: 20px;
@@ -67,7 +67,7 @@ section {
     .project__small {
       img,
       video {
-        border: 5px solid var(--bg-color-2);
+        border: 5px solid var(--bg-color-3);
         aspect-ratio: 16 / 11;
         object-fit: cover;
         background: var(--bg-color);
@@ -83,7 +83,7 @@ section {
       grid-column: span 1;
 
       &.img-link {
-        --color: var(--bg-color-2);
+        --color: var(--bg-color-3);
       }
 
       color: var(--body-color);
