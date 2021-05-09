@@ -247,9 +247,11 @@ section {
         flex: 1;
         border: none;
         border-bottom: 2px solid var(--bg-color-3);
+        border-top: 2px solid var(--bg-color);
         background: var(--bg-color);
         font-family: inherit;
         font-size: inherit;
+        margin: 0;
         padding: 12px;
         transition: border-color 0.2s;
 
@@ -271,7 +273,8 @@ section {
         line-height: 1;
         display: flex;
         align-items: center;
-        margin-top: 0;
+        justify-content: center;
+        margin: 0;
         background-color: var(--section-color);
         background-image: linear-gradient(
           90deg,
@@ -284,7 +287,7 @@ section {
         transition: background-position-x 0.3s;
         color: var(--bg-color);
         border: none;
-        padding-left: 20px;
+        padding: 8px 12px;
 
         &:hover,
         &:focus {
