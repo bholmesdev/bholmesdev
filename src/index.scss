@@ -70,7 +70,7 @@
       margin-top: 70px;
 
       > span,
-      &::after {
+      .header-section__cta--icon {
         background-color: var(--section-color);
         background-image: linear-gradient(
           var(--green) 0%,
@@ -97,12 +97,21 @@
         animation: rotate-text-color 8s ease-out infinite;
       }
 
-      &::after {
-        --icon-size: 1em;
+      .header-section__cta--icon {
+        height: 1em;
+        width: 1em;
         margin-left: 30px;
         animation: float-up-down ease-in-out 2s infinite,
           rotate-text-color ease-out 8s infinite;
+        @include mobile {
+          margin-bottom: 16px;
+        }
+        svg {
+          width: 102%;
+          height: 102%;
+        }
       }
+
       @keyframes rotate-text-color {
         0%,
         25% {
