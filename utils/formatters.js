@@ -1,12 +1,5 @@
 const { htmlToText } = require('html-to-text')
 
-const toSortedPosts = (blogPosts = []) =>
-  blogPosts
-    .filter((post) => post?.data?.title != null)
-    .sort(
-      (a, b) => new Date(b?.data?.publishedOn) - new Date(a?.data?.publishedOn)
-    )
-
 const toFormattedDate = (dateString = '') =>
   new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -45,7 +38,6 @@ const toMinuteRead = (html = '') => {
 }
 
 module.exports = {
-  toSortedPosts,
   toFormattedDate,
   toMinReadIcon,
   toMinuteRead,
