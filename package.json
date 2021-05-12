@@ -20,7 +20,7 @@
     "markdown-it-attrs": "^4.0.0",
     "markdown-it-container": "^3.0.0",
     "markdown-it-prism": "^2.1.6",
-    "postcss": "^8.2.6",
+    "postcss": "^8.2.10",
     "postcss-prefix-selector": "^1.7.2",
     "rollup": "^2.38.0",
     "sass": "^1.32.7"
