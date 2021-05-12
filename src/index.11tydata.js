@@ -1,11 +1,11 @@
 const {
-  toSortedPosts,
   toMinReadIcon,
   toMinuteRead,
+  toFormattedDate,
 } = require('../utils/formatters')
 
 module.exports = {
-  toSortedPosts,
   toMinReadIcon,
   toMinuteRead,
+  toFormattedDate,
 }

@@ -5,7 +5,7 @@ series: Building hack4impact.org
 image: https://dev-to-uploads.s3.amazonaws.com/i/wln4kfatcbriu7lkdx06.jpg
 layout: blog-post
 featured: true
-publishedOn: 2020-10-06T22:44:09.290Z
+date: 2020-10-06T22:44:09.290Z
 ---
 
 I've been building a lot more static sites recently, and every one of them needs the same thing:

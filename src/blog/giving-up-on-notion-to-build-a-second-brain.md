@@ -3,7 +3,7 @@ title: Leaving Notion to build a second brain in VS Code
 description: Why I'm ditching my favorite notetaking app to get organized, write everything down, and build a second brain.
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/building-a-second-brain/thumbnail.png
 layout: blog-post
-publishedOn: 2021-01-11T22:34:17.568Z
+date: 2021-01-11T22:34:17.568Z
 ---
 Okay, I'll be honest: I have a serious problem with notetaking apps. I've whipped through every service imaginable for a few months each... but I've never truly felt "at home."
 

@@ -4,7 +4,7 @@ description: Let's explore architecture complexity, when abstractions are bad, h
 image: https://dev-to-uploads.s3.amazonaws.com/i/tiratfjm1965aff32k0g.png
 layout: blog-post
 featured: true
-publishedOn: 2021-02-10T21:44:22.056Z
+date: 2021-02-10T21:44:22.056Z
 ---
 
 I've resolved to make 2021 my biggest year of learning yet. My blogging game has been pretty sporadic up until now... but I've finally decided to go all-in on the [learning in public mantra](https://www.swyx.io/learn-in-public/) with 1 post a week!

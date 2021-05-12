@@ -5,7 +5,7 @@ series: Building hack4impact.org
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/css-shiny-buttons/thumbnail.png
 layout: blog-post
 featured: true
-publishedOn: 2021-01-28T17:40:13.392Z
+date: 2021-01-28T17:40:13.392Z
 ---
 
 Hover states are probably the most fun a developer can have when a designer isn't looking. You've seen the basics at this point; fade-ins, growing and shrinking, color shifts, [animated rainbow gradients](https://www.joshwcomeau.com/react/rainbow-button/), etc etc etc.

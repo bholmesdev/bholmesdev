@@ -3,7 +3,7 @@ title: "The power of SvelteJS: building an animated image carousel in <30 lines 
 description: Let's make a carousel of images that fade between each other, all in 30 lines of code.
 image: https://dev-to-uploads.s3.amazonaws.com/i/vy7ymdy80kokmgf0jfx8.png
 layout: blog-post
-publishedOn: 2020-04-07T20:01:36.550Z
+date: 2020-04-07T20:01:36.550Z
 ---
 
 Ah image carousels... the classic web dev conundrum. Back in the dark ages (so like 5 years ago), you'd be reaching for bootstrap faster than you could spell "bower." But now, with all the crazy component-based frameworks at our disposal, we might as well build one with our bare hands.

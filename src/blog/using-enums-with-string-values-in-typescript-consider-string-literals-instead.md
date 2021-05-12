@@ -2,7 +2,7 @@
 title: Using Typescript string enums? Consider string literals!
 description: Enums are a great way to standardize your types. But if you want those string values, is this the best solution?
 layout: blog-post
-publishedOn: 2019-07-29T14:39:03.632Z
+date: 2019-07-29T14:39:03.632Z
 ---
 
 If you've been using TypeScript for any amount of time, you've probably wondered this at least once:

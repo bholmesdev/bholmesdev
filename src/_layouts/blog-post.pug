@@ -9,7 +9,7 @@ article(data-page=slinkit.page)
       span #[strong #{toMinuteRead(content)}] minute read
       span.spacer #{"•"}
       span Last updated 
-        time(pubdate datetime=publishedOn) #{toFormattedDate(publishedOn)}
+        time(pubdate datetime=date) #{toFormattedDate(date)}
   div !{content}
   hr
   footer

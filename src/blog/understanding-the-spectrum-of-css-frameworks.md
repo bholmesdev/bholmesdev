@@ -2,7 +2,7 @@
 title: Understanding the spectrum of CSS frameworks
 description: We've come a long way from Bootstrap. Let's explore the CSS framework spectrum from utility classes to all-in-one component powerhouses.
 layout: blog-post
-publishedOn: 2020-10-21T22:44:21.507Z
+date: 2020-10-21T22:44:21.507Z
 ---
 
 I saw a [short think piece](https://dev.to/urielbitton/stop-using-css-frameworks-3gpc) by @urielbitton recently on why people should **"stop using CSS frameworks."** It was meant to start developer discussion more than anything, since there are definitely merits to rolling your own design system from scratch. Still, with a title like that, it sparked... _quite_ the uproar in the comments 😆

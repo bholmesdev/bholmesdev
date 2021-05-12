@@ -5,7 +5,7 @@ series: Building my personal site without a framework
 image: https://dev-to-uploads.s3.amazonaws.com/i/biat936bknfugwool2ry.jpg
 layout: blog-post
 featured: true
-publishedOn: 2020-07-07T13:48:25.924Z
+date: 2020-07-07T13:48:25.924Z
 ---
 ⚠️ _**Warning:** Potentially controversial opinions ahead! Turn back now if Gatsby is your lord and savior, and you serve to protect the React dogma._
 

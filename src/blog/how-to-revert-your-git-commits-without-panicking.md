@@ -2,7 +2,7 @@
 title: How to revert your git commits without panicking
 description: When your code turns to 💩 but you've already committed, how do you go back?
 layout: blog-post
-publishedOn: 2019-06-13T02:23:26.903Z
+date: 2019-06-13T02:23:26.903Z
 ---
 
 ## Step 1: Take deep breaths

@@ -3,7 +3,7 @@ title: Another way to understand JavaScript's array.reduce
 description: I struggled with understanding array.reduce for a while. So I found my own way of explaining it that clicks 💡
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/thinking-about-array-reduce/thumbnail.png
 layout: blog-post
-publishedOn: 2021-02-05T16:26:05.576Z
+date: 2021-02-05T16:26:05.576Z
 ---
 
 If you've run the guantlet of [array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#instance_methods) in JavaScript, you've probably hit this roadblock a few times:

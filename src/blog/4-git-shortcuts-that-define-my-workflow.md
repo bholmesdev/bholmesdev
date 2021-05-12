@@ -2,7 +2,7 @@
 title: 4 Git shortcuts that define my workflow
 description: Here's 4 bash snippets that let me push, pop, and pull my way to victory as a web dev!
 layout: blog-post
-publishedOn: 2021-02-18T23:38:56.174Z
+date: 2021-02-18T23:38:56.174Z
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/4-git-shortcuts-that-define-my-workflow/thumbnail.png
 ---
 

@@ -3,7 +3,7 @@ title: "Flexbox diehards: Here's some concrete examples of when CSS grid is just
 description: Everyone's talking about CSS Grid, but when is it really better than what you're already doing?
 image: https://dev-to-uploads.s3.amazonaws.com/i/8lu1lb4qy2l5kr1jq2nt.png
 layout: blog-post
-publishedOn: 2020-05-26T16:34:01.194Z
+date: 2020-05-26T16:34:01.194Z
 ---
 _This blog post introduces several new terms you may be unfamiliar with: griddazzle, gridify, getting "griddy" with it, etc. I recommend using context clues for these definitions._
 

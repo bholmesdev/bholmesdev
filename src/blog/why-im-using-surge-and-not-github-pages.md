@@ -2,7 +2,7 @@
 title: Why I'm using Surge and not GitHub Pages
 description: "Everyone's making a static site these days, and most use GitHub Pages to get up and running fast. Here's why Surge is also worth a look 👀"
 layout: blog-post
-publishedOn: 2019-03-06T22:40:16.011Z
+date: 2019-03-06T22:40:16.011Z
 ---
 
 > **Update:** I've noticed that Surge hasn't seen many updates to its repo recently. It seems safe to use for now (I haven't seen any vulnerability warnings), but if the project ends dying off, [Netlify](https://www.netlify.com/docs/cli/) and [Zeit Now](https://zeit.co/now) are **great** alternatives that offer similar benefits over GitHub Pages

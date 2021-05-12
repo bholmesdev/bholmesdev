@@ -84,7 +84,7 @@ div#iteach-section(style="--section-color: var(--red)")
         - Built a fullstack bootcamp with online resources + in-person workshops
 
   section.subsection
-    - var blogPosts = toSortedPosts(collections.blogPost)
+    - var blogPosts = [...collections.blogPost].reverse().filter(post => !post.data.omitFromHomePage)
     - var headline = blogPosts[0]
     h3.subsection__header I blog a lot.
     a.blog-post__headline.img-link(href=headline.url)
@@ -96,6 +96,7 @@ div#iteach-section(style="--section-color: var(--red)")
           img.mug(src=icon.src alt=icon.alt)
           span #{minuteRead} min read
       p.title #{headline.data.title}
+      p.pub-date #[time(pubdate datetime=headline.data.date)= toFormattedDate(headline.data.date)]
       p.cta-link.icon-after.icon__arrow-right Get to reading
     .blog-post__container
       .blog-post__list

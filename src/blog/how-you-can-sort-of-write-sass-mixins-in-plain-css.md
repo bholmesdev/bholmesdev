@@ -2,7 +2,7 @@
 title: How you can (sort of) write SASS @mixins in plain CSS
 description: CSS variables are super powerful. Let's see how they can make repeated styles less DRY
 layout: blog-post
-publishedOn: 2020-05-08T22:13:48.640Z
+date: 2020-05-08T22:13:48.640Z
 ---
 
 _**Trigger warning:** I may use SASS and SCSS interchangeably throughout this post. You've been warned_ 😈

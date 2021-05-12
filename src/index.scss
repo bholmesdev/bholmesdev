@@ -632,7 +632,6 @@ section {
   }
 
   .img-link__img-container > picture > img {
-    aspect-ratio: 12 / 9;
     object-fit: cover;
     object-position: left;
   }
@@ -651,6 +650,14 @@ section {
 
     display: flex;
     align-items: center;
+  }
+
+  .pub-date {
+    background: var(--body-color);
+    padding: 5px 10px;
+    margin: 0;
+    color: var(--bg-color);
+    align-self: flex-start;
   }
 
   .mug {

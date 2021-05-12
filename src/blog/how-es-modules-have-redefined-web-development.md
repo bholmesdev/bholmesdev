@@ -3,7 +3,7 @@ title: How ES Modules have redefined web development
 description: The world has been moving away from "pancake" bundling and towards dynamic module imports. Let's see the latest trends and what they mean for us.
 layout: blog-post
 image: https://bholmes.dev/assets/blog/how-es-modules-have-redefined-web-development.jpg
-publishedOn: 2021-03-31T20:01:36.550Z
+date: 2021-03-31T20:01:36.550Z
 ---
 
 This entry comes from my web wizardry newsletter, where I explore evergreen solutions to common web dev problems (no matter your favorite framework). If you like what you see, [**go sign up for free**](http://tinyletter.com/bholmesdev) 🪄

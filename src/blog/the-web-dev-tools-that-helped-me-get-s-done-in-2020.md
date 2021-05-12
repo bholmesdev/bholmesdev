@@ -3,7 +3,7 @@ title: The web dev tools that helped me get s*** done in 2020
 description: From the burning ashes of 2020, I've unearthed some gems that really improved my life as a dev. Let's talk notes, git snippets, state machines, and FP!
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/get-s***-done-2020/thumbnail.jpg
 layout: blog-post
-publishedOn: 2021-01-04T16:33:47.924Z
+date: 2021-01-04T16:33:47.924Z
 ---
 
 At long last... the great dumpster fire that was 2020 is no more. There's certainly _a lot_ I'd like to leave behind us. But like a phoenix rising from the ashes, I want to highlight some amazing tools and practices that actually made my life **better** as a web developer 🚀

@@ -3,7 +3,7 @@ title: Let CSS frameworks empower you, not control you
 image: https://thepracticaldev.s3.amazonaws.com/i/qpp0oqach2mmmq300eqp.png
 description: CSS frameworks are super useful for the building blocks of a website, but when is it best to start adding custom styles?
 layout: blog-post
-publishedOn: 2019-04-29T14:54:27.803Z
+date: 2019-04-29T14:54:27.803Z
 ---
 
 Many articles tackling the issue of CSS frameworks either argue [whether or not they should be used in a project at all](https://dev.to/teamxenox/do-we-really-need-a-css-framework-4ma6), or dig deep on the pitfalls of each potential option. From my experience, there's a bit more nuance to it than that. CSS frameworks have a clear place to take care of all the hefty CSS logic that grows hard to maintain, like accessibility concerns, modal / pop-up visiblity, desktop vs. mobile nav bars, and so on. 

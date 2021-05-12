@@ -3,7 +3,7 @@ title: A neat DIY solution to animating on scroll (for any framework)
 image: https://thepracticaldev.s3.amazonaws.com/i/obp112knr1cvmpa0kjlu.png
 description: AOS libraries sure are slick, but why add dependencies when it an be simple to implement yourself?
 layout: blog-post
-publishedOn: 2019-04-09T15:46:47.093Z
+date: 2019-04-09T15:46:47.093Z
 ---
 
 

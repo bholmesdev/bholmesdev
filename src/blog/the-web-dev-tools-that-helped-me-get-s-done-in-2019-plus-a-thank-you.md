@@ -2,7 +2,7 @@
 title: The web dev tools that helped me get s*** done in 2019. Plus, a thank you!
 description: A rundown of my favorite web dev tools in 2019 feat. Netlify, Svelte, CSS vars, and Contraste
 layout: blog-post
-publishedOn: 2020-01-03T20:13:06.115Z
+date: 2020-01-03T20:13:06.115Z
 ---
 
 Now that we're turning over a new year (a new decade even!), I wanted to take a minute to remember all the tools that made my life easier in 2019. "Best of" lists for web dev tend to summarize the technologies in general terms. So for this, I want to focus more on the projects I worked on this year, and how these technologies helped me do them. Onwards!

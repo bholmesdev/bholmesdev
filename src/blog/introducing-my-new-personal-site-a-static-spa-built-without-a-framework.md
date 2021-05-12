@@ -4,7 +4,7 @@ description: Aka building my own static site generator from scratch (don't try t
 series: Building my personal site without a framework
 image: https://dev-to-uploads.s3.amazonaws.com/i/w8j7q13iopg6cf0qie63.png
 layout: blog-post
-publishedOn: 2020-07-07T13:48:15.654Z
+date: 2020-07-07T13:48:15.654Z
 ---
 
 [**Visit the site to boost my SEO ✨**](https://bholmes.dev)

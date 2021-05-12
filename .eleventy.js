@@ -150,31 +150,34 @@ module.exports = function (eleventyConfig) {
       return {
         dynamicPermalink: false,
         permalink: path.resolve(pathWithFolder, '__styles.css'),
+        eleventyExcludeFromCollections: true,
       }
     },
-    compile: (_, inputPath) => async ({ page: { outputPath } }) => {
-      const { css } = await sassRender({ file: inputPath })
-      const { relativePath } = matchPathProperties(outputPath, 'css', true)
-      const dataPageAttr = joinTrimSlashes(relativePath)
+    compile:
+      (_, inputPath) =>
+      async ({ page: { outputPath } }) => {
+        const { css } = await sassRender({ file: inputPath })
+        const { relativePath } = matchPathProperties(outputPath, 'css', true)
+        const dataPageAttr = joinTrimSlashes(relativePath)
 
-      const postCssPlugins = []
-      if (process.env.ENV === 'prod') {
-        // minify CSS for production builds
-        postCssPlugins.push(cssClean())
-      }
-      if (dataPageAttr !== '_layouts') {
-        // append the data-page attribute for everything *except* global _layout styles
-        postCssPlugins.push(
-          cssPrefixer({ prefix: `[data-page="${dataPageAttr}"]` })
-        )
-      }
+        const postCssPlugins = []
+        if (process.env.ENV === 'prod') {
+          // minify CSS for production builds
+          postCssPlugins.push(cssClean())
+        }
+        if (dataPageAttr !== '_layouts') {
+          // append the data-page attribute for everything *except* global _layout styles
+          postCssPlugins.push(
+            cssPrefixer({ prefix: `[data-page="${dataPageAttr}"]` })
+          )
+        }
 
-      if (!postCssPlugins.length) return css
-      else {
-        const postCSSOutput = await postcss(postCssPlugins).process(css)
-        return postCSSOutput.css
-      }
-    },
+        if (!postCssPlugins.length) return css
+        else {
+          const postCSSOutput = await postcss(postCssPlugins).process(css)
+          return postCSSOutput.css
+        }
+      },
   })
 
   if (process.env.MODE === 'dev') {

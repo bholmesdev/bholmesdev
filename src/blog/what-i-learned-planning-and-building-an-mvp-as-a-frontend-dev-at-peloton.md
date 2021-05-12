@@ -2,7 +2,7 @@
 title: What I learned planning and building an MVP as a frontend dev at Peloton
 description: As a frontend dev with little industry experience, these are some lessons learned in the project development process.
 layout: blog-post
-publishedOn: 2019-09-03T14:57:01.277Z
+date: 2019-09-03T14:57:01.277Z
 ---
 
 Writing this, I just finished my summer internship at [Peloton Interactive](https://onepeloton.com) 🥳 As I hang up my biker gang helmet, I wanted to talk about my biggest learning experience: working on a large-scale ReactJS project from concept to MVP presentation. I'll walk through the process of planning and building the project from start to finish, discussing the lessons I learned along the way.

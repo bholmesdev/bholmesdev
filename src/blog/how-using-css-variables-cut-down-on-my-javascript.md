@@ -3,7 +3,7 @@ title: How using CSS variables helped me cut down on JavaScript
 image: https://thepracticaldev.s3.amazonaws.com/i/x586421hp4fxpcsxfdvw.png
 description: Styling with JavaScript is pretty convenient, but how can CSS replicate that logic?
 layout: blog-post
-publishedOn: 2019-05-31T03:37:13.004Z
+date: 2019-05-31T03:37:13.004Z
 ---
 
 _**Note:** My post is inspired by [this article](https://css-tricks.com/keep-math-in-the-css/) from the brilliant Chris Coyier about the power of CSS `calc()`. Definitely worth a read!_

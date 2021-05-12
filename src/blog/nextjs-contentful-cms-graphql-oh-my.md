@@ -4,7 +4,7 @@ description: Let's pull CMS data the easy way with GraphQL. We'll explore NextJS
 series: Building hack4impact.org
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/nextjs-contentful/thumbnail.jpg
 layout: blog-post
-publishedOn: 2020-11-04T22:42:55.683Z
+date: 2020-11-04T22:42:55.683Z
 ---
 
 We built the new [Hack4Impact.org](https://hack4impact.org) in a month-long sprint once we had designs in hand. To move this fast, we needed to make sure that we used tools that played to our strengths, while setting us up for success when designers and product managers want to update our copy. As the title _excitedly_ alludes to, NextJS + Contentful + GraphQL was the match for us!

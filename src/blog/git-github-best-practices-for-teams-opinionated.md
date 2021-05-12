@@ -3,7 +3,7 @@ title: Git + GitHub Best Practices for Teams (Opinionated)
 image: https://thepracticaldev.s3.amazonaws.com/i/8g5esyy2y11yjo8vuabn.png
 description: A collection of thoughts on using Git to its fullest when working on a project team 
 layout: blog-post
-publishedOn: 2019-05-16T19:50:13.820Z
+date: 2019-05-16T19:50:13.820Z
 ---
 
 _**Disclaimer:** This was adapted from a guide written internally for our Bits of Good organization to help newbies get their footing when joining a project team. You can learn more about the organization [here](https://bitsofgood.org) if you're interested. Yes, we are reworking the website these next few months :)_

@@ -4,7 +4,7 @@ description: Whether you've seen HTML or not, it may feel unclear when to use ea
 image: https://thepracticaldev.s3.amazonaws.com/i/udmdgyysdw7o25u105jw.png
 canonical_url: https://www.notion.so/gtbitsofgood/Intro-to-HTML-b76e8f767a8f428989e68d7c09fd4dc3
 layout: blog-post
-publishedOn: 2019-12-02T23:01:19.723Z
+date: 2019-12-02T23:01:19.723Z
 ---
 
 **Let's get down to the fundamentals.** Whether you've seen HTML or not, it may feel unclear when to use each element, or even what elements are available these days. The following should be a helpful cheatsheet for web dev beginners and markup professionals alike!

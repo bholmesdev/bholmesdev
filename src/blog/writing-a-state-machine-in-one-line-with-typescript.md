@@ -3,7 +3,7 @@ title: Writing a state machine in one line with TypeScript
 description: State machines aren't just a nice library (hi XState); they're a way of thinking about your state. Let's jump into an example using TypeScript.
 image: https://dev-to-uploads.s3.amazonaws.com/i/1lgj7pu6xwrb23k01k7j.jpg
 layout: blog-post
-publishedOn: 2020-09-02T15:35:45.152Z
+date: 2020-09-02T15:35:45.152Z
 ---
 
 Ah yes, state machines. That thing [David K Piano](https://twitter.com/DavidKPiano) keeps tweeting about, or that CS concept that pops up in college once a semester (and seemingly never returns...). As the frontend world gets more and more disatisfied with Redux, state machines are [one](https://mobx.js.org/README.html) [of](https://rxjs-dev.firebaseapp.com) [*many*](https://github.com/facebookexperimental/Recoil) [concepts](https://www.apollographql.com/docs/react/) devs are talking about these days.

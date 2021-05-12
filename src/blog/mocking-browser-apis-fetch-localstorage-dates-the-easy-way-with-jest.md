@@ -3,7 +3,7 @@ title: Mocking browser APIs in Jest (localStorage, fetch and more!)
 description: Turns out, Jest gives you access to all sorts of browser APIs (fetch, localStorage, etc) that you can mock at a moment's notice! Let's see how.
 image: https://raw.githubusercontent.com/Holben888/personal-blog/main/mocking-global-in-jest/thumbnail.png
 layout: blog-post
-publishedOn: 2021-01-19T22:48:29.682Z
+date: 2021-01-19T22:48:29.682Z
 ---
 
 I hit a snag recently trying to test a `localStorage` helper written in React. Figuring out how to test all my state and render changes was certainly the easy part (thanks as always [React Testing Library](https://github.com/testing-library/react-testing-library) 🐐).

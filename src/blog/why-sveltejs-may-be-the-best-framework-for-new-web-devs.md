@@ -3,7 +3,7 @@ title: Why SvelteJS may be the best framework for new web devs
 image: https://thepracticaldev.s3.amazonaws.com/i/c3s8y2nj2safv7q58qs9.png
 description: Every new programmer starts with vanilla JS and DOM manipulation. But in the component-driven world of modern web dev, is that the best way to start?
 layout: blog-post
-publishedOn: 2019-03-19T22:03:49.242Z
+date: 2019-03-19T22:03:49.242Z
 ---
 
 Any web dev who's been at it for a few years has likely heard this question every other day.

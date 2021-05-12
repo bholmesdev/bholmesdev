@@ -1,15 +1,16 @@
 ---
 title: Blog | Ben Holmes
+eleventyExcludeFromCollections: true
 description: Let's learn some web development! I love variety, so I focus on "plain" HTML, CSS, and JS tips that extend to any web framework.
 ---
 
-- var formattedPosts = toSortedPosts(collections.blogPost)
+- var sortedPosts = [...collections.blogPost].reverse()
 
 section
   h1 Ben's latest posts
-  p.post-count #[strong= formattedPosts.length] posts and counting 💪 
-  each item in formattedPosts
+  p.post-count #[strong= sortedPosts.length] posts and counting 💪 
+  each item in sortedPosts
     article
       h2.omit-from-toc
         a(href=item.url)= item.data.title
-      p #[time(pubdate datetime=publishedOn)= toFormattedDate(item.data.publishedOn)] • #{item.data.description}
+      p #[time(pubdate datetime=item.data.date)= toFormattedDate(item.data.date)] • #{item.data.description}
