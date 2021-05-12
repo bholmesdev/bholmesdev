@@ -102,12 +102,15 @@ const setCurrentSection = (sectionIndex) => {
     50 * currentSectionIndex + '%'
 
   const sectionLinks = jumpToSection.linkContainer.querySelectorAll('a')
-  for (const link of sectionLinks) {
-    link.style.color = 'var(--body-color)'
+
+  if (sectionLinks?.length) {
+    for (const link of sectionLinks) {
+      link.style.color = 'var(--body-color)'
+    }
+    sectionLinks[currentSectionIndex].style.color = `var(${
+      jumpToSectionColors[currentSectionIndex % 3]
+    })`
   }
-  sectionLinks[currentSectionIndex].style.color = `var(${
-    jumpToSectionColors[currentSectionIndex % 3]
-  })`
 }
 
 export default ({ onLoading }) => {
