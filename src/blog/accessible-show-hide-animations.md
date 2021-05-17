@@ -36,7 +36,8 @@ What we really want is the best of _all_ worlds:
 3. A callout for screenreaders whenever we show and hide something
 
 ## ⌨️ Let's accommodate keyboard users
-_This section is for showing / hiding interactable elements, like a set of buttons or links_
+
+_**Note:** This section only applies when showing / hiding interactable elements like a list of links._
 
 Focusing on that `tab` key first, we need to find a way to make sure that a not-so-visible element can't be accessed at all.
 
@@ -77,7 +78,6 @@ You can click on that CodePen preview above and start hitting `tab` to test our 
 💡 _**Note:** There is 1 subtle difference between `display: none` and `visibility: hidden`. When using the former, an element gets completely removed from the document, so any elements next to it will **shift to take up the space it left behind.** By contrast, `visibility: hidden` just hides the element visually, while **leaving the gap** for where it used to sit. This prevents your website layout from shifting around when you toggle elements on and off._
 
 ## 👁 Let's accommodate screen readers 
-_This section is for showing / hiding elements of **any kind,** interactable or not!_
 
 Okay, so we know what our website looks like... but what does it sound like? 🤔
 
