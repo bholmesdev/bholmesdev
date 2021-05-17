@@ -1,5 +1,5 @@
 ---
-title: Building sexy, accessible show-hide animations in any web framework
+title: Sexy, accessible show-hide animations in any web framework
 description: It's easy to build fancy fade transitions, but how do we include keyboard-ists and screenreaders in the mix?
 layout: blog-post
 date: 2019-04-09T15:46:47.093Z
