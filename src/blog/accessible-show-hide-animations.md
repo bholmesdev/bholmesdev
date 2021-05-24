@@ -6,11 +6,13 @@ layout: blog-post
 date: 2021-05-24T20:01:36.550Z
 ---
 
-I've had a fair amount of experience building navigation dropdowns at this point. Heck, I even [wrote an article](https://bholmes.dev/blog/building-a-sexy-mobile-ready-navbar-in-any-web-framework/) on build a navbar in any web framework! But I've quickly discovered some missing pieces in my approach to showing / hiding, well, _anything_ on the page:
-- **accessibility for keyboard users** isn't perfect for link or button filled dropdowns (like mobile navigation)
-- **the screenreader experience** doesn't announce when new elements are shown on the page at all (a huge problem for the visually impaired)
+Using JS to show and hide something is a web dev rite of passage. Heck, it's the first demo that comes to mind when you think about "state management" (just behind building a counter 😆).
 
-So I wanted to use this article to explore the **missing accessibility pieces in your show-hide interactions.** This means dropdowns, accordions, on-off switches, sidebars... you name it! Oh, and we'll be sure your sexy CSS transitions stay in the mix.
+But when you do the classic "hide whenever X variable is `false`," there's some accessibility concerns you might be forgetting:
+- can keyboard users still access that hidden element?
+- do screen readers actually _know_ what your button is trying to show and hide?
+
+Don't worry, I have the answers for you! Let's explore a universal solution you can bring to React, Svelte, Vue, etc, along with some debugging tips using a real screen reader 🚀
 
 ## Starting with a naive solution
 Okay, wait, why isn't this post a 2 minute read? I just whipped up this fade transition in a CodePen and it works great!
