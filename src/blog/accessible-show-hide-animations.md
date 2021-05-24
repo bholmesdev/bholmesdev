@@ -119,7 +119,7 @@ toggle.addEventListener("click", () => {
 });
 ```
 
-{% codepen https://codepen.io/bholmesdev/pen/vYxKVgB default-tab=js,result %}
+{% codepen https://codepen.io/bholmesdev/pen/RwpVqdb default-tab=js,result %}
 
 ![VoiceOver output as we toggle our button. Notice we get a new announcement for every click saying either "expanded" or "collapsed"](/assets/blog/show-hide-animation/aria-expanded-screenreader-demo.gif)
 
