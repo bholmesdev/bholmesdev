@@ -6,6 +6,10 @@ layout: blog-post
 date: 2021-05-24T20:01:36.550Z
 ---
 
+This entry comes from my web wizardry newsletter, where I explore evergreen solutions to common web dev problems (no matter your favorite framework). If you like what you see, [**go sign up for free**](http://tinyletter.com/bholmesdev) 🪄
+
+---
+
 Using JS to show and hide something is a web dev rite of passage. Heck, it's the first demo that comes to mind when you think about "state management" (just behind building a counter 😆).
 
 But when you do the classic "hide whenever X variable is `false`," there's some accessibility concerns you might be forgetting:
