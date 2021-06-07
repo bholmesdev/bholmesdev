@@ -1,9 +1,13 @@
 ---
 title: Grabbing subsets of JS object properties with... GraphQL?
-description: It's easy to grab keys out of JSON objects, but what if we want to grab "partial" pieces of that object without destructuring?
+description: It's easy to grab keys out of JSON objects, but what if we want to grab entire, nested sets of object keys without destructuring?
 layout: blog-post
 image: assets/blog/query-json-objects-graphql/thumbnail.png
 date: 2021-06-07T20:01:36.550Z
+---
+
+This entry comes from my web wizardry newsletter, where I explore universal solutions to common web dev problems (no matter your favorite framework). If you like what you see, [**go sign up for free**](http://tinyletter.com/bholmesdev) 🪄
+
 ---
 
 Messing with JavaScript objects is pretty easy these days. Destructuring syntax is convenient and the spread `...` operator helps with merging objects together. But what about grabbing just... a portion of an object?
