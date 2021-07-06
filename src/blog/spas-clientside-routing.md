@@ -33,7 +33,7 @@ This is how all websites work when you first visit them. You ask for what you wa
 
 There's an important bit I want to reiterate there: **you hand over your dirty plates, and get back a brand new one.** This is why you'll see a little loading bar re-appear every time you jump to a new page. Here's an example of 11ty's documentation using server-based routing:
 
-![](/assets/blog/spas-clientside-routing/spas-11ty-docs-page-reload.gif)
+![Clicking through pages of 11ty's documentation site](/assets/blog/spas-clientside-routing/spas-11ty-docs-page-reload.gif)
 
 _Watch the loading bar engage whenever we click a link_
 
@@ -57,13 +57,13 @@ So the actual _loading_ of these shared resources isn't a problem. But what abou
 #### 3. The next page only appears when it's ready
 Back in the day, there was a risk you'd see a flash of white nothingness between "clearing the plate" and "receiving the new one." But [modern browsers have pretty much resolved this](https://developers.google.com/web/updates/2019/05/paint-holding)! In short, web browsers wait for the signal that the next page isn't just "done loading," but is also ready for you to view and interact with. Think of this like bringing out your plate when it's ready to eat, instead of bringing you a plate of ingredients you have to assemble yourself.
 
-![](/assets/blog/spas-clientside-routing/spa-hibachi-rendering.gif)
+![Chef tossing knives around a hibachi grill](/assets/blog/spas-clientside-routing/spa-hibachi-rendering.gif)
 
 _**Hibachi rendering:** showing you the page painting process before it's ready to eat (it's less cool when browsers do it)_ 😉
 
 This especially helps out pages that rely on blocking resources like JavaScript to render everything on the page. Here's a quick before-and-after shot by the Chrome team when they launched this concept 🚀
 
-![](/assets/blog/spas-clientside-routing/spa-flash-of-white.gif)
+![Comparison of the "flash of white" from loading a JS-intensive page before and after the Google Chrome update](/assets/blog/spas-clientside-routing/spa-flash-of-white.gif)
 
 _[Source article](https://developers.google.com/web/updates/2019/05/paint-holding) by Addy Osmani_
 
@@ -120,7 +120,7 @@ For instance, if I went from one page of a React app to another using serverside
 
 **Second, you can now build dynamic, app-like interactions ⚙️** Animated page transitions are the easiest to point out here. Since you're fully in control of loading new content and applying it to the page, you can pull off all sorts of CSS trickery like cross-fades, pop-up modals, tab sliders, and more. Here's an example from my personal site using clientside routing:
 
-![](/assets/blog/spas-clientside-routing/spa-bholmesdev-page-transitions.gif)
+![Preview of page transitions clicking links on bholmes.dev](/assets/blog/spas-clientside-routing/spa-bholmesdev-page-transitions.gif)
 
 ## 🍔 A juicy visual comparison
 
@@ -132,13 +132,13 @@ Say you receive your order for a juicy burger that's [cooked medium rare](https:
 
 Here's what that "click" may do with a server-based approach:
 
-![](/assets/blog/spas-clientside-routing/spa-ssr-demo.gif)
+![Step-by-step serverside routing process: 1. Medium rare hamburger is returned, 2. The HTML document is emptied out while the new one loads, 3. The well done hamburger is applied to our page](/assets/blog/spas-clientside-routing/spa-ssr-demo.gif)
 
 _Animation showing the 3 step rendering process_
 
 Then, here's how clientside routing may handle the request:
 
-![](/assets/blog/spas-clientside-routing/spa-csr-demo.gif)
+![Step-by-step clientside routing process: 1. Medium rare hamburger is returned, 2. We request a well done burger using the fetch API, 3. We massage the response, 4. We pluck out the "patty" element and apply it to our current page](/assets/blog/spas-clientside-routing/spa-csr-demo.gif)
 
 _Animation showing our new 4 step rendering process_
 
