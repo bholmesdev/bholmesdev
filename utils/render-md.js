@@ -128,7 +128,7 @@ module.exports = async (rawMarkdown) => {
     const { attrs } = tokens[idx]
     const src = attrs.find((attr) => attr[0] === 'src')[1]
     if (!imageSrcToMetadata[src]) {
-      return `<img ${attrsToString(attrs)} />`
+      return `<img ${attrsToString([...attrs, ['loading', 'lazy']])} />`
     }
 
     const { metadata, options } = imageSrcToMetadata[src]
