@@ -9,9 +9,9 @@ date: 2021-07-06T20:01:36.550Z
 "SPA" has been a hot topic ever since "modern" JS frameworks like React hit the scene. They promise all sorts of benefits like _dynamic user interactions,_ _lightning-fast load times,_ _solving world hunger,_ etc. (okay that last one is a stretch...)
 
 But have you ever stopped to wonder what's _actually_ going on behind the scenes? And if you're _not_ using an SPA, are you stuck in the past? Well, let's explore:
-🤔 How non-SPAs work + how they perform on the modern web (spoiler, they're a great choice as always!)
-⚙️ The key benefits and inner workings of an SPA
-🍔 A side-by-side visual comparison feat. juicy burgers
+- 🤔 How non-SPAs work + how they perform on the modern web (spoiler, they're a great choice as always!)
+- ⚙️ The key benefits and inner workings of an SPA
+- 🍔 A side-by-side visual comparison feat. juicy burgers
 
 Onwards!
 
@@ -126,7 +126,7 @@ For instance, if I went from one page of a React app to another using serverside
 
 Now that we've introduced SPAs + clientside routing as a concept, lets see a side-by-side comparison with serverside routing.
 
-Say you receive. your order for a juicy burger that's [cooked medium rare](https://medium.com/@samsonspaddockau/whats-the-difference-between-rare-medium-and-well-done-steak-fe463e0f960f), but would rather have a patty that's well done. 
+Say you receive your order for a juicy burger that's [cooked medium rare](https://medium.com/@samsonspaddockau/whats-the-difference-between-rare-medium-and-well-done-steak-fe463e0f960f), but would rather have a patty that's well done. 
 
 **We'll imagine this moment as "clicking a link,"** requesting to go from `/medium-rare-burger` to `/well-done-burger`.
 
@@ -141,6 +141,10 @@ Then, here's how clientside routing may handle the request:
 ![](/assets/blog/spas-clientside-routing/spa-csr-demo.gif)
 
 _Animation showing our new 4 step rendering process_
+
+Notice that we never clear our page in the SPA approach! We just request the resource (a well-done burger), pick out the pieces we want to add to our page (the patty), and perform the DOM manipulation with JavaScript.
+
+This doesn't have much performance benefits when we're talking HTML files. But if that HTML has some JavaScript and styles attached to it that we can _also_ fetch (like, say, a React component), there's a lot of room for performance gains.
 
 ## Wrapping up: so which should I choose?
 Although SPAs seem like the "silver bullet" for any website, there's a case to be made for either approach.
