@@ -63,7 +63,7 @@ _**Hibachi rendering:** showing you the page painting process before it's ready 
 
 This especially helps out pages that rely on blocking resources like JavaScript to render everything on the page. Here's a quick before-and-after shot by the Chrome team when they launched this concept 🚀
 
-![Comparison of the "flash of white" from loading a JS-intensive page before and after the Google Chrome update](/assets/blog/spas-clientside-routing/spa-flash-of-white.gif)
+![Comparison of the flash of white from loading a JS-intensive page before and after the Google Chrome update](/assets/blog/spas-clientside-routing/spa-flash-of-white.gif)
 
 _[Source article](https://developers.google.com/web/updates/2019/05/paint-holding) by Addy Osmani_
 

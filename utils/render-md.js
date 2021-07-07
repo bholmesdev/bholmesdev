@@ -78,9 +78,9 @@ const toMetadataByImageSrc = async (rawMarkdown) => {
   let asyncQueue = []
 
   md.renderer.rules.image = (tokens, idx) => {
-    const { attrs } = tokens[idx]
+    const { attrs, content } = tokens[idx]
     const src = attrs.find((attr) => attr[0] === 'src')[1]
-    const alt = attrs.find((attr) => attr[0] === 'alt')[1]
+    const alt = content
     if (src.startsWith('assets')) {
       console.log(src)
     }
@@ -125,10 +125,10 @@ module.exports = async (rawMarkdown) => {
   }
 
   md.renderer.rules.image = (tokens, idx) => {
-    const { attrs } = tokens[idx]
+    const { attrs, content } = tokens[idx]
     const src = attrs.find((attr) => attr[0] === 'src')[1]
     if (!imageSrcToMetadata[src]) {
-      return `<img ${attrsToString([...attrs, ['loading', 'lazy']])} />`
+      return `<img ${attrsToString([['src', src], ['alt', content], ['loading', 'lazy']])} />`
     }
 
     const { metadata, options } = imageSrcToMetadata[src]
