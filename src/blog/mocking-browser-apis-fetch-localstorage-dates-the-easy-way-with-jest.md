@@ -120,7 +120,7 @@ Now, we're good to test our original function injection-free!
 ```js
 it('puts the chili in the fridge when the fridge is empty', () => {
 	saveForLater('chili')
-  expect(global.Storage.prototoype.setItem).toHaveBeenCalledOnce()
+  expect(global.Storage.prototype.setItem).toHaveBeenCalledOnce()
   expect(mockStorage['mealPrepOfTheWeek']).toEqual('chili')
 })
 ```
