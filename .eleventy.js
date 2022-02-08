@@ -74,6 +74,7 @@ module.exports = function (eleventyConfig) {
   */
   eleventyConfig.templateFormats = ['md', 'pug', 'scss', 'mjs', 'html']
   eleventyConfig.addPassthroughCopy('assets')
+  eleventyConfig.addPassthroughCopy('_redirects')
 
   eleventyConfig.addExtension('pug', templateExtensionConfig)
   eleventyConfig.addExtension('md', templateExtensionConfig)
