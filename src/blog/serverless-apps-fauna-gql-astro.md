@@ -6,6 +6,8 @@ layout: blog-post
 date: 2022-03-24T22:48:29.682Z
 ---
 
+> **This article is sponsored by Fauna.** If you are interested in producing similar content, apply to [Write with Fauna](https://www2.fauna.com/write-with-fauna).
+
 Serverless and GraphQL have become pretty prolific buzzwords in the backend space. They each serve (heh) fairly different needs; the former takes the infrastructure management out of the backend, while the latter handles the efficiency and documentation pieces.
 
 So, how do these approaches compliment each other? Let’s explore:
@@ -319,7 +321,7 @@ const server = new ApolloServer({ typeDefs, resolvers })
 export const handler = server.createHandler()
 ```
 
-Try visiting `[http://localhost:8888/.netlify/functions/nasa](http://localhost:8888/.netlify/functions/nasa)` again. Now, you should see an entire playground interface to explore 👀
+Try visiting [http://localhost:8888/.netlify/functions/nasa](http://localhost:8888/.netlify/functions/nasa) again. Now, you should see an entire playground interface to explore 👀
 
 If you click on the “docs” tab, you’ll see that `galaxies` resolver that we just defined. Clicking through reveals some information about the return value as well.
 
@@ -397,7 +399,7 @@ Assuming your Netlify server is still running from that `npm run ntl:dev` comman
 npm run astro:dev
 ```
 
-You should see an output like `06:23 PM [astro] Local: [http://127.0.0.1:3000/](http://127.0.0.1:3000/)`. Clicking this link, you’ll find a nice summary of galaxies to explore 🚀
+You should see an output like `06:23 PM [astro] Local: http://127.0.0.1:3000/`. Clicking this link, you’ll find a nice summary of galaxies to explore 🚀
 
 ### Generate routes for each galaxy
 
