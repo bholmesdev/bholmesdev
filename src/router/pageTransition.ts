@@ -2,6 +2,11 @@ import { getPageDiff, sleep } from './utils'
 
 export async function animatePageIntoView (newPage: Document) {
   const [page, prevPage] = getPageDiff(newPage, document)
+  if (page === newPage.body || prevPage === document.body) {
+    document.body.replaceWith(newPage.body)
+    return
+  }
+
   const layoutContainer = prevPage.parentElement
   layoutContainer.style.position = 'relative'
   layoutContainer.insertBefore(page, prevPage)
@@ -9,7 +14,7 @@ export async function animatePageIntoView (newPage: Document) {
   await new Promise((resolve) => {
     requestAnimationFrame(async () => {
       const cssAnimDuration = getComputedStyle(
-        document.querySelector('[data-page]')
+        document.querySelector('[data-page]'),
       ).getPropertyValue('--page-anim-duration').trim()
       const digits = cssAnimDuration.match(/^\d+(\.\d+)?/)?.[0]
       const isSeconds = !cssAnimDuration.endsWith('ms')
