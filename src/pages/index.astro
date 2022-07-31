@@ -1,19 +1,24 @@
 ---
 import Layout from "../layouts/Base.astro";
+import HeadingLink from "./_index/HeadingLink.astro";
 ---
 
 <Layout title="Ben Holmes">
 	<h1>Ben Holmes</h1>
 	<ul>
-		<li>Open source dev</li>
-		<li>Whiteboardist</li>
-		<li>Speaker</li>
-		<li>Streamer</li>
+		<HeadingLink href="https://github.com/bholmesdev">Open source dev</HeadingLink>
+		<HeadingLink href="https://twitter.com/hashtag/whiteboardtheweb">Whiteboardist</HeadingLink>
+		<HeadingLink href="https://2021.jamstackconf.com/talk/31cadaf67b08/the-11ty-vite-and-jam-sandwich-a-recipe-for-making-the-static-interactive/">Speaker</HeadingLink>
+		<HeadingLink href="https://twitch.tv/bholmesdev">Streamer</HeadingLink>
 	</ul>
 </Layout>
 
 <style>
-	h1 {
-		color: blue;
+	ul {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
 	}
 </style>
