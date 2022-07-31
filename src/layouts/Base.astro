@@ -49,11 +49,9 @@ globalThis.layoutIndex = 0
 				<a href="/blog">Blog</a>
 			</nav>
 		</header>
-		<div>
-			<Outlet metaUrl={import.meta.url}>
-				<slot />
-			</Outlet>
-		</div>
+		<Outlet metaUrl={import.meta.url}>
+			<slot />
+		</Outlet>
 	</body>
 </html>
 
