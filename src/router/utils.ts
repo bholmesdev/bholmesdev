@@ -10,18 +10,18 @@
 export const sleep = (duration: number) =>
 new Promise((resolve) => setTimeout(resolve, duration))
 
-export const toDataPageAttrs = (page: HTMLElement) =>
+export const toDataPageAttrs = (page: Document) =>
   [...page.querySelectorAll('[data-page]')].map((el) => ({
     el,
     value: el.getAttribute('data-page'),
   }))
 
-export function getPageDiff (page: Element, prevPage: Element): [Element, Element] | null {
+export function getPageDiff (page: Document, prevPage: Document): [Element, Element] | null {
   const [allPageEls, allPrevPageEls] = [page, prevPage].map(toDataPageAttrs)
 
   const pageElPairs = zip(allPageEls, allPrevPageEls)
-  // assume the entire page is different by default
-  let diffPair: [Element, Element] = [page, prevPage]
+  // Assume the entire page is different by default
+  let diffPair: [Element, Element] = [page.body, prevPage.body]
   for (let [left, right] of pageElPairs) {
     if (typeof left === 'undefined' || typeof right === 'undefined') {
       // If either side is undefined, we've found our diff already
