@@ -1,0 +1,15 @@
+---
+export interface Props {
+  /**
+   * The file URL where this outlet is used, computed by "import.meta.url"
+   * TODO: find a way to figure this out within the component?
+   */
+  metaUrl: string;
+}
+
+const { metaUrl } = Astro.props as Props
+---
+
+<div data-page={metaUrl}>
+  <slot />
+</div>
