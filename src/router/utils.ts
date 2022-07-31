@@ -7,6 +7,9 @@
   return [...rows[0]].map((_, c) => rows.map((row) => row[c]))
 }
 
+export const sleep = (duration: number) =>
+new Promise((resolve) => setTimeout(resolve, duration))
+
 export const toDataPageAttrs = (page: HTMLElement) =>
   [...page.querySelectorAll('[data-page]')].map((el) => ({
     el,
