@@ -63,9 +63,21 @@ globalThis.layoutIndex = 0
 		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
 		--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
 
-		--color-text: hsl(12, 5%, 4%);
-		--color-bg: hsl(10, 21%, 95%);
-		--color-border: hsl(17, 24%, 90%);
+		--sepia-1: hsl(44, 71%, 92%);
+		--sepia-3: hsl(41, 38%, 76%);
+		--sepia-7: hsl(41, 35%, 40%);
+		--sepia-8: hsl(41, 33%, 30%);
+		--sepia-9: hsl(41, 31%, 20%);
+
+		--color-text: var(--sepia-9);
+		--color-link: var(--sepia-7);
+		--color-bg: var(--sepia-1);
+		--color-bg-muted: var(--sepia-3);
+
+		--green: hsl(151, 81%, 34%);
+		--orange: hsl(11, 78%, 54%);
+		--purple: hsl(264, 76%, 54%);
+		--color-primary: var(--green);
 
 		--page-anim-duration: 0.2s;
 	}
@@ -106,6 +118,16 @@ globalThis.layoutIndex = 0
 
 	h2 {
 		font-size: var(--font-size-lg);
+	}
+
+	a, a:visited {
+		color: var(--color-link);
+		text-decoration-style: dotted;
+		transition: color 0.2s;
+	}
+
+	a:hover, a:focus-visible {
+		color: var(--color-primary);
 	}
 
 	code {
