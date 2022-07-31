@@ -99,6 +99,8 @@ globalThis.layoutIndex = 0
 		--color-primary: var(--green);
 
 		--page-anim-duration: 0.2s;
+		--content-max-width: 60ch;
+		--grid-max-width: 100ch;
 	}
 
 	* {
@@ -158,6 +160,14 @@ globalThis.layoutIndex = 0
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+
+	.grid-max-width {
+		max-width: var(--grid-max-width);
+	}
+
+	.content-max-width {
+		max-width: var(--content-max-width);
 	}
 </style>
 

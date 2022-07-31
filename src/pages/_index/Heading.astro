@@ -1,0 +1,120 @@
+---
+import DownArrow from "../../components/icons/DownArrow.astro";
+import HeadingLink from "./HeadingLink.astro";
+---
+
+<section class="grid-max-width">
+  <img src="/images/charcoal-me.png">
+  <h1 class="heading">Ben Holmes</h1>
+  <ul class="links">
+    <HeadingLink href="https://github.com/bholmesdev">Open source dev</HeadingLink>
+    <HeadingLink href="https://twitter.com/hashtag/whiteboardtheweb">Whiteboardist</HeadingLink>
+    <HeadingLink href="https://2021.jamstackconf.com/talk/31cadaf67b08/the-11ty-vite-and-jam-sandwich-a-recipe-for-making-the-static-interactive/">Speaker</HeadingLink>
+    <HeadingLink href="https://twitch.tv/bholmesdev">Streamer</HeadingLink>
+  </ul>
+  <a class="cta" href="#in-brief">
+    <span>More about me</span>
+    <DownArrow />
+  </a>
+</section>
+
+<style>
+	section {
+		padding: 1rem;
+		display: grid;
+		margin: auto;
+	}
+	img {
+		grid-area: image;
+	}
+	.heading {
+		grid-area: heading;
+		/* ensures text wrapping at all sizes */
+		max-width: min-content;
+		margin: 0;
+	}
+	.links {
+		grid-area: links;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.8em;
+	}
+	.cta {
+		grid-area: cta;
+		color: var(--color-primary);
+		font-family: var(--font-family-heading);
+		font-weight: 600;
+		font-size: var(--font-size-lg);
+		text-decoration: none;
+		display: flex;
+		gap: 0.4em;
+	}
+	.cta :global(svg) {
+		height: 1.3em;
+		width: auto;
+		transform: translateY(-0.2em);
+		animation: arrow-hover 1.8s ease-in-out infinite;
+	}
+	@keyframes arrow-hover {
+		0%, 100% {
+			transform: translateY(-0.2em);
+		}
+		50% {
+			transform: translateY(0.1em);
+		}
+	}
+	/* Group super specialized mobile styles here */
+	@media(max-width: 599px) {
+		section {
+			height: 90vh;
+			grid-template-areas: 'heading image'
+													'links cta';
+			justify-content: space-between;
+		}
+		img {
+			position: absolute;
+			right: 0;
+			top: 30vh;
+			width: 73vw;
+		}
+		.heading {
+			writing-mode: vertical-rl;
+			transform: translateX(-3vh);
+			font-size: 11vh;
+		}
+		.links, .cta {
+			margin-top: auto;
+		}
+		.links {
+			font-size: 3vh;
+		}
+		.cta {
+			font-size: 10vh;
+			margin-left: auto;
+		}
+		.cta span {
+			display: none;
+		}
+	}
+	@media(min-width: 600px) {
+		section {
+			display: grid;
+			grid-template-areas: 'image heading'
+													'image links'
+													'image cta';
+			grid-template-columns: 1fr 1.2fr;
+			column-gap: 3rem;
+			row-gap: 2rem;
+			align-items: center;
+		}
+		img {
+			width: 100%;
+		}
+		.links {
+			font-size: var(--font-size-md);
+		}
+	}
+</style>
