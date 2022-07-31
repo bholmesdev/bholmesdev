@@ -3,7 +3,7 @@
  * into tuples based on their index
  * ex. [1, 2, 3], [4, 5, 6] -> [[1, 4], [2, 5], [3, 6]]
  */
- export function zip<T>(...rows: T[][]): T[][] {
+ export function zip<T>(...rows: T[][]): (T | undefined)[][] {
   return [...rows[0]].map((_, c) => rows.map((row) => row[c]))
 }
 
@@ -16,16 +16,28 @@ export const toDataPageAttrs = (page: HTMLElement) =>
     value: el.getAttribute('data-page'),
   }))
 
-export const getPageDiff = (page, prevPage) => {
+export function getPageDiff (page: Element, prevPage: Element): [Element, Element] | null {
   const [allPageEls, allPrevPageEls] = [page, prevPage].map(toDataPageAttrs)
 
   const pageElPairs = zip(allPageEls, allPrevPageEls)
+  // assume the entire page is different by default
+  let diffPair: [Element, Element] = [page, prevPage]
   for (let [left, right] of pageElPairs) {
-    if (left.value !== right.value) {
-      return [left.el, right.el]
+    if (typeof left === 'undefined' || typeof right === 'undefined') {
+      // If either side is undefined, we've found our diff already
+      return diffPair
+    } else if (left.value === right.value) {
+      // If page attributes are equal, these pages share a layout.
+      // Assume the children of these layouts could be the diff,
+      // and keep walking the pages to check for shared nested layouts
+      diffPair = [left.el, right.el]
+    } else {
+      // In all other cases, the pages do *not* share a layout,
+      // so we've found our diff already
+      return diffPair
     }
   }
-  return [null, null]
+  return diffPair
 }
 
 export function isStylesheet(e: Element): e is HTMLLinkElement {

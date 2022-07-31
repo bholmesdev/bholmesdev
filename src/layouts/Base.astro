@@ -47,7 +47,7 @@ const { title } = Astro.props as Props;
 			</nav>
 		</header>
 		<div>
-			<main data-page={Astro.url.pathname}>
+			<main data-page={import.meta.url}>
 				<slot />
 			</main>
 		</div>
