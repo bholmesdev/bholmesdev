@@ -1,5 +1,5 @@
 import { animatePageIntoView } from './pageTransition'
-import { isScriptWithSrc, isStylesheet } from './utils'
+import { getClosestUrl, isScriptWithSrc, isStylesheet } from './utils'
 
 if (import.meta.env.DEV) {
   console.log('CSR loaded!')
@@ -70,12 +70,12 @@ async function setVisiblePage ({ pathname, href }: Pick<Location, 'pathname' | '
 }
 
 document.addEventListener('click', async function handleClientSideRouting (event) {
-  const { target } = event
-  if (target instanceof HTMLAnchorElement && target.origin === location.origin) {
+  const url = getClosestUrl(event)
+  if (url.origin === window.location.origin) {
     event.preventDefault()
-    if (target.pathname !== prevPathname) {
-      history.pushState({}, null, target.href)
-      await setVisiblePage(target)
+    if (url.pathname !== prevPathname) {
+      history.pushState({}, null, url.toString())
+      await setVisiblePage({ href: url.toString(), pathname: url.pathname })
     }
   }
 })

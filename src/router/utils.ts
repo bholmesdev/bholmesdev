@@ -40,6 +40,14 @@ export function getPageDiff (page: Document, prevPage: Document): [Element, Elem
   return diffPair
 }
 
+export function getClosestUrl ({ target }: Event): URL | undefined {
+  if (!(target instanceof HTMLElement)) return;
+  const a = target.closest("a");
+  if (!a) return;
+  const { href } = a;
+  return new URL(href);
+};
+
 export function isStylesheet(e: Element): e is HTMLLinkElement {
   return e instanceof HTMLLinkElement
 }
