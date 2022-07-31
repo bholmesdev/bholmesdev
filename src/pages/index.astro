@@ -1,4 +1,5 @@
 ---
+import DownArrow from "../components/icons/DownArrow.astro";
 import Layout from "../layouts/Base.astro";
 import HeadingLink from "./_index/HeadingLink.astro";
 ---
@@ -11,6 +12,10 @@ import HeadingLink from "./_index/HeadingLink.astro";
 		<HeadingLink href="https://2021.jamstackconf.com/talk/31cadaf67b08/the-11ty-vite-and-jam-sandwich-a-recipe-for-making-the-static-interactive/">Speaker</HeadingLink>
 		<HeadingLink href="https://twitch.tv/bholmesdev">Streamer</HeadingLink>
 	</ul>
+	<a class="more-about-me" href="#in-brief">
+		More about me
+		<DownArrow />
+	</a>
 </Layout>
 
 <style>
@@ -20,5 +25,28 @@ import HeadingLink from "./_index/HeadingLink.astro";
 		display: flex;
 		flex-direction: column;
 		gap: 0.8rem;
+	}
+	.more-about-me {
+		color: var(--color-primary);
+		font-family: var(--font-family-heading);
+		font-weight: 600;
+		font-size: var(--font-size-lg);
+		text-decoration: none;
+		display: flex;
+		gap: 0.4em;
+	}
+	.more-about-me :global(svg) {
+		height: 1.3em;
+		width: auto;
+		transform: translateY(-0.2em);
+		animation: arrow-hover 1.8s ease-in-out infinite;
+	}
+	@keyframes arrow-hover {
+		0%, 100% {
+			transform: translateY(-0.2em);
+		}
+		50% {
+			transform: translateY(0.1em);
+		}
 	}
 </style>
