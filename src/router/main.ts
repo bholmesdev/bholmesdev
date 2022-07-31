@@ -81,7 +81,7 @@ document.addEventListener('click', async function handleClientSideRouting (event
 })
 
 window.onpopstate = () => {
-  if (location.hash === '' && location.pathname !== prevPathname) {
+  if (location.pathname !== prevPathname) {
     setVisiblePage(location)
   }
 }
