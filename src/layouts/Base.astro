@@ -38,6 +38,18 @@ globalThis.layoutIndex = 0
       as="font"
       type="font/woff2"
       crossorigin="anonymous">
+    <link
+      rel="preload"
+      href="https://use.typekit.net/af/435145/00000000000000007735c428/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous">
+    <link
+      rel="preload"
+      href="https://use.typekit.net/af/6727e5/00000000000000007735c42c/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous">
 		<link rel="stylesheet" href="/fonts/index.css" media="print" onload="this.media='all'" />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<title>{title}</title>
@@ -114,10 +126,16 @@ globalThis.layoutIndex = 0
 
 	h1 {
 		font-size: var(--font-size-xl);
+		text-transform: uppercase;
 	}
 
 	h2 {
 		font-size: var(--font-size-lg);
+	}
+
+	h1, h2, h3 {
+		font-family: "rigid-square";
+		font-weight: 600;
 	}
 
 	a, a:visited {

@@ -1,3 +1,29 @@
+@import url("https://p.typekit.net/p.css?s=1&k=liz3dnm&ht=tk&f=37321.37322&a=11143083&app=typekit&e=css");
+
+@font-face {
+  font-family:"rigid-square";
+  src:
+    url("https://use.typekit.net/af/435145/00000000000000007735c428/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),
+    url("https://use.typekit.net/af/435145/00000000000000007735c428/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),
+    url("https://use.typekit.net/af/435145/00000000000000007735c428/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family:"rigid-square";
+  src:
+    url("https://use.typekit.net/af/6727e5/00000000000000007735c42c/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"),
+    url("https://use.typekit.net/af/6727e5/00000000000000007735c42c/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"),
+    url("https://use.typekit.net/af/6727e5/00000000000000007735c42c/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+}
+
 @font-face {
   font-family: Atkinson;
   src:
@@ -6,6 +32,7 @@
     url("/fonts/Atkinson/Atkinson-Hyperlegible-Regular.ttf");
   font-display: swap;
 }
+
 @font-face {
   font-family: Atkinson;
   src:
@@ -15,6 +42,7 @@
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: Atkinson;
   src:
@@ -24,6 +52,7 @@
   font-weight: bold;
   font-display: swap;
 }
+
 @font-face {
   font-family: Atkinson;
   src:
