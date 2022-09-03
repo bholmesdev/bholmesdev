@@ -6,31 +6,31 @@ import InBrief from "./_index/InBrief.md";
 ---
 
 <Layout title="Ben Holmes">
-	<main class="numbered-headings">
-		<Heading />
-		<ColorStrip />
-		<article>
-			<InBrief />
-		</article>
-	</main>
+  <main class="numbered-headings">
+    <Heading />
+    <ColorStrip />
+    <numbered-section>
+      <InBrief />
+    </numbered-section>
+  </main>
 </Layout>
 
 <style>
-	article {
-		display: grid;
-		max-width: var(--grid-max-width);
-		grid-template-columns: 1fr 1.2fr;
-		column-gap: 3rem;
-		row-gap: 2rem;
-		padding-inline: 2rem;
-		margin: auto;
-	}
+  numbered-section {
+    display: grid;
+    max-width: var(--grid-max-width);
+    grid-template-columns: 1fr 1.2fr;
+    column-gap: 3rem;
+    row-gap: 2rem;
+    padding-inline: 2rem;
+    margin: auto;
+  }
 
-	article :global(section) {
-		padding-block-start: 2.8rem;
-	}
+  numbered-section :global(section) {
+    padding-block-start: 2.8rem;
+  }
 
-	article :global(blockquote) {
-		margin: 0;
-	}
+  numbered-section :global(blockquote) {
+    margin: 0;
+  }
 </style>

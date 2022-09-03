@@ -1,10 +1,27 @@
 <div class="grid-container">
-<div class="box">
-  <div class="bar green"></div>
-  <div class="bar orange"></div>
-  <div class="bar purple"></div>
+  <div data-curr-color class="box">
+    <div class="bar green"></div>
+    <div class="bar orange"></div>
+    <div class="bar purple"></div>
+  </div>
 </div>
-</div>
+
+<script>
+  import { currSection } from "../../components/section.store";
+
+  const box = document.querySelector(".box[data-curr-color]");
+  currSection.subscribe((curr) => {
+    let color: string;
+    if (curr % 3 === 0) {
+      color = "green";
+    } else if (curr % 3 === 1) {
+      color = "orange";
+    } else {
+      color = "purple";
+    }
+    box.setAttribute("data-curr-color", color);
+  });
+</script>
 
 <style>
   .box {
@@ -21,16 +38,18 @@
     padding-inline: 8px;
     padding-block: 10px;
   }
-  
+
   .bar {
     width: var(--bar-size);
     height: 100%;
     transition: transform 0.2s;
+    transform-origin: top;
   }
 
-  .bar.active {
-    transform: scaleY(8);
-    transform-origin: top;
+  [data-curr-color="green"] .green,
+  [data-curr-color="orange"] .orange,
+  [data-curr-color="purple"] .purple {
+    transform: scaleY(14);
   }
   .bar.green {
     background-color: var(--green);
@@ -50,6 +69,8 @@
     .grid-container {
       display: grid;
       grid-template-columns: 0.9fr 3rem 1.2fr;
+      position: sticky;
+      top: 1rem;
     }
   }
 </style>

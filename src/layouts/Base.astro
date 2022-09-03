@@ -2,202 +2,220 @@
 import Outlet from "../components/Outlet.astro";
 
 export interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props as Props;
-globalThis.layoutIndex = 0
+globalThis.layoutIndex = 0;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
       rel="preload"
       href="/fonts/Atkinson/Atkinson-Hyperlegible-Regular.woff2"
       as="font"
       type="font/woff2"
-      crossorigin="anonymous">
+      crossorigin="anonymous"
+    />
     <link
       rel="preload"
       href="/fonts/Atkinson/Atkinson-Hyperlegible-Bold.woff2"
       as="font"
       type="font/woff2"
-      crossorigin="anonymous">
+      crossorigin="anonymous"
+    />
     <link
       rel="preload"
       href="/fonts/Atkinson/Atkinson-Hyperlegible-Italic.woff2"
       as="font"
       type="font/woff2"
-      crossorigin="anonymous">
+      crossorigin="anonymous"
+    />
     <link
       rel="preload"
       href="/fonts/Atkinson/Atkinson-Hyperlegible-BoldItalic.woff2"
       as="font"
       type="font/woff2"
-      crossorigin="anonymous">
+      crossorigin="anonymous"
+    />
     <link
       rel="preload"
       href="https://use.typekit.net/af/435145/00000000000000007735c428/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3"
       as="font"
       type="font/woff2"
-      crossorigin="anonymous">
+      crossorigin="anonymous"
+    />
     <link
       rel="preload"
       href="https://use.typekit.net/af/6727e5/00000000000000007735c42c/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3"
       as="font"
       type="font/woff2"
-      crossorigin="anonymous">
-		<link rel="stylesheet" href="/fonts/index.css" media="print" onload="this.media='all'" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<title>{title}</title>
-	</head>
-	<body>
-		<header>
-			<nav>
-				<a href="/">Ben</a>
-				<a href="/blog">Blog</a>
-			</nav>
-		</header>
-		<Outlet metaUrl={import.meta.url}>
-			<slot />
-		</Outlet>
-	</body>
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="/fonts/index.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Ben</a>
+        <a href="/blog">Blog</a>
+      </nav>
+    </header>
+    <Outlet metaUrl={import.meta.url}>
+      <slot />
+    </Outlet>
+    <script src="../router/main"></script>
+    <script src="../components/NumberedSection"></script>
+
+    <style is:global>
+      :root {
+        --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+        --font-size-base: clamp(1rem, 0.5vw + 0.91rem, 1.4rem);
+        --font-size-md: clamp(1.25rem, 0.76vw + 1.1rem, 1.8rem);
+        --font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+        --font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+        --font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+        --font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
+        --font-family-body: Atkinson, system-ui, sans-serif;
+        --font-family-heading: "rigid-square", var(--font-family-body);
+
+        --sepia-1: hsl(44, 71%, 92%);
+        --sepia-3: hsl(41, 38%, 76%);
+        --sepia-7: hsl(41, 35%, 40%);
+        --sepia-8: hsl(41, 33%, 30%);
+        --sepia-9: hsl(41, 31%, 20%);
+
+        --color-text: var(--sepia-9);
+        --color-link: var(--sepia-7);
+        --color-bg: var(--sepia-1);
+        --color-bg-muted: var(--sepia-3);
+
+        --green: hsl(151, 81%, 34%);
+        --orange: hsl(11, 78%, 54%);
+        --purple: hsl(264, 76%, 54%);
+        --color-primary: var(--green);
+
+        --page-anim-duration: 0.2s;
+        --content-max-width: 60ch;
+        --grid-max-width: 90ch;
+      }
+
+      * {
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      [data-page][data-page-enter] {
+        position: absolute;
+        inset: 0;
+        animation: fade var(--page-anim-duration) ease-in forwards;
+      }
+      [data-page][data-page-exit] {
+        animation: fade var(--page-anim-duration) ease-out reverse;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      html {
+        font-family: var(--font-family-body);
+        color: var(--color-text);
+        background-color: var(--color-bg);
+      }
+
+      body {
+        margin: 0;
+        font-size: var(--font-size-base);
+      }
+
+      h1 {
+        font-size: var(--font-size-xxxl);
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      h2 {
+        font-size: var(--font-size-xxl);
+        font-weight: 400;
+      }
+
+      .numbered-headings {
+        counter-reset: numbered-headings;
+      }
+
+      .numbered-headings h2::before {
+        --number-size: 2.6em;
+        counter-increment: numbered-headings;
+        content: counter(numbered-headings);
+        background: var(--sepia-3);
+        border-radius: 9e9px;
+        width: var(--number-size);
+        height: var(--number-size);
+        color: var(--sepia-1);
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        z-index: -1;
+        top: -1.2em;
+        left: -1.094em;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-family-heading);
+      }
+
+      a,
+      a:visited {
+        color: var(--color-link);
+        text-decoration-style: dotted;
+        transition: color 0.2s;
+      }
+
+      a:hover,
+      a:focus-visible {
+        color: var(--color-primary);
+      }
+
+      code {
+        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+      }
+
+      .grid-max-width {
+        max-width: var(--grid-max-width);
+      }
+
+      .content-max-width {
+        max-width: var(--content-max-width);
+      }
+
+      .color-orange {
+        color: var(--orange);
+      }
+
+      .color-purple {
+        color: var(--purple);
+      }
+    </style>
+  </body>
 </html>
-
-<script src="../router/main"></script>
-
-<style is:global>
-	:root {
-		--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
-		--font-size-base: clamp(1rem, 0.5vw + 0.91rem, 1.4rem);
-		--font-size-md: clamp(1.25rem, 0.76vw + 1.1rem, 1.8rem);
-		--font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
-		--font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
-		--font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-		--font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
-
-		--font-family-body: Atkinson, system-ui, sans-serif;
-		--font-family-heading: "rigid-square", var(--font-family-body);
-
-		--sepia-1: hsl(44, 71%, 92%);
-		--sepia-3: hsl(41, 38%, 76%);
-		--sepia-7: hsl(41, 35%, 40%);
-		--sepia-8: hsl(41, 33%, 30%);
-		--sepia-9: hsl(41, 31%, 20%);
-
-		--color-text: var(--sepia-9);
-		--color-link: var(--sepia-7);
-		--color-bg: var(--sepia-1);
-		--color-bg-muted: var(--sepia-3);
-
-		--green: hsl(151, 81%, 34%);
-		--orange: hsl(11, 78%, 54%);
-		--purple: hsl(264, 76%, 54%);
-		--color-primary: var(--green);
-
-		--page-anim-duration: 0.2s;
-		--content-max-width: 60ch;
-		--grid-max-width: 90ch;
-	}
-
-	* {
-		box-sizing: border-box;
-		position: relative;
-	}
-
-	[data-page][data-page-enter] {
-		position: absolute;
-		inset: 0;
-		animation: fade var(--page-anim-duration) ease-in forwards;
-	}
-	[data-page][data-page-exit] {
-		animation: fade var(--page-anim-duration) ease-out reverse;
-	}
-
-	@keyframes fade {
-		from { opacity: 0 }
-		to { opacity: 1 }
-	}
-
-	html {
-		font-family: var(--font-family-body);
-		color: var(--color-text);
-		background-color: var(--color-bg);
-	}
-	
-	body {
-		margin: 0;
-		font-size: var(--font-size-base);
-	}
-
-	h1 {
-		font-size: var(--font-size-xxxl);
-		text-transform: uppercase;
-		font-weight: 600;
-	}
-
-	h2 {
-		font-size: var(--font-size-xxl);
-		font-weight: 400;
-	}
-
-	.numbered-headings {
-		counter-reset: numbered-headings;
-	}
-	
-	.numbered-headings h2::before {
-		--number-size: 2.6em;
-		counter-increment: numbered-headings;
-		content: counter(numbered-headings);
-		background: var(--sepia-3);
-		border-radius: 9e9px;
-		width: var(--number-size);
-		height: var(--number-size);
-		color: var(--sepia-1);
-		display: flex;
-		justify-content: center;
-		position: absolute;
-		z-index: -1;
-		top: -1.2em;
-		left: -1.094em;
-	}
-
-	h1, h2, h3 {
-		font-family: var(--font-family-heading);
-	}
-
-	a, a:visited {
-		color: var(--color-link);
-		text-decoration-style: dotted;
-		transition: color 0.2s;
-	}
-
-	a:hover, a:focus-visible {
-		color: var(--color-primary);
-	}
-
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-
-	.grid-max-width {
-		max-width: var(--grid-max-width);
-	}
-
-	.content-max-width {
-		max-width: var(--content-max-width);
-	}
-
-	.color-orange {
-		color: var(--orange);
-	}
-
-	.color-purple {
-		color: var(--purple);
-	}
-</style>
-
