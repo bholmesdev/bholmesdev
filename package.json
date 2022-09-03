@@ -9,7 +9,9 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "astro": "^1.1.5"
+    "@astrojs/preact": "^1.0.2",
+    "astro": "^1.1.5",
+    "preact": "^10.6.5"
   },
   "dependencies": {
     "node-html-parser": "^5.3.3",
