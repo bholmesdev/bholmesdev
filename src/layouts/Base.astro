@@ -72,8 +72,8 @@ globalThis.layoutIndex = 0
 <style is:global>
 	:root {
 		--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
-		--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-		--font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+		--font-size-base: clamp(1rem, 0.5vw + 0.91rem, 1.4rem);
+		--font-size-md: clamp(1.25rem, 0.76vw + 1.1rem, 1.8rem);
 		--font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
 		--font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
 		--font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
@@ -100,7 +100,7 @@ globalThis.layoutIndex = 0
 
 		--page-anim-duration: 0.2s;
 		--content-max-width: 60ch;
-		--grid-max-width: 100ch;
+		--grid-max-width: 90ch;
 	}
 
 	* {
@@ -124,27 +124,49 @@ globalThis.layoutIndex = 0
 
 	html {
 		font-family: var(--font-family-body);
-		font-size: var(--font-size-base);
 		color: var(--color-text);
 		background-color: var(--color-bg);
 	}
-
+	
 	body {
 		margin: 0;
+		font-size: var(--font-size-base);
 	}
 
 	h1 {
 		font-size: var(--font-size-xxxl);
 		text-transform: uppercase;
+		font-weight: 600;
 	}
 
 	h2 {
-		font-size: var(--font-size-xl);
+		font-size: var(--font-size-xxl);
+		font-weight: 400;
+	}
+
+	.numbered-headings {
+		counter-reset: numbered-headings;
+	}
+	
+	.numbered-headings h2::before {
+		--number-size: 2.6em;
+		counter-increment: numbered-headings;
+		content: counter(numbered-headings);
+		background: var(--sepia-3);
+		border-radius: 9e9px;
+		width: var(--number-size);
+		height: var(--number-size);
+		color: var(--sepia-1);
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		z-index: -1;
+		top: -1.2em;
+		left: -1.094em;
 	}
 
 	h1, h2, h3 {
 		font-family: var(--font-family-heading);
-		font-weight: 600;
 	}
 
 	a, a:visited {
@@ -168,6 +190,14 @@ globalThis.layoutIndex = 0
 
 	.content-max-width {
 		max-width: var(--content-max-width);
+	}
+
+	.color-orange {
+		color: var(--orange);
+	}
+
+	.color-purple {
+		color: var(--purple);
 	}
 </style>
 

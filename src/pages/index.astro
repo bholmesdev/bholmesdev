@@ -2,11 +2,35 @@
 import Layout from "../layouts/Base.astro";
 import ColorStrip from "./_index/ColorStrip.astro";
 import Heading from "./_index/Heading.astro";
-import InBrief from "./_index/InBrief.astro";
+import InBrief from "./_index/InBrief.md";
 ---
 
 <Layout title="Ben Holmes">
-	<Heading />
-	<ColorStrip />
-	<InBrief />
+	<main class="numbered-headings">
+		<Heading />
+		<ColorStrip />
+		<article>
+			<InBrief />
+		</article>
+	</main>
 </Layout>
+
+<style>
+	article {
+		display: grid;
+		max-width: var(--grid-max-width);
+		grid-template-columns: 1fr 1.2fr;
+		column-gap: 3rem;
+		row-gap: 2rem;
+		padding-inline: 2rem;
+		margin: auto;
+	}
+
+	article :global(section) {
+		padding-block-start: 2.8rem;
+	}
+
+	article :global(blockquote) {
+		margin: 0;
+	}
+</style>
