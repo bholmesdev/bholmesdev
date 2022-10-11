@@ -556,10 +556,9 @@ body > [data-page] > footer {
     }
     .socials__links {
       display: flex;
-      align-items: baseline;
-      a + a {
-        margin-left: 24px;
-      }
+      align-items: center;
+      line-height: 0;
+      gap: 0.7rem;
     }
     p {
       font-style: italic;
