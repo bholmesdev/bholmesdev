@@ -1,0 +1,120 @@
+<section style="--accent: var(--green)">
+    <h2>In brief.</h2>
+    <input id="inbrief-checkbox" class="checkbox" type="checkbox" />
+    <label for="inbrief-checkbox">
+        <span class="label-personal">Personal Mode</span>
+        <span class="switch"></span>
+        <span class="label-recruiter">Recruiter Mode</span>
+    </label>
+    <div class="content-personal">
+        <p>
+            Hey there! I’m Ben, a software dev from Charleston SC, USA, learning
+            how cold the northeast can be. You can call me a “traditional”
+            software developer by trade given my <a
+                href="https://www.cc.gatech.edu/degree-programs/bachelor-science-computer-science"
+                >BS in CS</a
+            > from Georgia Tech (go Jackets!). Today, I’ve channeled this technical
+            know-how into open source web development as a full-time maintainer at
+            <a href="https://astro.build">Astro</a>.
+        </p>
+        <p>
+            My core values are <strong
+                >be caring, be clear, and be casual.</strong
+            > Tech is a scary industry to jump into, especially without a sense of
+            humor to keep your head on straight. So as long as I’m a web developer,
+            my goal is to <a href="#i-teach">teach</a> and <a href="#i-create"
+                >build</a
+            > tools that help others become the best version of themselves. Well,
+            assuming we adhere to <a href="https://semver.org/"
+                >semantic versioning principles</a
+            > 😉
+        </p>
+    </div>
+    <div class="content-recruiter">
+        <p>
+            I'm a full-time software developer at <a href="https://astro.build"
+                >the Astro Technology Company</a
+            >, so I'm not looking for employment right now.
+        </p>
+        <p>
+            Still, here's all my skills / buzzwords you were going to search
+            for: <strong
+                >NodeJS, ES6, ReactJS, NextJS, semantic HTML, understanding of
+                a11y, Angular 2+, SolidJS, SvelteJS, SCSS, NoSQL, OOP
+                programming, C Basic, unit testing w/ Jest</strong
+            >... Okay I'm getting tired typing.
+        </p>
+        <p>
+            <a href="https://www.linkedin.com/in/bholmesdev/"
+                >Just browse my LinkedIn</a
+            >
+        </p>
+    </div>
+</section>
+
+<style>
+    label {
+        font-weight: bold;
+        cursor: pointer;
+        display: grid;
+        grid-template-areas:
+            "personal switch"
+            "recruiter switch";
+        align-items: center;
+        justify-content: space-between;
+    }
+    .label-personal {
+        color: var(--accent);
+        grid-area: personal;
+    }
+    .label-recruiter {
+        color: var(--text-5);
+        grid-area: recruiter;
+    }
+    .switch {
+        width: 0.3em;
+        height: 1em;
+        border: 2px solid var(--text-5);
+        border-radius: 0.6em;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        grid-area: switch;
+    }
+    .switch:before {
+        content: "";
+        position: absolute;
+        width: 0.8em;
+        height: 0.8em;
+        background-color: var(--accent);
+        border-radius: 100%;
+        transition: transform 0.2s;
+        transform: translateY(-70%);
+    }
+    .checkbox {
+        display: none;
+    }
+
+    .checkbox:checked ~ label > .label-recruiter {
+        color: var(--accent);
+    }
+
+    .checkbox:checked ~ label > .label-personal {
+        color: var(--text-5);
+    }
+    .content-personal {
+        display: block;
+    }
+    .content-recruiter {
+        display: none;
+    }
+    .checkbox:checked ~ .content-recruiter {
+        display: block;
+    }
+    .checkbox:checked ~ .content-personal {
+        display: none;
+    }
+    .checkbox:checked ~ label > .switch:before {
+        transform: translateY(100%);
+    }
+</style>
