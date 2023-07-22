@@ -1,6 +1,0 @@
-node_modules/
-.vscode/
-.cache/
-build/
-.DS_Store
-.env*
