@@ -1,4 +1,9 @@
-<section style="--accent: var(--green)">
+---
+import Section from "./Section.astro";
+
+---
+
+<Section color="green">
     <h2>In brief.</h2>
     <input id="inbrief-checkbox" class="checkbox" type="checkbox" />
     <label for="inbrief-checkbox">
@@ -50,18 +55,21 @@
             >
         </p>
     </div>
-</section>
+</Section>
 
 <style>
     label {
-        font-weight: bold;
+        font-weight: 700; 
         cursor: pointer;
         display: grid;
         grid-template-areas:
             "personal switch"
             "recruiter switch";
+        gap: 0.2em;
         align-items: center;
         justify-content: space-between;
+        font-size: var(--font-size-lg);
+        letter-spacing: 0.9px;
     }
     .label-personal {
         color: var(--accent);
@@ -74,7 +82,7 @@
     .switch {
         width: 0.3em;
         height: 1em;
-        border: 2px solid var(--text-5);
+        border: 4px solid var(--text-5);
         border-radius: 0.6em;
         display: flex;
         justify-content: center;

@@ -1,0 +1,15 @@
+---
+type Props = {
+    color: "orange" | "green" | "purple";
+};
+
+const { color } = Astro.props;
+---
+
+<section style={`--accent: var(--${color})`}><slot /></section>
+
+<style>
+    section {
+        padding-inline: 1rem;
+    }
+</style>

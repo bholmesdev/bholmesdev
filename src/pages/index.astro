@@ -1,24 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import InBrief from "../components/InBrief.astro";
+import Heading from "../components/Heading.astro";
 ---
 
 <BaseLayout>
-    <section>
-        <h1>Ben Holmes</h1>
-        <ul>
-            <li><a href="https://github.com/bholmesdev">Web dev</a></li>
-            <li><a href="https://wtw.dev">Whiteboardist</a></li>
-            <li><a href="#speaker">Speaker</a></li>
-            <li><a href="https://twitch.tv/bholmesdev">Streamer</a></li>
-        </ul>
-    </section>
-    <InBrief />
+    <main>
+        <Heading />
+        <InBrief />
+    </main>
 </BaseLayout>
 
 <style>
-    section {
-        --accent: var(--green);
+    main {
+        max-width: 60ch;
+        font-size: var(--font-size-md);
     }
-
 </style>

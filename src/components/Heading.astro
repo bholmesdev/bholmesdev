@@ -1,0 +1,34 @@
+---
+import Section from "../components/Section.astro";
+---
+
+<Section color="orange">
+    <h1 class="mobile">Ben<br />Holmes</h1>
+    <ul role="list">
+        <li><a href="https://github.com/bholmesdev">Web dev</a></li>
+        <li><a href="https://wtw.dev">Whiteboardist</a></li>
+        <li><a href="#speaker">Speaker</a></li>
+        <li><a href="https://twitch.tv/bholmesdev">Streamer</a></li>
+    </ul>
+</Section>
+
+<style>
+    h1 {
+        font-family: var(--font-heading);
+    }
+    h1.mobile {
+        font-size: 10vh;
+        writing-mode: vertical-rl;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        margin-block: 1rem;
+    }
+    a, a:visited {
+      text-decoration: none; 
+      color: var(--text-body);
+    }
+</style>
