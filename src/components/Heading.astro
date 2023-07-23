@@ -1,34 +1,79 @@
 ---
 import Section from "../components/Section.astro";
+import ArrowDown from "../components/icons/ArrowDown.retro.astro";
 ---
 
 <Section color="orange">
-    <h1 class="mobile">Ben<br />Holmes</h1>
-    <ul role="list">
-        <li><a href="https://github.com/bholmesdev">Web dev</a></li>
-        <li><a href="https://wtw.dev">Whiteboardist</a></li>
-        <li><a href="#speaker">Speaker</a></li>
-        <li><a href="https://twitch.tv/bholmesdev">Streamer</a></li>
-    </ul>
+    <div class="container">
+        <h1 class="mobile">Ben<br />Holmes</h1>
+        <ul role="list">
+            <li><a href="https://github.com/bholmesdev">Web dev</a></li>
+            <li><a href="https://wtw.dev">Whiteboardist</a></li>
+            <li><a href="#speaker">Speaker</a></li>
+            <li><a href="https://twitch.tv/bholmesdev">Streamer</a></li>
+        </ul>
+        <div class="image">TODO</div>
+        <div class="arrow">
+            <ArrowDown />
+        </div>
+    </div>
 </Section>
 
 <style>
     h1 {
         font-family: var(--font-heading);
+        grid-area: heading;
+        line-height: 1;
     }
     h1.mobile {
-        font-size: 10vh;
+        font-size: 13vh;
         writing-mode: vertical-rl;
     }
     ul {
         list-style: none;
         padding: 0;
+        margin: 0;
+        grid-area: links;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    a,
+    a:visited {
+        text-decoration: none;
+        color: inherit;
     }
     li {
-        margin-block: 1rem;
+        color: var(--text-body);
+        background: var(--bg);
+        padding-block: 0.2rem;
+        padding-inline: 0.3rem;
+        position: relative;
     }
-    a, a:visited {
-      text-decoration: none; 
-      color: var(--text-body);
+    li:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        transform: translate(0.1em, 0.1em);
+        background: var(--gray-5);
+    }
+    .arrow {
+        grid-area: arrow;
+        align-self: flex-end;
+        width: 16vw;
+    }
+    .arrow > :global(svg) {
+        height: 100%;
+        width: 100%;
+    }
+    .container {
+        display: grid;
+        grid-template-areas:
+            "heading image"
+            "links arrow";
+        justify-content: space-between;
+        align-content: space-between;
     }
 </style>

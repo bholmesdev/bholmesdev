@@ -17,7 +17,7 @@ import "@fontsource/atkinson-hyperlegible/700.css";
     </body>
 </html>
 
-<style>
+<style is:global>
     @import "open-props/style";
 
     :root {
@@ -54,10 +54,19 @@ import "@fontsource/atkinson-hyperlegible/700.css";
         --text-11: var(--gray-11);
 
         --text-body: var(--text-11);
+        --bg: white;
     }
     body {
         font-family: var(--font-body);
         color: var(--text-body);
         font-size: var(--font-size-base);
+    }
+    h1, h2 {
+        font-family: var(--font-heading);
+    }
+
+    a, a:visited {
+        color: var(--accent);
+        text-decoration: underline dashed;
     }
 </style>
