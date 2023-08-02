@@ -99,6 +99,15 @@ import Section from "./Section.astro";
         transition: transform 0.2s;
         transform: translateY(-70%);
     }
+    
+    @media (min-width: 600px) {
+        label {
+            grid-template-areas: "personal switch recruiter";
+        }
+        .switch {
+            transform: rotate(0.75turn);
+        }
+    }
     .checkbox {
         display: none;
     }

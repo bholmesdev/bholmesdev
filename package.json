@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fontsource/atkinson-hyperlegible": "^5.0.5",
+    "@rive-app/canvas": "^2.1.0",
     "astro": "^2.9.1",
     "astro-icon": "^0.8.1",
     "open-props": "^1.5.10"

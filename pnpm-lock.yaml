@@ -8,6 +8,9 @@ dependencies:
   '@fontsource/atkinson-hyperlegible':
     specifier: ^5.0.5
     version: 5.0.5
+  '@rive-app/canvas':
+    specifier: ^2.1.0
+    version: 2.1.0
   astro:
     specifier: ^2.9.1
     version: 2.9.1
@@ -817,6 +820,10 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       tslib: 2.6.0
+    dev: false
+
+  /@rive-app/canvas@2.1.0:
+    resolution: {integrity: sha512-BnR0jfyu3Vl9/YmA5XZt5VC9tlqo2ZMaPSCJXgANS22JblF9ZGjIKwUd0W5i4AJTAcn7jUJRmus0W65w2Ou2Mg==}
     dev: false
 
   /@trysound/sax@0.2.0:
