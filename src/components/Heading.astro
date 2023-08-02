@@ -1,6 +1,7 @@
 ---
 import Section from "../components/Section.astro";
 import { Icon } from "astro-icon";
+import Whiteboard from "../components/Whiteboard.astro";
 ---
 
 <Section color="orange">
@@ -12,9 +13,9 @@ import { Icon } from "astro-icon";
       <li><a href="#speaker">Speaker</a></li>
       <li><a href="https://twitch.tv/bholmesdev">Streamer</a></li>
     </ul>
-    <div class="image">TODO</div>
+    <div class="image"><Whiteboard /></div>
     <div class="arrow">
-        <Icon name="ic:baseline-arrow-downward" />
+      <Icon name="ic:baseline-arrow-downward" />
     </div>
   </div>
 </Section>
@@ -64,6 +65,7 @@ import { Icon } from "astro-icon";
     grid-area: arrow;
     color: var(--accent);
     align-self: flex-end;
+    margin-inline-start: auto;
     width: 4rem;
     animation: arrow-hover 3s ease-in-out infinite;
   }
@@ -72,11 +74,12 @@ import { Icon } from "astro-icon";
     width: 100%;
   }
   @keyframes arrow-hover {
-    0%, 100% {
-        transform: translateY(-30%);
+    0%,
+    100% {
+      transform: translateY(-30%);
     }
     50% {
-        transform: translateY(30%);
+      transform: translateY(30%);
     }
   }
   .container {

@@ -1,0 +1,33 @@
+<canvas id="canvas" width="300" height="300"></canvas>
+<style>
+canvas {
+    width: 100%;
+    height: 100%;
+}
+</style>
+<script>
+  import riveWASMResource from "@rive-app/canvas/rive.wasm?url";
+  import { Rive, RuntimeLoader } from "@rive-app/canvas";
+
+  RuntimeLoader.setWasmUrl(riveWASMResource);
+
+  const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+  const r = new Rive({
+    src: "/rive/whiteboard_guy.riv",
+    canvas,
+    autoplay: true,
+    stateMachines: "State Machine 1",
+    onLoad: () => {
+      r.resizeDrawingSurfaceToCanvas();
+
+      const inputs = r.stateMachineInputs("State Machine 1");
+      const trigger = inputs.find((i) => i.name === "Click");
+      if (!trigger) {
+        throw new Error(
+          "Whiteboard animation is misconfigured! If you found this error in your browser console, congrats. Please report an issue here :) https://github.com/bholmesdev/bholmesdev"
+        );
+      }
+      canvas.addEventListener("click", () => trigger.fire());
+    },
+  });
+</script>
