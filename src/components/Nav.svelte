@@ -1,10 +1,10 @@
 <script>
-    let mainToggled = false;
+    let mainToggled = true;
 </script>
 
 <nav>
     <button>TOC</button>
-    <ul class:mainToggled class="links">
+    <ul id="nav__link-list" class:mainToggled class="links">
         <li><a href="/">Ben</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/talks">Talks</a></li>
@@ -13,6 +13,8 @@
     <button
         on:click={() => (mainToggled = !mainToggled)}
         class:mainToggled
+        aria-expanded={mainToggled}
+        aria-controls="nav__link-list"
         class="toggle"
     >
         <div class="stripe stripe-top" />
