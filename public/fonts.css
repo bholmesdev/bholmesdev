@@ -3,3 +3,8 @@
     font-family: Chicago;
     src: url('/fonts/ChicagoFLF.ttf'); 
 }
+
+@font-face{
+    font-family: Sriracha;
+    src: url('/fonts/Sriracha-Regular.ttf'); 
+}

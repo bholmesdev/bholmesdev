@@ -6,7 +6,7 @@ import Whiteboard from "../components/Whiteboard.astro";
 
 <Section color="orange">
   <div class="container">
-    <h1 class="mobile">Ben<br />Holmes</h1>
+    <h1>Ben<br />Holmes</h1>
     <ul role="list">
       <li><a href="https://github.com/bholmesdev">Web dev</a></li>
       <li><a href="https://wtw.dev">Whiteboardist</a></li>
@@ -21,14 +21,35 @@ import Whiteboard from "../components/Whiteboard.astro";
 </Section>
 
 <style>
+  .container {
+    display: grid;
+    grid-template-areas:
+      "heading image"
+      "links arrow";
+    justify-content: space-between;
+    align-content: space-between;
+    max-width: 90ch;
+  }
   h1 {
     font-family: var(--font-heading);
     grid-area: heading;
     line-height: 1;
-  }
-  h1.mobile {
-    font-size: 13vh;
+    font-size: 10vh;
     writing-mode: vertical-rl;
+  }
+  @media (min-width: 600px) {
+    h1 {
+        writing-mode: initial;
+    }
+    .container {
+        grid-template-areas:
+            "heading image"
+            "links image"
+            "arrow image";
+    }
+  }
+  .image {
+    grid-area: image;
   }
   ul {
     list-style: none;
@@ -43,7 +64,6 @@ import Whiteboard from "../components/Whiteboard.astro";
   }
   a,
   a:visited {
-    text-decoration: none;
     color: inherit;
   }
   li {
@@ -64,10 +84,8 @@ import Whiteboard from "../components/Whiteboard.astro";
   .arrow {
     grid-area: arrow;
     color: var(--accent);
-    align-self: flex-end;
-    margin-inline-start: auto;
     width: 4rem;
-    animation: arrow-hover 3s ease-in-out infinite;
+    /* animation: arrow-hover 3s ease-in-out infinite; */
   }
   .arrow > :global(svg) {
     height: 100%;
@@ -81,13 +99,5 @@ import Whiteboard from "../components/Whiteboard.astro";
     50% {
       transform: translateY(30%);
     }
-  }
-  .container {
-    display: grid;
-    grid-template-areas:
-      "heading image"
-      "links arrow";
-    justify-content: space-between;
-    align-content: space-between;
   }
 </style>

@@ -7,15 +7,18 @@ import Heading from "../components/Heading.astro";
 <BaseLayout>
   <main>
     <Heading />
-    <InBrief />
+    <article>
+      <InBrief />
+    </article>
   </main>
 </BaseLayout>
 
-
 <style>
-  main {
-    max-width: 50ch;
+  article {
+    max-width: 60ch;
     margin: auto;
+  }
+  main {
     font-size: var(--font-size-md);
   }
 </style>
