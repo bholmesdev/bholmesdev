@@ -3,7 +3,7 @@ import "@fontsource/atkinson-hyperlegible/400.css";
 import "@fontsource/atkinson-hyperlegible/400.css";
 import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url";
 import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
-import Nav from "../components/Nav.astro";
+import Nav from "../components/Nav.svelte";
 ---
 
 <!DOCTYPE html>
@@ -33,7 +33,7 @@ import Nav from "../components/Nav.astro";
     <title>Document</title>
   </head>
   <body>
-    <Nav />
+    <Nav client:load />
     <slot />
   </body>
 </html>
@@ -42,6 +42,7 @@ import Nav from "../components/Nav.astro";
   @import "open-props/style";
   @import "/fonts.css";
   @import "/normalize.css";
+  @import "/reset.css";
 
   :root {
     --green: #24ac6c;
