@@ -1,15 +1,17 @@
 ---
 type Props = {
     color: "red" | "purple" | "green";
+    class?: string;
 };
 
-const { color } = Astro.props;
+const { color, class: cls } = Astro.props;
 ---
 
-<section style={`--accent: var(--${color})`}><slot /></section>
+<section class={cls} style={`--accent: var(--${color})`}><slot /></section>
 
 <style>
     section {
         padding-inline: 1rem;
+        margin: auto;
     }
 </style>

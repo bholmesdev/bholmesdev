@@ -2,9 +2,18 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import InBrief from "../components/InBrief.astro";
 import Heading from "../components/Heading.astro";
+
+import riveWASMResource from "@rive-app/canvas/rive.wasm?url";
 ---
 
 <BaseLayout>
+  <link
+    slot="head"
+    rel="preload"
+    href={riveWASMResource}
+    as="fetch"
+    crossorigin="anonymous"
+  />
   <main>
     <Heading />
     <article>

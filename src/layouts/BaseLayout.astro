@@ -1,6 +1,8 @@
 ---
 import "@fontsource/atkinson-hyperlegible/400.css";
-import "@fontsource/atkinson-hyperlegible/700.css";
+import "@fontsource/atkinson-hyperlegible/400.css";
+import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url";
+import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
 import Nav from "../components/Nav.astro";
 ---
 
@@ -9,8 +11,25 @@ import Nav from "../components/Nav.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/fonts.css" />
-    <link rel="stylesheet" href="/normalize.css" />
+    <link
+      rel="preload"
+      href="/fonts/Sriracha-Regular.ttf"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href={atkinson400url}
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href={atkinson700url}
+      as="font"
+      crossorigin="anonymous"
+    />
+    <slot name="head" />
     <title>Document</title>
   </head>
   <body>
@@ -21,11 +40,13 @@ import Nav from "../components/Nav.astro";
 
 <style is:global>
   @import "open-props/style";
+  @import "/fonts.css";
+  @import "/normalize.css";
 
   :root {
     --green: #24ac6c;
-    --red: #F3270B;
-    --purple: #6200FF;
+    --red: #f3270b;
+    --purple: #6200ff;
     --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
     --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
     --font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);

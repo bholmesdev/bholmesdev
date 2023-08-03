@@ -4,19 +4,17 @@ import { Icon } from "astro-icon";
 import Whiteboard from "../components/Whiteboard.astro";
 ---
 
-<Section color="orange">
-  <div class="container">
-    <h1>Ben<br />Holmes</h1>
-    <ul role="list">
-      <li><a href="https://github.com/bholmesdev">Web dev</a></li>
-      <li><a href="https://wtw.dev">Whiteboardist</a></li>
-      <li><a href="#speaker">Speaker</a></li>
-      <li><a href="https://twitch.tv/bholmesdev">Streamer</a></li>
-    </ul>
-    <div class="image"><Whiteboard /></div>
-    <div class="arrow">
-      <Icon name="ic:baseline-arrow-downward" />
-    </div>
+<Section class="container" color="purple">
+  <h1>Ben<br />Holmes</h1>
+  <ul role="list">
+    <li><a href="https://github.com/bholmesdev">Web dev</a></li>
+    <li><a href="https://wtw.dev">Whiteboardist</a></li>
+    <li><a href="#speaker">Speaker</a></li>
+    <li><a href="https://twitch.tv/bholmesdev">Streamer</a></li>
+  </ul>
+  <div class="image"><Whiteboard /></div>
+  <div class="arrow">
+    <Icon name="ic:baseline-arrow-downward" />
   </div>
 </Section>
 
@@ -39,13 +37,13 @@ import Whiteboard from "../components/Whiteboard.astro";
   }
   @media (min-width: 600px) {
     h1 {
-        writing-mode: initial;
+      writing-mode: initial;
     }
     .container {
-        grid-template-areas:
-            "heading image"
-            "links image"
-            "arrow image";
+      grid-template-areas:
+        "heading image"
+        "links image"
+        "arrow image";
     }
   }
   .image {
