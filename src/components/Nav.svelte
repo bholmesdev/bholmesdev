@@ -1,6 +1,9 @@
-<script>
+<script lang="ts">
+    import type { MarkdownHeading } from "astro";
     import Toc from "./TOC.svelte";
     import { scope } from "simple:scope";
+
+    export let headings: MarkdownHeading[] = [];
 
     const navId = scope("nav");
     let windowScroll = 0;
@@ -11,7 +14,9 @@
 <svelte:window bind:scrollY={windowScroll} />
 
 <nav class:isNavOpen>
-    <Toc />
+    {#if headings.length}
+        <Toc {headings} />
+    {/if}
     <ul id={navId} class="links">
         <li><a href="/">Ben</a></li>
         <li><a href="/blog">Blog</a></li>

@@ -4,6 +4,11 @@ import "@fontsource/atkinson-hyperlegible/400.css";
 import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url";
 import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
 import Nav from "../components/Nav.svelte";
+import type { MarkdownHeading } from "astro";
+
+type Props = {
+  headings?: MarkdownHeading[];
+};
 ---
 
 <!DOCTYPE html>
@@ -33,7 +38,7 @@ import Nav from "../components/Nav.svelte";
     <title>Document</title>
   </head>
   <body>
-    <Nav client:load />
+    <Nav client:load headings={Astro.props.headings} />
     <slot />
   </body>
 </html>
