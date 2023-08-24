@@ -1,5 +1,8 @@
 <script>
-    let isNavOpen = true;
+    import Toc from "./TOC.svelte";
+    import { scope } from "simple:scope";
+
+    const navId = scope("nav");
     let windowScroll = 0;
 
     $: isNavOpen = windowScroll === 0;
@@ -8,8 +11,8 @@
 <svelte:window bind:scrollY={windowScroll} />
 
 <nav class:isNavOpen>
-    <!--<button>TOC</button>-->
-    <ul id="nav__link-list" class="links">
+    <Toc />
+    <ul id={navId} class="links">
         <li><a href="/">Ben</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/talks">Talks</a></li>
@@ -19,7 +22,7 @@
         <button
             on:click={() => (isNavOpen = !isNavOpen)}
             aria-expanded={isNavOpen}
-            aria-controls="nav__link-list"
+            aria-controls={navId}
             class="toggle"
         >
             <div class="stripe stripe-top" />

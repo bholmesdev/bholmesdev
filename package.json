@@ -15,8 +15,12 @@
     "@rive-app/canvas": "^2.1.0",
     "astro": "^2.10.1",
     "astro-icon": "^0.8.1",
+    "nanoid": "^4.0.2",
     "open-props": "^1.5.10",
     "sass": "^1.64.2",
     "svelte": "^4.0.0"
+  },
+  "devDependencies": {
+    "vite": "^4.4.8"
   }
 }
