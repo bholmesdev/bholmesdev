@@ -68,16 +68,16 @@
         box-shadow: var(--shadow-elevation-high);
         border: 2px solid var(--purple);
         visibility: hidden;
-        transform: rotate(180deg);
+        rotate: 70deg;
+        scale: 0;
         transform-origin: 1em 1em;
-        opacity: 0;
-        transition: transform 0.8s var(--spring-easing), visibility 0.8s,
-            opacity 0.1s;
+        transition: rotate 0.8s var(--spring-easing), visibility 0.8s,
+            scale 0.2s;
     }
     .panel.isOpen {
         visibility: visible;
-        transform: rotate(0deg);
-        opacity: 1;
+        rotate: 0deg;
+        scale: 1;
     }
 
     a {
