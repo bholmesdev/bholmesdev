@@ -45,35 +45,37 @@
         );
     }
     .panel {
+        border-radius: 1.2em;
         position: absolute;
         min-width: 10em;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-
-        list-style: none;
-        padding: 2rem;
-        padding-block-start: 3rem;
-        border-radius: 1em;
-        background-color: var(--bg);
-        --shadow-color: 0deg 0% 68%;
-        --shadow-elevation-high: -0.2px 0.2px 0.3px
-                hsl(var(--shadow-color) / 0.32),
-            -0.9px 1.2px 1.7px -0.4px hsl(var(--shadow-color) / 0.32),
-            -1.7px 2.3px 3.2px -0.8px hsl(var(--shadow-color) / 0.32),
-            -2.9px 3.9px 5.5px -1.2px hsl(var(--shadow-color) / 0.32),
-            -5px 6.7px 9.4px -1.7px hsl(var(--shadow-color) / 0.32),
-            -8.2px 10.9px 15.3px -2.1px hsl(var(--shadow-color) / 0.32),
-            -12.8px 17.2px 24.1px -2.5px hsl(var(--shadow-color) / 0.32);
+        padding: 0.4rem;
+        --shadow-color: 0deg 0% 30%;
+        --shadow-elevation-high: 0.1px 0.4px 0.5px
+                hsl(var(--shadow-color) / 0.1),
+            0.6px 2.1px 2.5px -0.5px hsl(var(--shadow-color) / 0.1),
+            1.2px 4.2px 4.9px -1px hsl(var(--shadow-color) / 0.1),
+            2.3px 8px 9.4px -1.5px hsl(var(--shadow-color) / 0.1),
+            4.1px 14.7px 17.3px -2px hsl(var(--shadow-color) / 0.1),
+            7.1px 25.3px 29.8px -2.4px hsl(var(--shadow-color) / 0.1);
         box-shadow: var(--shadow-elevation-high);
-        border: 2px solid var(--purple);
+        border: 3px solid var(--purple);
         visibility: hidden;
         rotate: 70deg;
         scale: 0;
+        translate: -0.4rem -0.4rem;
         transform-origin: 1em 1em;
         transition: rotate 0.8s var(--spring-easing), visibility 0.8s,
             scale 0.2s;
+        list-style: none;
+        padding: 2rem;
+        padding-block-start: 4rem;
+        border-radius: 1em;
+        background-color: var(--bg);
     }
+
     .panel.isOpen {
         visibility: visible;
         rotate: 0deg;
