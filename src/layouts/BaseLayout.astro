@@ -7,8 +7,10 @@ import Nav from "../components/Nav.svelte";
 import type { MarkdownHeading } from "astro";
 
 type Props = {
+  title?: string;
   headings?: MarkdownHeading[];
 };
+const { title = "Ben Holmes", headings } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -35,10 +37,10 @@ type Props = {
       crossorigin="anonymous"
     />
     <slot name="head" />
-    <title>Document</title>
+    <title>{title}</title>
   </head>
   <body>
-    <Nav client:load headings={Astro.props.headings} />
+    <Nav client:load headings={headings} />
     <slot />
   </body>
 </html>
