@@ -20,7 +20,8 @@
     "nanoid": "^4.0.2",
     "open-props": "^1.5.10",
     "sass": "^1.64.2",
-    "svelte": "^4.0.0"
+    "svelte": "^4.0.0",
+    "vite-plugin-checker": "^0.6.2"
   },
   "devDependencies": {
     "vite": "^4.4.8"
