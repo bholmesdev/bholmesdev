@@ -11,10 +11,11 @@
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.4.4",
-    "@astrojs/svelte": "^3.1.0",
+    "@astrojs/svelte": "^4.0.3",
+    "@astrojs/tailwind": "^5.0.1",
     "@fontsource/atkinson-hyperlegible": "^5.0.5",
     "@rive-app/canvas": "^2.1.0",
-    "astro": "^2.10.1",
+    "astro": "^3.2.3",
     "astro-icon": "^0.8.1",
     "nanoid": "^4.0.2",
     "open-props": "^1.5.10",
