@@ -54,7 +54,8 @@ const { title = "Ben Holmes", headings } = Astro.props;
   :root {
     --green: #24ac6c;
     --red: #f3270b;
-    --purple: #6200ff;
+    --purple-hs: 263.1 100%;
+    --purple: hsl(var(--purple-hs) 50%);
     --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
     --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
     --font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);

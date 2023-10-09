@@ -1,18 +1,36 @@
 <script lang="ts">
     import type { MarkdownHeading } from "astro";
     import { scope } from "simple:scope";
+    import { progress } from "./scroll.store";
 
-    let isOpen = false;
+    let isOpen = true;
 
     export let headings: MarkdownHeading[];
 </script>
 
 <div class="container">
-    <ul class:isOpen id={scope("panel")} role="list" class="panel">
-        {#each headings as h}
-            <li><a href={`#${h.slug}`}>{h.text}</a></li>
-        {/each}
-    </ul>
+    <div class:isOpen class="panel">
+        <div class="progress-container">
+            <progress max="1" value={$progress} />
+            <svg
+                class="done"
+                class:show={$progress >= 1}
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+                ><path
+                    d="M448 71.9c-17.3-13.4-41.5-9.3-54.1 9.1L214 344.2l-99.1-107.3c-14.6-16.6-39.1-17.4-54.7-1.8-15.6 15.5-16.4 41.6-1.7 58.1 0 0 120.4 133.6 137.7 147 17.3 13.4 41.5 9.3 54.1-9.1l206.3-301.7c12.6-18.5 8.7-44.2-8.6-57.5z"
+                    fill="white"
+                /></svg
+            >
+        </div>
+        <ul id={scope("panel")} role="list">
+            {#each headings as h}
+                <li><a href={`#${h.slug}`}>{h.text}</a></li>
+            {/each}
+        </ul>
+    </div>
     <button
         aria-expanded={isOpen}
         aria-controls={scope("panel")}
@@ -25,6 +43,59 @@
 </div>
 
 <style>
+    .progress-container {
+        --done-size: 1.8rem;
+        display: flex;
+        gap: 1rem;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        height: var(--done-size);
+        margin-block-start: 0.2rem;
+    }
+
+    .done {
+        scale: 0;
+        visibility: hidden;
+        transition: scale 0.2s, visibility 0.2s;
+        border-radius: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--purple);
+        height: var(--done-size);
+        width: var(--done-size);
+        padding: 0.4rem;
+    }
+    .done.show {
+        scale: 1;
+        visibility: visible;
+    }
+
+    progress {
+        background: transparent;
+        border: none; /* Reset for firefox */
+        -webkit-appearance: none; /* Reset for WebKit/Blink */
+        appearance: none;
+        border-radius: 1rem;
+        overflow: hidden;
+        height: 0.8rem;
+        background-color: hsl(var(--purple-hs) 90%);
+        margin-inline-end: calc(var(--done-size) / 2 - 0.4rem);
+    }
+
+    progress::-moz-progress-bar {
+        background-color: var(--purple);
+        border-radius: 1rem;
+    }
+    progress::-webkit-progress-value {
+        background-color: var(--purple);
+        border-radius: 1rem;
+    }
+    progress::-webkit-progress-bar {
+        background: transparent;
+    }
+
     .container {
         --size: 2em;
         --spring-easing: linear(
@@ -69,11 +140,12 @@
         transform-origin: 1em 1em;
         transition: rotate 0.8s var(--spring-easing), visibility 0.8s,
             scale 0.2s;
-        list-style: none;
-        padding: 2rem;
-        padding-block-start: 4rem;
         border-radius: 1em;
         background-color: var(--bg);
+    }
+    ul {
+        list-style: none;
+        padding: 1rem;
     }
 
     .panel.isOpen {

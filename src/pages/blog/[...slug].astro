@@ -1,5 +1,6 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
+import ScrollProgress from '../../components/ScrollProgress.svelte';
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -9,6 +10,7 @@ export async function getStaticPaths() {
 
 type Props = CollectionEntry<"blog">;
 
+
 const post = Astro.props;
 const { Content, headings } = await post.render();
 ---
@@ -16,7 +18,9 @@ const { Content, headings } = await post.render();
 <BaseLayout {headings}>
   <main>
     <h1>{post.data.title}</h1>
-    <Content />
+    <ScrollProgress client:load>
+        <Content />
+    </ScrollProgress>
   </main>
 </BaseLayout>
 
