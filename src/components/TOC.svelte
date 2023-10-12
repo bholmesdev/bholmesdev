@@ -3,7 +3,7 @@
     import { scope } from "simple:scope";
     import { progress } from "./scroll.store";
 
-    let isOpen = true;
+    let isOpen = false;
 
     export let headings: MarkdownHeading[];
 </script>
