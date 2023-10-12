@@ -145,7 +145,10 @@
     }
     ul {
         list-style: none;
-        padding: 1rem;
+        padding: var(--size-3);
+    }
+    li {
+        margin-block: var(--size-1);
     }
 
     .panel.isOpen {

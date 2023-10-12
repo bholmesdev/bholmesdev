@@ -71,18 +71,6 @@ const { title = "Ben Holmes", headings } = Astro.props;
       BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
       "Open Sans", "Helvetica Neue", sans-serif;
 
-    /* Text color */
-    --text-1: var(--gray-1);
-    --text-2: var(--gray-2);
-    --text-3: var(--gray-3);
-    --text-4: var(--gray-4);
-    --text-5: var(--gray-5);
-    --text-6: var(--gray-6);
-    --text-7: var(--gray-7);
-    --text-8: var(--gray-8);
-    --text-9: var(--gray-9);
-    --text-10: var(--gray-10);
-    --text-11: var(--gray-11);
 
     --font-size-1: var(--font-size-sm);
     --font-size-2: var(--font-size-base);
@@ -93,24 +81,10 @@ const { title = "Ben Holmes", headings } = Astro.props;
     --font-size-7: var(--font-size-xl);
     --font-size-8: var(--font-size-xxl);
 
-    --text-body: var(--text-1);
-    --bg: var(--gray-9);
+    --bg: var(--surface-1);
+  }
 
-    --body-color-dark: #311b00;
-    --body-color: #5f4b32;
-    --body-color-2: #948067;
-    --bg-color: #f9f1db;
-    --bg-color-2: #f2e9cd;
-    --bg-color-3: #d9c7ab;
-  }
-  body {
-    font-family: var(--font-body);
-    color: var(--text-body);
-    font-size: var(--font-size-base);
-    background-color: var(--bg);
-  }
-  h1,
-  h2 {
+  h1, h2, h3 {
     font-family: var(--font-heading);
   }
 

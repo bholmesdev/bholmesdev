@@ -60,7 +60,7 @@
     .stripe {
         height: 4px;
         width: inherit;
-        background-color: var(--gray-1);
+        background-color: currentColor;
         transition: transform 0.2s ease-in-out;
         border-radius: 4px;
     }
@@ -110,7 +110,7 @@
         margin: auto;
         max-width: 100ch;
         display: flex;
-        gap: 2rem;
+        gap: var(--size-5);
         align-items: center;
         font-size: var(--font-size-md);
         padding-inline: 1rem;
