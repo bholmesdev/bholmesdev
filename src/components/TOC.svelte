@@ -123,15 +123,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         padding: 0.4rem;
-        --shadow-color: 0deg 0% 30%;
-        --shadow-elevation-high: 0.1px 0.4px 0.5px
-                hsl(var(--shadow-color) / 0.1),
-            0.6px 2.1px 2.5px -0.5px hsl(var(--shadow-color) / 0.1),
-            1.2px 4.2px 4.9px -1px hsl(var(--shadow-color) / 0.1),
-            2.3px 8px 9.4px -1.5px hsl(var(--shadow-color) / 0.1),
-            4.1px 14.7px 17.3px -2px hsl(var(--shadow-color) / 0.1),
-            7.1px 25.3px 29.8px -2.4px hsl(var(--shadow-color) / 0.1);
-        box-shadow: var(--shadow-elevation-high);
+        box-shadow: var(--shadow-5);
         border: 3px solid var(--purple);
         visibility: hidden;
         rotate: 70deg;

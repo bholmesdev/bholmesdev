@@ -54,6 +54,10 @@ import Section from "./Section.astro";
 </Section>
 
 <style>
+    h2 {
+        margin-block: var(--size-2);
+    }
+
   label {
     font-weight: 700;
     cursor: pointer;
@@ -64,15 +68,15 @@ import Section from "./Section.astro";
     gap: 0.2em;
     align-items: center;
     justify-content: space-between;
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     letter-spacing: 0.9px;
+    margin-block: var(--size-2);
   }
   .label-personal {
     color: var(--accent);
     grid-area: personal;
   }
   .label-recruiter {
-    color: var(--text-5);
     grid-area: recruiter;
   }
   .switch {
@@ -88,9 +92,9 @@ import Section from "./Section.astro";
     background: radial-gradient(
         53.29% 50% at 50% 50%,
         rgba(209, 198, 226, 0) 0%,
-        #b2a7c3 100%
+        var(--surface-2) 100%
       ),
-      #c6bed3;
+      var(--surface-3);
   }
   .switch:before {
     content: "";

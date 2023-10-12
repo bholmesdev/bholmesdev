@@ -84,6 +84,12 @@ const { title = "Ben Holmes", headings } = Astro.props;
     --bg: var(--surface-1);
   }
 
+    @media (prefers-color-scheme: dark) {
+    :root {
+    --purple: hsl(var(--purple-hs) 57%);
+    }
+    }
+
   h1, h2, h3 {
     font-family: var(--font-heading);
   }
