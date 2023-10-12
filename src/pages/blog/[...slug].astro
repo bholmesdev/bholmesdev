@@ -30,6 +30,9 @@ const { Content, headings } = await post.render();
     margin: auto;
   }
   main :global(p) {
-    margin-block: 1em;
+    margin-block: var(--size-3);
+  }
+  main :global(article) {
+    margin-inline: var(--size-3);
   }
 </style>

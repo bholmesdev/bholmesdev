@@ -45,6 +45,8 @@
         flex-direction: column;
         justify-content: space-between;
         position: relative;
+        padding: 0;
+        background-color: transparent;
     }
     .toggle::before {
         content: "";
@@ -58,7 +60,7 @@
     .stripe {
         height: 4px;
         width: inherit;
-        background-color: currentColor;
+        background-color: var(--gray-1);
         transition: transform 0.2s ease-in-out;
         border-radius: 4px;
     }

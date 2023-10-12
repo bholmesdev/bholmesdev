@@ -48,8 +48,7 @@ const { title = "Ben Holmes", headings } = Astro.props;
 <style is:global>
   @import "open-props/style";
   @import "../fonts.css";
-  @import "../normalize.css";
-  @import "../reset.css";
+  @import "open-props/normalize";
 
   :root {
     --green: #24ac6c;
@@ -85,8 +84,17 @@ const { title = "Ben Holmes", headings } = Astro.props;
     --text-10: var(--gray-10);
     --text-11: var(--gray-11);
 
-    --text-body: var(--text-11);
-    --bg: white;
+    --font-size-1: var(--font-size-sm);
+    --font-size-2: var(--font-size-base);
+    --font-size-3: var(--font-size-md);
+    --font-size-4: var(--font-size-lg);
+    --font-size-5: var(--font-size-lg);
+    --font-size-6: var(--font-size-xl);
+    --font-size-7: var(--font-size-xl);
+    --font-size-8: var(--font-size-xxl);
+
+    --text-body: var(--text-1);
+    --bg: var(--gray-9);
 
     --body-color-dark: #311b00;
     --body-color: #5f4b32;
@@ -99,6 +107,7 @@ const { title = "Ben Holmes", headings } = Astro.props;
     font-family: var(--font-body);
     color: var(--text-body);
     font-size: var(--font-size-base);
+    background-color: var(--bg);
   }
   h1,
   h2 {
