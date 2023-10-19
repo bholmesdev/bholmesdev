@@ -1,10 +1,11 @@
 ---
 import Section from "../components/Section.astro";
 import { Icon } from "astro-icon";
-import Whiteboard from "../components/Whiteboard.astro";
+import Whiteboard from "../components/WhiteboardGsap.astro";
 ---
 
-<Section class="container" color="purple">
+<Section color="purple">
+<div class="container">
   <h1>Ben<br />Holmes</h1>
   <ul role="list">
     <li><a href="https://github.com/bholmesdev">Web dev</a></li>
@@ -16,6 +17,7 @@ import Whiteboard from "../components/Whiteboard.astro";
   <div class="arrow">
     <Icon name="ic:baseline-arrow-downward" />
   </div>
+</div>
 </Section>
 
 <style>
