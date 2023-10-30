@@ -20,7 +20,6 @@
 <script>
 import {gsap} from 'gsap';
 
-// blink
 const blinkAnim = gsap.timeline()
     .set('.eye', {transformOrigin: 'center bottom'})
     .to('.eye', {scaleY: 0.2, duration: 0.2})
@@ -29,9 +28,9 @@ const blinkAnim = gsap.timeline()
     .repeat(-1);
 
 const xPoolInitial = [-40, -20, 0, 20, 40];
-const yPoolInitial = [-40, 0, 40, 80, 120, 160, 200, 240, 280];
+const yPoolInitial = [-40, 0, 80, 160, 240, 280];
 
-function generateVal(poolInitial) {
+function generateVal(poolInitial: number[]) {
     let pool: number[] = [];
     return () => {
         if (pool.length === 0) {
@@ -50,6 +49,9 @@ const faceAnim = gsap.to('.face', {
         y: generateVal(yPoolInitial), 
         repeatRefresh: true,
         repeat: -1,
+        repeatDelay: 4,
+        duration: 1,
+        ease: 'elastic.out(1, 0.5)'
     });
 
 gsap.timeline()
