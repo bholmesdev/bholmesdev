@@ -8,8 +8,8 @@
 <rect class="eye" x="279" y="533" width="33" height="149" rx="16.5" fill="#7824FF"/>
 <rect class="eye" x="706" y="533" width="33" height="149" rx="16.5" fill="#7824FF"/>
 </g>
-<path class="motion-path" d="M219 432.667C322.499 382.63 655.796 396.149 755.959 443.512C647.08 437.34 361.453 469.274 227 641C301.855 578.788 549.531 473.766 774 655.5C622.821 604.475 313.521 666.999 208 801.5C316.058 755.043 692.336 752.01 766.404 846C681.175 790.028 350.809 865.614 208 982.5C346.496 936.003 681.148 961.413 738.5 1079.5" stroke="white" stroke-width="155" stroke-linecap="round"/>
-<rect class="eraser" x="173" y="352" width="122" height="163" rx="11" fill="#3840FF"/>
+<path class="motion-path" d="M232.5 374C335.999 323.963 702.337 335.637 802.5 383C693.621 376.829 354.953 355.129 220.5 526.855C295.355 464.643 564.531 345.121 789 526.855C637.821 475.83 326.021 494.499 220.5 629C328.558 582.543 699.932 584.51 774 678.5C688.771 622.528 335.309 666.614 192.5 783.5C330.996 737.003 692 766.5 774 842.5C673 798.5 300.5 851.6 192.5 934C301.5 907 684.5 901.5 774 983.5C646.5 925.618 308.1 994.3 192.5 1067.5C324.5 1048.5 732.2 1083.8 755 1125" stroke="red" stroke-width="155" stroke-linecap="round"/>
+<rect class="eraser" x="-70" y="-100" width="122" height="163" fill="#3840FF"/>
 <defs>
 <linearGradient id="paint0_linear_1_2" x1="796" y1="273" x2="217" y2="1231" gradientUnits="userSpaceOnUse">
 <stop stop-color="#484848"/>
@@ -19,11 +19,31 @@
 </defs>
 </svg>
 
+<style>
+.motion-path {
+    --length: 6500;
+    --cubic-bezier: .1,0,.6,1;
+    stroke-dasharray: var(--length);
+    stroke-dashoffset: var(--length);
+    animation: draw 2s cubic-bezier(var(--cubic-bezier)) forwards;
+}
+
+@keyframes draw {
+   to {
+        stroke-dashoffset: 0;
+   } 
+}
+</style>
+
 <script>
 import {gsap} from 'gsap';
 import MotionPathPlugin from 'gsap/MotionPathPlugin';
+import CustomEase from 'gsap/CustomEase';
 
 gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(CustomEase);
+
+CustomEase.create('draw', '.1,0,.6,1');
 
 const blinkAnim = gsap.timeline()
     .set('.eye', {transformOrigin: 'center bottom'})
@@ -50,10 +70,10 @@ function generateVal(poolInitial: number[]) {
 }
 
 const eraserAnim = gsap.to('.eraser', {
-    duration: 5,
+    duration: 2,
+    ease: 'draw',
     motionPath: {
         path: '.motion-path',
-        // path: 'M78 109.667C181.499 59.6299 514.796 73.1487 614.959 120.512C506.08 114.34 220.453 146.274 86 318C160.855 255.788 408.531 150.766 633 332.5C481.821 281.475 172.521 343.999 67 478.5C175.058 432.043 551.336 429.01 625.404 523C540.175 467.028 209.809 542.614 67 659.5C205.496 613.003 540.148 638.413 597.5 756.5'
     }
 })
 
