@@ -9,8 +9,9 @@ export function simpleScope() {
 
   return {
     name: "simple:scope",
-    resolveId(id, importer) {
+    resolveId(id, rawImporter) {
       if (id === virtualMod) {
+        const importer = rawImporter?.replace(/\?.*$/, "");
         importerToIdMap[importer] ??= nanoid(8);
         return `${virtualMod}/${importerToIdMap[importer]}`;
       }
