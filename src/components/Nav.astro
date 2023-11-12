@@ -1,6 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
-import Toc from "./TOC.svelte";
+import Toc from "./TOC.astro";
 import { scope } from "simple:scope";
 
 type Props = {
@@ -12,7 +12,7 @@ const id = scope("nav");
 ---
 
 <nav x-data="{ open: false }" :class="open && 'open'">
-  {headings?.length ? <Toc client:load {headings} /> : null}
+  {headings?.length ? <Toc {headings} /> : null}
   <ul id={id} class="links">
     <li><a href="/">Ben</a></li>
     <li><a href="/blog">Blog</a></li>
