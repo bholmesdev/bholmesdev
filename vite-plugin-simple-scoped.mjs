@@ -1,28 +1,30 @@
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 
-const virtualMod = 'simple:scope';
-const resolvedVirtualMod = '\0' + virtualMod;
+const virtualMod = "simple:scope";
 
 /** @returns {import('vite').Plugin} */
 export function simpleScope() {
-    return {
-        name: 'simple:scope',
-        resolveId(id, importer) {
-            if (id === virtualMod) {
-                return `${resolvedVirtualMod}?importer=${encodeURIComponent(importer)}`;
-            }
-        },
-        async load(id) {
-            if (!id.startsWith(resolvedVirtualMod)) return;
+  /** @type {Record<string, string>} */
+  const importerToIdMap = {};
 
-            const scopedId = nanoid(8);
+  return {
+    name: "simple:scope",
+    resolveId(id, importer) {
+      if (id === virtualMod) {
+        importerToIdMap[importer] ??= nanoid(8);
+        return `${virtualMod}/${importerToIdMap[importer]}`;
+      }
+    },
+    async load(id) {
+      const [maybeVirtualMod, scopeId] = id.split("/");
+      if (maybeVirtualMod !== virtualMod || !scopeId) return;
 
-            return `const scopedId = ${JSON.stringify(scopedId)};
-            export function scope(id) {
-                if (!id) return scopedId;
+      return `const scopeId = ${JSON.stringify(scopeId)};
+export function scope(id) {
+    if (!id) return scopeId;
 
-                return id + '-' + scopedId;
-            }`
-        }
-    }
+    return id + '-' + scopeId;
+}`;
+    },
+  };
 }
