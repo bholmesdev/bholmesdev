@@ -1,0 +1,130 @@
+---
+import type { MarkdownHeading } from "astro";
+import Toc from "./TOC.svelte";
+import { scope } from "simple:scope";
+
+type Props = {
+  headings: MarkdownHeading[] | undefined;
+};
+
+const { headings } = Astro.props;
+const id = scope("nav");
+---
+
+<nav x-data="{ open: false }" :class="open && 'open'">
+  {headings?.length ? <Toc client:load {headings} /> : null}
+  <ul id={id} class="links">
+    <li><a href="/">Ben</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/talks">Talks</a></li>
+    <li><a href="/videos">Videos</a></li>
+  </ul>
+  <div class="toggle-bg">
+    <button
+      @click="open = !open"
+      :aria-expanded="open"
+      aria-controls={id}
+      class="toggle"
+    >
+      <div class="stripe stripe-top"></div>
+      <div class="stripe stripe-middle"></div>
+      <div class="stripe stripe-bottom"></div>
+    </button>
+  </div>
+</nav>
+
+<style lang="scss">
+  .toggle {
+    height: 24px;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 0;
+    background-color: transparent;
+  }
+  .toggle::before {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+    z-index: -1;
+    border-radius: 0.7rem;
+    background-color: var(--bg-blur);
+  }
+
+  .stripe {
+    height: 4px;
+    width: inherit;
+    background-color: currentColor;
+    transition: transform 0.2s ease-in-out;
+    border-radius: 4px;
+  }
+  .stripe.stripe-middle {
+    transform-origin: center center;
+    transition-property: transform, opacity;
+  }
+  .stripe.stripe-top {
+    transform-origin: top right;
+  }
+  .stripe.stripe-bottom {
+    transform-origin: bottom right;
+  }
+  .open .stripe-top {
+    transform: rotate(-45deg);
+  }
+  .open .stripe-middle {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .open .stripe-bottom {
+    transform: rotate(45deg);
+  }
+
+  @for $i from 1 through 4 {
+    li:nth-child(#{$i}) {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(17em - ($i * 3.5em));
+      transition-delay: (4 - $i) * 50ms;
+      pointer-events: none;
+    }
+  }
+  li {
+    transition: all 0.2s ease-in-out;
+  }
+  .open li {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: initial;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    margin: auto;
+    max-width: 100ch;
+    display: flex;
+    gap: var(--size-5);
+    align-items: center;
+    font-size: var(--font-size-md);
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+  nav.open {
+    background-color: var(--bg);
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    gap: inherit;
+    margin-inline-start: auto;
+    align-items: inherit;
+  }
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+</style>

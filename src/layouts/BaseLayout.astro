@@ -3,7 +3,7 @@ import "@fontsource/atkinson-hyperlegible/400.css";
 import "@fontsource/atkinson-hyperlegible/400.css";
 import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url";
 import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
-import Nav from "../components/Nav.svelte";
+import Nav from "../components/Nav.astro";
 import type { MarkdownHeading } from "astro";
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 const { title = "Ben Holmes", headings } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -40,7 +40,7 @@ const { title = "Ben Holmes", headings } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <Nav client:load headings={headings} />
+    <Nav headings={headings} />
     <slot />
   </body>
 </html>
@@ -72,7 +72,6 @@ const { title = "Ben Holmes", headings } = Astro.props;
       BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
       "Open Sans", "Helvetica Neue", sans-serif;
 
-
     --font-size-1: var(--font-size-sm);
     --font-size-2: var(--font-size-base);
     --font-size-3: var(--font-size-md);
@@ -85,13 +84,15 @@ const { title = "Ben Holmes", headings } = Astro.props;
     --bg: var(--surface-1);
   }
 
-    @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
     :root {
-    --purple: hsl(var(--purple-hs) 57%);
+      --purple: hsl(var(--purple-hs) 57%);
     }
-    }
+  }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: var(--font-heading);
   }
 
