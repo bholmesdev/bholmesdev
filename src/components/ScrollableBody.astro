@@ -1,0 +1,31 @@
+---
+import { scope } from "simple:scope";
+
+export const articleRef = scope("article");
+---
+
+<body x-data="articleScrollProgress()" @scroll.window="handleScroll">
+  <slot />
+</body>
+
+<script>
+  import Alpine from "alpinejs";
+  import { scope } from "simple:scope";
+
+  Alpine.data("articleScrollProgress", () => ({
+    progress: 0,
+    handleScroll() {
+      const article = this.$refs[scope("article")];
+      if (!article) return;
+
+      const articleHeight = article.offsetTop + article.offsetHeight;
+
+      this.progress = Math.min(
+        (window.scrollY + window.innerHeight) / articleHeight,
+        1
+      );
+
+      console.log(this.progress);
+    },
+  }));
+</script>
