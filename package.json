@@ -25,9 +25,11 @@
     "open-props": "^1.5.10",
     "sass": "^1.64.2",
     "svelte": "^4.0.0",
-    "vite-plugin-checker": "^0.6.2"
+    "vite-plugin-checker": "^0.6.2",
+    "vite-plugin-simple-scope": "^1.0.1"
   },
   "devDependencies": {
+    "typescript": "^5.2.2",
     "vite": "^4.4.8"
   }
 }
