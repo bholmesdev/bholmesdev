@@ -54,8 +54,8 @@ dependencies:
     specifier: ^0.6.2
     version: 0.6.2(typescript@5.2.2)(vite@4.4.8)
   vite-plugin-simple-scope:
-    specifier: ^1.0.1
-    version: 1.0.1
+    specifier: ^1.0.3
+    version: 1.0.3
 
 devDependencies:
   typescript:
@@ -4551,8 +4551,9 @@ packages:
       vscode-uri: 3.0.8
     dev: false
 
-  /vite-plugin-simple-scope@1.0.1:
-    resolution: {integrity: sha512-oGyHWZxKjQn3A2mfQ1C75t0HCpiu7nZDzGRAB0X6ZwoonL17WLVtjwwgmIubroAbm2bnvu7fcUhueA52bC9bWQ==}
+  /vite-plugin-simple-scope@1.0.3:
+    resolution: {integrity: sha512-ZKs0Me9GohASaYL7pGEj4L6d2ebbfhr94HYZamEBZTGPwqc87wURNbK29uBnSf2fboLXd5MNAwqEQOyVil9GpQ==}
+    engines: {node: '>=18.14.1'}
     dependencies:
       nanoid: 5.0.3
     dev: false
