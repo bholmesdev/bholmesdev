@@ -1,0 +1,8 @@
+---
+const site = import.meta.env.SITE ?? "http://localhost:4321";
+
+const firstPageResult = await fetch(new URL("/videos/1", site));
+const firstPageHtml = await firstPageResult.text();
+---
+
+<div set:html={firstPageHtml} />

@@ -1,0 +1,1652 @@
+[
+  {
+    "id": "128-best-web-tech-stack.md",
+    "slug": "128-best-web-tech-stack",
+    "body": "\n# Best tech stack for web dev in 2023\n\nIf you're building full-stack JavaScript apps, there's a LOT of options to consider. Here's why [Astro](https://astro.build/) / [NextJS](https://nextjs.org/), [Drizzle](https://orm.drizzle.team/), and [Lucia Auth](https://lucia-auth.com/) are my go-tos!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/ZCdvjNTcT1I",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/ZCdvjNTcT1I?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/ZCdvjNTcT1I/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1715004882971697501"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "best-tech-stack-for-web-dev-in-2023",
+        "text": "Best tech stack for web dev in 2023"
+      }
+    ],
+    "number": 128
+  },
+  {
+    "id": "110-the-edge-really.md",
+    "slug": "110-the-edge-really",
+    "body": "\n# What does \"the edge\" _really_ mean?\n\nThe edge is the most popular buzzword in modern web dev. But with all these competing definitions... what does it REALLY mean? For extended reading, see [Glauber's (CEO of Turso) take on his blog](https://blog.turso.tech/what-the-heck-is-the-edge-anyway-a159a12f2412).\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/GOihOAcIgMw",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/GOihOAcIgMw?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/GOihOAcIgMw/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1671897899242749953"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "what-does-the-edge-really-mean",
+        "text": "What does “the edge” really mean?"
+      }
+    ],
+    "number": 110
+  },
+  {
+    "id": "109-view-transitions.md",
+    "slug": "109-view-transitions",
+    "body": "\n# View transitions make websites feel like iPhone apps\n\nView transitions are now built into Chrome, and make animation a million times easier. You won't need framer motion again! [Check out Adam Argyle's incredible slideshow demo](https://twitter.com/argyleink/status/1661800757304381443).\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/oxAIcGqFiT8",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/oxAIcGqFiT8?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/oxAIcGqFiT8/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1670793567877341186"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "view-transitions-make-websites-feel-like-iphone-apps",
+        "text": "View transitions make websites feel like iPhone apps"
+      }
+    ],
+    "number": 109
+  },
+  {
+    "id": "108-ssr-vs-server-components.md",
+    "slug": "108-ssr-vs-server-components",
+    "body": "\n# React SSR vs. Server Components\n\nServer components and server rendering mean very different things in React. Let's break down the difference.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/qwL83QdoYz0",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/qwL83QdoYz0?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/qwL83QdoYz0/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1669346202813620225"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "react-ssr-vs-server-components",
+        "text": "React SSR vs. Server Components"
+      }
+    ],
+    "number": 108
+  },
+  {
+    "id": "107-nextjs-pages-app.md",
+    "slug": "107-nextjs-pages-app",
+    "body": "\n# Should I use Next `app/` or `pages/` dir in 2023?\n\nNext.js lets you start with either pages/ or app/, and the choice will effect your project dramatically. TL;DW: `pages/` for beginners and projects you depend on, `app/` for intermediate devs learning the latest patterns.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/nUucn1cPFy4",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/nUucn1cPFy4?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/nUucn1cPFy4/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1668627779045445632"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "should-i-use-next-app-or-pages-dir-in-2023",
+        "text": "Should I use Next app/ or pages/ dir in 2023?"
+      }
+    ],
+    "number": 107
+  },
+  {
+    "id": "106-astro-data-collections.md",
+    "slug": "106-astro-data-collections",
+    "body": "\n# Astro content collections are databases without the SQL\n\nMarkdown blogs look so simple at first, but they always turn into database-level problems. Let's see how [Astro content collections](https://docs.astro.build/guides/content-collections) make it easy, without SQL 🙌\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/9T9fIRKv3Lo",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/9T9fIRKv3Lo?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/9T9fIRKv3Lo/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1666814472642793474"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "astro-content-collections-are-databases-without-the-sql",
+        "text": "Astro content collections are databases without the SQL"
+      }
+    ],
+    "number": 106
+  },
+  {
+    "id": "105-better-use-client.md",
+    "slug": "105-better-use-client",
+    "body": "\n# Astro has React's \"use client\" but better\n\n[Astro](https://astro.build) pioneered the \"client:\" directive to fine tune when JS loads. With custom client directives, it's even more powerful than React's `\"use client\"`! Try the [`client:rainy-in-ny` demo here](/rainy).\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/29hC8QCADUY",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/29hC8QCADUY?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/29hC8QCADUY/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1666091264641744897"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "astro-has-reacts-use-client-but-better",
+        "text": "Astro has React’s “use client” but better"
+      }
+    ],
+    "number": 105
+  },
+  {
+    "id": "104-add-cmdk.md",
+    "slug": "104-add-cmdk",
+    "body": "\n# Every website needs cmd + k\n\nThe web is an insanely crowded market these days. Here's how a command palette helps you stand out 🏆\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/r2qk4peP4y8",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/r2qk4peP4y8?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/r2qk4peP4y8/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1661733874635001857"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "every-website-needs-cmd--k",
+        "text": "Every website needs cmd + k"
+      }
+    ],
+    "number": 104
+  },
+  {
+    "id": "103-tailwind-theme.md",
+    "slug": "103-tailwind-theme",
+    "body": "\n# Learn the Tailwind `theme()` function\n\nThe Tailwind `@apply` utility was a mistake. What should you use instead? Let me introduce you [to `theme()`](https://tailwindcss.com/docs/functions-and-directives#theme).\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/r2qk4peP4y8",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/r2qk4peP4y8?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/r2qk4peP4y8/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1661733874635001857"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "learn-the-tailwind-theme-function",
+        "text": "Learn the Tailwind theme() function"
+      }
+    ],
+    "number": 103
+  },
+  {
+    "id": "102-nextjs-sveltekit.md",
+    "slug": "102-nextjs-sveltekit",
+    "body": "\n# NextJS vs. SvelteKit in 2023\n\n[SvelteKit](https://kit.svelte.dev/) is an exciting new framework for building fullstack apps. But why use it over NextJS? To me, it comes down to simply... React vs. Svelte!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/2rGGMQNXwbM",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/2rGGMQNXwbM?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/2rGGMQNXwbM/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1661733874635001857"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "nextjs-vs-sveltekit-in-2023",
+        "text": "NextJS vs. SvelteKit in 2023"
+      }
+    ],
+    "number": 102
+  },
+  {
+    "id": "101-next-server-actions.md",
+    "slug": "101-next-server-actions",
+    "body": "\n# NextJS server actions in under a minute\n\n[Server actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions) could be the future of React and NextJS backends. How do they work, and why are they different from regular REST endpoints?\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/4TnBbci0UNw",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/4TnBbci0UNw?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/4TnBbci0UNw/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1660661928916660226"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "nextjs-server-actions-in-under-a-minute",
+        "text": "NextJS server actions in under a minute"
+      }
+    ],
+    "number": 101
+  },
+  {
+    "id": "100-react-component-props.md",
+    "slug": "100-react-component-props",
+    "body": "\n# How to write good abstractions\n\nSomething something \"there's 2 hard parts about programming, and naming is one of them.\" Let's see how to write smarter component props that invert control to the parent, where it counts 🙌 Based on the excellent Kent C. Dodds talk, [Simply React.](https://www.youtube.com/watch?v=AiJ8tRRH0f8)\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/AQwXK8XcXcE",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/AQwXK8XcXcE?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/AQwXK8XcXcE/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1659197757310242818"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "how-to-write-good-abstractions",
+        "text": "How to write good abstractions"
+      }
+    ],
+    "number": 100
+  },
+  {
+    "id": "99-good-abstractions.md",
+    "slug": "99-good-abstractions",
+    "body": "\n# How to write good abstractions\n\nGood abstractions are the simplest-yet-hardest programming problem. Here's how you can write better utilities and components, with a little more copy /  paste 😉 Based on the incredible Dan Abramov talk, [The WET Codebase](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase).\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/cdl4OPXFSvY",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/cdl4OPXFSvY?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/cdl4OPXFSvY/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1658110116426575872"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "how-to-write-good-abstractions",
+        "text": "How to write good abstractions"
+      }
+    ],
+    "number": 99
+  },
+  {
+    "id": "97-drizzle-easy-sql.md",
+    "slug": "97-drizzle-easy-sql",
+    "body": "\n# Drizzle is the easiest SQL + TypeScript library\n\n[Drizzle ORM](https://github.com/drizzle-team/drizzle-orm) is a simple SQL tool for creating, inserting, and querying from tables in your TypeScript backend. Let's see why!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/NoHCs8hxbsE",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/NoHCs8hxbsE?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/NoHCs8hxbsE/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1655573695241371653"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "drizzle-is-the-easiest-sql--typescript-library",
+        "text": "Drizzle is the easiest SQL + TypeScript library"
+      }
+    ],
+    "number": 97
+  },
+  {
+    "id": "96-react-context-dying.md",
+    "slug": "96-react-context-dying",
+    "body": "\n# Is React Context dying?\n\nIn the world of server components, React Context doesn't work like it used to. Let's see how old Context use cases are might get replaced by new patterns.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/83wVVcDa_70",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/83wVVcDa_70?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/83wVVcDa_70/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1653064277224202242"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "is-react-context-dying",
+        "text": "Is React Context dying?"
+      }
+    ],
+    "number": 96
+  },
+  {
+    "id": "95-edge-replace-serverless.md",
+    "slug": "95-edge-replace-serverless",
+    "body": "\n# Why Edge compute can replace serverless\n\nEdge compute is a powerful new idea cutting down cold starts and unlocking new distribution options. Let's see if edge really is the serverless killer.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/foOyP5pwwZc",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/foOyP5pwwZc?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/foOyP5pwwZc/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1651592554993922051"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "why-edge-compute-can-replace-serverless",
+        "text": "Why Edge compute can replace serverless"
+      }
+    ],
+    "number": 95
+  },
+  {
+    "id": "94-astro-replaced-express.md",
+    "slug": "94-astro-replaced-express",
+    "body": "\n# Astro is the modern ExpressJS\n\nExpressJS was a great first stab at JS for the backend. But these days, we want modern templating, file-based routing, SPA transitions and more. Here's how [Astro](https://astro.build) takes the ExpressJS model to a new world!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/4LoACZuAZCI",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/4LoACZuAZCI?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/4LoACZuAZCI/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1650525173215363075"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "astro-is-the-modern-expressjs",
+        "text": "Astro is the modern ExpressJS"
+      }
+    ],
+    "number": 94
+  },
+  {
+    "id": "93-planetscale-http.md",
+    "slug": "93-planetscale-http",
+    "body": "\n# Did Planetscale SOLVE serverless DBs?\n\nPlanetscale has a new approach to database connections: http. Let's see how it solves serverless connection speeds without compromising performance. Read [the full performance benchmark here](https://planetscale.com/blog/faster-mysql-with-http3) 👀\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/sg7h8CTr8Mo",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/sg7h8CTr8Mo?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/sg7h8CTr8Mo/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1647963130285400064"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "did-planetscale-solve-serverless-dbs",
+        "text": "Did Planetscale SOLVE serverless DBs?"
+      }
+    ],
+    "number": 93
+  },
+  {
+    "id": "92-astro-vs-rsc.md",
+    "slug": "92-astro-vs-rsc",
+    "body": "\n# React Server Components vs. Astro\n\nReact Server Components and [Astro](https://astro.build/) have the same goal: **split up server and client code.** How they _achieve_ that goal feels similar too... but they have some unique strengths!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/aD45yxJCk6U",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/aD45yxJCk6U?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/aD45yxJCk6U/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1646514501016260611"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "react-server-components-vs-astro",
+        "text": "React Server Components vs. Astro"
+      }
+    ],
+    "number": 92
+  },
+  {
+    "id": "91-stop-throwing-errors.md",
+    "slug": "91-stop-throwing-errors",
+    "body": "\n# STOP throwing errors everywhere\n\nThrowing errors can be a recipe for nasty 500 errors. Let's see how returning error objects can keep your code type-safe and maintainable!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/ADhM0JvgQG0",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/ADhM0JvgQG0?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/ADhM0JvgQG0/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1645429690314772482"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "stop-throwing-errors-everywhere",
+        "text": "STOP throwing errors everywhere"
+      }
+    ],
+    "number": 91
+  },
+  {
+    "id": "90-react-server-components-without-next.md",
+    "slug": "90-react-server-components-without-next",
+    "body": "\n# React Server Components _without_ NextJS?\n\nHow do you build React Server Components without NextJS? Here's a high-level overview of all the code you need. Try the demo repo, [simple-rsc](https://github.com/bholmesdev/simple-rsc) 👀\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/lvovwPvN4WE",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/lvovwPvN4WE?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/lvovwPvN4WE/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1643990398824763393"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "react-server-components-without-nextjs",
+        "text": "React Server Components without NextJS?"
+      }
+    ],
+    "number": 90
+  },
+  {
+    "id": "89-react-transition.md",
+    "slug": "89-react-transition",
+    "body": "\n# Using NextJS? Learn `useTransition`\n\nWith React Server Components, there are entirely new ways to think about re-rendering. Let's see how the new transition hook can unlock server-side searching with beautiful loading states.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/zXsaQpG5w1w",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/zXsaQpG5w1w?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/zXsaQpG5w1w/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1642889835181473793"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "using-nextjs-learn-usetransition",
+        "text": "Using NextJS? Learn useTransition"
+      }
+    ],
+    "number": 89
+  },
+  {
+    "id": "88-better-variable-names.md",
+    "slug": "88-better-variable-names",
+    "body": "\n# Name your variables like a senior dev\n\nNaming variables is hard. But let's see how naming *backwards* could make your life easier.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/WDUylP3ed5c",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/WDUylP3ed5c?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/WDUylP3ed5c/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1640355006774640642"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "name-your-variables-like-a-senior-dev",
+        "text": "Name your variables like a senior dev"
+      }
+    ],
+    "number": 88
+  },
+  {
+    "id": "87-react-suspense-explained.md",
+    "slug": "87-react-suspense-explained",
+    "body": "\n# React Suspense finally makes sense\n\nReact Suspense has existed for years, and it was never obvious when or why you'd use it. But now, with React Server Components, it might be the bridge to get the best of EVERY data fetching solution.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/sXzP5Udwm7U",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/sXzP5Udwm7U?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/sXzP5Udwm7U/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1636427842236866560"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "react-suspense-finally-makes-sense",
+        "text": "React Suspense finally makes sense"
+      }
+    ],
+    "number": 87
+  },
+  {
+    "id": "86-react-server-components-explained.md",
+    "slug": "86-react-server-components-explained",
+    "body": "\n# React Server Components, explained!\n\nData streaming is the future of React, and THE key to understanding server components. Let's explore how React _really_ renders routes on your NextJS site.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/sXzP5Udwm7U",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/sXzP5Udwm7U?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/sXzP5Udwm7U/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1635303560790564869"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "react-server-components-explained",
+        "text": "React Server Components, explained!"
+      }
+    ],
+    "number": 86
+  },
+  {
+    "id": "85-sexy-syntax-highlighting.md",
+    "slug": "85-sexy-syntax-highlighting",
+    "body": "\n# Syntax highlighting for your blog - Prism vs. Shiki\n\nHow do you syntax highlight code blocks on your blog? Let's talk about the tradeoffs for 2 great libraries: [Prism](https://prismjs.com/) and [Shiki](https://github.com/shikijs/shiki).\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/LQJODWe9__s",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/LQJODWe9__s?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/LQJODWe9__s/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1633847744296103941"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "syntax-highlighting-for-your-blog---prism-vs-shiki",
+        "text": "Syntax highlighting for your blog - Prism vs. Shiki"
+      }
+    ],
+    "number": 85
+  },
+  {
+    "id": "84-markdoc-vs-mdx.md",
+    "slug": "84-markdoc-vs-mdx",
+    "body": "\n# Markdoc vs. MDX: what do you choose?\n\n[Markdoc](https://markdoc.dev) is an exciting content format from Stripe built for scale. If reusability and build speed are top of your list, it might be worth a try over MDX!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/i-GiXS8lfRM",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/i-GiXS8lfRM?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/i-GiXS8lfRM/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1633481696669515784"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "markdoc-vs-mdx-what-do-you-choose",
+        "text": "Markdoc vs. MDX: what do you choose?"
+      }
+    ],
+    "number": 84
+  },
+  {
+    "id": "83-rust-enums-beat-typescript.md",
+    "slug": "83-rust-enums-beat-typescript",
+    "body": "\n# Rust enums are WAY better than TypeScript's\n\nTypeScript enums are missing a LOT of features. Let's see the magic of matching and `struct`s that Rust brings to the table.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/SQgu6CRXw4I",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/SQgu6CRXw4I?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/SQgu6CRXw4I/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1628771674840498179"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "rust-enums-are-way-better-than-typescripts",
+        "text": "Rust enums are WAY better than TypeScript’s"
+      }
+    ],
+    "number": 83
+  },
+  {
+    "id": "82-rust-expressions-solve-ternaries.md",
+    "slug": "82-rust-expressions-solve-ternaries",
+    "body": "\n# Rust expressions are a game changer\n\nTypeScript forces you into clunky switch cases and unreadable ternaries. Let's see how Rust expressions solve this.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/MkTPwbFGbD8",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/MkTPwbFGbD8?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/MkTPwbFGbD8/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1627684500242329600"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "rust-expressions-are-a-game-changer",
+        "text": "Rust expressions are a game changer"
+      }
+    ],
+    "number": 82
+  },
+  {
+    "id": "81-ditch-try-catch-with-rust.md",
+    "slug": "81-ditch-try-catch-with-rust",
+    "body": "\n# Ditch try / catch hell with Rust's `Result`\n\nYou deserve type-safe errors. Let's see how Rust ditches confusing try / catch patterns with the `Result` object.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/OYFbheFvsQM",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/OYFbheFvsQM?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/OYFbheFvsQM/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1626242287876591617"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "ditch-try--catch-hell-with-rusts-result",
+        "text": "Ditch try / catch hell with Rust’s Result"
+      }
+    ],
+    "number": 81
+  },
+  {
+    "id": "80-rust-match-vs-js-switch.md",
+    "slug": "80-rust-match-vs-js-switch",
+    "body": "\n# Why JS devs should learn Rust - pattern matching\n\nTired of JS switch cases `break`-ing your code? Let's see how Rust got it right with pattern matching.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/N1ltVh73yFg",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/N1ltVh73yFg?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/N1ltVh73yFg/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1625148536848252928"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "why-js-devs-should-learn-rust---pattern-matching",
+        "text": "Why JS devs should learn Rust - pattern matching"
+      }
+    ],
+    "number": 80
+  },
+  {
+    "id": "79-best-practices-are-a-lie.md",
+    "slug": "79-best-practices-are-a-lie",
+    "body": "\n# Best practices are a lie.\n\nBest practices are trends, not rules. Let's see how to use this to your advantage!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/o-ycaYc53Mw",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/o-ycaYc53Mw?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/o-ycaYc53Mw/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1623698449626456064"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "best-practices-are-a-lie",
+        "text": "Best practices are a lie."
+      }
+    ],
+    "number": 79
+  },
+  {
+    "id": "78-beelining-to-write-better-code.md",
+    "slug": "78-beelining-to-write-better-code",
+    "body": "\n# Write code that works, faster by beelining\n\nIt's easy to get bogged down in refactors and clean-up. Here's why I suggest \"beelining\" to a solution SOONER to write reliable code with fewer mistakes.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/EPXWpjuaLAE",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/EPXWpjuaLAE?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/EPXWpjuaLAE/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1622612851029422083"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "write-code-that-works-faster-by-beelining",
+        "text": "Write code that works, faster by beelining"
+      }
+    ],
+    "number": 78
+  },
+  {
+    "id": "77-write-better-js-function-args.md",
+    "slug": "77-write-better-js-function-args",
+    "body": "\n# Best practice for JS function arguments\n\nCan we write better function arguments? Let's see why leaning on objects can avoid show-stopping bugs from positional arguments.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/xvEP6pU3yAI",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/xvEP6pU3yAI?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/xvEP6pU3yAI/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1621161704716632071"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "best-practice-for-js-function-arguments",
+        "text": "Best practice for JS function arguments"
+      }
+    ],
+    "number": 77
+  },
+  {
+    "id": "76-one-file-code-organization.md",
+    "slug": "76-one-file-code-organization",
+    "body": "\n# One component per file is wrong. Here's why\n\nTired of unorganized code and 100+ VS Code tabs? My secret is... embrace big files. Here's why!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/z8JbLHIS5Tg",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/z8JbLHIS5Tg?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/z8JbLHIS5Tg/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1620075860882788353"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "one-component-per-file-is-wrong-heres-why",
+        "text": "One component per file is wrong. Here’s why"
+      }
+    ],
+    "number": 76
+  },
+  {
+    "id": "75-stop-hating-css.md",
+    "slug": "75-stop-hating-css",
+    "body": "\n# Guide to stop hating CSS\n\nCSS is hard. Here's some resources and guides to hate it less!\n\n- [Josh Comeau's z-index article](https://www.joshwcomeau.com/css/stacking-contexts/)\n- [Kevin Powell's `:is()` intro](https://www.youtube.com/watch?v=McC4QkCvbaY)\n- [Steph Eckles' SmolCSS snippets](https://smolcss.dev/)\n- [Mia's \"Why is CSS So Weird?\"](https://www.youtube.com/watch?v=aHUtMbJw8iA)\n- [My CSS-in-JS advice](https://wtw.dev/56-css-in-js-dying)\n- [Adobe Spectrum accessible UI](https://react-spectrum.adobe.com/react-spectrum/index.html)\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/YmHaIV6Ypd4",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/YmHaIV6Ypd4?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/YmHaIV6Ypd4/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1618626206827696129"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "guide-to-stop-hating-css",
+        "text": "Guide to stop hating CSS"
+      }
+    ],
+    "number": 75
+  },
+  {
+    "id": "74-astro-content-collections.md",
+    "slug": "74-astro-content-collections",
+    "body": "\n# Typessafe Markdown with Astro 2.0\n\nSick of accidentally shipping `Author: [Object object]` on your blog? Let's check out typesafe Markdown in [Astro 2.0](https://astro.build). aka the video I've been excited to post for MONTHS! 👀\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/1ReUKz10g50",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/1ReUKz10g50?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/1ReUKz10g50/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1617936845081575426"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "typessafe-markdown-with-astro-20",
+        "text": "Typessafe Markdown with Astro 2.0"
+      }
+    ],
+    "number": 74
+  },
+  {
+    "id": "73-react-vs-solid-vs-qwik.md",
+    "slug": "73-react-vs-solid-vs-qwik",
+    "body": "\n# ReactJS vs. SolidJS vs. Qwik: should you switch?\n\n[Qwik](https://qwik.builder.io/) might be the new hotness with its resumability features, but is it really faster than your React app today?\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/jYTlMEDob9w",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/jYTlMEDob9w?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/jYTlMEDob9w/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1616093214582218753"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "reactjs-vs-solidjs-vs-qwik-should-you-switch",
+        "text": "ReactJS vs. SolidJS vs. Qwik: should you switch?"
+      }
+    ],
+    "number": 73
+  },
+  {
+    "id": "72-react-to-qwik.md",
+    "slug": "72-react-to-qwik",
+    "body": "\n# Should ReactJS devs learn Qwik?\n\n[Qwik](https://qwik.builder.io/) might be the new hotness with its resumability features, but is it really faster than your React app today?\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/W0mZFH-AQ3U",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/W0mZFH-AQ3U?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/W0mZFH-AQ3U/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1615024323982393344"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "should-reactjs-devs-learn-qwik",
+        "text": "Should ReactJS devs learn Qwik?"
+      }
+    ],
+    "number": 72
+  },
+  {
+    "id": "71-why-web-dev-is-harder.md",
+    "slug": "71-why-web-dev-is-harder",
+    "body": "\n# Why web dev is getting harder in 2023\n\nIs frontend web dev a MESS? The amount of options and best practices are overwhelming... but it's the nature of any growing industry. Here's why.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/VKqaYhTF2Q8",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/VKqaYhTF2Q8?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/VKqaYhTF2Q8/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1613555176996208640"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "why-web-dev-is-getting-harder-in-2023",
+        "text": "Why web dev is getting harder in 2023"
+      }
+    ],
+    "number": 71
+  },
+  {
+    "id": "70-node-file-paths-2023.md",
+    "slug": "70-node-file-paths-2023",
+    "body": "\n# Node file paths in 2023\n\nESM became the new Node standard. Let's see how this changes file paths for the better with the URL object.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/YPcdCNR9_sE",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/YPcdCNR9_sE?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/YPcdCNR9_sE/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1612464224319541248"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "node-file-paths-in-2023",
+        "text": "Node file paths in 2023"
+      }
+    ],
+    "number": 70
+  },
+  {
+    "id": "69-why-zod-is-so-useful.md",
+    "slug": "69-why-zod-is-so-useful",
+    "body": "\n# Why Zod is the library to learn in 2023\n\nZod solves a base-level problem every app has, with applications from APIs to Markdown validation. Let's see why it's so useful!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/no84xujFoWo",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/no84xujFoWo?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/no84xujFoWo/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1611015960437325827"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "why-zod-is-the-library-to-learn-in-2023",
+        "text": "Why Zod is the library to learn in 2023"
+      }
+    ],
+    "number": 69
+  },
+  {
+    "id": "68-copilot-makes-you-smart.md",
+    "slug": "68-copilot-makes-you-smart",
+    "body": "\n# Why GitHub Copilot makes you smart, not dumb\n\nCopilot can pump out quality code... if your codebase has quality design. Let's see how treating Copilot as the \"junior dev test\" makes you a better programmer.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/444dUylGYt0",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/444dUylGYt0?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/444dUylGYt0/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1609929786696122369?s=20"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "why-github-copilot-makes-you-smart-not-dumb",
+        "text": "Why GitHub Copilot makes you smart, not dumb"
+      }
+    ],
+    "number": 68
+  },
+  {
+    "id": "67-time-element-means-better-seo.md",
+    "slug": "67-time-element-means-better-seo",
+    "body": "\n# Use the time element for better SEO\n\nThis one HTML element means better SEO and accessibility for your blog. It's [time](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time) (heh 😉) to talk about published dates!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/OTwBY_9p4h4",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/OTwBY_9p4h4?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/OTwBY_9p4h4/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1605941241383903234"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "use-the-time-element-for-better-seo",
+        "text": "Use the time element for better SEO"
+      }
+    ],
+    "number": 67
+  },
+  {
+    "id": "66-is-next-13-router-worse.md",
+    "slug": "66-is-next-13-router-worse",
+    "body": "\n# Is the NextJS 13 router worse?\n\n[Next 13 completely changed routing](https://nextjs.org/blog/next-13) and nested layouts. Let's see why they shook things up, and whether it's better or worse for your web app.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/o3qyekvbZrs",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/o3qyekvbZrs?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/o3qyekvbZrs/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1604856471203860480"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "is-the-nextjs-13-router-worse",
+        "text": "Is the NextJS 13 router worse?"
+      }
+    ],
+    "number": 66
+  },
+  {
+    "id": "65-sveltekit-does-forms-best.md",
+    "slug": "65-sveltekit-does-forms-best",
+    "body": "\n# SvelteKit does HTML forms best\n\nPOSTing data to an API shouldn't be hard. SvelteKit forms do it best! Let's see multiple page forms and progressive enhancement in action 🏃‍♂️\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/gPumSX5Yayo",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/gPumSX5Yayo?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/gPumSX5Yayo/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1602318576391708672"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "sveltekit-does-html-forms-best",
+        "text": "SvelteKit does HTML forms best"
+      }
+    ],
+    "number": 65
+  },
+  {
+    "id": "64-solidstart-makes-servers-easy.md",
+    "slug": "64-solidstart-makes-servers-easy",
+    "body": "\n# Trend: SolidStart changed the server game\n\n[Full stack components ™️](https://www.epicweb.dev/full-stack-components) are becoming a trend. And I think SolidJS found the smartest way to marry server$ code to your frontend in perfect typesafe harmony 🤝 Let's see if this sparks an industry trend!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/vDzZaFc4Xxs",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/vDzZaFc4Xxs?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/vDzZaFc4Xxs/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1600868574029303810?s=20"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "trend-solidstart-changed-the-server-game",
+        "text": "Trend: SolidStart changed the server game"
+      }
+    ],
+    "number": 64
+  },
+  {
+    "id": "63-solidstart-solved-nextjs-routing.md",
+    "slug": "63-solidstart-solved-nextjs-routing",
+    "body": "\n# Did SolidStart SOLVE routing?\n\nFile-based routing only gets you (..)part(..)/ of the way. Let's see how Solid makes hybrid approaches and config-based routing easy.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/GJCbbJx94dA",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/GJCbbJx94dA?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/GJCbbJx94dA/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1599781143926099968"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "did-solidstart-solve-routing",
+        "text": "Did SolidStart SOLVE routing?"
+      }
+    ],
+    "number": 63
+  },
+  {
+    "id": "62-react-server-components.md",
+    "slug": "62-react-server-components",
+    "body": "\n# What React Server Components ACTUALLY do\n\nThere's some confusion over the benefits and drawbacks of [React Server Components](https://nextjs.org/docs/advanced-features/react-18/server-components). Let's break them down, with a comparison to Astro (astro.build) as well!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/WAYqOiASZXM",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/WAYqOiASZXM?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/WAYqOiASZXM/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1597239748292382722"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "what-react-server-components-actually-do",
+        "text": "What React Server Components ACTUALLY do"
+      }
+    ],
+    "number": 62
+  },
+  {
+    "id": "61-type-gen-nuxt-astro.md",
+    "slug": "61-type-gen-nuxt-astro",
+    "body": "\n# TypeScript generation is reshaping Nuxt, Astro, and more\n\nFrameworks like [NuxtJS](https://v3.nuxtjs.org/) and [Astro](https://astro.build) are leaning into type generation. You have never have to write a Typescript type by hand again. Let's see how!\n\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/eBIJyY_XeTs",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/eBIJyY_XeTs?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/eBIJyY_XeTs/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1594708461677420545"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "typescript-generation-is-reshaping-nuxt-astro-and-more",
+        "text": "TypeScript generation is reshaping Nuxt, Astro, and more"
+      }
+    ],
+    "number": 61
+  },
+  {
+    "id": "60-tailwind-not-design-system.md",
+    "slug": "60-tailwind-not-design-system",
+    "body": "\n# Tailwind is not a design system.\n\n...But it can be a key part of one! Let's see where Tailwind shines, and how utility classes with accessible [Radix UI](https://www.radix-ui.com/) or [Zag](https://zagjs.com/) components can be a winning combo 🏆💨 Brad Frost article - [design systems are for user interfaces](https://bradfrost.com/blog/post/design-systems-are-for-user-interfaces/)\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/1mFLzNVGGpQ",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/1mFLzNVGGpQ?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/1mFLzNVGGpQ/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1592532753735909376"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "tailwind-is-not-a-design-system",
+        "text": "Tailwind is not a design system."
+      }
+    ],
+    "number": 60
+  },
+  {
+    "id": "59-cache-control.md",
+    "slug": "59-cache-control",
+    "body": "\n# Cache serverless responses with `Cache-Control` headers\n\nWith serverless on the rise, cache is king 💰\nTo speed up responses and cut down on your server bill, let's walk through Cache-Control headers that'll fine-tune *how* and *where* cache is stored.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://youtube.com/shorts/XxPf28kbKEs",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/XxPf28kbKEs?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/XxPf28kbKEs/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1588168499507216384"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "cache-serverless-responses-with-cache-control-headers",
+        "text": "Cache serverless responses with Cache-Control headers"
+      }
+    ],
+    "number": 59
+  },
+  {
+    "id": "58-nextjs-auto-deployment.md",
+    "slug": "58-nextjs-auto-deployment",
+    "body": "\n# NextJS 13 chooses static vs. dynamic deploys... for you?\n\nDid you know [NextJS 13](https://beta.nextjs.org/docs) flips between static and serverless deploys based on *how you write you code?* Let's seen how Next snoops on your `fetch` functions to auto-decide the best way to ship your website.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/zcVoO8bF474",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/zcVoO8bF474?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/zcVoO8bF474/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1587090663715241985"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "nextjs-13-chooses-static-vs-dynamic-deploys-for-you",
+        "text": "NextJS 13 chooses static vs. dynamic deploys… for you?"
+      }
+    ],
+    "number": 58
+  },
+  {
+    "id": "57-what-is-turbopack.md",
+    "slug": "57-what-is-turbopack",
+    "body": "\n# Is Turbopack the next Vite?\n\nVercel had a lot to announce at [NextJS Conf 2022](https://nextjs.org/conf), including a Rust-powered bundler called [Turbopack](https://turbo.build) with performance comparisons to boot. Let's break down the nuances to see the differences and benefits compared to ViteJS.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/UcsZcETlow0",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/UcsZcETlow0?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/UcsZcETlow0/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1585625846223704064"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "is-turbopack-the-next-vite",
+        "text": "Is Turbopack the next Vite?"
+      }
+    ],
+    "number": 57
+  },
+  {
+    "id": "56-css-in-js-dying.md",
+    "slug": "56-css-in-js-dying",
+    "body": "\n# Should you still use CSS-in-JS?\n\n😱 Is CSS-in-JS dying? ...Okay, not really. But recommended libraries and performance concerns changed *a lot* since [Emotion](https://emotion.sh/docs/introduction) first hit the scene. So, let's break down [React 18](https://reactjs.org/blog/2022/03/29/react-v18.html)'s bottlenecks and new styling approaches 💅\n\nArticle noted in video: [\"Why we're breaking up with CSS-in-JS\"](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b)",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/Ou3rHQvkkWs",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/Ou3rHQvkkWs?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/Ou3rHQvkkWs/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1584545257043030017"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "should-you-still-use-css-in-js",
+        "text": "Should you still use CSS-in-JS?"
+      }
+    ],
+    "number": 56
+  },
+  {
+    "id": "55-render-as-you-fetch.md",
+    "slug": "55-render-as-you-fetch",
+    "body": "\n# render-as-you-fetch makes websites feel faster\n\n🔁 Loading 🔁 spinners 🔁 are 🔁 annoying. How do you fetch data more efficiently? Let's talk about render-as-you-fetch, a buzzword shaping frameworks like [NextJS](https://nextjs.org/blog/layouts-rfc) and [React Location](https://react-location.tanstack.com/).\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/HaFORudBWhQ",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/HaFORudBWhQ?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/HaFORudBWhQ/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1583095708424413185"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "render-as-you-fetch-makes-websites-feel-faster",
+        "text": "render-as-you-fetch makes websites feel faster"
+      }
+    ],
+    "number": 55
+  },
+  {
+    "id": "54-react-async-rfc.md",
+    "slug": "54-react-async-rfc",
+    "body": "\n# ReactJS `async / await` proposal, explained\n\nData fetching (and async code in general) is pretty complicated in [React](https://reactjs.org/). Luckily, the ReactJS team is proposing a new way forward!\n\nLet's talk server components, `async / await`, and the `use` hook. React has opened this proposal for comments, [so weigh in here](https://github.com/reactjs/rfcs/pull/229) 👀\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/HUy3Oyl294o",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/HUy3Oyl294o?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/HUy3Oyl294o/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1582008535268958209"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "reactjs-async--await-proposal-explained",
+        "text": "ReactJS async / await proposal, explained"
+      }
+    ],
+    "number": 54
+  },
+  {
+    "id": "53-zod-form-validation.md",
+    "slug": "53-zod-form-validation",
+    "body": "\n# Simple full-stack form validation with Zod\n\nZod is the last form validator I'll ever need 🙏\nLet's validate forms on the server and client, no matter the framework, using [zod-form-data](https://www.npmjs.com/package/zod-form-data)!\n\nTo try the project from this video, [clone the repository](https://github.com/bholmesdev/astro-zod-form-demo) 👀\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/qzlJ4VuFl30",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/qzlJ4VuFl30?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/qzlJ4VuFl30/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1580569658536521728"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "simple-full-stack-form-validation-with-zod",
+        "text": "Simple full-stack form validation with Zod"
+      }
+    ],
+    "number": 53
+  },
+  {
+    "id": "52-trpc.md",
+    "slug": "52-trpc",
+    "body": "\n# Build secure, type-safe APIs with tRPC\n\nWhat if your server and client agreed on types? Let's use [tRPC](https://trpc.io/) to build simple-yet-robust API endpoints with built-in type validation 💪\n\n👀 Want a sample app? Spin one up [with create-t3-app](https://github.com/t3-oss/create-t3-app)!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/YLwtF4yxWrY",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/YLwtF4yxWrY?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/YLwtF4yxWrY/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1579471822419988480"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "build-secure-type-safe-apis-with-trpc",
+        "text": "Build secure, type-safe APIs with tRPC"
+      }
+    ],
+    "number": 52
+  },
+  {
+    "id": "51-nanostores.md",
+    "slug": "51-nanostores",
+    "body": "\n# Simpler global state for your web app ➡️ Nano Stores\n\n[Nano Stores](https://github.com/nanostores/nanostores) are my FAVORITE global state manager. Let's see how they work, and why they can simplify your ReactJS `Context` flow 🌊\n\n[Try the Astro tutorial](https://docs.astro.build/en/core-concepts/sharing-state/) to learn more!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/EmSINUHtXkY",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/EmSINUHtXkY?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/EmSINUHtXkY/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1578020150317436928"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "simpler-global-state-for-your-web-app-️-nano-stores",
+        "text": "Simpler global state for your web app ➡️ Nano Stores"
+      }
+    ],
+    "number": 51
+  },
+  {
+    "id": "50-web-industry-trend-opt-in.md",
+    "slug": "50-web-industry-trend-opt-in",
+    "body": "\n# Web dev industry trend ➡️ \"opt-in\" mindset\n\nOPT-IN is the new trend 👏 Let's see what that means, and how tools like [SolidJS](https://wtw.dev/48) and [Astro](https://astro.build) are flipping [NextJS'](https://nextjs.org/) \"opt-out\" approach on its head.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/L8ZP9Go1zL0",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/L8ZP9Go1zL0?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/L8ZP9Go1zL0/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1576938291680538625"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "web-dev-industry-trend-️-opt-in-mindset",
+        "text": "Web dev industry trend ➡️ “opt-in” mindset"
+      }
+    ],
+    "number": 50
+  },
+  {
+    "id": "49-forms-screenreader-a11y.md",
+    "slug": "49-forms-screenreader-a11y",
+    "body": "\n# Are your HTML forms screen reader accessible?\n\nLet's talk input labels, adding instructions with `aria-describedby`, and the pain of icon buttons feat. megaphones 📣\n\nFor more, check out [Ben Myer's excellent `aria-label` rundown!](https://benmyers.dev/blog/aria-labels-and-descriptions/)",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/E5PmF5H3U_Q",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/E5PmF5H3U_Q?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/E5PmF5H3U_Q/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1574411392219742209"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "are-your-html-forms-screen-reader-accessible",
+        "text": "Are your HTML forms screen reader accessible?"
+      }
+    ],
+    "number": 49
+  },
+  {
+    "id": "48-is-solid-what-react-shouldve-been.md",
+    "slug": "48-is-solid-what-react-shouldve-been",
+    "body": "\n# Is Solid what ReactJS should've been?\n\nLet's see what makes [SolidJS](https://www.solidjs.com/) so special, and why it's *my* rec for performance-minded JSX lovers 💙\n\nSome helpful resources:\n\n- [Spin up a starter project](https://astro.new/framework-solid) with Astro + Solid\n- [Watch Solid's intro to reactivity](https://www.youtube.com/watch?v=J70HXl1KhWE) for an in-depth intro",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/QP6VlvQQgBw",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/QP6VlvQQgBw?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/QP6VlvQQgBw/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1572949152224485378"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "is-solid-what-reactjs-shouldve-been",
+        "text": "Is Solid what ReactJS should’ve been?"
+      }
+    ],
+    "number": 48
+  },
+  {
+    "id": "47-preact-before-react.md",
+    "slug": "47-preact-before-react",
+    "body": "\n# Use Preact BEFORE React on your next website\n\nIt's never been easier to spin up a [Preact](https://preactjs.com/) project. Here's why you should start with Preact BEFORE graduating to React on your next project 💪\n\nSome helpful resources:\n\n- [Spin up a starter project](https://astro.new/framework-preact) with Astro + Preact\n- [Set up Preact compat](https://preactjs.com/guide/v10/switching-to-preact/#setting-up-compat) in your existing React project to avoid big refactors\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/wy7ZvyZUvQY",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/wy7ZvyZUvQY?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/wy7ZvyZUvQY/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1571858613534162945"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "use-preact-before-react-on-your-next-website",
+        "text": "Use Preact BEFORE React on your next website"
+      }
+    ],
+    "number": 47
+  },
+  {
+    "id": "46-mpas-coming-back.md",
+    "slug": "46-mpas-coming-back",
+    "body": "\n# Are MPAs coming back?\n\nCould modern browser APIs make multi-page apps (aka \"traditional\" static or server websites) feel like single-page apps? Let's explore why SPAs like NextJS exist, and why they may be less necessary in the future ✨\n\nSome helpful resources:\n\n- [Maxi Ferriera's incredible navigation API demo](https://twitter.com/charca/status/1561830946462384128), bringing app-like navigation to a static MPA.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/821kJrYwCN4",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/821kJrYwCN4?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/821kJrYwCN4/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1567886432181653505"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "are-mpas-coming-back",
+        "text": "Are MPAs coming back?"
+      }
+    ],
+    "number": 46
+  },
+  {
+    "id": "45-servers-vs-ssg.md",
+    "slug": "45-servers-vs-ssg",
+    "body": "\n# Are servers better than static site generators?\n\nI've been hearing a lot of \"serverless can replace your static site\" claims. So, I put some cache headers to the test. Turns out, servers and serverless can cut down your build times and _still_ match your static site's speed 👀\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/VLhp1RnvA5g",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/VLhp1RnvA5g?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/VLhp1RnvA5g/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1566793272995061761"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "are-servers-better-than-static-site-generators",
+        "text": "Are servers better than static site generators?"
+      }
+    ],
+    "number": 45
+  },
+  {
+    "id": "44-setting-up-fonts.md",
+    "slug": "44-setting-up-fonts",
+    "body": "\n# Set up fonts on any website\n\nFonts are hard 😓\n\nLet's write `font-face` rules together, preload for efficiency, learn what the heck `font-display: swap` does, and see how [Fontsource](https://fontsource.org/) can automate the process 💪\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/-_xbqOkC0Fs",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/-_xbqOkC0Fs?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/-_xbqOkC0Fs/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1565346414955073536"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "set-up-fonts-on-any-website",
+        "text": "Set up fonts on any website"
+      }
+    ],
+    "number": 44
+  },
+  {
+    "id": "43-faster-analytics-with-partytown.md",
+    "slug": "43-faster-analytics-with-partytown",
+    "body": "\n# Faster Analytics with Partytown 🎉\n\nAnalytics are slowing your site down. 😓\n\nBeen wanting to talk [builder.io's partytown](https://partytown.builder.io/) for a while! Let's see how web workers + service workers = no more analytics blocking 🚀\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/U4As3bmOZnc",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/U4As3bmOZnc?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/U4As3bmOZnc/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1564249919644471296"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "faster-analytics-with-partytown",
+        "text": "Faster Analytics with Partytown 🎉"
+      }
+    ],
+    "number": 43
+  },
+  {
+    "id": "42-you-dont-need-cra.md",
+    "slug": "42-you-dont-need-cra",
+    "body": "\n# 🚨 PSA: You don't need create-react-app\n\nLet's un(web)pack why CRA *isn't* my go-to for [ReactJS](https://beta.reactjs.org/) newbies, and what I recommend for [learning](https://vitejs.dev/) 📝 and [shipping](https://nextjs.org/) ⛴\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/wG0Cx_D3cy0",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/wG0Cx_D3cy0?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/wG0Cx_D3cy0/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1562794425289297920"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "-psa-you-dont-need-create-react-app",
+        "text": "🚨 PSA: You don’t need create-react-app"
+      }
+    ],
+    "number": 42
+  },
+  {
+    "id": "41-eslint-prettier.md",
+    "slug": "41-eslint-prettier",
+    "body": "\n# The last eslint + prettier setup you'll need\n\nLet's be real... [eslint](https://eslint.org/) and [prettier](https://prettier.io/) are a _lot_ to set up.\n\nHere's a rundown of packages you'll need, strong web and ReactJS eslintrcs, and a VS Code setup that DOESN'T break 💪\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/A--UajbrOkg",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/A--UajbrOkg?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/A--UajbrOkg/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1561722341020803081"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "the-last-eslint--prettier-setup-youll-need",
+        "text": "The last eslint + prettier setup you’ll need"
+      }
+    ],
+    "number": 41
+  },
+  {
+    "id": "40-edge-compute.md",
+    "slug": "40-edge-compute",
+    "body": "\n# What is edge compute?\n\n🎵 I’m on the edge 🎵 CDN 🎵 And I’m serving all my content near you\n\nLet's explore edge compute vs. serverless deployment, and the emerging use cases for this tech.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/nS-dKoQT_U8",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/nS-dKoQT_U8?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/nS-dKoQT_U8/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1560625850734854144"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "what-is-edge-compute",
+        "text": "What is edge compute?"
+      }
+    ],
+    "number": 40
+  },
+  {
+    "id": "39-ssr-caching.md",
+    "slug": "39-ssr-caching",
+    "body": "\n# How cache headers work with SSR\n\nCaching is key to fast servers. Let's explore how cache headers work, what `max-age` to choose, and how this applies to [server-side rendering (SSR).](/38) Remember, [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) are your friend!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/watch?v=9wGfjw5Xu20",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/9wGfjw5Xu20?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/9wGfjw5Xu20/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1560256197403590656"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "how-cache-headers-work-with-ssr",
+        "text": "How cache headers work with SSR"
+      }
+    ],
+    "number": 39
+  },
+  {
+    "id": "38-ssr.md",
+    "slug": "38-ssr",
+    "body": "\n# What is server-side rendering (SSR)?\n\nLet's try SSR, a way to render content on-request and deliver a unique user experience without the loading spinners. This relies on \"pre-rendering\" as well, which [you can learn about here.](/37)\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/NsKzsZbkfDo",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/NsKzsZbkfDo?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/NsKzsZbkfDo/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1559532932338958337"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "what-is-server-side-rendering-ssr",
+        "text": "What is server-side rendering (SSR)?"
+      }
+    ],
+    "number": 38
+  },
+  {
+    "id": "37-prerendering-with-ssg.md",
+    "slug": "37-prerendering-with-ssg",
+    "body": "\n# What are pre-rendering and static site generation (SSG)?\n\nLet's explore \"pre-rendering,\" a way to render your websites ahead-of-time. Unlike [client-side rendering (CSR)](/36), this lets you ditch the loading spinner and deliver content faster. Static site generators like [NextJS](https://nextjs.org/) and [Astro](https://astro.build) can help.\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/E98kt85YmIQ",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/E98kt85YmIQ?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/E98kt85YmIQ/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1559532932338958337"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "what-are-pre-rendering-and-static-site-generation-ssg",
+        "text": "What are pre-rendering and static site generation (SSG)?"
+      }
+    ],
+    "number": 37
+  },
+  {
+    "id": "36-csr.md",
+    "slug": "36-csr",
+    "body": "\n# What is client-side rendering (CSR)?\n\nLet's talk about client-side rendering, a way to render your webpage top-to-bottom using JavaScript requests. This is common for frameworks like [create-react-app](https://create-react-app.dev/) and [Vite](https://vitejs.dev/)!\n",
+    "collection": "editions",
+    "data": {
+      "youtube": {
+        "url": "https://www.youtube.com/shorts/QarfvZLV9OA",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/QarfvZLV9OA?autoplay=1",
+        "thumbnailUrl": "https://img.youtube.com/vi/QarfvZLV9OA/hqdefault.jpg"
+      },
+      "twitter": "https://twitter.com/BHolmesDev/status/1559171415605186566"
+    },
+    "headings": [
+      {
+        "depth": 1,
+        "slug": "what-is-client-side-rendering-csr",
+        "text": "What is client-side rendering (CSR)?"
+      }
+    ],
+    "number": 36
+  }
+]

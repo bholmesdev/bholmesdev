@@ -1,0 +1,66 @@
+---
+export const partial = true;
+
+import type { GetStaticPaths } from "astro";
+import rawVideos from "./videos.json";
+import { videosSchema } from "../../utils";
+import { scope } from "simple:scope";
+
+export const getStaticPaths = (({ paginate }) => {
+  const videos = videosSchema.parse(rawVideos);
+  return paginate(videos, { pageSize: 3 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<div id={scope("video-viewer")}>
+  {
+    page.data.map((v) => (
+      <article>
+        {v.title ? <h3>{v.title}</h3> : null}
+        <p>{v.body}</p>
+        <a href={v.data.youtube.url}>YouTube</a>
+      </article>
+    ))
+  }
+  {
+    page.url.next ? (
+      <button
+        hx-get={page.url.next}
+        hx-target={"#" + scope("video-viewer")}
+        hx-swap="innerHTML"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="48"
+            d="m268 112l144 144l-144 144m124-144H100"
+          />
+        </svg>
+      </button>
+    ) : null
+  }
+</div>
+
+<script>
+  import "htmx.org";
+</script>
+
+<style>
+  button {
+    background: none;
+    border: 2px solid var(--gray-0);
+    height: var(--size-8);
+    width: var(--size-8);
+    border-radius: var(--radius-round);
+  }
+</style>
