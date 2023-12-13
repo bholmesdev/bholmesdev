@@ -35,6 +35,9 @@ dependencies:
   gsap:
     specifier: ^3.12.2
     version: 3.12.2
+  htmx.org:
+    specifier: ^1.9.9
+    version: 1.9.9
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
@@ -47,6 +50,9 @@ dependencies:
   vite-plugin-simple-scope:
     specifier: ^1.0.3
     version: 1.0.3
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
 
 devDependencies:
   typescript:
@@ -109,7 +115,7 @@ packages:
       htmlparser2: 9.0.0
       kleur: 4.1.5
       shiki: 0.14.3
-      zod: 3.21.4
+      zod: 3.22.4
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -2290,6 +2296,10 @@ packages:
       entities: 4.5.0
     dev: false
 
+  /htmx.org@1.9.9:
+    resolution: {integrity: sha512-PDEZU1me7UGLzQk98LyfLvwFgdtn9mrCVMmAxv1/UjshUnxsc+rouu+Ot2QfFZxsY4mBCoOed5nK7m9Nj2Tu7g==}
+    dev: false
+
   /http-cache-semantics@4.1.1:
     resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==}
     dev: false
@@ -4412,8 +4422,8 @@ packages:
     resolution: {integrity: sha512-+dTu2m6gmCbO9Ahm4ZBDapx2O6ZY9QSPXst2WXjcznPMwf2YNpn3RevLx4KkZp1OPW/ouFcoBtBzFz/LeY69oA==}
     dev: false
 
-  /zod@3.21.4:
-    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
   /zwitch@2.0.4:

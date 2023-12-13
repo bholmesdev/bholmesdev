@@ -20,10 +20,12 @@
     "astro": "^3.2.3",
     "astro-icon": "^0.8.1",
     "gsap": "^3.12.2",
+    "htmx.org": "^1.9.9",
     "nanoid": "^4.0.2",
     "open-props": "^1.5.10",
     "sass": "^1.64.2",
-    "vite-plugin-simple-scope": "^1.0.3"
+    "vite-plugin-simple-scope": "^1.0.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
