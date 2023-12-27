@@ -4,7 +4,11 @@ import { scope } from "simple:scope";
 export const articleRef = scope("article");
 ---
 
-<body x-data="articleScrollProgress()" @scroll.window="handleScroll">
+<body
+  class="dark:bg-gray-950 dark:text-white text-base"
+  x-data="articleScrollProgress()"
+  @scroll.window="handleScroll"
+>
   <slot />
 </body>
 

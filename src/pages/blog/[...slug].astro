@@ -15,19 +15,11 @@ const { Content, headings } = await post.render();
 ---
 
 <BaseLayout {headings}>
-  <main x-ref={articleRef}>
+  <main
+    class="max-w-prose m-auto px-3 prose dark:prose-invert"
+    x-ref={articleRef}
+  >
     <h1>{post.data.title}</h1>
     <Content />
   </main>
 </BaseLayout>
-
-<style>
-  main {
-    max-width: 65ch;
-    margin: auto;
-    padding-inline: var(--size-3);
-  }
-  main :global(p) {
-    margin-block: var(--size-3);
-  }
-</style>

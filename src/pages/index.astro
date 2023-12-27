@@ -2,36 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import InBrief from "../components/InBrief.astro";
 import Heading from "../components/Heading.astro";
-
-import riveWASMResource from "@rive-app/canvas/rive.wasm?url";
 ---
 
 <BaseLayout>
-  <link
-    slot="head"
-    rel="preload"
-    href={riveWASMResource}
-    as="fetch"
-    crossorigin="anonymous"
-  />
   <main>
     <Heading />
-    <article>
+    <article class="max-w-prose m-auto flex flex-col gap-4">
       <InBrief />
       <InBrief />
     </article>
   </main>
 </BaseLayout>
-
-<style>
-  article {
-    max-width: 60ch;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-6);
-  }
-  main {
-    font-size: var(--font-size-md);
-  }
-</style>
