@@ -3,9 +3,12 @@ import Section from "./Section.astro";
 ---
 
 <Section color="purple">
-  <h2>In brief.</h2>
-  <input id="inbrief-checkbox" class="checkbox" type="checkbox" />
-  <label for="inbrief-checkbox">
+  <h2 class="text-xl mb-3">In brief.</h2>
+  <input id="inbrief-checkbox" class="hidden checkbox" type="checkbox" />
+  <label
+    class="font-bold cursor-pointer grid gap-2 items-center justify-between text-lg dark:text-gray-400 mb-2"
+    for="inbrief-checkbox"
+  >
     <span class="label-personal">Personal Mode</span>
     <span class="switch"></span>
     <span class="label-recruiter">Recruiter Mode</span>
@@ -17,19 +20,20 @@ import Section from "./Section.astro";
       developer by trade given my <a
         href="https://www.cc.gatech.edu/degree-programs/bachelor-science-computer-science"
         >BS in CS</a
-      > from Georgia Tech (go Jackets!). Today, I’ve channeled this technical know-how
-      into open source web development as a full-time maintainer at
+      > from Georgia Tech (go Jackets!). Today, I’ve channeled this technical
+      know-how into open source web development as a full-time maintainer at
       <a href="https://astro.build">Astro</a>.
     </p>
     <p>
-      My core values are <strong>be caring, be clear, and be casual.</strong> Tech
-      is a scary industry to jump into, especially without a sense of humor to keep
-      your head on straight. So as long as I’m a web developer, my goal is to <a
-        href="#i-teach">teach</a
-      > and <a href="#i-create">build</a> tools that help others become the best
-      version of themselves. Well, assuming we adhere to <a
-        href="https://semver.org/">semantic versioning principles</a
-      > 😉
+      My core values are <strong>be caring, be clear, and be casual.</strong>
+       Tech is a scary industry to jump into, especially without a sense of
+      humor to keep your head on straight. So as long as I’m a web developer, my
+      goal is to <a href="#i-teach">teach</a> and <a href="#i-create">build</a>
+       tools that help others become the best version of themselves. Well,
+      assuming we adhere to <a href="https://semver.org/"
+        >semantic versioning principles</a
+      >
+       😉
     </p>
   </div>
   <div class="content-recruiter">
@@ -54,23 +58,11 @@ import Section from "./Section.astro";
 </Section>
 
 <style>
-    h2 {
-        margin-block: var(--size-2);
-    }
-
   label {
-    font-weight: 700;
-    cursor: pointer;
-    display: grid;
     grid-template-areas:
       "personal switch"
       "recruiter switch";
-    gap: 0.2em;
-    align-items: center;
-    justify-content: space-between;
-    font-size: var(--font-size-md);
     letter-spacing: 0.9px;
-    margin-block: var(--size-2);
   }
   .label-personal {
     color: var(--accent);
@@ -82,19 +74,17 @@ import Section from "./Section.astro";
   .switch {
     width: 0.6em;
     height: 1em;
-    border-radius: 0.6em;
+    border-radius: theme(borderRadius.full);
     display: flex;
     justify-content: center;
     position: relative;
     grid-area: switch;
-    border-radius: 3rem;
-    border-radius: 3rem;
     background: radial-gradient(
         53.29% 50% at 50% 50%,
         rgba(209, 198, 226, 0) 0%,
-        var(--surface-2) 100%
+        theme(backgroundColor.gray.800) 100%
       ),
-      var(--surface-3);
+      theme(backgroundColor.gray.700);
   }
   .switch:before {
     content: "";
@@ -122,16 +112,12 @@ import Section from "./Section.astro";
       transform: rotate(0.75turn);
     }
   }
-  .checkbox {
-    display: none;
-  }
-
   .checkbox:checked ~ label > .label-recruiter {
     color: var(--accent);
   }
 
   .checkbox:checked ~ label > .label-personal {
-    color: var(--text-5);
+    @apply dark:text-gray-400;
   }
   .content-personal {
     display: block;
