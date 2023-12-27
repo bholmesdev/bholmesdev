@@ -11,9 +11,13 @@ const { headings } = Astro.props;
 const id = scope("nav");
 ---
 
-<nav x-data="{ open: false }" :class="open && 'open'">
+<nav
+  x-data="{ open: false }"
+  :class="open && 'open'"
+  class="sticky top-0 max-w-[100ch] flex gap-4 items-center text-lg py-3 px-5 transition-colors"
+>
   {headings?.length ? <Toc {headings} /> : null}
-  <ul id={id} class="links">
+  <ul id={id} class="flex gap-4 ml-auto items-center">
     <li><a href="/">Ben</a></li>
     <li><a href="/blog">Blog</a></li>
     <li><a href="/talks">Talks</a></li>
@@ -24,7 +28,7 @@ const id = scope("nav");
       @click="open = !open"
       :aria-expanded="open"
       aria-controls={id}
-      class="toggle"
+      class="h-[24px] w-[30px] flex flex-col justify-between relative p-0 bg-transparent before:content-[''] before:absolute before:inset-[-0.5rem] before:z-[-1] before:border-radius-[0.7rem] before:bg-[var(--bg-blur)]"
     >
       <div class="stripe stripe-top"></div>
       <div class="stripe stripe-middle"></div>
@@ -100,31 +104,11 @@ const id = scope("nav");
     pointer-events: initial;
   }
 
-  nav {
-    position: sticky;
-    top: 0;
-    margin: auto;
-    max-width: 100ch;
-    display: flex;
-    gap: var(--size-5);
-    align-items: center;
-    font-size: var(--font-size-md);
-    padding-inline: 1rem;
-    padding-block: 1rem;
-    transition: background-color 0.2s ease-in-out;
-  }
   nav.open {
-    background-color: var(--bg);
+    @apply dark:bg-gray-950;
   }
-  ul {
-    list-style: none;
-    display: flex;
-    gap: inherit;
-    margin-inline-start: auto;
-    align-items: inherit;
-  }
-  a,
-  a:visited {
+
+  a {
     text-decoration: none;
   }
 </style>
