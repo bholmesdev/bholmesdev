@@ -1,0 +1,17 @@
+---
+import iBen from "./iBen.svg?raw";
+---
+
+<div class="dark:bg-gray-900 py-8">
+  <div
+    class="computer m-auto sm:px-12 max-w-prose aspect-square"
+    set:html={iBen}
+  />
+</div>
+
+<style>
+  .computer :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+</style>
