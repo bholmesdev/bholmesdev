@@ -1,94 +1,136 @@
 ---
+import { scope } from "simple:scope";
 ---
-<svg width="983" height="1540" viewBox="0 0 983 1540" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M119 264C119 245.222 134.222 230 153 230H829C847.778 230 863 245.222 863 264V1276C863 1294.78 847.778 1310 829 1310H153C134.222 1310 119 1294.78 119 1276V264Z" fill="url(#paint0_linear_1_2)"/>
-<path d="M144 268C144 262.477 148.477 258 154 258H828C833.523 258 838 262.477 838 268V1272C838 1277.52 833.523 1282 828 1282H154C148.477 1282 144 1277.52 144 1272V268Z" fill="white"/>
-<g class="face">
-<path d="M419 691C435.856 709.824 464.452 724 509 724C553.548 724 582.144 709.824 599 691" stroke="#7824FF" stroke-width="33" stroke-linecap="round"/>
-<rect class="eye" x="279" y="533" width="33" height="149" rx="16.5" fill="#7824FF"/>
-<rect class="eye" x="706" y="533" width="33" height="149" rx="16.5" fill="#7824FF"/>
-</g>
-<path class="motion-path" d="M232.5 374C335.999 323.963 702.337 335.637 802.5 383C693.621 376.829 354.953 355.129 220.5 526.855C295.355 464.643 564.531 345.121 789 526.855C637.821 475.83 326.021 494.499 220.5 629C328.558 582.543 699.932 584.51 774 678.5C688.771 622.528 335.309 666.614 192.5 783.5C330.996 737.003 692 766.5 774 842.5C673 798.5 300.5 851.6 192.5 934C301.5 907 684.5 901.5 774 983.5C646.5 925.618 308.1 994.3 192.5 1067.5C324.5 1048.5 732.2 1083.8 755 1125" stroke="red" stroke-width="155" stroke-linecap="round"/>
-<rect class="eraser" x="-70" y="-100" width="122" height="163" fill="#3840FF"/>
-<defs>
-<linearGradient id="paint0_linear_1_2" x1="796" y1="273" x2="217" y2="1231" gradientUnits="userSpaceOnUse">
-<stop stop-color="#484848"/>
-<stop offset="0.114583" stop-color="#1E1E1E"/>
-<stop offset="1" stop-color="#121212"/>
-</linearGradient>
-</defs>
+
+<svg
+  width="983"
+  height="1540"
+  viewBox="0 0 983 1540"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M119 264C119 245.222 134.222 230 153 230H829C847.778 230 863 245.222 863 264V1276C863 1294.78 847.778 1310 829 1310H153C134.222 1310 119 1294.78 119 1276V264Z"
+    fill="url(#paint0_linear_1_2)"></path>
+  <path
+    d="M144 268C144 262.477 148.477 258 154 258H828C833.523 258 838 262.477 838 268V1272C838 1277.52 833.523 1282 828 1282H154C148.477 1282 144 1277.52 144 1272V268Z"
+    fill="white"></path>
+  <g id={scope("face")}>
+    <path
+      d="M419 691C435.856 709.824 464.452 724 509 724C553.548 724 582.144 709.824 599 691"
+      stroke="#7824FF"
+      stroke-width="33"
+      stroke-linecap="round"></path>
+    <rect
+      class="eye"
+      x="279"
+      y="533"
+      width="33"
+      height="149"
+      rx="16.5"
+      fill="#7824FF"></rect>
+    <rect
+      class="eye"
+      x="706"
+      y="533"
+      width="33"
+      height="149"
+      rx="16.5"
+      fill="#7824FF"></rect>
+  </g>
+  <path
+    class="motion-path"
+    d="M232.5 374C335.999 323.963 702.337 335.637 802.5 383C693.621 376.829 354.953 355.129 220.5 526.855C295.355 464.643 564.531 345.121 789 526.855C637.821 475.83 326.021 494.499 220.5 629C328.558 582.543 699.932 584.51 774 678.5C688.771 622.528 335.309 666.614 192.5 783.5C330.996 737.003 692 766.5 774 842.5C673 798.5 300.5 851.6 192.5 934C301.5 907 684.5 901.5 774 983.5C646.5 925.618 308.1 994.3 192.5 1067.5C324.5 1048.5 732.2 1083.8 755 1125"
+    stroke="red"
+    stroke-width="155"
+    stroke-linecap="round"></path>
+  <rect class="eraser" x="-70" y="-100" width="122" height="163" fill="#3840FF"
+  ></rect>
+  <defs>
+    <linearGradient
+      id="paint0_linear_1_2"
+      x1="796"
+      y1="273"
+      x2="217"
+      y2="1231"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#484848"></stop>
+      <stop offset="0.114583" stop-color="#1E1E1E"></stop>
+      <stop offset="1" stop-color="#121212"></stop>
+    </linearGradient>
+  </defs>
 </svg>
 
 <style>
-.motion-path {
+  .motion-path {
     --length: 6500;
-    --cubic-bezier: .1,0,.6,1;
+    --cubic-bezier: 0.1, 0, 0.6, 1;
     stroke-dasharray: var(--length);
     stroke-dashoffset: var(--length);
     animation: draw 2s cubic-bezier(var(--cubic-bezier)) forwards;
-}
+  }
 
-@keyframes draw {
-   to {
-        stroke-dashoffset: 0;
-   } 
-}
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
 </style>
 
 <script>
-import {gsap} from 'gsap';
-import MotionPathPlugin from 'gsap/MotionPathPlugin';
-import CustomEase from 'gsap/CustomEase';
+  import { gsap } from "gsap";
+  import MotionPathPlugin from "gsap/MotionPathPlugin";
+  import CustomEase from "gsap/CustomEase";
+  import { scope } from "simple:scope";
 
-gsap.registerPlugin(MotionPathPlugin);
-gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(MotionPathPlugin);
+  gsap.registerPlugin(CustomEase);
 
-CustomEase.create('draw', '.1,0,.6,1');
+  CustomEase.create("draw", ".1,0,.6,1");
 
-const blinkAnim = gsap.timeline()
-    .set('.eye', {transformOrigin: 'center bottom'})
-    .to('.eye', {scaleY: 0.2, duration: 0.2})
-    .to('.eye', {scaleY: 1, duration: 0.2})
+  const blinkAnim = gsap
+    .timeline()
+    .set(".eye", { transformOrigin: "center bottom" })
+    .to(".eye", { scaleY: 0.2, duration: 0.2 })
+    .to(".eye", { scaleY: 1, duration: 0.2 })
     .repeatDelay(4)
     .repeat(-1);
 
-const xPoolInitial = [-40, -20, 0, 20, 40];
-const yPoolInitial = [-40, 0, 80, 160, 240, 280];
+  const xPoolInitial = [-40, -20, 0, 20, 40];
+  const yPoolInitial = [-40, 0, 80, 160, 240, 280];
 
-function generateVal(poolInitial: number[]) {
+  function generateVal(poolInitial: number[]) {
     let pool: number[] = [];
     return () => {
-        if (pool.length === 0) {
-            pool = [...poolInitial];
-        }
+      if (pool.length === 0) {
+        pool = [...poolInitial];
+      }
 
-        const randIdx = gsap.utils.random(0, pool.length-1, 1);
-        const val = pool[randIdx]!;
-        pool.splice(randIdx, 1);
-        return val;
-    }
-}
+      const randIdx = gsap.utils.random(0, pool.length - 1, 1);
+      const val = pool[randIdx]!;
+      pool.splice(randIdx, 1);
+      return val;
+    };
+  }
 
-const eraserAnim = gsap.to('.eraser', {
+  const eraserAnim = gsap.to(".eraser", {
     duration: 2,
-    ease: 'draw',
+    ease: "draw",
     motionPath: {
-        path: '.motion-path',
-    }
-})
+      path: ".motion-path",
+    },
+  });
 
-const faceAnim = gsap.to('.face', {
-        x: generateVal(xPoolInitial),
-        y: generateVal(yPoolInitial), 
-        repeatRefresh: true,
-        repeat: -1,
-        repeatDelay: 4,
-        duration: 1,
-        ease: 'elastic.out(1, 0.5)'
-    });
+  const faceAnim = gsap.to(`#${scope("face")}`, {
+    x: generateVal(xPoolInitial),
+    y: generateVal(yPoolInitial),
+    repeatRefresh: true,
+    repeat: -1,
+    repeatDelay: 4,
+    duration: 1,
+    ease: "elastic.out(1, 0.5)",
+  });
 
-gsap.timeline()
-    .add(blinkAnim)
-    .add(faceAnim);
+  gsap.timeline().add(blinkAnim).add(faceAnim);
 </script>
-
