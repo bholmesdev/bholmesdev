@@ -1,17 +1,18 @@
 ---
 import iBen from "./iBen.svg?raw";
 
-const imgSrc = "https://img.youtube.com/vi/ZCdvjNTcT1I/hqdefault.jpg";
+const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
 ---
 
 <div class="dark:bg-gray-900 sm:px-6 px-2">
-  <div class="max-w-prose mx-auto container grid">
-    <div class="computer z-10 m-auto w-full" set:html={iBen} />
+  <div class="max-w-prose mx-auto container grid relative">
+    <img src={imgSrc} alt="" class="glow pt-[0%] w-full" aria-hidden="true" />
     <img
       src={imgSrc}
       alt="A gud video"
       class="filter blur-sm w-full pt-[10%] px-[6%]"
     />
+    <div class="z-10 computer m-auto w-full" set:html={iBen} />
   </div>
 </div>
 
@@ -23,5 +24,11 @@ const imgSrc = "https://img.youtube.com/vi/ZCdvjNTcT1I/hqdefault.jpg";
 
   .container > * {
     grid-area: 1/1;
+  }
+
+  .glow {
+    filter: brightness(7) blur(50px);
+    transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
+    transform-origin: bottom center;
   }
 </style>
