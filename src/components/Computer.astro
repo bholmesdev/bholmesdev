@@ -1,5 +1,6 @@
 ---
 import iBen from "./iBen.svg?raw";
+import ComputerBtn from "./ComputerBtn.astro";
 
 const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
 ---
@@ -18,6 +19,12 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
       class="filter blur-sm w-full pt-[10%] px-[6%]"
     />
     <div class="z-10 computer m-auto w-full" set:html={iBen} />
+    <div
+      class="btn-overlay absolute left-0 right-0 z-20 flex justify-between px-[5%]"
+    >
+      <ComputerBtn icon="play" aria-label="Play video" />
+      <ComputerBtn icon="random" aria-label="Get random video" />
+    </div>
   </div>
 </div>
 
@@ -41,5 +48,9 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
     filter: brightness(7) blur(20px);
     transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
     transform-origin: bottom center;
+  }
+
+  .btn-overlay {
+    bottom: calc(theme(spacing.6) + 4.4%);
   }
 </style>
