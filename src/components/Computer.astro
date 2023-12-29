@@ -5,7 +5,7 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
 ---
 
 <div class="dark:bg-gray-900 sm:px-6 px-2">
-  <div class="max-w-prose mx-auto container grid relative">
+  <div class="py-8 max-w-prose mx-auto container grid relative">
     <img
       src={imgSrc}
       alt=""
@@ -31,8 +31,14 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
     grid-area: 1/1;
   }
 
+  @media (min-width: theme(screens.sm)) {
+    .glow {
+      filter: brightness(7) blur(50px) !important;
+    }
+  }
+
   .glow {
-    filter: brightness(7) blur(50px);
+    filter: brightness(7) blur(20px);
     transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
     transform-origin: bottom center;
   }
