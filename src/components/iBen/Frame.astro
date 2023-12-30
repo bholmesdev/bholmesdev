@@ -4,18 +4,18 @@ import Button from "./Button.astro";
 import CdDrive from "./CdDrive.astro";
 import ChevronDown from "./ChevronDown.astro";
 
-const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
+const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
 ---
 
 <div
   data-iBen
-  x-data="{ playing: false, welcome: true }"
+  x-data=`iBen(${JSON.stringify(videoIds)})`
   class="dark:bg-gray-900 sm:px-6 px-2"
 >
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
-      src={imgSrc}
+      :src="getImgSrc"
       alt=""
       class="pt-[0%] w-full"
       aria-hidden="true"
@@ -25,7 +25,7 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
         x-show="!playing"
         data-thumbnail
         :class="welcome && 'welcome'"
-        src={imgSrc}
+        :src="getImgSrc"
         alt="A gud video"
         class="w-full aspect-[3/2] leading-none object-cover"
       />
@@ -76,10 +76,54 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
       />
 
       <CdDrive />
-      <Button icon="random" aria-label="Get random video" />
+      <Button
+        @click="incrementIdx(); playing = false"
+        icon="random"
+        aria-label="Get random video"
+      />
     </div>
   </div>
 </div>
+
+<script>
+  import Alpine from "alpinejs";
+
+  Alpine.data("iBen", (initialVideos) => {
+    const [showcaseVideo, ...otherVideos] = initialVideos as string[];
+    const videoIds = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
+
+    return {
+      playing: false,
+      welcome: true,
+      videoIds,
+      videoIdx: 0,
+      incrementIdx() {
+        this.videoIdx = (this.videoIdx + 1) % this.videoIds.length;
+      },
+      getImgSrc() {
+        return `https://img.youtube.com/vi/${
+          this.videoIds[this.videoIdx]
+        }/hqdefault.jpg`;
+      },
+    };
+  });
+
+  /**
+   * Pseudo-random algorithm
+   * @see https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
+   */
+  function fisherYatesShuffle<T>(initialArr: T[]) {
+    const arr = [...initialArr];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = arr[i]!;
+      arr[i] = arr[j]!;
+      arr[j] = temp;
+    }
+    console.log(arr, initialArr);
+    return arr;
+  }
+</script>
 
 <style>
   [data-iBen] {
