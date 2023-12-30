@@ -2,11 +2,16 @@
 import iBen from "./iBen.svg?raw";
 import Button from "./Button.astro";
 import CdDrive from "./CdDrive.astro";
+import ChevronDown from "./ChevronDown.astro";
 
 const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
 ---
 
-<div class="dark:bg-gray-900 sm:px-6 px-2">
+<div
+  data-iBen
+  x-data="{ playing: false, welcome: true }"
+  class="dark:bg-gray-900 sm:px-6 px-2"
+>
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
@@ -17,21 +22,59 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
     />
     <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
       <img
+        x-show="!playing"
         data-thumbnail
+        :class="welcome && 'welcome'"
         src={imgSrc}
         alt="A gud video"
-        class="filter blur-sm w-full aspect-[3/2] leading-none object-cover"
+        class="w-full aspect-[3/2] leading-none object-cover"
       />
-      <div data-scan-line-overlay class="absolute inset-0">
+      <div
+        data-scan-line-overlay
+        class="absolute pointer-events-none inset-0 aspect-[3/2] flex flex-col justify-between"
+      >
         <div data-scan-line class="w-full h-1 bg-slate-200 opacity-30"></div>
+        <div
+          x-show="!playing"
+          data-btn-labels
+          :class="welcome && 'welcome'"
+          class="px-[7%] pb-[2%] pt-[10%] flex justify-between font-bold bg-gradient-to-t from-slate-950 to-transparent"
+        >
+          <span class="w-[6ch] flex flex-col items-center"
+            >Play <ChevronDown /></span
+          >
+          <span class="w-[6ch] flex flex-col items-center"
+            >Random <ChevronDown /></span
+          >
+        </div>
       </div>
+      <template x-if="playing">
+        <iframe
+          class="w-full aspect-[3/2] h-auto"
+          width="560"
+          height="315"
+          src="https://www.youtube-nocookie.com/embed/MaebEqhZR84?autoplay=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </template>
     </div>
-    <div data-computer class="z-10 m-auto w-full" set:html={iBen} />
+    <div
+      data-computer
+      class="z-10 m-auto w-full pointer-events-none"
+      set:html={iBen}
+    />
     <div
       data-btn-overlay
       class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
     >
-      <Button icon="play" aria-label="Play video" />
+      <Button
+        @click="playing = !playing; welcome = false"
+        icon="play"
+        aria-label="Play video"
+      />
+
       <CdDrive />
       <Button icon="random" aria-label="Get random video" />
     </div>
@@ -39,19 +82,35 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
 </div>
 
 <style>
+  [data-iBen] {
+    --anim-delay: 1.3s;
+  }
+
   [data-scan-line] {
     animation: scan 4s linear infinite;
-    animation-delay: 1.3s;
+    animation-delay: var(--anim-delay);
   }
   [data-scan-line-overlay] {
     background-image: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.08) 50%,
       rgba(0, 0, 0, 0) 100%
     );
     background-size: 100% 6px;
     background-repeat: repeat;
+  }
+
+  [data-btn-labels].welcome {
+    animation: delayed-reveal 0.3s ease-in forwards;
+    animation-delay: var(--anim-delay);
+    opacity: 0;
+  }
+
+  @keyframes delayed-reveal {
+    to {
+      opacity: 1;
+    }
   }
 
   [data-computer] :global(svg) {
@@ -77,19 +136,21 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
     animation:
       glow-reveal 0.2s ease-in forwards,
       pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    animation-delay: 1.3s;
+    animation-delay: var(--anim-delay);
     opacity: 0;
     scale: 0.8;
   }
 
   [data-thumbnail] {
-    filter: brightness(0.3) blur(2px);
-    clip-path: ellipse(0% 0% at center);
-
     transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
     transform-origin: bottom center;
+  }
+
+  [data-thumbnail].welcome {
+    filter: brightness(0.3);
     animation: img-reveal 0.3s ease-in forwards;
-    animation-delay: 1.3s;
+    animation-delay: var(--anim-delay);
+    clip-path: ellipse(0% 0% at center);
   }
 
   [data-btn-overlay] {
@@ -99,7 +160,7 @@ const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
   @keyframes img-reveal {
     to {
       clip-path: ellipse(100% 100% at center);
-      filter: brightness(1) blur(2px);
+      filter: brightness(1);
     }
   }
 
