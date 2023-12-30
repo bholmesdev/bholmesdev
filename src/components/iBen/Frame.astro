@@ -1,0 +1,99 @@
+---
+import iBen from "./iBen.svg?raw";
+import Button from "./Button.astro";
+import CdDrive from "./CdDrive.astro";
+
+const imgSrc = "https://img.youtube.com/vi/MaebEqhZR84/hqdefault.jpg";
+---
+
+<div class="dark:bg-gray-900 sm:px-6 px-2">
+  <div data-container class="py-8 max-w-prose mx-auto grid relative">
+    <img
+      data-glow
+      src={imgSrc}
+      alt=""
+      class="pt-[0%] w-full"
+      aria-hidden="true"
+    />
+    <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
+      <img
+        data-thumbnail
+        src={imgSrc}
+        alt="A gud video"
+        class="filter blur-sm w-full aspect-[3/2] leading-none object-cover"
+      />
+    </div>
+    <div data-computer class="z-10 m-auto w-full" set:html={iBen} />
+    <div
+      data-btn-overlay
+      class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
+    >
+      <Button icon="play" aria-label="Play video" />
+      <CdDrive />
+      <Button icon="random" aria-label="Get random video" />
+    </div>
+  </div>
+</div>
+
+<style>
+  [data-computer] :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  [data-container] > * {
+    /* Overlap all children in same grid column */
+    grid-area: 1/1;
+  }
+
+  @media (min-width: theme(screens.sm)) {
+    [data-glow] {
+      filter: brightness(7) blur(50px) !important;
+    }
+  }
+
+  [data-glow] {
+    filter: brightness(7) blur(20px);
+    transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
+    transform-origin: bottom center;
+    animation:
+      glow-reveal 0.2s ease-in forwards,
+      pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation-delay: 1.3s;
+    opacity: 0;
+    scale: 0.8;
+  }
+
+  [data-thumbnail] {
+    filter: brightness(0.3) blur(2px);
+    clip-path: ellipse(0% 0% at center);
+
+    transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
+    transform-origin: bottom center;
+    animation: img-reveal 0.3s ease-in forwards;
+    animation-delay: 1.3s;
+  }
+
+  [data-btn-overlay] {
+    bottom: calc(theme(spacing.6) + 4.4%);
+  }
+
+  @keyframes img-reveal {
+    to {
+      clip-path: ellipse(100% 100% at center);
+      filter: brightness(1) blur(2px);
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.7;
+    }
+  }
+  @keyframes glow-reveal {
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+</style>
