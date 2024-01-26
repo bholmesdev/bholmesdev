@@ -53,7 +53,7 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
           class="w-full aspect-[3/2] h-auto"
           width="560"
           height="315"
-          src="https://www.youtube-nocookie.com/embed/MaebEqhZR84?autoplay=1"
+          :src="getEmbedSrc"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -105,6 +105,11 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
           this.videoIds[this.videoIdx]
         }/hqdefault.jpg`;
       },
+      getEmbedSrc() {
+        return `https://www.youtube-nocookie.com/embed/${
+          this.videoIds[this.videoIdx]
+        }?autoplay=1`;
+      },
     };
   });
 
@@ -120,7 +125,6 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
       arr[i] = arr[j]!;
       arr[j] = temp;
     }
-    console.log(arr, initialArr);
     return arr;
   }
 </script>
@@ -199,6 +203,14 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
 
   [data-btn-overlay] {
     bottom: calc(theme(spacing.6) + 4.4%);
+  }
+
+  [data-btn-overlay] :global([data-icon="random"]) {
+    transition: transform 0.7s var(--ease-spring-2);
+    transform-origin: center 45%;
+  }
+  [data-btn-overlay] :global(:is(button:hover) [data-icon="random"]) {
+    transform: rotate(730deg);
   }
 
   @keyframes img-reveal {
