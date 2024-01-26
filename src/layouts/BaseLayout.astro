@@ -1,6 +1,6 @@
 ---
 import "@fontsource/atkinson-hyperlegible/400.css";
-import "@fontsource/atkinson-hyperlegible/400.css";
+import "@fontsource/atkinson-hyperlegible/700.css";
 import "@fontsource/ranga/400.css";
 import "@fontsource/ranga/700.css";
 import ranga400url from "@fontsource/ranga/files/ranga-latin-400-normal.woff2?url";
@@ -35,18 +35,8 @@ const { title = "Ben Holmes", headings } = Astro.props;
       as="font"
       crossorigin="anonymous"
     />
-    <link
-      rel="preload"
-      href={ranga400url}
-      as="font"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      href={ranga700url}
-      as="font"
-      crossorigin="anonymous"
-    />
+    <link rel="preload" href={ranga400url} as="font" crossorigin="anonymous" />
+    <link rel="preload" href={ranga700url} as="font" crossorigin="anonymous" />
     <slot name="head" />
     <title>{title}</title>
   </head>
@@ -102,7 +92,7 @@ const { title = "Ben Holmes", headings } = Astro.props;
 
     ul,
     button {
-      font-family: theme(fontFamily.body);
+      font-family: theme(fontFamily.sans);
     }
   </style>
 </html>
