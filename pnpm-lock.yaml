@@ -17,6 +17,9 @@ dependencies:
   '@fontsource/atkinson-hyperlegible':
     specifier: ^5.0.5
     version: 5.0.5
+  '@fontsource/ranga':
+    specifier: ^5.0.18
+    version: 5.0.18
   '@rive-app/canvas':
     specifier: ^2.1.0
     version: 2.1.0
@@ -996,6 +999,10 @@ packages:
 
   /@fontsource/atkinson-hyperlegible@5.0.5:
     resolution: {integrity: sha512-bilyGBdB2Us/OrSj6luzvHTI16pLuQVOUWARI7o+3NmpW2yUHjF8u7jbgNJgPDQ2//4tAjsWjVeqN9H222OFpg==}
+    dev: false
+
+  /@fontsource/ranga@5.0.18:
+    resolution: {integrity: sha512-IcAZFz6z99WxciqZGh1Pd6hU7Go+cBcXiPq7ZbHS0cGSxZ07iKpzbb25aJHbYq/BzWt38jLXhRcyh3CV7gbXJQ==}
     dev: false
 
   /@jridgewell/gen-mapping@0.3.3:

@@ -14,6 +14,7 @@
     "@astrojs/markdoc": "^0.4.4",
     "@astrojs/tailwind": "^5.0.1",
     "@fontsource/atkinson-hyperlegible": "^5.0.5",
+    "@fontsource/ranga": "^5.0.18",
     "@rive-app/canvas": "^2.1.0",
     "@types/alpinejs": "^3.0.0",
     "alpinejs": "^3.0.0",
