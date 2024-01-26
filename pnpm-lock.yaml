@@ -20,9 +20,6 @@ dependencies:
   '@fontsource/ranga':
     specifier: ^5.0.18
     version: 5.0.18
-  '@rive-app/canvas':
-    specifier: ^2.1.0
-    version: 2.1.0
   '@types/alpinejs':
     specifier: ^3.0.0
     version: 3.13.5
@@ -1065,10 +1062,6 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
-
-  /@rive-app/canvas@2.1.0:
-    resolution: {integrity: sha512-BnR0jfyu3Vl9/YmA5XZt5VC9tlqo2ZMaPSCJXgANS22JblF9ZGjIKwUd0W5i4AJTAcn7jUJRmus0W65w2Ou2Mg==}
-    dev: false
 
   /@tailwindcss/typography@0.5.10(tailwindcss@3.3.3):
     resolution: {integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==}
