@@ -25,12 +25,6 @@ const { title = "Ben Holmes", headings } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="preload"
-      href="/fonts/Sriracha-Regular.ttf"
-      as="font"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
       href={atkinson400url}
       as="font"
       crossorigin="anonymous"
@@ -63,7 +57,6 @@ const { title = "Ben Holmes", headings } = Astro.props;
 
   <style is:global>
     @import "open-props/easings";
-    @import "../fonts.css";
 
     :root {
       --green: #24ac6c;
