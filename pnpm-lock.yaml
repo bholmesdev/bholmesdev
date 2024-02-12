@@ -41,6 +41,9 @@ dependencies:
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
+  nanostores:
+    specifier: ^0.9.5
+    version: 0.9.5
   open-props:
     specifier: ^1.6.16
     version: 1.6.16
@@ -3033,6 +3036,11 @@ packages:
     resolution: {integrity: sha512-I7X2b22cxA4LIHXPSqbBCEQSL+1wv8TuoefejsX4HFWyC6jc5JG7CEaxOltiKjc1M+YCS2YkrZZcj4+dytw9GA==}
     engines: {node: ^18 || >=20}
     hasBin: true
+    dev: false
+
+  /nanostores@0.9.5:
+    resolution: {integrity: sha512-Z+p+g8E7yzaWwOe5gEUB2Ox0rCEeXWYIZWmYvw/ajNYX8DlXdMvMDj8DWfM/subqPAcsf8l8Td4iAwO1DeIIRQ==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     dev: false
 
   /napi-build-utils@1.0.2:
