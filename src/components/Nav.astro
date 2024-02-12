@@ -11,31 +11,46 @@ const { headings } = Astro.props;
 const id = scope("nav");
 ---
 
-<nav
-  x-data="{ open: false }"
-  :class="open && 'open'"
-  class="sticky top-0 max-w-[100ch] flex gap-4 items-center text-lg py-3 px-5 transition-colors"
->
-  {headings?.length ? <Toc {headings} /> : null}
-  <ul id={id} class="flex gap-4 ml-auto items-center">
-    <li><a href="/">Ben</a></li>
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="/talks">Talks</a></li>
-    <li><a href="/videos">Videos</a></li>
-  </ul>
-  <div class="toggle-bg">
-    <button
-      @click="open = !open"
-      :aria-expanded="open"
-      aria-controls={id}
-      class="h-[24px] w-[30px] flex flex-col justify-between relative p-0 bg-transparent before:content-[''] before:absolute before:inset-[-0.5rem] before:z-[-1] before:border-radius-[0.7rem] before:bg-[var(--bg-blur)]"
-    >
-      <div class="stripe stripe-top"></div>
-      <div class="stripe stripe-middle"></div>
-      <div class="stripe stripe-bottom"></div>
-    </button>
-  </div>
-</nav>
+<nav-open>
+  <nav
+    class="sticky top-0 max-w-[100ch] flex gap-4 items-center text-lg py-3 px-5 transition-colors"
+  >
+    {headings?.length ? <Toc {headings} /> : null}
+    <ul id={id} class="flex gap-4 ml-auto items-center">
+      <li><a href="/">Ben</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/talks">Talks</a></li>
+      <li><a href="/videos">Videos</a></li>
+    </ul>
+    <div class="toggle-bg">
+      <button
+        data-action="click:nav-open#toggle"
+        data-target="nav-open.btn"
+        aria-controls={id}
+        class="h-[24px] w-[30px] flex flex-col justify-between relative p-0 bg-transparent before:content-[''] before:absolute before:inset-[-0.5rem] before:z-[-1] before:border-radius-[0.7rem] before:bg-[var(--bg-blur)]"
+      >
+        <div class="stripe stripe-top"></div>
+        <div class="stripe stripe-middle"></div>
+        <div class="stripe stripe-bottom"></div>
+      </button>
+    </div>
+  </nav>
+</nav-open>
+
+<script>
+  import { attr, target, controller } from "@github/catalyst";
+
+  @controller
+  export class NavOpenElement extends HTMLElement {
+    @attr open = false;
+    @target declare btn: HTMLButtonElement;
+
+    toggle() {
+      this.open = !this.open;
+      this.btn.setAttribute("aria-expanded", this.open.toString());
+    }
+  }
+</script>
 
 <style lang="scss">
   .toggle {
@@ -74,14 +89,14 @@ const id = scope("nav");
   .stripe.stripe-bottom {
     transform-origin: bottom right;
   }
-  .open .stripe-top {
+  [data-open] .stripe-top {
     transform: rotate(-45deg);
   }
-  .open .stripe-middle {
+  [data-open] .stripe-middle {
     opacity: 0;
     transform: scaleX(0);
   }
-  .open .stripe-bottom {
+  [data-open] .stripe-bottom {
     transform: rotate(45deg);
   }
 
@@ -97,14 +112,14 @@ const id = scope("nav");
   li {
     transition: all 0.2s ease-in-out;
   }
-  .open li {
+  [data-open] li {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
     pointer-events: initial;
   }
 
-  nav.open {
+  [data-open] nav {
     @apply dark:bg-gray-950;
   }
 
