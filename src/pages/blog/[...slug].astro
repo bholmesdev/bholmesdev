@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { articleRef } from "../../components/ScrollableBody.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -15,11 +14,14 @@ const { Content, headings } = await post.render();
 ---
 
 <BaseLayout {headings}>
-  <main
-    class="max-w-prose m-auto px-3 prose dark:prose-invert"
-    x-ref={articleRef}
-  >
-    <h1>{post.data.title}</h1>
-    <Content />
-  </main>
+  <article-scroll>
+    <main class="max-w-prose m-auto px-3 prose dark:prose-invert">
+      <h1>{post.data.title}</h1>
+      <Content />
+    </main>
+  </article-scroll>
 </BaseLayout>
+
+<script>
+  import "../../components/article-scroll";
+</script>

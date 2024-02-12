@@ -9,13 +9,12 @@ type Props = {
 const { headings } = Astro.props;
 ---
 
-<div x-data="{ open: false }" class="container">
-  <div :class="open && 'open'" class="panel">
+<table-contents>
+  <div class="panel">
     <div class="progress-container">
-      <progress max="1" :value="progress"></progress>
+      <progress data-target="table-contents.progress" max="1"></progress>
       <svg
         class="done"
-        :class="progress >= 1 && 'show'"
         xmlns="http://www.w3.org/2000/svg"
         width="32"
         height="32"
@@ -36,14 +35,39 @@ const { headings } = Astro.props;
     </ul>
   </div>
   <button
-    :aria-expanded="open"
+    data-target="table-contents.btn"
+    data-action="click:table-contents#toggle"
     aria-controls={scope("panel")}
-    @click="open = !open"
-    class="button"
   >
     <div class="inner">1</div>
   </button>
-</div>
+</table-contents>
+
+<script>
+  import { attr, target, controller } from "@github/catalyst";
+  import { progress } from "./article-scroll";
+
+  @controller
+  export class TableContentsElement extends HTMLElement {
+    @attr open = false;
+    @attr doneReading = false;
+    @target declare btn: HTMLButtonElement;
+    @target declare progress: HTMLProgressElement;
+
+    connectedCallback() {
+      progress.subscribe((value) => {
+        this.progress.value = value;
+        this.doneReading = value === 1;
+        this.querySelector("progress")!.value = value;
+      });
+    }
+
+    toggle() {
+      this.open = !this.open;
+      this.btn.setAttribute("aria-expanded", this.open.toString());
+    }
+  }
+</script>
 
 <style>
   .progress-container {
@@ -72,7 +96,8 @@ const { headings } = Astro.props;
     width: var(--done-size);
     padding: 0.4rem;
   }
-  .done.show {
+
+  [data-done-reading] .done {
     scale: 1;
     visibility: visible;
   }
@@ -101,7 +126,7 @@ const { headings } = Astro.props;
     background: transparent;
   }
 
-  .container {
+  table-contents {
     --size: 2em;
     --spring-easing: linear(
       0,
@@ -150,7 +175,7 @@ const { headings } = Astro.props;
     margin-block: var(--size-1);
   }
 
-  .panel.open {
+  [data-open] .panel {
     visibility: visible;
     rotate: 0deg;
     scale: 1;
@@ -181,14 +206,14 @@ const { headings } = Astro.props;
     transform: translateY(-3px);
     transition: inherit;
   }
-  .open .inner {
+  [data-open] .inner {
     background-position: 60% 60%;
     transform: scale(0.9) translateY(0);
   }
-  .open .button {
+  [data-open] button {
     background-position: 40% 40%;
   }
-  .button {
+  button {
     width: var(--size);
     height: var(--size);
     padding: 3px;
