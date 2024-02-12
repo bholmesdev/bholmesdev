@@ -3,29 +3,24 @@ import iBen from "./iBen.svg?raw";
 import Button from "./Button.astro";
 import CdDrive from "./CdDrive.astro";
 import ChevronDown from "./ChevronDown.astro";
-
-const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
+import { getImgSrc, showcaseVideo } from "./Frame";
 ---
 
-<div
-  data-iBen
-  x-data=`iBen(${JSON.stringify(videoIds)})`
-  class="dark:bg-gray-900 sm:px-6 px-2"
->
+<i-ben data-welcome class="dark:bg-gray-900 sm:px-6 px-2">
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
-      :src="getImgSrc"
+      data-target="i-ben.glow"
+      src={getImgSrc(showcaseVideo)}
       alt=""
       class="pt-[0%] w-full"
       aria-hidden="true"
     />
     <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
       <img
-        x-show="!playing"
         data-thumbnail
-        :class="welcome && 'welcome'"
-        :src="getImgSrc"
+        data-target="i-ben.thumbnail"
+        src={getImgSrc(showcaseVideo)}
         alt="A gud video"
         class="w-full aspect-[3/2] leading-none object-cover"
       />
@@ -35,9 +30,8 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
       >
         <div data-scan-line class="w-full h-1 bg-slate-200 opacity-30"></div>
         <div
-          x-show="!playing"
+          data-target="i-ben.btnLabels"
           data-btn-labels
-          :class="welcome && 'welcome'"
           class="px-[7%] pb-[2%] pt-[10%] flex justify-between font-bold bg-gradient-to-t from-slate-950 to-transparent"
         >
           <span class="w-[6ch] flex flex-col items-center"
@@ -48,12 +42,12 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
           >
         </div>
       </div>
-      <template x-if="playing">
+
+      <template data-target="i-ben.iframeTemplate">
         <iframe
           class="w-full aspect-[3/2] h-auto"
           width="560"
           height="315"
-          :src="getEmbedSrc"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -70,48 +64,58 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
       class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
     >
       <Button
-        @click="playing = !playing; welcome = false"
+        data-action="click:i-ben#play"
         icon="play"
         aria-label="Play video"
       />
 
       <CdDrive />
       <Button
-        @click="incrementIdx(); playing = false"
+        data-action="click:i-ben#random"
         icon="random"
         aria-label="Get random video"
       />
     </div>
   </div>
-</div>
+</i-ben>
 
 <script>
-  import Alpine from "alpinejs";
+  import { controller, target, attr } from "@github/catalyst";
+  import { getEmbedSrc, getImgSrc, videoIds, showcaseVideo } from "./Frame";
+  import { hideTemplate, showTemplate } from "../../utils.client";
 
-  Alpine.data("iBen", (initialVideos) => {
-    const [showcaseVideo, ...otherVideos] = initialVideos as string[];
-    const videoIds = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
+  const [_showcase, ...otherVideos] = videoIds;
 
-    return {
-      playing: false,
-      welcome: true,
-      videoIds,
-      videoIdx: 0,
-      incrementIdx() {
-        this.videoIdx = (this.videoIdx + 1) % this.videoIds.length;
-      },
-      getImgSrc() {
-        return `https://img.youtube.com/vi/${
-          this.videoIds[this.videoIdx]
-        }/hqdefault.jpg`;
-      },
-      getEmbedSrc() {
-        return `https://www.youtube-nocookie.com/embed/${
-          this.videoIds[this.videoIdx]
-        }?autoplay=1`;
-      },
-    };
-  });
+  @controller
+  export class iBenElement extends HTMLElement {
+    @attr playing = false;
+    @attr welcome = true;
+    @attr videoIdx = 0;
+
+    @target declare btnLabels: HTMLDivElement;
+    @target declare thumbnail: HTMLImageElement;
+    @target declare iframeTemplate: HTMLTemplateElement;
+
+    #videoIds: string[] = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
+
+    play(_?: Event, playing = !this.playing) {
+      this.playing = playing;
+      this.welcome = false;
+
+      if (this.playing) {
+        const iframe = showTemplate(this.iframeTemplate) as HTMLIFrameElement;
+        iframe.src = getEmbedSrc(this.#videoIds[this.videoIdx]!);
+      } else {
+        hideTemplate(this.iframeTemplate);
+      }
+    }
+
+    random() {
+      this.play(undefined, false);
+      this.videoIdx = (this.videoIdx + 1) % videoIds.length;
+      this.thumbnail.src = getImgSrc(this.#videoIds[this.videoIdx]!);
+    }
+  }
 
   /**
    * Pseudo-random algorithm
@@ -130,7 +134,7 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
 </script>
 
 <style>
-  [data-iBen] {
+  i-ben {
     --anim-delay: 1.3s;
   }
 
@@ -147,12 +151,6 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
     );
     background-size: 100% 6px;
     background-repeat: repeat;
-  }
-
-  [data-btn-labels].welcome {
-    animation: delayed-reveal 0.3s ease-in forwards;
-    animation-delay: var(--anim-delay);
-    opacity: 0;
   }
 
   @keyframes delayed-reveal {
@@ -194,11 +192,25 @@ const videoIds = ["MaebEqhZR84", "ZCdvjNTcT1I", "GOihOAcIgMw", "oxAIcGqFiT8"];
     transform-origin: bottom center;
   }
 
-  [data-thumbnail].welcome {
+  i-ben[data-welcome] [data-thumbnail] {
     filter: brightness(0.3);
     animation: img-reveal 0.3s ease-in forwards;
     animation-delay: var(--anim-delay);
     clip-path: ellipse(0% 0% at center);
+  }
+
+  i-ben[data-welcome] [data-btn-labels] {
+    animation: delayed-reveal 0.3s ease-in forwards;
+    animation-delay: var(--anim-delay);
+    opacity: 0;
+  }
+
+  i-ben[data-playing] [data-thumbnail] {
+    display: none;
+  }
+
+  i-ben[data-playing] [data-btn-labels] {
+    display: none;
   }
 
   [data-btn-overlay] {
