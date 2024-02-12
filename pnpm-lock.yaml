@@ -20,6 +20,9 @@ dependencies:
   '@fontsource/ranga':
     specifier: ^5.0.18
     version: 5.0.18
+  '@github/catalyst':
+    specifier: ^1.6.0
+    version: 1.6.0
   '@types/alpinejs':
     specifier: ^3.0.0
     version: 3.13.5
@@ -1000,6 +1003,10 @@ packages:
 
   /@fontsource/ranga@5.0.18:
     resolution: {integrity: sha512-IcAZFz6z99WxciqZGh1Pd6hU7Go+cBcXiPq7ZbHS0cGSxZ07iKpzbb25aJHbYq/BzWt38jLXhRcyh3CV7gbXJQ==}
+    dev: false
+
+  /@github/catalyst@1.6.0:
+    resolution: {integrity: sha512-u8A+DameixqpeyHzvnJWTGj+wfiskQOYHzSiJscCWVfMkIT3rxnbHMtGh3lMthaRY21nbUOK71WcsCnCrXhBJQ==}
     dev: false
 
   /@jridgewell/gen-mapping@0.3.3:

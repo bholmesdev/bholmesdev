@@ -15,6 +15,7 @@
     "@astrojs/tailwind": "^5.0.1",
     "@fontsource/atkinson-hyperlegible": "^5.0.5",
     "@fontsource/ranga": "^5.0.18",
+    "@github/catalyst": "^1.6.0",
     "@types/alpinejs": "^3.0.0",
     "alpinejs": "^3.0.0",
     "astro": "^3.2.3",
