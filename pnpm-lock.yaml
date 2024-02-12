@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@astrojs/alpinejs':
-    specifier: ^0.3.1
-    version: 0.3.1(@types/alpinejs@3.13.5)(alpinejs@3.13.2)
   '@astrojs/markdoc':
     specifier: ^0.4.4
     version: 0.4.4(astro@3.2.3)
@@ -23,12 +20,6 @@ dependencies:
   '@github/catalyst':
     specifier: ^1.6.0
     version: 1.6.0
-  '@types/alpinejs':
-    specifier: ^3.0.0
-    version: 3.13.5
-  alpinejs:
-    specifier: ^3.0.0
-    version: 3.13.2
   astro:
     specifier: ^3.2.3
     version: 3.2.3(sass@1.64.2)
@@ -80,16 +71,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
-    dev: false
-
-  /@astrojs/alpinejs@0.3.1(@types/alpinejs@3.13.5)(alpinejs@3.13.2):
-    resolution: {integrity: sha512-GKaptRkdJvcqoTOCeAbeiemnpsayJkUmShSjR2qlkvpCIv7B5HzqqfkblLnOwgMGKOggpwZJAZfSAmALqWgNcw==}
-    peerDependencies:
-      '@types/alpinejs': ^3.0.0
-      alpinejs: ^3.0.0
-    dependencies:
-      '@types/alpinejs': 3.13.5
-      alpinejs: 3.13.2
     dev: false
 
   /@astrojs/compiler@2.2.0:
@@ -1090,10 +1071,6 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: false
 
-  /@types/alpinejs@3.13.5:
-    resolution: {integrity: sha512-BSNTroRhmBkNiyd7ELK/5Boja92hnQMST6H4z1BqXKeMVzHjp9o1j5poqd5Tyhjd8oMFwxYC4I00eghfg2xrTA==}
-    dev: false
-
   /@types/babel__core@7.20.1:
     resolution: {integrity: sha512-aACu/U/omhdk15O4Nfb+fHgH/z3QsfQzpnvRZhYhThms83ZnAOZz7zZAWO7mn2yyNQaA4xTO8GLK3uqFU4bYYw==}
     dependencies:
@@ -1202,26 +1179,10 @@ packages:
     resolution: {integrity: sha512-MFETx3tbTjE7Uk6vvnWINA/1iJ7LuMdO4fcq8UfF0pRbj01aGLduVvQcRyswuACJdpnHgg8E3rQLhaRdNEJS0w==}
     dev: false
 
-  /@vue/reactivity@3.1.5:
-    resolution: {integrity: sha512-1tdfLmNjWG6t/CsPldh+foumYFo3cpyCHgBYQ34ylaMsJ+SNHQ1kApMIa8jN+i593zQuaw3AdWH0nJTARzCFhg==}
-    dependencies:
-      '@vue/shared': 3.1.5
-    dev: false
-
-  /@vue/shared@3.1.5:
-    resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
-    dev: false
-
   /acorn@8.10.0:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-    dev: false
-
-  /alpinejs@3.13.2:
-    resolution: {integrity: sha512-WzojeeN082kLZznGI1HAuP8yFJSWqJ1fGdz2mUjj45H4y0XwToE7fFqtI3mCPRR+BpcSbxT/NL+FyPnYAWSltw==}
-    dependencies:
-      '@vue/reactivity': 3.1.5
     dev: false
 
   /ansi-align@3.0.1:

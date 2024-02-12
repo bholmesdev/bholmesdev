@@ -10,14 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/alpinejs": "^0.3.1",
     "@astrojs/markdoc": "^0.4.4",
     "@astrojs/tailwind": "^5.0.1",
     "@fontsource/atkinson-hyperlegible": "^5.0.5",
     "@fontsource/ranga": "^5.0.18",
     "@github/catalyst": "^1.6.0",
-    "@types/alpinejs": "^3.0.0",
-    "alpinejs": "^3.0.0",
     "astro": "^3.2.3",
     "astro-icon": "^0.8.1",
     "gsap": "^3.12.2",
