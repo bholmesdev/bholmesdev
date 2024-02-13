@@ -98,7 +98,7 @@ import { getImgSrc, showcaseVideo } from "./Frame";
 
     #videoIds: string[] = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
 
-    play(_?: Event, playing = !this.playing) {
+    #setPlay(playing: boolean) {
       this.playing = playing;
       this.welcome = false;
 
@@ -110,8 +110,12 @@ import { getImgSrc, showcaseVideo } from "./Frame";
       }
     }
 
+    play() {
+      this.#setPlay(!this.playing);
+    }
+
     random() {
-      this.play(undefined, false);
+      this.#setPlay(false);
       this.videoIdx = (this.videoIdx + 1) % videoIds.length;
       this.thumbnail.src = getImgSrc(this.#videoIds[this.videoIdx]!);
     }
