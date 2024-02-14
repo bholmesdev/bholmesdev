@@ -8,5 +8,8 @@ export default defineConfig({
   integrations: [markdoc(), tailwind()],
   vite: {
     plugins: [simpleScope()],
+    esbuild: {
+      keepNames: true,
+    },
   },
 });
