@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -22,7 +24,51 @@ module.exports = {
         "3xl": "var(--font-size-3xl)",
         "4xl": "var(--font-size-4xl)",
       },
+      transitionTimingFunction: {
+        spring: "var(--ease-spring-3)",
+        "spring-1": "var(--ease-spring-1)",
+        "spring-2": "var(--ease-spring-2)",
+        "spring-3": "var(--ease-spring-3)",
+        "spring-4": "var(--ease-spring-4)",
+        "spring-5": "var(--ease-spring-5)",
+      },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(({ addUtilities, theme }) =>
+      addUtilities({
+        ".spring-1": {
+          "transition-duration": theme("transitionDuration.150"),
+          "transition-timing-function": theme(
+            "transitionTimingFunction.spring-1"
+          ),
+        },
+        ".spring-2": {
+          "transition-duration": theme("transitionDuration.200"),
+          "transition-timing-function": theme(
+            "transitionTimingFunction.spring-2"
+          ),
+        },
+        ".spring-3": {
+          "transition-duration": theme("transitionDuration.300"),
+          "transition-timing-function": theme(
+            "transitionTimingFunction.spring-3"
+          ),
+        },
+        ".spring-4": {
+          "transition-duration": theme("transitionDuration.500"),
+          "transition-timing-function": theme(
+            "transitionTimingFunction.spring-4"
+          ),
+        },
+        ".spring-5": {
+          "transition-duration": theme("transitionDuration.500"),
+          "transition-timing-function": theme(
+            "transitionTimingFunction.spring-5"
+          ),
+        },
+      })
+    ),
+  ],
 };
