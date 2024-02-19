@@ -10,7 +10,7 @@ const { headings } = Astro.props;
 ---
 
 <table-contents>
-  <div class="panel transition-all ease-spring-3 duration-700">
+  <div class="panel dark:bg-gray-950">
     <div class="progress-container">
       <progress data-target="table-contents.progress" max="1"></progress>
       <svg
@@ -24,10 +24,10 @@ const { headings } = Astro.props;
           fill="white"></path></svg
       >
     </div>
-    <ul id={scope("panel")} role="list">
+    <ul class="p-5 pb-3" id={scope("panel")} role="list">
       {
         headings.map((h) => (
-          <li>
+          <li class="my-1">
             <a href={`#${h.slug}`}>{h.text}</a>
           </li>
         ))
@@ -126,25 +126,6 @@ const { headings } = Astro.props;
     background: transparent;
   }
 
-  table-contents {
-    --size: 2em;
-    --spring-easing: linear(
-      0,
-      0.178 3.4%,
-      1.025 12.7%,
-      1.179,
-      1.249 18.6%,
-      1.254 20.5%,
-      1.233 22.6%,
-      1.001 32.9%,
-      0.938 39%,
-      0.941 43.2%,
-      0.999 53.2%,
-      1.015 59.1%,
-      0.996 79%,
-      1.001
-    );
-  }
   .panel {
     border-radius: 1.2em;
     position: absolute;
@@ -165,14 +146,6 @@ const { headings } = Astro.props;
       visibility 0.8s,
       scale 0.2s;
     border-radius: 1em;
-    background-color: var(--bg);
-  }
-  ul {
-    list-style: none;
-    padding: var(--size-3);
-  }
-  li {
-    margin-block: var(--size-1);
   }
 
   [data-open] .panel {
@@ -214,6 +187,7 @@ const { headings } = Astro.props;
     background-position: 40% 40%;
   }
   button {
+    --size: 2em;
     width: var(--size);
     height: var(--size);
     padding: 3px;
