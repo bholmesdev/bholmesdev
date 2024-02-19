@@ -10,7 +10,7 @@ const { headings } = Astro.props;
 ---
 
 <table-contents>
-  <div class="panel">
+  <div class="panel transition-all ease-spring-3 duration-700">
     <div class="progress-container">
       <progress data-target="table-contents.progress" max="1"></progress>
       <svg
@@ -161,7 +161,7 @@ const { headings } = Astro.props;
     translate: -0.4rem -0.4rem;
     transform-origin: 1em 1em;
     transition:
-      rotate 0.8s var(--spring-easing),
+      rotate 0.8s theme(transitionTimingFunction.spring),
       visibility 0.8s,
       scale 0.2s;
     border-radius: 1em;
