@@ -38,6 +38,7 @@ const { headings } = Astro.props;
     data-target="table-contents.btn"
     data-action="click:table-contents#toggle"
     aria-controls={scope("panel")}
+    class="transition-all spring-5"
   >
     <div class="inner">1</div>
   </button>
@@ -209,7 +210,5 @@ const { headings } = Astro.props;
     font-weight: bold;
     background-position: 20% 20%;
     background-size: 200% 200%;
-    transition-property: all;
-    transition: all 0.4s var(--spring-easing);
   }
 </style>
