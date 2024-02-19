@@ -10,7 +10,7 @@ import Section from "./Section.astro";
     for="inbrief-checkbox"
   >
     <span class="label-personal">Personal Mode</span>
-    <span class="switch"></span>
+    <span class="switch before:transition-all before:spring-3"></span>
     <span class="label-recruiter">Recruiter Mode</span>
   </label>
   <div class="content-personal">
@@ -20,20 +20,20 @@ import Section from "./Section.astro";
       developer by trade given my <a
         href="https://www.cc.gatech.edu/degree-programs/bachelor-science-computer-science"
         >BS in CS</a
-      > from Georgia Tech (go Jackets!). Today, I’ve channeled this technical
-      know-how into open source web development as a full-time maintainer at
+      > from Georgia Tech (go Jackets!). Today, I’ve channeled this technical know-how
+      into open source web development as a full-time maintainer at
       <a href="https://astro.build">Astro</a>.
     </p>
     <p>
       My core values are <strong>be caring, be clear, and be casual.</strong>
-       Tech is a scary industry to jump into, especially without a sense of
-      humor to keep your head on straight. So as long as I’m a web developer, my
-      goal is to <a href="#i-teach">teach</a> and <a href="#i-create">build</a>
-       tools that help others become the best version of themselves. Well,
-      assuming we adhere to <a href="https://semver.org/"
+      Tech is a scary industry to jump into, especially without a sense of humor
+      to keep your head on straight. So as long as I’m a web developer, my goal is
+      to <a href="#i-teach">teach</a> and <a href="#i-create">build</a>
+      tools that help others become the best version of themselves. Well, assuming
+      we adhere to <a href="https://semver.org/"
         >semantic versioning principles</a
       >
-       😉
+      😉
     </p>
   </div>
   <div class="content-recruiter">
@@ -100,7 +100,6 @@ import Section from "./Section.astro";
     filter: drop-shadow(0px 0.05em 0.05em rgba(22, 2, 55, 0.5))
       drop-shadow(0px 0.1em 0.1em rgba(22, 2, 55, 0.5));
     border-radius: 100%;
-    transition: transform 0.2s;
     transform: translateY(-50%) rotate(50deg);
   }
 
