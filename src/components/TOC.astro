@@ -27,7 +27,7 @@ const { headings } = Astro.props;
     <ul class="p-5 pb-3" id={scope("panel")} role="list">
       {
         headings.map((h) => (
-          <li class="my-1">
+          <li class="my-1 text-ellipsis whitespace-nowrap overflow-hidden">
             <a href={`#${h.slug}`}>{h.text}</a>
           </li>
         ))
@@ -38,7 +38,7 @@ const { headings } = Astro.props;
     data-target="table-contents.btn"
     data-action="click:table-contents#toggle"
     aria-controls={scope("panel")}
-    class="transition-all spring-5"
+    class="transition-all ease-spring-3 duration-500"
   >
     <div class="inner">1</div>
   </button>
@@ -107,6 +107,7 @@ const { headings } = Astro.props;
     border: none; /* Reset for firefox */
     -webkit-appearance: none; /* Reset for WebKit/Blink */
     appearance: none;
+    width: 100%;
     border-radius: 1rem;
     overflow: hidden;
     height: 0.8rem;
@@ -129,10 +130,7 @@ const { headings } = Astro.props;
   .panel {
     border-radius: 1.2em;
     position: absolute;
-    min-width: 10em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    max-width: 14em;
     padding: 0.4rem;
     box-shadow: var(--shadow-5);
     border: 3px solid var(--purple);
@@ -194,9 +192,9 @@ const { headings } = Astro.props;
     border-radius: 100%;
     --purple-fill-back: radial-gradient(
         111.94% 111.94% at 14.84% 14.84%,
-        rgba(246, 240, 255, 0.6) 0%,
+        rgba(221, 202, 250, 0.6) 0%,
         rgba(76, 5, 189, 0.6) 50%,
-        rgba(246, 240, 255, 0.6) 100%
+        rgba(218, 196, 251, 0.6) 100%
       ),
       #6200ff;
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.26))
