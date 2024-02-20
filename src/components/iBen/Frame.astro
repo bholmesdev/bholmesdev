@@ -4,6 +4,8 @@ import Button from "./Button.astro";
 import CdDrive from "./CdDrive.astro";
 import ChevronDown from "./ChevronDown.astro";
 import { getImgSrc, showcaseVideo } from "./Frame";
+
+const showcaseSrc = getImgSrc(showcaseVideo);
 ---
 
 <i-ben data-welcome class="dark:bg-gray-900 sm:px-6 px-2">
@@ -11,7 +13,7 @@ import { getImgSrc, showcaseVideo } from "./Frame";
     <img
       data-glow
       data-target="i-ben.glow"
-      src={getImgSrc(showcaseVideo)}
+      src={showcaseSrc}
       alt=""
       class="pt-[0%] w-full"
       aria-hidden="true"
@@ -20,7 +22,7 @@ import { getImgSrc, showcaseVideo } from "./Frame";
       <img
         data-thumbnail
         data-target="i-ben.thumbnail"
-        src={getImgSrc(showcaseVideo)}
+        src={showcaseSrc}
         alt="A gud video"
         class="w-full aspect-[3/2] leading-none object-cover"
       />

@@ -47,7 +47,7 @@ const id = scope("nav");
 
     toggle() {
       this.open = !this.open;
-      this.btn.setAttribute("aria-expanded", this.open.toString());
+      this.btn.toggleAttribute("aria-expanded", this.open);
     }
   }
 </script>

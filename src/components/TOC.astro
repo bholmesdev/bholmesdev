@@ -59,13 +59,12 @@ const { headings } = Astro.props;
       progress.subscribe((value) => {
         this.progress.value = value;
         this.doneReading = value === 1;
-        this.querySelector("progress")!.value = value;
       });
     }
 
     toggle() {
       this.open = !this.open;
-      this.btn.setAttribute("aria-expanded", this.open.toString());
+      this.btn.toggleAttribute("aria-expanded", this.open);
     }
   }
 </script>
