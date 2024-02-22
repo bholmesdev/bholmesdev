@@ -9,20 +9,33 @@ type Props = {
 
 const { headings } = Astro.props;
 const id = scope("nav");
+
+type ListItem = { label: string; href: string };
+const links: ListItem[] = [
+  { label: "Ben", href: "/" },
+  { label: "Blog", href: "/blog" },
+  { label: "Talks", href: "/talks" },
+  { label: "Videos", href: "/videos" },
+];
 ---
 
-<nav-open>
+<nav-open class="group">
   <nav
-    class="sticky top-0 max-w-[100ch] flex gap-4 items-center text-lg py-3 px-5 transition-colors"
+    class="group-[[data-open]]:dark:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-4 items-center text-lg py-3 px-5 transition-colors duration-300"
   >
     {headings?.length ? <Toc {headings} /> : null}
     <ul id={id} class="flex gap-4 ml-auto items-center">
-      <li><a href="/">Ben</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/talks">Talks</a></li>
-      <li><a href="/videos">Videos</a></li>
+      {
+        links.map((l, idx) => (
+          <li style={{ "--idx": idx + 1 }}>
+            <a class="no-underline" href={l.href}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
-    <div class="toggle-bg">
+    <div>
       <button
         data-action="click:nav-open#toggle"
         data-target="nav-open.btn"
@@ -43,7 +56,7 @@ const id = scope("nav");
   @controller
   export class NavOpenElement extends HTMLElement {
     @attr open = false;
-    @target declare btn: HTMLButtonElement;
+    @target btn!: HTMLButtonElement;
 
     toggle() {
       this.open = !this.open;
@@ -52,7 +65,7 @@ const id = scope("nav");
   }
 </script>
 
-<style lang="scss">
+<style>
   .toggle {
     height: 24px;
     width: 30px;
@@ -100,30 +113,19 @@ const id = scope("nav");
     transform: rotate(45deg);
   }
 
-  @for $i from 1 through 4 {
-    li:nth-child(#{$i}) {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateX(17em - ($i * 3.5em));
-      transition-delay: (4 - $i) * 50ms;
-      pointer-events: none;
-    }
-  }
   li {
-    transition: all 0.2s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(calc((4.5em - (var(--idx) * 1em))));
+    transition-delay: calc(var(--idx) * 50ms);
+    transition-timing-function: theme(transitionTimingFunction.spring-3);
+    transition-duration: 500ms;
   }
+
   [data-open] li {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
-    pointer-events: initial;
-  }
-
-  [data-open] nav {
-    @apply dark:bg-gray-950;
-  }
-
-  a {
-    text-decoration: none;
+    transition-delay: calc((4 - var(--idx)) * 50ms);
   }
 </style>
