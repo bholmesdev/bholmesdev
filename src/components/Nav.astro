@@ -19,7 +19,7 @@ const links: ListItem[] = [
 ];
 ---
 
-<nav-open class="group">
+<nav-open data-open class="group">
   <nav
     class="group-[[data-open]]:dark:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-4 items-center text-lg py-3 px-5 transition-colors duration-300"
   >
@@ -57,6 +57,24 @@ const links: ListItem[] = [
   export class NavOpenElement extends HTMLElement {
     @attr open = false;
     @target btn!: HTMLButtonElement;
+
+    connectedCallback() {
+      let scrollY = 0;
+      let ticking = false;
+
+      document.addEventListener("scroll", () => {
+        scrollY = window.scrollY;
+
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            this.open = scrollY < 20;
+            ticking = false;
+          });
+
+          ticking = true;
+        }
+      });
+    }
 
     toggle() {
       this.open = !this.open;
