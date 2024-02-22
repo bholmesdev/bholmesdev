@@ -1,8 +1,8 @@
 ---
-import type { MarkdownHeading, TransitionAnimation } from "astro";
+import type { MarkdownHeading } from "astro";
+import { isMatch } from "./Nav";
 import Toc from "./TOC.astro";
 import { scope } from "simple:scope";
-import easings from "open-props/src/easing";
 
 type Props = {
   headings: MarkdownHeading[] | undefined;
@@ -12,12 +12,7 @@ const { headings } = Astro.props;
 const id = scope("nav");
 
 // Remove trailing slashes
-const path = new URL(Astro.request.url).pathname.replace(/\/$/, "") || "/";
-
-function isMatch(linkPath: string) {
-  if (linkPath === "/") return path === "/";
-  return path.startsWith(linkPath);
-}
+const urlPath = new URL(Astro.request.url).pathname.replace(/\/$/, "") || "/";
 
 type ListItem = { label: string; path: string };
 const links: ListItem[] = [
@@ -26,55 +21,9 @@ const links: ListItem[] = [
   { label: "Talks", path: "/talks" },
   { label: "Videos", path: "/videos" },
 ];
-
-const bounceAnim: TransitionAnimation = {
-  name: "bounce",
-  duration: 900,
-  easing: "var(--ease-spring-5)",
-};
-
-function slide(duration = undefined) {
-  return {
-    forwards: {
-      old: [
-        {
-          name: "astroFadeOut",
-          duration: duration ?? "90ms",
-          easing: easings["--ease-spring-5"],
-          fillMode: "both",
-        },
-        {
-          name: "scale",
-          duration: duration ?? "220ms",
-          easing: easings["--ease-spring-5"],
-          fillMode: "both",
-        },
-      ],
-      new: [
-        {
-          name: "astroFadeIn",
-          duration: duration ?? "210ms",
-          easing: easings["--ease-spring-5"],
-          delay: duration ? void 0 : "30ms",
-          fillMode: "both",
-        },
-        {
-          name: "scale",
-          duration: duration ?? "220ms",
-          easing: easings["--ease-spring-5"],
-          fillMode: "both",
-        },
-      ],
-    },
-    backwards: {
-      old: [{ name: "astroFadeOut" }, { name: "astroSlideToRight" }],
-      new: [{ name: "astroFadeIn" }, { name: "astroSlideFromLeft" }],
-    },
-  };
-}
 ---
 
-<nav-open data-open class="group">
+<nav-open transition:persist data-open class="group">
   <nav
     class="group-[[data-open]]:dark:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
   >
@@ -84,8 +33,9 @@ function slide(duration = undefined) {
         links.map((l, idx) => (
           <li style={{ "--idx": idx + 1 }}>
             <a
-              data-active={isMatch(l.path)}
-              class="no-underline text-lg"
+              data-targets="nav-open.links"
+              data-active={isMatch(urlPath, l.path)}
+              class="no-underline text-lg block scale-1 dark:text-gray-300 data-[active]:text-white data-[active]:font-bold data-[active]:scale-110 transition-transform spring-5"
               href={l.path}
             >
               {l.label}
@@ -109,12 +59,14 @@ function slide(duration = undefined) {
 </nav-open>
 
 <script>
-  import { attr, target, controller } from "@github/catalyst";
+  import { attr, target, targets, controller } from "@github/catalyst";
+  import { isMatch } from "./Nav";
 
   @controller
   export class NavOpenElement extends HTMLElement {
     @attr open = false;
     @target btn!: HTMLButtonElement;
+    @targets links!: HTMLAnchorElement[];
 
     connectedCallback() {
       let scrollY = 0;
@@ -130,6 +82,15 @@ function slide(duration = undefined) {
           });
 
           ticking = true;
+        }
+      });
+
+      document.addEventListener("astro:page-load", () => {
+        for (const link of this.links) {
+          link.toggleAttribute(
+            "data-active",
+            isMatch(window.location.pathname, link.pathname)
+          );
         }
       });
     }
@@ -186,15 +147,6 @@ function slide(duration = undefined) {
   }
   [data-open] .stripe-bottom {
     transform: rotate(45deg);
-  }
-
-  a {
-    display: block;
-    scale: 1;
-    transition: scale 0.5s var(--ease-spring-5);
-  }
-  a[data-active] {
-    scale: 1.5;
   }
 
   li {
