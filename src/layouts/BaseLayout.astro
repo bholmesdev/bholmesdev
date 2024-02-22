@@ -9,6 +9,7 @@ import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyp
 import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
 import Nav from "../components/Nav.astro";
 import type { MarkdownHeading } from "astro";
+import { ViewTransitions } from "astro:transitions";
 
 type Props = {
   title?: string;
@@ -38,60 +39,62 @@ const { title = "Ben Holmes", headings } = Astro.props;
     <link rel="preload" href={ranga700url} as="font" crossorigin="anonymous" />
     <slot name="head" />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body class="dark:bg-gray-950 dark:text-white text-base">
     <Nav headings={headings} />
     <slot />
-  </body>
+    <style is:global>
+      @import "open-props/easings";
 
-  <style is:global>
-    @import "open-props/easings";
-
-    :root {
-      --green: #24ac6c;
-      --red: #f3270b;
-      --purple-hs: 263.1 100%;
-      --purple: hsl(var(--purple-hs) 50%);
-      --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
-      --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-      --font-size-lg: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
-      --font-size-xl: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
-      --font-size-2xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
-      --font-size-3xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-      --font-size-4xl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
-
-      --font-heading: "Ranga", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-        "Helvetica Neue", sans-serif;
-
-      --font-body: "Atkinson Hyperlegible", system-ui, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-        "Open Sans", "Helvetica Neue", sans-serif;
-
-      --bg: var(--surface-1);
-    }
-
-    @media (prefers-color-scheme: dark) {
       :root {
-        --purple: hsl(var(--purple-hs) 57%);
+        --green: #24ac6c;
+        --red: #f3270b;
+        --purple-hs: 263.1 100%;
+        --purple: hsl(var(--purple-hs) 50%);
+        --purple-light: hsl(var(--purple-hs) 80%);
+        --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+        --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+        --font-size-lg: clamp(1.12rem, 0.5vw + 1rem, 1.3rem);
+        --font-size-xl: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+        --font-size-2xl: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+        --font-size-3xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+        --font-size-4xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+        --font-size-5xl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
+        --font-heading: "Ranga", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
+
+        --font-body: "Atkinson Hyperlegible", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+          "Open Sans", "Helvetica Neue", sans-serif;
+
+        --bg: var(--surface-1);
       }
-    }
 
-    a,
-    a:visited {
-      color: var(--accent);
-      text-decoration: dotted underline;
-    }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --purple: hsl(var(--purple-hs) 57%);
+        }
+      }
 
-    h1,
-    h2,
-    h3 {
-      font-family: theme(fontFamily.heading);
-    }
+      a,
+      a:visited {
+        color: var(--accent);
+        text-decoration: dotted underline;
+      }
 
-    ul,
-    button {
-      font-family: theme(fontFamily.sans);
-    }
-  </style>
+      h1,
+      h2,
+      h3 {
+        font-family: theme(fontFamily.heading);
+      }
+
+      ul,
+      button {
+        font-family: theme(fontFamily.sans);
+      }
+    </style>
+  </body>
 </html>

@@ -1,7 +1,8 @@
 ---
-import type { MarkdownHeading } from "astro";
+import type { MarkdownHeading, TransitionAnimation } from "astro";
 import Toc from "./TOC.astro";
 import { scope } from "simple:scope";
+import easings from "open-props/src/easing";
 
 type Props = {
   headings: MarkdownHeading[] | undefined;
@@ -10,25 +11,83 @@ type Props = {
 const { headings } = Astro.props;
 const id = scope("nav");
 
-type ListItem = { label: string; href: string };
+// Remove trailing slashes
+const path = new URL(Astro.request.url).pathname.replace(/\/$/, "") || "/";
+
+function isMatch(linkPath: string) {
+  if (linkPath === "/") return path === "/";
+  return path.startsWith(linkPath);
+}
+
+type ListItem = { label: string; path: string };
 const links: ListItem[] = [
-  { label: "Ben", href: "/" },
-  { label: "Blog", href: "/blog" },
-  { label: "Talks", href: "/talks" },
-  { label: "Videos", href: "/videos" },
+  { label: "Ben", path: "/" },
+  { label: "Blog", path: "/blog" },
+  { label: "Talks", path: "/talks" },
+  { label: "Videos", path: "/videos" },
 ];
+
+const bounceAnim: TransitionAnimation = {
+  name: "bounce",
+  duration: 900,
+  easing: "var(--ease-spring-5)",
+};
+
+function slide(duration = undefined) {
+  return {
+    forwards: {
+      old: [
+        {
+          name: "astroFadeOut",
+          duration: duration ?? "90ms",
+          easing: easings["--ease-spring-5"],
+          fillMode: "both",
+        },
+        {
+          name: "scale",
+          duration: duration ?? "220ms",
+          easing: easings["--ease-spring-5"],
+          fillMode: "both",
+        },
+      ],
+      new: [
+        {
+          name: "astroFadeIn",
+          duration: duration ?? "210ms",
+          easing: easings["--ease-spring-5"],
+          delay: duration ? void 0 : "30ms",
+          fillMode: "both",
+        },
+        {
+          name: "scale",
+          duration: duration ?? "220ms",
+          easing: easings["--ease-spring-5"],
+          fillMode: "both",
+        },
+      ],
+    },
+    backwards: {
+      old: [{ name: "astroFadeOut" }, { name: "astroSlideToRight" }],
+      new: [{ name: "astroFadeIn" }, { name: "astroSlideFromLeft" }],
+    },
+  };
+}
 ---
 
 <nav-open data-open class="group">
   <nav
-    class="group-[[data-open]]:dark:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-4 items-center text-lg py-3 px-5 transition-colors duration-300"
+    class="group-[[data-open]]:dark:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
   >
     {headings?.length ? <Toc {headings} /> : null}
-    <ul id={id} class="flex gap-4 ml-auto items-center">
+    <ul id={id} class="flex gap-6 ml-auto items-center">
       {
         links.map((l, idx) => (
           <li style={{ "--idx": idx + 1 }}>
-            <a class="no-underline" href={l.href}>
+            <a
+              data-active={isMatch(l.path)}
+              class="no-underline text-lg"
+              href={l.path}
+            >
               {l.label}
             </a>
           </li>
@@ -40,7 +99,6 @@ const links: ListItem[] = [
         data-action="click:nav-open#toggle"
         data-target="nav-open.btn"
         aria-controls={id}
-        class="h-[24px] w-[30px] flex flex-col justify-between relative p-0 bg-transparent before:content-[''] before:absolute before:inset-[-0.5rem] before:z-[-1] before:border-radius-[0.7rem] before:bg-[var(--bg-blur)]"
       >
         <div class="stripe stripe-top"></div>
         <div class="stripe stripe-middle"></div>
@@ -84,27 +142,26 @@ const links: ListItem[] = [
 </script>
 
 <style>
-  .toggle {
-    height: 24px;
-    width: 30px;
+  button {
+    height: 20px;
+    width: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    padding: 0;
     background-color: transparent;
   }
-  .toggle::before {
+  button::before {
     content: "";
     position: absolute;
-    inset: -0.5rem;
+    inset: -0.3rem;
     z-index: -1;
     border-radius: 0.7rem;
     background-color: var(--bg-blur);
   }
 
   .stripe {
-    height: 4px;
+    height: 3px;
     width: inherit;
     background-color: currentColor;
     transition: transform 0.2s ease-in-out;
@@ -129,6 +186,15 @@ const links: ListItem[] = [
   }
   [data-open] .stripe-bottom {
     transform: rotate(45deg);
+  }
+
+  a {
+    display: block;
+    scale: 1;
+    transition: scale 0.5s var(--ease-spring-5);
+  }
+  a[data-active] {
+    scale: 1.5;
   }
 
   li {
