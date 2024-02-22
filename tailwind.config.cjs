@@ -39,19 +39,19 @@ module.exports = {
     plugin(({ addUtilities, theme }) =>
       addUtilities({
         ".spring-1": {
-          "transition-duration": theme("transitionDuration.150"),
+          "transition-duration": theme("transitionDuration.200"),
           "transition-timing-function": theme(
             "transitionTimingFunction.spring-1"
           ),
         },
         ".spring-2": {
-          "transition-duration": theme("transitionDuration.200"),
+          "transition-duration": theme("transitionDuration.300"),
           "transition-timing-function": theme(
             "transitionTimingFunction.spring-2"
           ),
         },
         ".spring-3": {
-          "transition-duration": theme("transitionDuration.300"),
+          "transition-duration": theme("transitionDuration.500"),
           "transition-timing-function": theme(
             "transitionTimingFunction.spring-3"
           ),
@@ -63,7 +63,7 @@ module.exports = {
           ),
         },
         ".spring-5": {
-          "transition-duration": theme("transitionDuration.500"),
+          "transition-duration": theme("transitionDuration.700"),
           "transition-timing-function": theme(
             "transitionTimingFunction.spring-5"
           ),
