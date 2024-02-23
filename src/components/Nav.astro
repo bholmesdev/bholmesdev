@@ -68,30 +68,30 @@ const links: ListItem[] = [
     @target btn!: HTMLButtonElement;
     @targets links!: HTMLAnchorElement[];
 
-    #scrollY = 0;
-    #ticking = false;
+    scrollY = 0;
+    ticking = false;
 
-    #trackScroll() {
-      this.#scrollY = window.scrollY;
+    #trackScroll = () => {
+      this.scrollY = window.scrollY;
 
-      if (!this.#ticking) {
+      if (!this.ticking) {
         window.requestAnimationFrame(() => {
-          this.open = this.#scrollY < 20;
-          this.#ticking = false;
+          this.open = this.scrollY < 20;
+          this.ticking = false;
         });
 
-        this.#ticking = true;
+        this.ticking = true;
       }
-    }
+    };
 
-    #trackLinks() {
+    #trackLinks = () => {
       for (const link of this.links) {
         link.toggleAttribute(
           "data-active",
           isMatch(window.location.pathname, link.pathname)
         );
       }
-    }
+    };
 
     connectedCallback() {
       document.addEventListener("scroll", this.#trackScroll);
