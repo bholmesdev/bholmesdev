@@ -2,8 +2,8 @@
 import iBen from "./iBen.svg?raw";
 import Button from "./Button.astro";
 import CdDrive from "./CdDrive.astro";
-import ChevronDown from "./ChevronDown.astro";
 import { getImgSrc, showcaseVideo } from "./Frame";
+import { Icon } from "astro-icon/components";
 
 const showcaseSrc = getImgSrc(showcaseVideo);
 ---
@@ -37,10 +37,10 @@ const showcaseSrc = getImgSrc(showcaseVideo);
           class="px-[7%] pb-[2%] pt-[10%] flex justify-between font-bold bg-gradient-to-t from-slate-950 to-transparent"
         >
           <span class="w-[6ch] flex flex-col items-center"
-            >Play <ChevronDown /></span
+            >Play <Icon name="chevron-down" /></span
           >
           <span class="w-[6ch] flex flex-col items-center"
-            >Random <ChevronDown /></span
+            >Random <Icon name="chevron-down" /></span
           >
         </div>
       </div>
