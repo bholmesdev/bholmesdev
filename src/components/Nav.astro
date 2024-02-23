@@ -71,36 +71,41 @@ const links: ListItem[] = [
     scrollY = 0;
     ticking = false;
 
-    #trackScroll = () => {
-      this.scrollY = window.scrollY;
-
-      if (!this.ticking) {
-        window.requestAnimationFrame(() => {
-          this.open = this.scrollY < 20;
-          this.ticking = false;
-        });
-
-        this.ticking = true;
-      }
-    };
-
-    #trackLinks = () => {
-      for (const link of this.links) {
-        link.toggleAttribute(
-          "data-active",
-          isMatch(window.location.pathname, link.pathname)
-        );
-      }
-    };
+    #abort = new AbortController();
 
     connectedCallback() {
-      document.addEventListener("scroll", this.#trackScroll);
-      document.addEventListener("astro:page-load", this.#trackLinks);
+      document.addEventListener(
+        "scroll",
+        () => {
+          this.scrollY = window.scrollY;
+
+          if (!this.ticking) {
+            window.requestAnimationFrame(() => {
+              this.open = this.scrollY < 20;
+              this.ticking = false;
+            });
+
+            this.ticking = true;
+          }
+        },
+        { signal: this.#abort.signal }
+      );
+      document.addEventListener(
+        "astro:page-load",
+        () => {
+          for (const link of this.links) {
+            link.toggleAttribute(
+              "data-active",
+              isMatch(window.location.pathname, link.pathname)
+            );
+          }
+        },
+        { signal: this.#abort.signal }
+      );
     }
 
     disconnectedCallback() {
-      document.removeEventListener("scroll", this.#trackScroll);
-      document.removeEventListener("astro:page-load", this.#trackLinks);
+      this.#abort.abort();
     }
 
     toggle() {
