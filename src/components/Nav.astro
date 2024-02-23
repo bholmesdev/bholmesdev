@@ -23,12 +23,12 @@ const links: ListItem[] = [
 ];
 ---
 
-<nav-open transition:persist data-open class="group">
+<nav-open data-open class="group">
   <nav
     class="group-[[data-open]]:dark:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
   >
     {headings?.length ? <Toc {headings} /> : null}
-    <ul id={id} class="flex gap-6 ml-auto items-center">
+    <ul transition:persist id={id} class="flex gap-6 ml-auto items-center">
       {
         links.map((l, idx) => (
           <li style={{ "--idx": idx + 1 }}>
@@ -68,31 +68,39 @@ const links: ListItem[] = [
     @target btn!: HTMLButtonElement;
     @targets links!: HTMLAnchorElement[];
 
+    #scrollY = 0;
+    #ticking = false;
+
+    #trackScroll() {
+      this.#scrollY = window.scrollY;
+
+      if (!this.#ticking) {
+        window.requestAnimationFrame(() => {
+          this.open = this.#scrollY < 20;
+          this.#ticking = false;
+        });
+
+        this.#ticking = true;
+      }
+    }
+
+    #trackLinks() {
+      for (const link of this.links) {
+        link.toggleAttribute(
+          "data-active",
+          isMatch(window.location.pathname, link.pathname)
+        );
+      }
+    }
+
     connectedCallback() {
-      let scrollY = 0;
-      let ticking = false;
+      document.addEventListener("scroll", this.#trackScroll);
+      document.addEventListener("astro:page-load", this.#trackLinks);
+    }
 
-      document.addEventListener("scroll", () => {
-        scrollY = window.scrollY;
-
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            this.open = scrollY < 20;
-            ticking = false;
-          });
-
-          ticking = true;
-        }
-      });
-
-      document.addEventListener("astro:page-load", () => {
-        for (const link of this.links) {
-          link.toggleAttribute(
-            "data-active",
-            isMatch(window.location.pathname, link.pathname)
-          );
-        }
-      });
+    disconnectedCallback() {
+      document.removeEventListener("scroll", this.#trackScroll);
+      document.removeEventListener("astro:page-load", this.#trackLinks);
     }
 
     toggle() {
