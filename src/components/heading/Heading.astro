@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import Button from "./Button.astro";
 ---
 
 <section class="flex max-w-[120ch] items-center justify-center mx-auto p-3">
@@ -13,14 +14,13 @@ import { Icon } from "astro-icon/components";
     <p class="text-xl mb-5 text-slate-400">
       The <span class="text-white">whiteboard guy</span> who codes kinda well.
     </p>
-    <div class="flex gap-2">
-      <a
-        class="px-7 py-2 font-bold rounded-xl flex items-center justify-center gap-2 no-underline relative text-xl"
-        data-watch-btn
-      >
-        Watch
-        <Icon name="arrow-down" />
-      </a>
+    <div class="flex gap-6">
+      <Button is="a" data-watch-btn>
+        Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
+      </Button>
+      <Button is="button" data-draw-btn>
+        Draw <Icon name="draw" class="mb-[2px]" />
+      </Button>
     </div>
   </div>
   <img
@@ -33,11 +33,7 @@ import { Icon } from "astro-icon/components";
 
 <style>
   [data-watch-btn] {
-    background: linear-gradient(
-        288deg,
-        rgba(98, 0, 255, 0.5) 59.32%,
-        rgba(165, 113, 249, 0.5) 92.52%
-      ),
+    background: linear-gradient(288deg, #6200ff80 59.32%, #a571f980 92.52%),
       linear-gradient(129deg, #7c2aff 27.53%, #6200ff 67.2%);
   }
   [data-watch-btn]:before {
@@ -49,5 +45,24 @@ import { Icon } from "astro-icon/components";
     top: 0;
     border-radius: theme(borderRadius.2xl);
     background: linear-gradient(139deg, #6200ff 23.15%, #3b0493 74.32%);
+  }
+  [data-draw-btn] {
+    background: linear-gradient(
+        288deg,
+        rgba(49, 62, 81, 0.2) 59.32%,
+        rgba(133, 155, 187, 0.2) 92.52%
+      ),
+      linear-gradient(129deg, #334155 27.53%, #303c4f 67.2%);
+    /* background: red; */
+  }
+  [data-draw-btn]:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -0.2rem;
+    bottom: -0.35rem;
+    top: 0;
+    border-radius: theme(borderRadius.2xl);
+    background: linear-gradient(139deg, #2f3d4f 23.15%, #131f31 74.32%);
   }
 </style>
