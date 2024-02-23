@@ -14,7 +14,7 @@ const { headings } = Astro.props;
   <div class="panel dark:bg-gray-950">
     <div class="progress-container">
       <progress data-target="table-contents.progress" max="1"></progress>
-      <Icon name="check" />
+      <Icon class="done" name="check" />
     </div>
     <ul class="p-5 pb-3" id={scope("panel")} role="list">
       {
@@ -50,7 +50,7 @@ const { headings } = Astro.props;
     connectedCallback() {
       progress.subscribe((value) => {
         this.progress.value = value;
-        this.doneReading = value === 1;
+        this.doneReading = Math.round(value * 10) / 10 >= 1;
       });
     }
 
