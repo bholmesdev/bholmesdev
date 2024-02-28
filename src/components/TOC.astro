@@ -2,18 +2,20 @@
 import type { MarkdownHeading } from "astro";
 import { Icon } from "astro-icon/components";
 import { scope } from "simple:scope";
+import { createRoot } from "../utils.client";
 
 type Props = {
   headings: MarkdownHeading[];
 };
 
 const { headings } = Astro.props;
+const Root = createRoot("table-contents");
 ---
 
-<table-contents>
+<Root.name>
   <div class="panel dark:bg-gray-950">
     <div class="progress-container">
-      <progress data-target="table-contents.progress" max="1"></progress>
+      <progress data-target={Root.target("progress")} max="1"></progress>
       <Icon class="done" name="check" />
     </div>
     <ul class="p-5 pb-3" id={scope("panel")} role="list">
@@ -27,13 +29,14 @@ const { headings } = Astro.props;
     </ul>
   </div>
   <button
-    data-target="table-contents.btn"
+    onclick={Root.action("toggleMenu")}
+    data-target={Root.target("btn")}
     aria-controls={scope("panel")}
     class="transition-all ease-spring-3 duration-500"
   >
     <div class="inner">1</div>
   </button>
-</table-contents>
+</Root.name>
 
 <script>
   import { attr, target, controller } from "@github/catalyst";
@@ -52,12 +55,12 @@ const { headings } = Astro.props;
         this.progress.value = value;
         this.doneReading = Math.round(value * 10) / 10 >= 1;
       });
-
-      this.btn.onclick = () => {
-        this.open = !this.open;
-        this.btn.ariaExpanded = toAttr(this.open);
-      };
     }
+
+    toggleMenu = () => {
+      this.open = !this.open;
+      this.btn.ariaExpanded = toAttr(this.open);
+    };
   }
 </script>
 

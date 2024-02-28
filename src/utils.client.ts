@@ -43,3 +43,26 @@ export function toAttr(value: string | boolean | number) {
   }
   return value.toString();
 }
+
+export function createRoot(rootName: string) {
+  return {
+    name: rootName,
+    target(name: string) {
+      return `${rootName}.${name}`;
+    },
+    action(name: string) {
+      if (import.meta.env.DEV) {
+        return `const el = this.closest(${JSON.stringify(rootName)})
+      if (!el) throw new Error('Action ${JSON.stringify(
+        name
+      )} called, but no parent root was found. Did you wrap this element with a root?');
+      const action = el.${name};
+      if (typeof action !== "function") throw new Error('Action ${JSON.stringify(
+        name
+      )} does not exist on ${JSON.stringify(rootName)}');
+      action(event)`;
+      }
+      return `this.closest(${JSON.stringify(rootName)})?.${name}?.(event)`;
+    },
+  };
+}
