@@ -36,3 +36,10 @@ export function toggleTemplate(template: HTMLTemplateElement) {
     showTemplate(template);
   }
 }
+
+export function toAttr(value: string | boolean | number) {
+  if (typeof value === "boolean") {
+    return value ? "" : null;
+  }
+  return value.toString();
+}

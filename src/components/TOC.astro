@@ -28,7 +28,6 @@ const { headings } = Astro.props;
   </div>
   <button
     data-target="table-contents.btn"
-    data-action="click:table-contents#toggle"
     aria-controls={scope("panel")}
     class="transition-all ease-spring-3 duration-500"
   >
@@ -39,6 +38,7 @@ const { headings } = Astro.props;
 <script>
   import { attr, target, controller } from "@github/catalyst";
   import { progress } from "./article-scroll";
+  import { toAttr } from "../utils.client";
 
   @controller
   export class TableContentsElement extends HTMLElement {
@@ -52,11 +52,11 @@ const { headings } = Astro.props;
         this.progress.value = value;
         this.doneReading = Math.round(value * 10) / 10 >= 1;
       });
-    }
 
-    toggle() {
-      this.open = !this.open;
-      this.btn.toggleAttribute("aria-expanded", this.open);
+      this.btn.onclick = () => {
+        this.open = !this.open;
+        this.btn.ariaExpanded = toAttr(this.open);
+      };
     }
   }
 </script>
