@@ -47,11 +47,12 @@ export function toAttr(value: string | boolean | number) {
 export function createRoot(rootName: string) {
   return {
     name: rootName,
-    target(name: string) {
+    target(name: string): `${string}.${string}` {
       return `${rootName}.${name}`;
     },
-    action(name: string) {
+    action(name: string): `this.closest(${string})?.${string}?.(event)` {
       if (import.meta.env.DEV) {
+        // @ts-expect-error
         return `const el = this.closest(${JSON.stringify(rootName)})
       if (!el) throw new Error('Action ${JSON.stringify(
         name
