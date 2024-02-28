@@ -9,13 +9,13 @@ type Props = {
 };
 
 const { headings } = Astro.props;
-const Root = createRoot("table-contents");
+const { name: Root, target, action } = createRoot("table-contents");
 ---
 
-<Root.name>
+<Root>
   <div class="panel dark:bg-gray-950">
     <div class="progress-container">
-      <progress data-target={Root.target("progress")} max="1"></progress>
+      <progress data-target={target("progress")} max="1"></progress>
       <Icon class="done" name="check" />
     </div>
     <ul class="p-5 pb-3" id={scope("panel")} role="list">
@@ -29,14 +29,14 @@ const Root = createRoot("table-contents");
     </ul>
   </div>
   <button
-    onclick={Root.action("toggleMenu")}
-    data-target={Root.target("btn")}
+    onclick={action("toggleMenu")}
+    data-target={target("btn")}
     aria-controls={scope("panel")}
     class="transition-all ease-spring-3 duration-500"
   >
     <div class="inner">1</div>
   </button>
-</Root.name>
+</Root>
 
 <script>
   import { attr, target, controller } from "@github/catalyst";
