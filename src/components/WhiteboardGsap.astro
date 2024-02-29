@@ -41,7 +41,7 @@ import { scope } from "simple:scope";
   <path
     class="motion-path"
     d="M232.5 374C335.999 323.963 702.337 335.637 802.5 383C693.621 376.829 354.953 355.129 220.5 526.855C295.355 464.643 564.531 345.121 789 526.855C637.821 475.83 326.021 494.499 220.5 629C328.558 582.543 699.932 584.51 774 678.5C688.771 622.528 335.309 666.614 192.5 783.5C330.996 737.003 692 766.5 774 842.5C673 798.5 300.5 851.6 192.5 934C301.5 907 684.5 901.5 774 983.5C646.5 925.618 308.1 994.3 192.5 1067.5C324.5 1048.5 732.2 1083.8 755 1125"
-    stroke="red"
+    stroke="white"
     stroke-width="155"
     stroke-linecap="round"></path>
   <rect class="eraser" x="-70" y="-100" width="122" height="163" fill="#3840FF"
@@ -68,13 +68,6 @@ import { scope } from "simple:scope";
     --cubic-bezier: 0.1, 0, 0.6, 1;
     stroke-dasharray: var(--length);
     stroke-dashoffset: var(--length);
-    animation: draw 2s cubic-bezier(var(--cubic-bezier)) forwards;
-  }
-
-  @keyframes draw {
-    to {
-      stroke-dashoffset: 0;
-    }
   }
 </style>
 
@@ -120,6 +113,12 @@ import { scope } from "simple:scope";
     motionPath: {
       path: ".motion-path",
     },
+  });
+
+  gsap.to(".motion-path", {
+    duration: 2,
+    ease: "draw",
+    strokeDashoffset: 0,
   });
 
   const faceAnim = gsap.to(`#${scope("face")}`, {
