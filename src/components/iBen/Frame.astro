@@ -4,15 +4,18 @@ import Button from "./Button.astro";
 import CdDrive from "./CdDrive.astro";
 import { getImgSrc, showcaseVideo } from "./Frame";
 import { Icon } from "astro-icon/components";
+import { createRoot } from "../../utils.client";
 
 const showcaseSrc = getImgSrc(showcaseVideo);
+
+const { name: Root, target, action } = createRoot("i-ben");
 ---
 
-<i-ben data-welcome class="dark:bg-gray-900 sm:px-6 px-2">
+<Root data-welcome class="dark:bg-gray-900 sm:px-6 px-2">
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
-      data-target="i-ben.glow"
+      data-target={target("glow")}
       src={showcaseSrc}
       alt=""
       class="pt-[0%] w-full"
@@ -21,7 +24,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
       <img
         data-thumbnail
-        data-target="i-ben.thumbnail"
+        data-target={target("thumbnail")}
         src={showcaseSrc}
         alt="A gud video"
         class="w-full aspect-[3/2] leading-none object-cover"
@@ -32,7 +35,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
       >
         <div data-scan-line class="w-full h-1 bg-slate-200 opacity-30"></div>
         <div
-          data-target="i-ben.btnLabels"
+          data-target={target("btnLabels")}
           data-btn-labels
           class="px-[7%] pb-[2%] pt-[10%] flex justify-between font-bold bg-gradient-to-t from-slate-950 to-transparent"
         >
@@ -45,7 +48,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
         </div>
       </div>
 
-      <template data-target="i-ben.iframeTemplate">
+      <template data-target={target("iframeTemplate")}>
         <iframe
           class="w-full aspect-[3/2] h-auto"
           width="560"
@@ -65,26 +68,26 @@ const showcaseSrc = getImgSrc(showcaseVideo);
       data-btn-overlay
       class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
     >
-      <Button
-        data-action="click:i-ben#play"
-        icon="play"
-        aria-label="Play video"
-      />
+      <Button onclick={action("play")} icon="play" aria-label="Play video" />
 
       <CdDrive />
       <Button
-        data-action="click:i-ben#random"
+        onclick={action("random")}
         icon="random"
         aria-label="Get random video"
       />
     </div>
   </div>
-</i-ben>
+</Root>
 
 <script>
   import { controller, target, attr } from "@github/catalyst";
   import { getEmbedSrc, getImgSrc, videoIds, showcaseVideo } from "./Frame";
-  import { hideTemplate, showTemplate } from "../../utils.client";
+  import {
+    hideTemplate,
+    showTemplate,
+    toggleTemplate,
+  } from "../../utils.client";
 
   const [_showcase, ...otherVideos] = videoIds;
 
