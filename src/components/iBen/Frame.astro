@@ -86,7 +86,7 @@ const { name: Root, target, action } = createRoot("i-ben");
   import {
     hideTemplate,
     showTemplate,
-    toggleTemplate,
+    fisherYatesShuffle,
   } from "../../utils.client";
 
   const [_showcase, ...otherVideos] = videoIds;
@@ -124,21 +124,6 @@ const { name: Root, target, action } = createRoot("i-ben");
       this.videoIdx = (this.videoIdx + 1) % videoIds.length;
       this.thumbnail.src = getImgSrc(this.#videoIds[this.videoIdx]!);
     }
-  }
-
-  /**
-   * Pseudo-random algorithm
-   * @see https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
-   */
-  function fisherYatesShuffle<T>(initialArr: T[]) {
-    const arr = [...initialArr];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = arr[i]!;
-      arr[i] = arr[j]!;
-      arr[j] = temp;
-    }
-    return arr;
   }
 </script>
 
