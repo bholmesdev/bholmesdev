@@ -50,10 +50,10 @@ export function createRoot(rootName: string) {
     target(name: string): `${string}.${string}` {
       return `${rootName}.${name}`;
     },
-    action(name: string): `this.closest(${string})?.${string}?.(event)` {
+    action(name: string) {
+      const rootSelector = `this.closest(${JSON.stringify(rootName)})`;
       if (import.meta.env.DEV) {
-        // @ts-expect-error
-        return `const el = this.closest(${JSON.stringify(rootName)})
+        return `const el = ${rootSelector};
       if (!el) throw new Error('Action ${JSON.stringify(
         name
       )} called, but no parent root was found. Did you wrap this element with a root?');
@@ -61,9 +61,9 @@ export function createRoot(rootName: string) {
       if (typeof action !== "function") throw new Error('Action ${JSON.stringify(
         name
       )} does not exist on ${JSON.stringify(rootName)}');
-      action(event)`;
+      action.bind(el).call(event)`;
       }
-      return `this.closest(${JSON.stringify(rootName)})?.${name}?.(event)`;
+      return `${rootSelector}?.${name}?.(event).bind(${rootSelector})`;
     },
   };
 }
