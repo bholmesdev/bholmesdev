@@ -4,18 +4,15 @@ import Button from "./Button.astro";
 import CdDrive from "./CdDrive.astro";
 import { getImgSrc, showcaseVideo } from "./Frame";
 import { Icon } from "astro-icon/components";
-import { createRoot } from "../../utils.client";
 
 const showcaseSrc = getImgSrc(showcaseVideo);
-
-const { name: Root, target, action } = createRoot("i-ben");
 ---
 
-<Root data-welcome class="dark:bg-gray-900 sm:px-6 px-2">
+<my-computer data-welcome class="dark:bg-gray-900 sm:px-6 px-2">
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
-      data-target={target("glow")}
+      data-target="my-computer.glow"
       src={showcaseSrc}
       alt=""
       class="pt-[0%] w-full"
@@ -24,7 +21,7 @@ const { name: Root, target, action } = createRoot("i-ben");
     <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
       <img
         data-thumbnail
-        data-target={target("thumbnail")}
+        data-target="my-computer.thumbnail"
         src={showcaseSrc}
         alt="A gud video"
         class="w-full aspect-[3/2] leading-none object-cover"
@@ -35,7 +32,7 @@ const { name: Root, target, action } = createRoot("i-ben");
       >
         <div data-scan-line class="w-full h-1 bg-slate-200 opacity-30"></div>
         <div
-          data-target={target("btnLabels")}
+          data-target="my-computer.btnLabels"
           data-btn-labels
           class="px-[7%] pb-[2%] pt-[10%] flex justify-between font-bold bg-gradient-to-t from-slate-950 to-transparent"
         >
@@ -48,7 +45,7 @@ const { name: Root, target, action } = createRoot("i-ben");
         </div>
       </div>
 
-      <template data-target={target("iframeTemplate")}>
+      <template data-target="my-computer.iframeTemplate">
         <iframe
           class="w-full aspect-[3/2] h-auto"
           width="560"
@@ -68,17 +65,21 @@ const { name: Root, target, action } = createRoot("i-ben");
       data-btn-overlay
       class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
     >
-      <Button onclick={action("play")} icon="play" aria-label="Play video" />
+      <Button
+        data-action="click:my-computer#play"
+        icon="play"
+        aria-label="Play video"
+      />
 
       <CdDrive />
       <Button
-        onclick={action("random")}
+        data-action="click:my-computer#random"
         icon="random"
         aria-label="Get random video"
       />
     </div>
   </div>
-</Root>
+</my-computer>
 
 <script>
   import { controller, target, attr } from "@github/catalyst";
@@ -92,7 +93,7 @@ const { name: Root, target, action } = createRoot("i-ben");
   const [_showcase, ...otherVideos] = videoIds;
 
   @controller
-  export class iBenElement extends HTMLElement {
+  class iBenElement extends HTMLElement {
     @attr playing = false;
     @attr welcome = true;
     @attr videoIdx = 0;

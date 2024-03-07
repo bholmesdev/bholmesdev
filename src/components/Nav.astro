@@ -3,7 +3,6 @@ import type { MarkdownHeading } from "astro";
 import { isMatch } from "./Nav";
 import Toc from "./TOC.astro";
 import { scope } from "simple:scope";
-import { createRoot } from "../utils.client";
 
 type Props = {
   headings: MarkdownHeading[] | undefined;
@@ -22,11 +21,9 @@ const links: ListItem[] = [
   { label: "Talks", path: "/talks" },
   { label: "Videos", path: "/videos" },
 ];
-
-const { name: Root, target, action } = createRoot("nav-open");
 ---
 
-<Root data-open class="group">
+<nav-open data-open class="group">
   <nav
     class="group-[[data-open]]:dark:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
   >
@@ -36,7 +33,7 @@ const { name: Root, target, action } = createRoot("nav-open");
         links.map((l, idx) => (
           <li style={{ "--idx": idx + 1 }}>
             <a
-              data-targets={target("links")}
+              data-targets="nav-open.links"
               data-active={isMatch(urlPath, l.path)}
               class="no-underline text-lg block scale-1 dark:text-gray-300 data-[active]:text-white data-[active]:font-bold data-[active]:scale-110 transition-transform spring-5"
               href={l.path}
@@ -49,8 +46,8 @@ const { name: Root, target, action } = createRoot("nav-open");
     </ul>
     <div>
       <button
-        onclick={action("toggle")}
-        data-target={target("btn")}
+        data-action="click:nav-open#toggle"
+        data-target="nav-open.btn"
         aria-controls={id}
       >
         <div class="stripe stripe-top"></div>
@@ -59,7 +56,7 @@ const { name: Root, target, action } = createRoot("nav-open");
       </button>
     </div>
   </nav>
-</Root>
+</nav-open>
 
 <script>
   import { attr, target, targets, controller } from "@github/catalyst";
