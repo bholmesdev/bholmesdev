@@ -2,166 +2,81 @@
 import { scope } from "simple:scope";
 ---
 
-<script>
-  import { gsap } from "gsap";
-  import { controller, target, targets } from "@github/catalyst";
-  import { fisherYatesShuffle } from "../../utils.client";
-  import { RoughEase } from "gsap/EasePack";
-  import MotionPathPlugin from "gsap/MotionPathPlugin";
-
-  gsap.registerPlugin(MotionPathPlugin);
-  gsap.registerPlugin(RoughEase);
-
-  const xPoolInitial = [-30, -15, 0, 15, 30];
-  const yPoolInitial = [-80, -40, 0, 40, 80, 120];
-
-  @controller
-  class MyWhiteboardElement extends HTMLElement {
-    @target face!: SVGElement;
-    @target scribble!: SVGPathElement;
-    @target eraser!: SVGElement;
-    @targets eyes!: SVGElement[];
-
-    #xPool = fisherYatesShuffle(xPoolInitial);
-    #yPool = fisherYatesShuffle(yPoolInitial);
-    #xIdx = 0;
-    #yIdx = 0;
-
-    connectedCallback() {
-      gsap.to(this.face, {
-        x: () => {
-          const next = this.#xPool[this.#xIdx];
-          this.#xIdx = (this.#xIdx + 1) % this.#xPool.length;
-          return next!;
-        },
-        y: () => {
-          const next = this.#yPool[this.#yIdx];
-          this.#yIdx = (this.#yIdx + 1) % this.#yPool.length;
-          return next!;
-        },
-        repeatRefresh: true,
-        repeat: -1,
-        repeatDelay: 4,
-        duration: 1,
-        delay: 4,
-        ease: "elastic.out(1, 0.5)",
-      });
-
-      gsap
-        .timeline()
-        .set(this.eyes, { transformOrigin: "center bottom" })
-        .to(this.eyes, { scaleY: 0.2, duration: 0.2 })
-        .to(this.eyes, { scaleY: 1, duration: 0.2 })
-        .repeatDelay(3)
-        .delay(2)
-        .repeat(-1);
-
-      const offset = 1600;
-      const scribbleTl = gsap.timeline();
-      const eraseTl = gsap.timeline();
-      for (let i = 1; i <= 6; i++) {
-        scribbleTl.to(this.scribble, {
-          duration: 0.18,
-          strokeDashoffset: offset - (offset * i) / 6,
-        });
-        eraseTl.to(this.eraser, {
-          duration: 0.18,
-          motionPath: {
-            path: this.scribble,
-            start: (i - 1) / 6,
-            end: i / 6,
-          },
-        });
-      }
-    }
-  }
-</script>
-
-<my-whiteboard>
-  <svg
-    width="556"
-    height="970"
-    viewBox="0 0 556 970"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g filter="url(#filter0_dddd_222_3)">
+<svg
+  width="556"
+  height="970"
+  viewBox="0 0 556 970"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g filter="url(#filter0_dddd_222_3)">
+    <rect
+      x="34.7048"
+      y="34.1074"
+      width="356.747"
+      height="530.61"
+      rx="30"
+      fill="#334155"></rect>
+    <rect
+      x="44.4192"
+      y="42.8673"
+      width="337.318"
+      height="513.09"
+      rx="20"
+      fill="url(#paint0_linear_222_3)"></rect>
+    <rect
+      x="44.4192"
+      y="42.8673"
+      width="337.318"
+      height="513.09"
+      rx="20"
+      fill="white"></rect>
+    <rect
+      x="44.4192"
+      y="42.8673"
+      width="337.318"
+      height="513.09"
+      rx="20"
+      fill="url(#paint1_radial_222_3)"
+      fill-opacity="0.2"></rect>
+    <g data-target="my-whiteboard.face">
+      <path
+        d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
+        stroke="#6200FF"
+        stroke-width="25"
+        stroke-linecap="round"></path>
       <rect
-        x="34.7048"
-        y="34.1074"
-        width="356.747"
-        height="530.61"
-        rx="30"
-        fill="#334155"></rect>
+        data-targets="my-whiteboard.eyes"
+        x="90.7898"
+        y="201.2"
+        width="20.5027"
+        height="109.895"
+        rx="10.2514"
+        fill="#6200FF"></rect>
       <rect
-        x="44.4192"
-        y="42.8673"
-        width="337.318"
-        height="513.09"
-        rx="20"
-        fill="url(#paint0_linear_222_3)"></rect>
-      <rect
-        x="44.4192"
-        y="42.8673"
-        width="337.318"
-        height="513.09"
-        rx="20"
-        fill="white"></rect>
-      <rect
-        x="44.4192"
-        y="42.8673"
-        width="337.318"
-        height="513.09"
-        rx="20"
-        fill="url(#paint1_radial_222_3)"
-        fill-opacity="0.2"></rect>
-      <g data-target="my-whiteboard.face">
-        <path
-          d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
-          stroke="#6200FF"
-          stroke-width="25"
-          stroke-linecap="round"></path>
-        <rect
-          data-targets="my-whiteboard.eyes"
-          x="90.7898"
-          y="201.2"
-          width="20.5027"
-          height="109.895"
-          rx="10.2514"
-          fill="#6200FF"></rect>
-        <rect
-          data-targets="my-whiteboard.eyes"
-          x="307.299"
-          y="201.2"
-          width="20.5027"
-          height="109.895"
-          rx="10.2514"
-          fill="#6200FF"></rect>
-        <path
-          clip-path={`url(#${scope("scribble-bounds")})`}
-          data-target="my-whiteboard.scribble"
-          d="M22.2191 30.6216C89.0424 33.6849 240.261 44.5515 300.44 82.6372C224.592 53.5359 59.8409 59.4502 22.688 89.3778C61.8098 73.8145 248.839 102.982 279.368 142.084C232.335 109.693 49.0079 123.682 20.1221 147.941C57.2131 132.178 252.802 157.562 275.461 202.292C242.329 178.056 52.5287 185.746 26.0628 206.139"
-          stroke="white"
-          transform="translate(58 160)"
-          stroke-dasharray="1630"
-          stroke-dashoffset="1630"
-          stroke-width="60"></path>
-        <defs>
-          <clipPath id={scope("scribble-bounds")}>
-            <rect x="30" y="0" width="245" height="300" rx="20"></rect>
-          </clipPath>
-        </defs>
-        <rect
-          data-target="my-whiteboard.eraser"
-          x="50"
-          y="120"
-          fill="blue"
-          width="50"
-          height="70"
-          rx="10"></rect>
-      </g>
+        data-targets="my-whiteboard.eyes"
+        x="307.299"
+        y="201.2"
+        width="20.5027"
+        height="109.895"
+        rx="10.2514"
+        fill="#6200FF"></rect>
+      <path
+        clip-path={`url(#${scope("scribble-bounds")})`}
+        data-target="my-whiteboard.scribble"
+        d="M22.2191 30.6216C89.0424 33.6849 240.261 44.5515 300.44 82.6372C224.592 53.5359 59.8409 59.4502 22.688 89.3778C61.8098 73.8145 248.839 102.982 279.368 142.084C232.335 109.693 49.0079 123.682 20.1221 147.941C57.2131 132.178 252.802 157.562 275.461 202.292C242.329 178.056 52.5287 185.746 26.0628 206.139"
+        stroke="white"
+        transform="translate(58 160)"
+        stroke-dasharray="1630"
+        stroke-dashoffset="1630"
+        stroke-width="60"></path>
+      <defs>
+        <clipPath id={scope("scribble-bounds")}>
+          <rect x="30" y="0" width="245" height="300" rx="20"></rect>
+        </clipPath>
+      </defs>
     </g>
-  </svg>
+  </g>
   <g data-marker opacity="0.3">
     <path
       d="M70.4815 584.779V576.578H60.6633C59.9092 576.578 59.4264 577.381 59.7801 578.047L63.0731 584.248C63.2466 584.575 63.5863 584.779 63.9563 584.779H70.4815Z"
@@ -210,6 +125,14 @@ import { scope } from "simple:scope";
       d="M270.423 571.662L291.492 573.223V586.345L270.423 587.906C269.843 587.948 269.349 587.49 269.349 586.908V572.66C269.349 572.078 269.843 571.619 270.423 571.662Z"
       fill="#00944D"></path>
   </g>
+  <rect
+    data-target="my-whiteboard.eraser"
+    x="52"
+    y="480"
+    fill="blue"
+    width="50"
+    height="70"
+    rx="10"></rect>
   <defs>
     <filter
       id="filter0_dddd_222_3"
@@ -339,4 +262,4 @@ import { scope } from "simple:scope";
       <stop offset="1" stop-color="#47576C"></stop>
     </linearGradient>
   </defs>
-</my-whiteboard>
+</svg>
