@@ -4,7 +4,7 @@ import Whiteboard from "./Whiteboard.astro";
 ---
 
 <my-whiteboard
-  class="flex max-w-[120ch] items-center justify-center mx-auto p-3"
+  class="mb-8 flex max-w-[120ch] items-center justify-center mx-auto p-3"
 >
   <div>
     <h1 class="text-9xl">
@@ -17,12 +17,19 @@ import Whiteboard from "./Whiteboard.astro";
       The <span class="text-white">whiteboard guy</span> who codes kinda well.
     </p>
     <div class="flex gap-6">
-      <button
-        class="px-7 py-2 font-bold rounded-xl flex items-center justify-center gap-4 no-underline relative text-xl"
+      <a
+        class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
+        is="button"
+        href="#videos"
+        data-action="click:my-whiteboard#scrollToVideos"
         data-watch-btn
       >
-        Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
-      </button>
+        <span
+          class="group-active/btn:scale-105 group-active/btn:rounded-2xl group-active/btn:scale-y-110 origin-top rounded-xl px-8 py-2 flex items-center justify-center gap-4"
+        >
+          Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
+        </span>
+      </a>
       <button
         class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
         is="button"
@@ -69,6 +76,13 @@ import Whiteboard from "./Whiteboard.astro";
 
     #faceAnim?: gsap.core.Tween;
     #eyesAnim?: gsap.core.Timeline;
+
+    scrollToVideos(e: MouseEvent) {
+      e.preventDefault();
+      document
+        .querySelector((e.currentTarget as HTMLAnchorElement).hash)
+        ?.scrollIntoView({ behavior: "smooth" });
+    }
 
     clearTheBoard() {
       if (this.drawing) return;
@@ -153,18 +167,11 @@ import Whiteboard from "./Whiteboard.astro";
 
 <style>
   [data-watch-btn] {
+    background: linear-gradient(139deg, #6200ff 23.15%, #3b0493 74.32%);
+  }
+  [data-watch-btn] span {
     background: linear-gradient(288deg, #6200ff80 59.32%, #a571f980 92.52%),
       linear-gradient(129deg, #7c2aff 27.53%, #6200ff 67.2%);
-  }
-  [data-watch-btn]:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: -0.2rem;
-    bottom: -0.35rem;
-    top: 0;
-    border-radius: theme(borderRadius.2xl);
-    background: linear-gradient(139deg, #6200ff 23.15%, #3b0493 74.32%);
   }
   [data-draw-btn] span {
     background: linear-gradient(
@@ -173,6 +180,9 @@ import Whiteboard from "./Whiteboard.astro";
         rgba(133, 155, 187, 0.2) 92.52%
       ),
       linear-gradient(129deg, #334155 27.53%, #303c4f 67.2%);
+  }
+  [data-watch-btn] span,
+  [data-draw-btn] span {
     transition:
       transform 0.5s var(--ease-spring-4),
       filter 0.18s,
