@@ -31,7 +31,10 @@ const links: ListItem[] = [
     <ul transition:persist id={id} class="flex gap-6 ml-auto items-center">
       {
         links.map((l, idx) => (
-          <li style={{ "--idx": idx + 1 }}>
+          <li
+            class="invisible opacity-0 group-[[data-open]]:opacity-100 group-[[data-open]]:visible"
+            style={{ "--idx": idx + 1 }}
+          >
             <a
               data-targets="nav-open.links"
               data-active={isMatch(urlPath, l.path)}
@@ -46,13 +49,16 @@ const links: ListItem[] = [
     </ul>
     <div>
       <button
+        class="h-[20px] w-[25px] flex flex-col justify-between relative bg-transparent before:absolute before:-inset-1 before:-z-10 before:rounded-md"
         data-action="click:nav-open#toggle"
         data-target="nav-open.btn"
         aria-controls={id}
       >
-        <div class="stripe stripe-top"></div>
-        <div class="stripe stripe-middle"></div>
-        <div class="stripe stripe-bottom"></div>
+        <div class="stripe origin-top-right group-[[data-open]]:-rotate-45">
+        </div>
+        <div class="stripe origin-center group-[[data-open]]:scale-0"></div>
+        <div class="stripe origin-bottom-right group-[[data-open]]:rotate-45">
+        </div>
       </button>
     </div>
   </nav>
@@ -117,55 +123,11 @@ const links: ListItem[] = [
 </script>
 
 <style>
-  button {
-    height: 20px;
-    width: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    background-color: transparent;
-  }
-  button::before {
-    content: "";
-    position: absolute;
-    inset: -0.3rem;
-    z-index: -1;
-    border-radius: 0.7rem;
-    background-color: var(--bg-blur);
-  }
-
   .stripe {
-    height: 3px;
-    width: inherit;
-    background-color: currentColor;
-    transition: transform 0.2s ease-in-out;
-    border-radius: 4px;
-  }
-  .stripe.stripe-middle {
-    transform-origin: center center;
-    transition-property: transform, opacity;
-  }
-  .stripe.stripe-top {
-    transform-origin: top right;
-  }
-  .stripe.stripe-bottom {
-    transform-origin: bottom right;
-  }
-  [data-open] .stripe-top {
-    transform: rotate(-45deg);
-  }
-  [data-open] .stripe-middle {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  [data-open] .stripe-bottom {
-    transform: rotate(45deg);
+    @apply spring-1 rounded-full h-[3px] w-full bg-current;
   }
 
   li {
-    opacity: 0;
-    visibility: hidden;
     transform: translateX(calc((4.5em - (var(--idx) * 1em))));
     transition-delay: calc(var(--idx) * 50ms);
     transition-timing-function: theme(transitionTimingFunction.spring-3);
@@ -173,8 +135,6 @@ const links: ListItem[] = [
   }
 
   [data-open] li {
-    opacity: 1;
-    visibility: visible;
     transform: translateX(0);
     transition-delay: calc((4 - var(--idx)) * 50ms);
   }
