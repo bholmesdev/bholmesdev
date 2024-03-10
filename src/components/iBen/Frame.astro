@@ -28,17 +28,17 @@ const showcaseSrc = getImgSrc(showcaseVideo);
       class="pt-[0%] w-full"
       aria-hidden="true"
     />
-    <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
+    <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative grid">
       <img
         data-thumbnail
         data-target="my-computer.thumbnail"
         src={showcaseSrc}
         alt="A gud video"
-        class="w-full aspect-[3/2] leading-none object-cover"
+        class="row-start-1 col-start-1 w-full aspect-[3/2] leading-none object-cover"
       />
       <div
         data-scan-line-overlay
-        class="absolute pointer-events-none inset-0 aspect-[3/2] flex flex-col justify-between"
+        class="row-start-1 col-start-1 pointer-events-none aspect-[3/2] flex flex-col justify-between"
       >
         <div data-scan-line class="w-full h-1 bg-slate-200 opacity-30"></div>
         <div
@@ -57,7 +57,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
 
       <template data-target="my-computer.iframeTemplate">
         <iframe
-          class="w-full aspect-[3/2] h-auto"
+          class="row-start-1 col-start-1 w-full aspect-[3/2] h-auto"
           width="560"
           height="315"
           title="YouTube video player"
@@ -117,7 +117,6 @@ const showcaseSrc = getImgSrc(showcaseVideo);
 
     #setPlay(playing: boolean) {
       this.playing = playing;
-      this.welcome = false;
 
       if (this.playing) {
         const iframe = showTemplate(this.iframeTemplate) as HTMLIFrameElement;
@@ -239,12 +238,8 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     visibility: visible;
   }
 
-  my-computer[data-playing] [data-thumbnail] {
-    display: none;
-  }
-
-  my-computer[data-playing] [data-btn-labels] {
-    display: none;
+  my-computer[data-playing] :is([data-thumbnail], [data-btn-labels]) {
+    visibility: hidden;
   }
 
   [data-btn-overlay] {
