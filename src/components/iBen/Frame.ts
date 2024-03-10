@@ -2,9 +2,11 @@ export const showcaseVideo = "MaebEqhZR84";
 
 export const videoIds = [
   showcaseVideo,
-  "ZCdvjNTcT1I",
-  "GOihOAcIgMw",
-  "oxAIcGqFiT8",
+  "Kpw1R7c1CfQ",
+  "1WuC6sykqj0",
+  "DQBbBFIfjQI",
+  "NkzzHYp3gag",
+  "vv3HaXTNqjQ",
 ];
 
 export function getImgSrc(id: string) {
