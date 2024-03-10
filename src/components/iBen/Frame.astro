@@ -9,7 +9,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
 ---
 
 <div class="mt-24 text-center">
-  <h2 id="videos" class="scroll-mt-4 text-8xl mb-4">
+  <h2 class="text-8xl mb-4">
     I make <span class="text-cyan-300 font-bold">videos.</span>
   </h2>
   <p class="dark:text-slate-400 text-xl">
@@ -18,7 +18,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     >
   </p>
 </div>
-<my-computer data-welcome class="dark:bg-gray-900 sm:px-6 px-2">
+<my-computer id="videos" class="dark:bg-gray-900 sm:px-6 px-2">
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
@@ -105,12 +105,13 @@ const showcaseSrc = getImgSrc(showcaseVideo);
   @controller
   class MyComputerElement extends HTMLElement {
     @attr playing = false;
-    @attr welcome = true;
+    @attr welcome = false;
     @attr videoIdx = 0;
 
     @target declare btnLabels: HTMLDivElement;
     @target declare thumbnail: HTMLImageElement;
     @target declare iframeTemplate: HTMLTemplateElement;
+    @target declare cdDrive: HTMLElement;
 
     #videoIds: string[] = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
 
@@ -135,18 +136,37 @@ const showcaseSrc = getImgSrc(showcaseVideo);
       this.videoIdx = (this.videoIdx + 1) % videoIds.length;
       this.thumbnail.src = getImgSrc(this.#videoIds[this.videoIdx]!);
     }
+
+    #observer: IntersectionObserver;
+
+    connectedCallback() {
+      this.#observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry?.isIntersecting) {
+            this.welcome = true;
+          }
+        },
+        { threshold: 0.7 }
+      );
+
+      this.#observer.observe(this.cdDrive);
+    }
+    disconnectedCallback() {
+      this.#observer.disconnect();
+    }
   }
 </script>
 
 <style>
-  i-ben {
-    --anim-delay: 1.3s;
+  my-computer {
+    --anim-delay: 0.5s;
   }
 
-  [data-scan-line] {
+  my-computer[data-welcome] [data-scan-line] {
     animation: scan 4s linear infinite;
     animation-delay: var(--anim-delay);
   }
+
   [data-scan-line-overlay] {
     background-image: linear-gradient(
       180deg,
@@ -180,7 +200,8 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     }
   }
 
-  [data-glow] {
+  my-computer[data-welcome] [data-glow] {
+    visibility: visible;
     filter: brightness(7) blur(20px);
     transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
     transform-origin: bottom center;
@@ -197,24 +218,32 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     transform-origin: bottom center;
   }
 
-  i-ben[data-welcome] [data-thumbnail] {
+  [data-thumbnail],
+  [data-glow],
+  [data-btn-labels] {
+    visibility: hidden;
+  }
+
+  my-computer[data-welcome] [data-thumbnail] {
+    visibility: visible;
     filter: brightness(0.3);
     animation: img-reveal 0.3s ease-in forwards;
     animation-delay: var(--anim-delay);
     clip-path: ellipse(0% 0% at center);
   }
 
-  i-ben[data-welcome] [data-btn-labels] {
+  my-computer[data-welcome] [data-btn-labels] {
+    opacity: 0;
     animation: delayed-reveal 0.3s ease-in forwards;
     animation-delay: var(--anim-delay);
-    opacity: 0;
+    visibility: visible;
   }
 
-  i-ben[data-playing] [data-thumbnail] {
+  my-computer[data-playing] [data-thumbnail] {
     display: none;
   }
 
-  i-ben[data-playing] [data-btn-labels] {
+  my-computer[data-playing] [data-btn-labels] {
     display: none;
   }
 

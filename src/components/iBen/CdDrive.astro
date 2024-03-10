@@ -4,6 +4,7 @@
 
 <div class="flex-1 self-stretch mx-[4%]">
   <div
+    data-target="my-computer.cdDrive"
     data-cd-drive
     class="grid place-items-center w-full h-[60%] bg-slate-700 rounded-b-md"
   >
@@ -20,22 +21,27 @@
       hsla(216, 65%, 53%, 1)
     );
   }
+
+  [data-cd-drive] {
+    /* Hack: set font size to use `em` for `box-shadow` */
+    font-size: 5%;
+    transform-origin: center 20%;
+    scale: 1.15;
+    filter: brightness(0.9);
+    box-shadow: 5em 5em 30em theme(colors.slate.800);
+  }
+
   [data-eject-btn-outer] {
     background-image: linear-gradient(
       hsla(196, 82%, 40%, 1),
       hsla(213, 77%, 32%, 1)
     );
     animation: eject-btn-pop 0.1s linear forwards;
-    animation-delay: 0.9s;
+    animation-delay: 0.4s;
   }
-  [data-cd-drive] {
-    /* Hack: set font size to use `em` for `box-shadow` */
-    font-size: 5%;
-    animation: close-drive 1s cubic-bezier(0.63, 0.79, 0.92, 1.2) forwards;
-    transform-origin: center 20%;
-    scale: 1.15;
-    filter: brightness(0.9);
-    box-shadow: 5em 5em 30em theme(colors.slate.800);
+
+  :global(my-computer[data-welcome]) [data-cd-drive] {
+    animation: close-drive 0.7s var(--ease-spring-5) forwards;
   }
 
   @keyframes close-drive {
