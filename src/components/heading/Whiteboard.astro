@@ -6,6 +6,7 @@ import { scope } from "simple:scope";
   width="400"
   height="600"
   viewBox="0 0 400 600"
+  class="rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -23,14 +24,15 @@ import { scope } from "simple:scope";
       width="337.318"
       height="513.09"
       rx="20"
-      fill="url(#paint0_linear_222_3)"></rect>
+      fill="white"></rect>
     <rect
       x="44.4192"
       y="42.8673"
       width="337.318"
       height="513.09"
       rx="20"
-      fill="white"></rect>
+      class="group-[[data-drawing]]:opacity-0 transition-opacity"
+      fill="url(#paint0_linear_222_3)"></rect>
     <rect
       x="44.4192"
       y="42.8673"
@@ -263,3 +265,24 @@ import { scope } from "simple:scope";
     </linearGradient>
   </defs>
 </svg>
+
+<style>
+  svg {
+    animation-play-state: running;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  :global(my-whiteboard[data-drawing]) svg {
+    animation-play-state: paused;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 10px;
+    }
+  }
+</style>

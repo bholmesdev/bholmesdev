@@ -4,7 +4,7 @@ import Whiteboard from "./Whiteboard.astro";
 ---
 
 <my-whiteboard
-  class="mb-8 flex max-w-[120ch] items-center justify-center mx-auto p-3"
+  class="group mb-8 flex max-w-[120ch] items-center justify-center gap-12 mx-auto p-3"
 >
   <div>
     <h1 class="text-9xl">
@@ -50,7 +50,7 @@ import Whiteboard from "./Whiteboard.astro";
 
 <script>
   import { gsap } from "gsap";
-  import { controller, target, targets } from "@github/catalyst";
+  import { attr, controller, target, targets } from "@github/catalyst";
   import { fisherYatesShuffle } from "../../utils.client";
   import MotionPathPlugin from "gsap/MotionPathPlugin";
 
@@ -67,12 +67,12 @@ import Whiteboard from "./Whiteboard.astro";
     @target drawBtn!: HTMLButtonElement;
     @targets eyes!: SVGElement[];
 
+    @attr drawing = false;
+
     #xPool = fisherYatesShuffle(xPoolInitial);
     #yPool = fisherYatesShuffle(yPoolInitial);
     #xIdx = 0;
     #yIdx = 0;
-
-    drawing = false;
 
     #faceAnim?: gsap.core.Tween;
     #eyesAnim?: gsap.core.Timeline;
