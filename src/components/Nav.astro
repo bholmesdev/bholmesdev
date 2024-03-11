@@ -80,6 +80,11 @@ const links: ListItem[] = [
 
     #abort = new AbortController();
 
+    toggle() {
+      this.open = !this.open;
+      this.btn.ariaExpanded = toAttr(this.open);
+    }
+
     connectedCallback() {
       document.addEventListener(
         "scroll",
@@ -113,11 +118,6 @@ const links: ListItem[] = [
 
     disconnectedCallback() {
       this.#abort.abort();
-    }
-
-    toggle() {
-      this.open = !this.open;
-      this.btn.ariaExpanded = toAttr(this.open);
     }
   }
 </script>
