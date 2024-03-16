@@ -6,11 +6,13 @@ import Section from "./Section.astro";
   <h2 class="text-xl mb-3">In brief.</h2>
   <input id="inbrief-checkbox" class="hidden checkbox" type="checkbox" />
   <label
-    class="font-bold cursor-pointer grid gap-2 items-center justify-between text-lg dark:text-gray-400 mb-2"
+    class="font-bold cursor-pointer grid gap-2 items-center justify-between text-lg text-gray-400 mb-2"
     for="inbrief-checkbox"
   >
     <span class="label-personal">Personal Mode</span>
-    <span class="switch before:transition-all before:spring-3"></span>
+    <span
+      class="switch w-[0.6em] h-[1em] rounded-full flex justify-center relative before:transition-all before:ease-spring-3 before:"
+    ></span>
     <span class="label-recruiter">Recruiter Mode</span>
   </label>
   <div class="content-personal">
@@ -72,19 +74,13 @@ import Section from "./Section.astro";
     grid-area: recruiter;
   }
   .switch {
-    width: 0.6em;
-    height: 1em;
-    border-radius: theme(borderRadius.full);
-    display: flex;
-    justify-content: center;
-    position: relative;
     grid-area: switch;
     background: radial-gradient(
         53.29% 50% at 50% 50%,
         rgba(209, 198, 226, 0) 0%,
-        theme(backgroundColor.gray.800) 100%
+        var(--color-gray-800) 100%
       ),
-      theme(backgroundColor.gray.700);
+      var(--color-gray-700);
   }
   .switch:before {
     content: "";
@@ -116,7 +112,7 @@ import Section from "./Section.astro";
   }
 
   .checkbox:checked ~ label > .label-personal {
-    @apply dark:text-gray-400;
+    color: var(--color-gray-400);
   }
   .content-personal {
     display: block;

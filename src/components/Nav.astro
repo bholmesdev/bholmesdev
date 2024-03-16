@@ -25,7 +25,7 @@ const links: ListItem[] = [
 
 <nav-open data-open class="group">
   <nav
-    class="group-[[data-open]]:dark:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
+    class="group-[[data-open]]:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
   >
     {headings?.length ? <Toc {headings} /> : null}
     <ul transition:persist id={id} class="flex gap-6 ml-auto items-center">
@@ -38,7 +38,7 @@ const links: ListItem[] = [
             <a
               data-targets="nav-open.links"
               data-active={isMatch(urlPath, l.path)}
-              class="no-underline text-lg block scale-1 dark:text-gray-300 data-[active]:text-white data-[active]:font-bold data-[active]:scale-110 transition-transform spring-5"
+              class="no-underline text-lg block scale-100 text-gray-300 data-[active]:text-white data-[active]:font-bold data-[active]:scale-110 transition-transform ease-spring-5 duration-500"
               href={l.path}
             >
               {l.label}
@@ -54,10 +54,17 @@ const links: ListItem[] = [
         data-target="nav-open.btn"
         aria-controls={id}
       >
-        <div class="stripe origin-top-right group-[[data-open]]:-rotate-45">
+        <div
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-top-right group-[[data-open]]:-rotate-45"
+        >
         </div>
-        <div class="stripe origin-center group-[[data-open]]:scale-0"></div>
-        <div class="stripe origin-bottom-right group-[[data-open]]:rotate-45">
+        <div
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-center group-[[data-open]]:scale-0"
+        >
+        </div>
+        <div
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-bottom-right group-[[data-open]]:rotate-45"
+        >
         </div>
       </button>
     </div>
@@ -123,14 +130,10 @@ const links: ListItem[] = [
 </script>
 
 <style>
-  .stripe {
-    @apply spring-1 rounded-full h-[3px] w-full bg-current;
-  }
-
   li {
     transform: translateX(calc((4.5em - (var(--idx) * 1em))));
     transition-delay: calc(var(--idx) * 50ms);
-    transition-timing-function: theme(transitionTimingFunction.spring-3);
+    transition-timing-function: var(--transition-timing-function-spring-5);
     transition-duration: 500ms;
   }
 

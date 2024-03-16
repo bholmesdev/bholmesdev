@@ -116,8 +116,8 @@ const { icon, ...btnAttrs } = Astro.props;
   .face,
   .back {
     transition:
-      filter theme(transitionTimingFunction.in-out) 0.2s,
-      transform theme(transitionTimingFunction.spring-5) 0.5s;
+      filter var(--transition-timing-function-in-out) 0.2s,
+      transform var(--transition-timing-function-spring-5) 0.5s;
   }
   svg {
     width: 100%;

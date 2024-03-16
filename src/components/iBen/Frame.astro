@@ -12,8 +12,8 @@ const showcaseSrc = getImgSrc(showcaseVideo);
   <h2 class="text-8xl mb-4">
     I make <span class="text-cyan-300 font-bold">videos.</span>
   </h2>
-  <p class="dark:text-slate-400 text-xl">
-    About the hardest parts of <strong class="font-normal dark:text-slate-50"
+  <p class="text-slate-400 text-xl">
+    About the hardest parts of <strong class="font-normal text-slate-50"
       >web development.</strong
     >
   </p>
@@ -193,10 +193,8 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     grid-area: 1/1;
   }
 
-  @media (min-width: theme(screens.sm)) {
-    [data-glow] {
-      filter: brightness(7) blur(50px) !important;
-    }
+  [data-glow] {
+    filter: brightness(7) blur(50px) !important;
   }
 
   my-computer[data-welcome] [data-glow] {
@@ -243,7 +241,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
   }
 
   [data-btn-overlay] {
-    bottom: calc(theme(spacing.6) + 4.4%);
+    bottom: calc(var(--spacing-6) + 4.4%);
   }
 
   [data-btn-overlay] :global([data-icon="random"]) {

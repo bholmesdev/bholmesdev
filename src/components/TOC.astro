@@ -11,7 +11,7 @@ const { headings } = Astro.props;
 ---
 
 <my-toc>
-  <div class="panel dark:bg-gray-950">
+  <div class="panel bg-gray-950">
     <div class="progress-container">
       <progress data-target="my-toc.progress" max="1"></progress>
       <Icon class="done" name="check" />
@@ -133,7 +133,7 @@ const { headings } = Astro.props;
     translate: -0.4rem -0.4rem;
     transform-origin: 1em 1em;
     transition:
-      rotate 0.8s theme(transitionTimingFunction.spring),
+      rotate 0.8s var(--transition-timing-function-spring),
       visibility 0.8s,
       scale 0.2s;
     border-radius: 1em;
