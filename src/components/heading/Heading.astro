@@ -32,10 +32,9 @@ import Whiteboard from "./Whiteboard.astro";
       </a>
       <button
         class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
-        is="button"
         data-draw-btn
         data-target="my-whiteboard.drawBtn"
-        data-action="click:my-whiteboard#clearTheBoard"
+        data-action="click:my-whiteboard#startDrawing"
       >
         <span
           class="group-disabled/btn:scale-105 group-disabled/btn:rounded-2xl group-disabled/btn:scale-y-110 origin-top rounded-xl px-8 py-2 flex items-center justify-center gap-4"
@@ -53,6 +52,7 @@ import Whiteboard from "./Whiteboard.astro";
   import { attr, controller, target, targets } from "@github/catalyst";
   import { fisherYatesShuffle } from "../../utils.client";
   import MotionPathPlugin from "gsap/MotionPathPlugin";
+  import { setUpCanvas } from "./canvas";
 
   gsap.registerPlugin(MotionPathPlugin);
 
@@ -66,6 +66,7 @@ import Whiteboard from "./Whiteboard.astro";
     @target eraser!: SVGElement;
     @target drawBtn!: HTMLButtonElement;
     @targets eyes!: SVGElement[];
+    @target canvas!: HTMLCanvasElement;
 
     @attr drawing = false;
 
@@ -84,7 +85,7 @@ import Whiteboard from "./Whiteboard.astro";
         ?.scrollIntoView({ behavior: "smooth" });
     }
 
-    clearTheBoard() {
+    startDrawing() {
       if (this.drawing) return;
       this.drawing = true;
       this.drawBtn.disabled = this.drawing;
@@ -131,6 +132,8 @@ import Whiteboard from "./Whiteboard.astro";
         ease: "elastic.out(1,1)",
         duration: 0.4,
       });
+
+      setUpCanvas(this, this.canvas);
     }
 
     connectedCallback() {

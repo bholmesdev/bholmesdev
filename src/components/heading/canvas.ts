@@ -2,10 +2,9 @@ const strokeWidth = 25;
 
 export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
   const colorMap = {
-    red: getCssVar("--red"),
-    purple: getCssVar("--purple"),
-    pink: getCssVar("--pink"),
-    green: getCssVar("--green"),
+    red: getCssVar("--color-red-500"),
+    blue: getCssVar("--color-blue-600"),
+    green: getCssVar("--color-green-600"),
   };
 
   function getCssVar(name: string) {
@@ -14,12 +13,15 @@ export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
 
   const colorInputs = container.querySelectorAll('input[name="color"]')!;
   for (const colorInput of colorInputs) {
+    if (colorInput.getAttribute("value") === "red") {
+      colorInput.toggleAttribute("checked", true);
+    }
     colorInput.addEventListener("change", (evt) => {
       const inputColor = (evt.currentTarget as HTMLInputElement)?.value;
       if (!(inputColor in colorMap)) return;
 
       const color =
-        (colorMap as Record<string, string>)[inputColor] ?? colorMap.purple;
+        (colorMap as Record<string, string>)[inputColor] ?? colorMap.red;
 
       ctx.strokeStyle = color;
     });
@@ -32,7 +34,7 @@ export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
 
   const ctx = canvas.getContext("2d")!;
 
-  ctx.strokeStyle = colorMap.purple;
+  ctx.strokeStyle = colorMap.red;
   ctx.lineWidth = strokeWidth;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
@@ -98,7 +100,7 @@ export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
   function getTouchScreenPoint(evt: TouchEvent): Point {
     if (!evt.currentTarget) return { x: 0, y: 0 };
     const rect = (evt.currentTarget as HTMLElement).getBoundingClientRect();
-    const touch = evt.targetTouches[0];
+    const touch = evt.targetTouches[0] ?? { clientX: 0, clientY: 0 };
     return {
       x: touch.clientX - rect.left,
       y: touch.clientY - rect.top,
