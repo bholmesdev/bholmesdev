@@ -1,8 +1,6 @@
 ---
 import { scope } from "simple:scope";
-import markerRed from "./marker-red.svg?raw";
-import markerBlue from "./marker-blue.svg?raw";
-import markerGreen from "./marker-green.svg?raw";
+import marker from "./marker.svg?raw";
 ---
 
 <div
@@ -19,22 +17,22 @@ import markerGreen from "./marker-green.svg?raw";
     data-action="click:my-whiteboard#startDrawing"
   >
     <label
-      class="opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
-      set:html={markerRed}
+      class="text-red-600 opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      set:html={marker}
     >
       <span class="sr-only">Red</span>
       <input class="sr-only" type="radio" value="red" name="color" />
     </label>
     <label
-      set:html={markerBlue}
-      class="opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      set:html={marker}
+      class="text-blue-600 opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Blue</span>
       <input class="sr-only" type="radio" value="blue" name="color" />
     </label>
     <label
-      set:html={markerGreen}
-      class="opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      set:html={marker}
+      class="text-green-600 opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Green</span>
       <input class="sr-only" type="radio" value="green" name="color" />
