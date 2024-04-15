@@ -24,4 +24,25 @@ const { Content, headings } = await post.render();
 
 <script>
   import "../../components/article-scroll";
+  import { controller, target } from "@github/catalyst";
+  import { progress } from "../../components/article-scroll";
+
+  @controller
+  class ArticleScrollElement extends HTMLElement {
+    @target declare progress: HTMLProgressElement;
+
+    #listener = () => {};
+    connectedCallback() {
+      this.#listener = () => {
+        const articleHeight = this.offsetTop + this.offsetHeight;
+        progress.set(
+          Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
+        );
+      };
+      document.addEventListener("scroll", this.#listener);
+    }
+    disconnectedCallback() {
+      document.removeEventListener("scroll", this.#listener);
+    }
+  }
 </script>
