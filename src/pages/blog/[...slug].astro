@@ -15,12 +15,42 @@ const { Content, headings } = await post.render();
 
 <BaseLayout {headings}>
   <article-scroll>
-    <main class="max-w-prose m-auto px-3 prose prose-invert">
-      <h1>{post.data.title}</h1>
+    <main class="max-w-prose m-auto px-3 prose prose-invert mb-24">
+      <h1 class="text-4xl mt-12">{post.data.title}</h1>
       <Content />
     </main>
   </article-scroll>
 </BaseLayout>
+
+<style>
+  main :global(h3) {
+    font-size: var(--font-size-xl);
+    margin-block-start: 2rem;
+  }
+
+  main :global(h2) {
+    font-size: var(--font-size-2xl);
+    margin-block-start: 3rem;
+  }
+
+  main :global(:is(h1, h2, h3, h4)) {
+    font-weight: bold;
+    line-height: 1.3;
+  }
+
+  main :global(p) {
+    line-height: 1.5;
+    margin-block: 0.8rem;
+  }
+
+  main :global(pre) {
+    padding-inline: 1rem;
+    padding-block: 1.3rem;
+    border-radius: 0.4rem;
+    line-height: 1.7;
+    margin-block: 1rem;
+  }
+</style>
 
 <script>
   import "../../components/article-scroll";
