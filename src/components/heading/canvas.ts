@@ -2,28 +2,31 @@ const strokeWidth = 25;
 
 export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
   const colorMap = {
-    red: getCssVar("--color-red-500"),
-    blue: getCssVar("--color-blue-600"),
-    green: getCssVar("--color-green-600"),
+    red: getCssVar("--color-marker-red"),
+    blue: getCssVar("--color-marker-blue"),
+    green: getCssVar("--color-marker-green"),
   };
+
+  function getColor(name: string): string {
+    if (name in colorMap) {
+      return (colorMap as Record<string, string>)[name]!;
+    }
+    throw new Error(`Invalid color name: ${name}`);
+  }
 
   function getCssVar(name: string) {
     return window.getComputedStyle(container).getPropertyValue(name);
   }
 
+  let initialColor = colorMap.red;
   const colorInputs = container.querySelectorAll('input[name="color"]')!;
   for (const colorInput of colorInputs) {
-    if (colorInput.getAttribute("value") === "red") {
-      colorInput.toggleAttribute("checked", true);
+    if (colorInput instanceof HTMLInputElement && colorInput.checked) {
+      initialColor = getColor(colorInput.value);
     }
     colorInput.addEventListener("change", (evt) => {
       const inputColor = (evt.currentTarget as HTMLInputElement)?.value;
-      if (!(inputColor in colorMap)) return;
-
-      const color =
-        (colorMap as Record<string, string>)[inputColor] ?? colorMap.red;
-
-      ctx.strokeStyle = color;
+      ctx.strokeStyle = getColor(inputColor);
     });
   }
 
@@ -34,7 +37,7 @@ export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
 
   const ctx = canvas.getContext("2d")!;
 
-  ctx.strokeStyle = colorMap.red;
+  ctx.strokeStyle = initialColor;
   ctx.lineWidth = strokeWidth;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";

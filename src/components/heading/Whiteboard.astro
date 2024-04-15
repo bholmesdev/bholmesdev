@@ -17,22 +17,22 @@ import marker from "./marker.svg?raw";
     data-action="click:my-whiteboard#startDrawing"
   >
     <label
-      class="text-red-600 opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-red opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
       set:html={marker}
     >
       <span class="sr-only">Red</span>
-      <input class="sr-only" type="radio" value="red" name="color" />
+      <input checked class="sr-only" type="radio" value="red" name="color" />
     </label>
     <label
       set:html={marker}
-      class="text-blue-600 opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-blue opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Blue</span>
       <input class="sr-only" type="radio" value="blue" name="color" />
     </label>
     <label
       set:html={marker}
-      class="text-green-600 opacity-80 translate-y-0 has-checked:opacity-100 has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-green opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Green</span>
       <input class="sr-only" type="radio" value="green" name="color" />
@@ -118,7 +118,7 @@ import marker from "./marker.svg?raw";
       data-target="my-whiteboard.eraser"
       x="52"
       y="480"
-      fill="blue"
+      fill="#0034ff"
       width="50"
       height="70"
       rx="10"></rect>
