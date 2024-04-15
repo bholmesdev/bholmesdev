@@ -131,9 +131,10 @@ import Whiteboard from "./Whiteboard.astro";
         y: 0,
         ease: "elastic.out(1,1)",
         duration: 0.4,
+        onStart: () => {
+          setUpCanvas(this, this.canvas);
+        },
       });
-
-      setUpCanvas(this, this.canvas);
     }
 
     connectedCallback() {
