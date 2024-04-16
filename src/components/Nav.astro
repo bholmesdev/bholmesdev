@@ -25,7 +25,7 @@ const links: ListItem[] = [
 
 <nav-open data-open class="group">
   <nav
-    class="group-[[data-open]]:bg-gray-950 sticky top-0 max-w-[100ch] flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
+    class="sticky top-0 max-w-[100ch] flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
   >
     {headings?.length ? <Toc {headings} /> : null}
     <ul transition:persist id={id} class="flex gap-6 ml-auto items-center">
@@ -140,5 +140,26 @@ const links: ListItem[] = [
   [data-open] li {
     transform: translateX(0);
     transition-delay: calc((4 - var(--idx)) * 50ms);
+  }
+
+  nav:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    bottom: -100%;
+    pointer-events: none;
+    background-image: linear-gradient(
+      180deg,
+      hsl(224deg 71% 4% / 100%) 0%,
+      hsl(224deg 71% 4% / 90%) 22%,
+      hsl(224deg 71% 4% / 80%) 32%,
+      hsl(224deg 71% 4% / 60%) 40%,
+      hsl(224deg 71% 4% / 50%) 48%,
+      hsl(224deg 71% 4% / 40%) 55%,
+      hsl(224deg 71% 4% / 30%) 62%,
+      hsl(224deg 71% 4% / 20%) 70%,
+      hsl(224deg 71% 4% / 10%) 80%,
+      hsl(224deg 71% 4% / 0%) 100%
+    );
   }
 </style>
