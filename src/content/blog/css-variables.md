@@ -17,9 +17,9 @@ To clarify, this is the behavior you might be after:
 }
 ```
 
-...which sadly won't work 😣
+...which sadly won't work.
 
-## 🙅 Why var() can't work in a @media declaration
+## Why var() can't work in a @media declaration
 
 This may seem confusing at first. If our variables are available at the `:root` of the page, why can't a media query access them?
 
@@ -44,7 +44,7 @@ As luck would have it, the W3C isn't happy about this limitation either. [Their 
 
 I'll avoid showing you the syntax since it'll likely change overtime. Just know it's meant to address variables that exist _beyond_ the HTML element level for use cases like `@media` declarations.
 
-## 🤔 Workarounds you can try
+## Workarounds you can try
 
 If you want media query variables and want them _now,_ there's a few options available to you.
 
