@@ -60,19 +60,25 @@ const { Content, headings } = await post.render();
   @controller
   class ArticleScrollElement extends HTMLElement {
     @target declare progress: HTMLProgressElement;
+    headings!: HTMLHeadingElement[];
 
-    #listener = () => {};
+    abortScroll!: AbortController;
     connectedCallback() {
-      this.#listener = () => {
-        const articleHeight = this.offsetTop + this.offsetHeight;
-        progress.set(
-          Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
-        );
-      };
-      document.addEventListener("scroll", this.#listener);
+      this.abortScroll = new AbortController();
+      this.headings = [...this.querySelectorAll("h2")];
+      document.addEventListener(
+        "scroll",
+        () => {
+          const articleHeight = this.offsetTop + this.offsetHeight;
+          progress.set(
+            Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
+          );
+        },
+        { signal: this.abortScroll.signal }
+      );
     }
     disconnectedCallback() {
-      document.removeEventListener("scroll", this.#listener);
+      this.abortScroll.abort();
     }
   }
 </script>
