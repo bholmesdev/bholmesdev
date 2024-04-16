@@ -23,6 +23,10 @@ const { Content, headings } = await post.render();
 </BaseLayout>
 
 <style>
+  main {
+    counter-reset: heading-counter;
+  }
+
   main :global(h3) {
     font-size: var(--font-size-xl);
     margin-block-start: 2rem;
@@ -30,7 +34,27 @@ const { Content, headings } = await post.render();
 
   main :global(h2) {
     font-size: var(--font-size-2xl);
-    margin-block-start: 3rem;
+    margin-block-start: 5rem;
+    position: relative;
+  }
+
+  main :global(h2:before) {
+    counter-increment: heading-counter;
+    content: counter(heading-counter);
+    position: absolute;
+    border-radius: calc(infinity * 1px);
+    background: var(--color-gray-900);
+    height: 2.4em;
+    width: 2.4em;
+    top: -1.1em;
+    left: -1em;
+    display: flex;
+    z-index: -1;
+    line-height: 1.3;
+    color: var(--color-gray-600);
+    font-size: var(--font-size-2xl);
+    font-family: var(--font-family-heading);
+    justify-content: center;
   }
 
   main :global(:is(h1, h2, h3, h4)) {
