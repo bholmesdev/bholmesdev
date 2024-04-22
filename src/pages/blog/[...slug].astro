@@ -79,17 +79,16 @@ const { Content, headings } = await post.render();
 <script>
   import "../../components/article-scroll";
   import { controller, target } from "@github/catalyst";
-  import { progress } from "../../components/article-scroll";
+  import { progress, currentSectionIdx } from "../../components/article-scroll";
 
   @controller
   class ArticleScrollElement extends HTMLElement {
     @target declare progress: HTMLProgressElement;
-    headings!: HTMLHeadingElement[];
 
     abortScroll!: AbortController;
     connectedCallback() {
       this.abortScroll = new AbortController();
-      this.headings = [...this.querySelectorAll("h2")];
+      const headings = [...this.querySelectorAll("h2")];
       document.addEventListener(
         "scroll",
         () => {
@@ -100,6 +99,36 @@ const { Content, headings } = await post.render();
         },
         { signal: this.abortScroll.signal }
       );
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (headings.includes(entry.target as HTMLHeadingElement)) {
+                currentSectionIdx.set(
+                  headings.indexOf(entry.target as HTMLHeadingElement)
+                );
+              }
+              const nextHeading = entry.target.nextElementSibling;
+              if (
+                nextHeading instanceof HTMLHeadingElement &&
+                headings.includes(nextHeading)
+              ) {
+                const idx = headings.indexOf(nextHeading) - 1;
+                if (idx >= 0) {
+                  currentSectionIdx.set(idx);
+                }
+              }
+            }
+          });
+        },
+        { rootMargin: "-25% 0px" }
+      );
+      for (const heading of headings) {
+        observer.observe(heading);
+        if (heading.previousElementSibling) {
+          observer.observe(heading.previousElementSibling);
+        }
+      }
     }
     disconnectedCallback() {
       this.abortScroll.abort();

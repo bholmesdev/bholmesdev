@@ -32,13 +32,19 @@ const { headings } = Astro.props;
     aria-controls={scope("panel")}
     class="transition-all ease-spring-3 duration-500"
   >
-    <div class="inner">1</div>
+    <div class="inner overflow-y-hidden">
+      <div
+        class="flex flex-col w-full gap-3 pt-2 translate-y-[--section-offset] transition-transform duration-700 ease-spring-5"
+      >
+        {headings.map((_, idx) => <span>{idx + 1}</span>)}
+      </div>
+    </div>
   </button>
 </my-toc>
 
 <script>
   import { attr, target, controller } from "@github/catalyst";
-  import { progress } from "./article-scroll";
+  import { progress, currentSectionIdx } from "./article-scroll";
   import { toAttr } from "../utils.client";
 
   @controller
@@ -52,6 +58,12 @@ const { headings } = Astro.props;
       progress.subscribe((value) => {
         this.progress.value = value;
         this.doneReading = Math.round(value * 10) / 10 >= 1;
+      });
+      currentSectionIdx.subscribe((idx) => {
+        this.btn.style.setProperty(
+          "--section-offset",
+          `calc(-${idx} * (var(--spacing-3) + 1em))`
+        );
       });
     }
 
@@ -152,9 +164,6 @@ const { headings } = Astro.props;
   .inner {
     line-height: 1;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     --purple-fill: radial-gradient(
         170.26% 170.26% at 111.61% 118.75%,
         rgba(255, 255, 255, 0.4) 0%,
