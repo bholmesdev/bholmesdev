@@ -15,7 +15,7 @@
     "@fontsource/atkinson-hyperlegible": "^5.0.5",
     "@fontsource/ranga": "^5.0.18",
     "@github/catalyst": "^1.6.0",
-    "@tailwindcss/postcss": "4.0.0-alpha.9",
+    "@tailwindcss/postcss": "4.0.0-alpha.14",
     "@tailwindcss/typography": "^0.5.10",
     "@tailwindcss/vite": "0.0.0-development.1",
     "astro": "^3.2.3",
@@ -24,7 +24,7 @@
     "nanoid": "^4.0.2",
     "nanostores": "^0.9.5",
     "open-props": "^1.6.16",
-    "tailwindcss": "4.0.0-alpha.9",
+    "tailwindcss": "4.0.0-alpha.14",
     "vite-plugin-simple-scope": "^1.0.3"
   },
   "devDependencies": {
