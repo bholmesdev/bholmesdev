@@ -18,11 +18,19 @@ const { headings } = Astro.props;
     </div>
     <ul class="p-5 pb-3" id={scope("panel")} role="list">
       {
-        headings.map((h) => (
-          <li class="my-1 text-ellipsis whitespace-nowrap overflow-hidden">
-            <a href={`#${h.slug}`}>{h.text}</a>
-          </li>
-        ))
+        headings
+          .filter((h) => h.depth === 2)
+          .map((h) => (
+            <li class="my-1 text-ellipsis whitespace-nowrap overflow-hidden">
+              <a
+                data-targets="my-toc.links"
+                class="data-[active]:text-primary-light"
+                href={`#${h.slug}`}
+              >
+                {h.text}
+              </a>
+            </li>
+          ))
       }
     </ul>
   </div>
@@ -43,7 +51,7 @@ const { headings } = Astro.props;
 </my-toc>
 
 <script>
-  import { attr, target, controller } from "@github/catalyst";
+  import { attr, target, targets, controller } from "@github/catalyst";
   import { progress, currentSectionIdx } from "./article-scroll";
   import { toAttr } from "../utils.client";
 
@@ -53,6 +61,7 @@ const { headings } = Astro.props;
     @attr doneReading = false;
     @target declare btn: HTMLButtonElement;
     @target declare progress: HTMLProgressElement;
+    @targets declare links: HTMLAnchorElement[];
 
     connectedCallback() {
       progress.subscribe((value) => {
@@ -64,6 +73,9 @@ const { headings } = Astro.props;
           "--section-offset",
           `calc(-${idx} * (var(--spacing-3) + 1em))`
         );
+        for (const [linkIdx, link] of this.links.entries()) {
+          link.toggleAttribute("data-active", linkIdx === idx);
+        }
       });
     }
 
@@ -170,7 +182,7 @@ const { headings } = Astro.props;
         rgba(98, 0, 255, 0.4) 50%,
         rgba(255, 255, 255, 0.4) 100%
       ),
-      #6200ff;
+      var(--color-primary);
     background: var(--purple-fill);
     background-size: 200% 200%;
     background-position: 80% 80%;
@@ -198,7 +210,7 @@ const { headings } = Astro.props;
         rgba(76, 5, 189, 0.6) 50%,
         rgba(218, 196, 251, 0.6) 100%
       ),
-      #6200ff;
+      var(--color-primary);
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.26))
       drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.26))
       drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.22))

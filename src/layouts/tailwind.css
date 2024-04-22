@@ -29,4 +29,7 @@
   --color-marker-red: #ff0000;
   --color-marker-blue: #0034ff;
   --color-marker-green: var(--color-green-600);
+
+  --color-primary: #6200ff;
+  --color-primary-light: #a08aff;
 }
