@@ -9,7 +9,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
 ---
 
 <div class="mt-24 text-center">
-  <h2 class="text-8xl mb-4">
+  <h2 class="text-8xl mb-4 font-heading">
     I make <span class="text-cyan-300 font-bold">videos.</span>
   </h2>
   <p class="text-slate-400 text-xl">
@@ -28,17 +28,17 @@ const showcaseSrc = getImgSrc(showcaseVideo);
       class="pt-[0%] w-full"
       aria-hidden="true"
     />
-    <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative grid">
+    <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
       <img
         data-thumbnail
         data-target="my-computer.thumbnail"
         src={showcaseSrc}
         alt="A gud video"
-        class="row-start-1 col-start-1 w-full aspect-[3/2] leading-none object-cover"
+        class="absolute top-0 w-full aspect-[3/2] leading-none object-cover"
       />
       <div
         data-scan-line-overlay
-        class="row-start-1 col-start-1 pointer-events-none aspect-[3/2] flex flex-col justify-between"
+        class="absolute inset-0 pointer-events-none aspect-[3/2] flex flex-col justify-between"
       >
         <div data-scan-line class="w-full h-1 bg-slate-200 opacity-30"></div>
         <div
@@ -57,7 +57,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
 
       <template data-target="my-computer.iframeTemplate">
         <iframe
-          class="row-start-1 col-start-1 w-full aspect-[3/2] h-auto"
+          class="absolute top-0 w-full aspect-[3/2] h-auto"
           width="560"
           height="315"
           title="YouTube video player"
