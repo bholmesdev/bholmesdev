@@ -14,12 +14,12 @@ const { Content, headings } = await post.render();
 ---
 
 <BaseLayout {headings}>
-  <article-scroll>
-    <main class="max-w-prose m-auto px-3 mb-24">
+  <main class="max-w-prose m-auto px-3 mb-24">
+    <article-scroll>
       <h1 class="text-4xl mt-12">{post.data.title}</h1>
       <Content />
-    </main>
-  </article-scroll>
+    </article-scroll>
+  </main>
 </BaseLayout>
 
 <style>
@@ -108,26 +108,29 @@ const { Content, headings } = await post.render();
                   headings.indexOf(entry.target as HTMLHeadingElement)
                 );
               }
-              const nextHeading = entry.target.nextElementSibling;
-              if (
-                nextHeading instanceof HTMLHeadingElement &&
-                headings.includes(nextHeading)
-              ) {
-                const idx = headings.indexOf(nextHeading) - 1;
-                if (idx >= 0) {
-                  currentSectionIdx.set(idx);
+              let heading: HTMLHeadingElement | null = null;
+              let previousSibling = entry.target.previousElementSibling;
+              while (!heading && previousSibling) {
+                previousSibling = previousSibling.previousElementSibling;
+                if (
+                  previousSibling instanceof HTMLHeadingElement &&
+                  headings.includes(previousSibling)
+                ) {
+                  heading = previousSibling;
                 }
+              }
+              if (!heading) return;
+              const idx = headings.indexOf(heading);
+              if (idx >= 0) {
+                currentSectionIdx.set(idx);
               }
             }
           });
         },
-        { rootMargin: "-25% 0px" }
+        { rootMargin: "-49% 0px", threshold: 0 }
       );
-      for (const heading of headings) {
-        observer.observe(heading);
-        if (heading.previousElementSibling) {
-          observer.observe(heading.previousElementSibling);
-        }
+      for (const element of this.children) {
+        observer.observe(element);
       }
     }
     disconnectedCallback() {
