@@ -1,10 +1,12 @@
 const strokeWidth = 25;
+const eraserWidth = 100;
 
 export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
   const colorMap = {
     red: getCssVar("--color-marker-red"),
     blue: getCssVar("--color-marker-blue"),
     green: getCssVar("--color-marker-green"),
+    eraser: "white",
   };
 
   function getColor(name: string): string {
@@ -18,29 +20,39 @@ export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
     return window.getComputedStyle(container).getPropertyValue(name);
   }
 
-  let initialColor = colorMap.red;
-  const colorInputs = container.querySelectorAll('input[name="color"]')!;
+  const ctx = canvas.getContext("2d")!;
+  ctx.strokeStyle = colorMap.red;
+  ctx.lineWidth = strokeWidth;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+
+  const colorInputs: NodeListOf<HTMLInputElement> = container.querySelectorAll(
+    'input[name="color"]'
+  )!;
   for (const colorInput of colorInputs) {
-    if (colorInput instanceof HTMLInputElement && colorInput.checked) {
-      initialColor = getColor(colorInput.value);
-    }
     colorInput.addEventListener("change", (evt) => {
       const inputColor = (evt.currentTarget as HTMLInputElement)?.value;
+      console.log(inputColor);
       ctx.strokeStyle = getColor(inputColor);
+      ctx.lineWidth = inputColor === "eraser" ? eraserWidth : strokeWidth;
     });
+    if (colorInput instanceof HTMLInputElement && colorInput.checked) {
+      // Set to red marker if eraser is the initial selection.
+      if (colorInput.value === "eraser") {
+        const defaultInput = [...colorInputs].find((c) => c.value === "red")!;
+        defaultInput.checked = true;
+        colorInput.checked = false;
+        continue;
+      }
+      ctx.strokeStyle = getColor(colorInput.value);
+      ctx.lineWidth = colorInput.value === "eraser" ? eraserWidth : strokeWidth;
+    }
   }
 
   type Point = { x: number; y: number };
 
   let drawing = false;
   let latestPoint: Point = { x: 0, y: 0 };
-
-  const ctx = canvas.getContext("2d")!;
-
-  ctx.strokeStyle = initialColor;
-  ctx.lineWidth = strokeWidth;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
 
   function normalizePoint(point: Point): Point {
     const rect = canvas.getBoundingClientRect();

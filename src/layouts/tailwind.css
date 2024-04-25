@@ -28,6 +28,7 @@
 
   --color-marker-red: #ff0000;
   --color-marker-blue: #0034ff;
+  --color-marker-blue-light: color-mix(in srgb, var(--color-marker-blue), white 20%);
   --color-marker-green: var(--color-green-600);
 
   --color-primary: #6200ff;
