@@ -45,7 +45,9 @@ const { title = "Ben Holmes", headings } = Astro.props;
   </head>
   <body class="bg-gray-950 text-white text-base">
     <Nav headings={headings} />
-    <slot />
+    <div class="relative z-10">
+      <slot />
+    </div>
     <style is:global>
       :root {
         --purple-hs: 263.1 100%;
