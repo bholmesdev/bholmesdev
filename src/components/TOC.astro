@@ -59,9 +59,9 @@ const { headings } = Astro.props;
   class MyTocElement extends HTMLElement {
     @attr open = false;
     @attr doneReading = false;
-    @target declare btn: HTMLButtonElement;
-    @target declare progress: HTMLProgressElement;
-    @targets declare links: HTMLAnchorElement[];
+    @target btn: HTMLButtonElement;
+    @target progress: HTMLProgressElement;
+    @targets links: HTMLAnchorElement[];
 
     connectedCallback() {
       progress.subscribe((value) => {

@@ -61,12 +61,12 @@ import Whiteboard from "./Whiteboard.astro";
 
   @controller
   class MyWhiteboardElement extends HTMLElement {
-    @target face!: SVGElement;
-    @target scribble!: SVGPathElement;
-    @target eraser!: SVGElement;
-    @target drawBtn!: HTMLButtonElement;
-    @targets eyes!: SVGElement[];
-    @target canvas!: HTMLCanvasElement;
+    @target face: SVGElement;
+    @target scribble: SVGPathElement;
+    @target eraser: SVGElement;
+    @target drawBtn: HTMLButtonElement;
+    @targets eyes: SVGElement[];
+    @target canvas: HTMLCanvasElement;
 
     @attr drawing = false;
 

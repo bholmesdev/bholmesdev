@@ -83,7 +83,7 @@ const { Content, headings } = await post.render();
 
   @controller
   class ArticleScrollElement extends HTMLElement {
-    @target declare progress: HTMLProgressElement;
+    @target progress: HTMLProgressElement;
 
     abortScroll!: AbortController;
     connectedCallback() {

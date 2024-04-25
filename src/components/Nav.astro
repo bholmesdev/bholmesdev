@@ -80,8 +80,8 @@ const links: ListItem[] = [
   @controller
   class NavOpenElement extends HTMLElement {
     @attr open = true;
-    @target btn!: HTMLButtonElement;
-    @targets links!: HTMLAnchorElement[];
+    @target btn: HTMLButtonElement;
+    @targets links: HTMLAnchorElement[];
 
     scrollY = 0;
     ticking = false;
