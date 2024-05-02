@@ -138,32 +138,33 @@ import Whiteboard from "./Whiteboard.astro";
     }
 
     connectedCallback() {
-      // this.#faceAnim = gsap.to(this.face, {
-      //   x: () => {
-      //     const next = this.#xPool[this.#xIdx];
-      //     this.#xIdx = (this.#xIdx + 1) % this.#xPool.length;
-      //     return next!;
-      //   },
-      //   y: () => {
-      //     const next = this.#yPool[this.#yIdx];
-      //     this.#yIdx = (this.#yIdx + 1) % this.#yPool.length;
-      //     return next!;
-      //   },
-      //   repeatRefresh: true,
-      //   repeat: -1,
-      //   repeatDelay: 4,
-      //   duration: 1,
-      //   delay: 4,
-      //   ease: "elastic.out(1, 0.5)",
-      // });
-      // this.#eyesAnim = gsap
-      //   .timeline()
-      //   .set(this.eyes, { transformOrigin: "center bottom" })
-      //   .to(this.eyes, { scaleY: 0.2, duration: 0.2 })
-      //   .to(this.eyes, { scaleY: 1, duration: 0.2 })
-      //   .repeatDelay(3)
-      //   .delay(2)
-      //   .repeat(-1);
+      this.#faceAnim = gsap.to(this.face, {
+        x: () => {
+          const next = this.#xPool[this.#xIdx];
+          this.#xIdx = (this.#xIdx + 1) % this.#xPool.length;
+          return next!;
+        },
+        y: () => {
+          const next = this.#yPool[this.#yIdx];
+          this.#yIdx = (this.#yIdx + 1) % this.#yPool.length;
+          return next!;
+        },
+        repeatRefresh: true,
+        repeat: -1,
+        repeatDelay: 4,
+        duration: 1,
+        delay: 4,
+        ease: "elastic.out(1, 0.5)",
+      });
+
+      this.#eyesAnim = gsap
+        .timeline()
+        .set(this.eyes, { transformOrigin: "center bottom" })
+        .to(this.eyes, { scaleY: 0.2, duration: 0.2 })
+        .to(this.eyes, { scaleY: 1, duration: 0.2 })
+        .repeatDelay(3)
+        .delay(2)
+        .repeat(-1);
     }
   }
 </script>
