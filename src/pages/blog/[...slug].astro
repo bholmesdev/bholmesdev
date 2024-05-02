@@ -92,7 +92,8 @@ const { Content, headings } = await post.render();
       document.addEventListener(
         "scroll",
         () => {
-          const articleHeight = this.offsetTop + this.offsetHeight;
+          const articleRect = this.getBoundingClientRect();
+          const articleHeight = this.offsetTop + articleRect.height;
           progress.set(
             Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
           );
