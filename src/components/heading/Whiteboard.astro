@@ -260,15 +260,6 @@ import marker from "./marker.svg?raw";
 </div>
 
 <style>
-  [data-whiteboard-container] {
-    animation-play-state: running;
-    animation: float 4s ease-in-out infinite;
-  }
-
-  :global(my-whiteboard[data-drawing]) [data-whiteboard-container] {
-    animation-play-state: paused;
-  }
-
   canvas {
     width: calc(100% - var(--spacing-11) - var(--spacing-4));
     height: calc(100% - var(--spacing-11) * 2);
