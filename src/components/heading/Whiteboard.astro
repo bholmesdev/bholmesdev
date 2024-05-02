@@ -1,7 +1,6 @@
 ---
 import { scope } from "simple:scope";
 import marker from "./marker.svg?raw";
-import smile from "./smile.svg?raw";
 ---
 
 <div
@@ -25,36 +24,6 @@ import smile from "./smile.svg?raw";
       <span class="sr-only">Eraser</span>
       <input class="sr-only" type="radio" value="eraser" name="color" />
     </label>
-  </div>
-  <div
-    data-target="my-whiteboard.face"
-    class="text-red-500 absolute left-[91px] top-[201px] flex gap-8 h-[146px]"
-  >
-    <div
-      data-targets="my-whiteboard.eyes"
-      class="w-[20px] rounded-2xl h-[110px] bg-current"
-    >
-    </div>
-    <svg
-      class="self-end"
-      width="133"
-      height="46"
-      viewBox="0 0 133 46"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M13.262 13.189C23.2459 24.4164 40.1829 32.8716 66.569 32.8716C92.9551 32.8716 109.892 24.4164 119.876 13.189"
-        stroke="currentColor"
-        stroke-width="25"
-        stroke-linecap="round"></path>
-    </svg>
-
-    <div
-      data-targets="my-whiteboard.eyes"
-      class="w-[20px] rounded-2xl h-[110px] bg-current"
-    >
-    </div>
   </div>
   <div
     class="group/markers opacity-30 group-[[data-drawing]]:opacity-100 transition-opacity absolute bottom-2 left-11 right-4 flex justify-center gap-2"
@@ -120,20 +89,43 @@ import smile from "./smile.svg?raw";
         rx="20"
         fill="url(#paint1_radial_222_3)"
         fill-opacity="0.2"></rect>
-      <path
-        clip-path={`url(#${scope("scribble-bounds")})`}
-        data-target="my-whiteboard.scribble"
-        d="M22.2191 30.6216C89.0424 33.6849 240.261 44.5515 300.44 82.6372C224.592 53.5359 59.8409 59.4502 22.688 89.3778C61.8098 73.8145 248.839 102.982 279.368 142.084C232.335 109.693 49.0079 123.682 20.1221 147.941C57.2131 132.178 252.802 157.562 275.461 202.292C242.329 178.056 52.5287 185.746 26.0628 206.139"
-        stroke="white"
-        transform="translate(58 160)"
-        stroke-dasharray="1630"
-        stroke-dashoffset="1630"
-        stroke-width="60"></path>
-      <defs>
-        <clipPath id={scope("scribble-bounds")}>
-          <rect x="30" y="0" width="245" height="300" rx="20"></rect>
-        </clipPath>
-      </defs>
+      <g data-target="my-whiteboard.face">
+        <path
+          d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
+          stroke="#6200FF"
+          stroke-width="25"
+          stroke-linecap="round"></path>
+        <rect
+          data-targets="my-whiteboard.eyes"
+          x="90.7898"
+          y="201.2"
+          width="20.5027"
+          height="109.895"
+          rx="10.2514"
+          fill="#6200FF"></rect>
+        <rect
+          data-targets="my-whiteboard.eyes"
+          x="307.299"
+          y="201.2"
+          width="20.5027"
+          height="109.895"
+          rx="10.2514"
+          fill="#6200FF"></rect>
+        <path
+          clip-path={`url(#${scope("scribble-bounds")})`}
+          data-target="my-whiteboard.scribble"
+          d="M22.2191 30.6216C89.0424 33.6849 240.261 44.5515 300.44 82.6372C224.592 53.5359 59.8409 59.4502 22.688 89.3778C61.8098 73.8145 248.839 102.982 279.368 142.084C232.335 109.693 49.0079 123.682 20.1221 147.941C57.2131 132.178 252.802 157.562 275.461 202.292C242.329 178.056 52.5287 185.746 26.0628 206.139"
+          stroke="white"
+          transform="translate(58 160)"
+          stroke-dasharray="1630"
+          stroke-dashoffset="1630"
+          stroke-width="60"></path>
+        <defs>
+          <clipPath id={scope("scribble-bounds")}>
+            <rect x="30" y="0" width="245" height="300" rx="20"></rect>
+          </clipPath>
+        </defs>
+      </g>
     </g>
     <defs>
       <linearGradient
