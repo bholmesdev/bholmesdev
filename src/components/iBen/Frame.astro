@@ -202,7 +202,9 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     filter: brightness(7) blur(20px);
     transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
     transform-origin: bottom center;
-    animation: glow-reveal 0.2s ease-in forwards;
+    animation:
+      glow-reveal 0.2s ease-in forwards,
+      pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     animation-delay: var(--anim-delay);
     opacity: 0;
     scale: 0.8;
