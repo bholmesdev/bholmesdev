@@ -89,14 +89,21 @@ const { Content, headings } = await post.render();
     connectedCallback() {
       this.abortScroll = new AbortController();
       const headings = [...this.querySelectorAll("h2")];
+      let waitingOnAnimRequest = false;
+
       document.addEventListener(
         "scroll",
         () => {
-          const articleRect = this.getBoundingClientRect();
-          const articleHeight = this.offsetTop + articleRect.height;
-          progress.set(
-            Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
-          );
+          if (waitingOnAnimRequest) return;
+          window.requestAnimationFrame(() => {
+            waitingOnAnimRequest = false;
+            const articleRect = this.getBoundingClientRect();
+            const articleHeight = this.offsetTop + articleRect.height;
+            progress.set(
+              Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
+            );
+          });
+          waitingOnAnimRequest = true;
         },
         { signal: this.abortScroll.signal }
       );
