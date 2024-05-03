@@ -1,4 +1,4 @@
-import { atom } from "nanostores";
+import { signal } from '@preact/signals';
 
-export const progress = atom(0);
-export const currentSectionIdx = atom<number>(0);
+export const progress = signal(0);
+export const currentSectionIdx = signal(0);

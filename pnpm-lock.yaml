@@ -20,6 +20,9 @@ dependencies:
   '@github/catalyst':
     specifier: ^1.6.0
     version: 1.6.0
+  '@preact/signals':
+    specifier: ^1.2.3
+    version: 1.2.3(preact@10.21.0)
   '@tailwindcss/postcss':
     specifier: 4.0.0-alpha.14
     version: 4.0.0-alpha.14(postcss@8.4.31)
@@ -41,9 +44,6 @@ dependencies:
   nanoid:
     specifier: ^4.0.2
     version: 4.0.2
-  nanostores:
-    specifier: ^0.9.5
-    version: 0.9.5
   open-props:
     specifier: ^1.6.16
     version: 1.6.16
@@ -1106,6 +1106,19 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: false
+
+  /@preact/signals-core@1.6.0:
+    resolution: {integrity: sha512-O/XGxwP85h1F7+ouqTMOIZ3+V1whfaV9ToIVcuyGriD4JkSD00cQo54BKdqjvBJxbenvp7ynfqRHEwI6e+NIhw==}
+    dev: false
+
+  /@preact/signals@1.2.3(preact@10.21.0):
+    resolution: {integrity: sha512-M2DXse3Wi8HwjI1d2vQWOLJ3lHogvqTsJYvl4ofXRXgMFQzJ7kmlZvlt5i8x5S5VwgZu0ghru4HkLqOoFfU2JQ==}
+    peerDependencies:
+      preact: 10.x
+    dependencies:
+      '@preact/signals-core': 1.6.0
+      preact: 10.21.0
     dev: false
 
   /@tailwindcss/oxide-android-arm64@4.0.0-alpha.14:
@@ -3405,11 +3418,6 @@ packages:
     hasBin: true
     dev: false
 
-  /nanostores@0.9.5:
-    resolution: {integrity: sha512-Z+p+g8E7yzaWwOe5gEUB2Ox0rCEeXWYIZWmYvw/ajNYX8DlXdMvMDj8DWfM/subqPAcsf8l8Td4iAwO1DeIIRQ==}
-    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
-    dev: false
-
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
     requiresBuild: true
@@ -3708,6 +3716,10 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: false
+
+  /preact@10.21.0:
+    resolution: {integrity: sha512-aQAIxtzWEwH8ou+OovWVSVNlFImL7xUCwJX3YMqA3U8iKCNC34999fFOnWjYNsylgfPgMexpbk7WYOLtKr/mxg==}
     dev: false
 
   /prebuild-install@7.1.1:
