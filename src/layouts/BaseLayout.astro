@@ -82,10 +82,10 @@ const { title = "Ben Holmes", headings } = Astro.props;
         @attr visible = false;
 
         connectedCallback() {
-          effect(() => {
+          isDrawing.subscribe((value) => {
             const mdBreakpoint = window.matchMedia("(max-width: 768px)");
             if (mdBreakpoint.matches) {
-              this.visible = isDrawing.value;
+              this.visible = value;
             }
           });
         }
