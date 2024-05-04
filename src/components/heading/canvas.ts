@@ -1,7 +1,10 @@
 const strokeWidth = 25;
 const eraserWidth = 100;
 
-export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
+export function setUpCanvas(
+  container: HTMLElement,
+  canvas: HTMLCanvasElement
+): () => void {
   const colorMap = {
     red: getCssVar("--color-marker-red"),
     blue: getCssVar("--color-marker-blue"),
@@ -138,12 +141,19 @@ export function setUpCanvas(container: HTMLElement, canvas: HTMLCanvasElement) {
     drawing = false;
   }
 
-  canvas.addEventListener("mousedown", onMouseDown, false);
-  canvas.addEventListener("mouseup", onStrokeEnd, false);
-  canvas.addEventListener("mouseout", onStrokeEnd, false);
-  canvas.addEventListener("mouseenter", onMouseEnter, false);
-  canvas.addEventListener("touchstart", onTouchStart, false);
-  canvas.addEventListener("touchend", onTouchEnd, false);
-  canvas.addEventListener("touchcancel", onTouchEnd, false);
-  canvas.addEventListener("touchmove", onTouchMove, false);
+  const abort = new AbortController();
+
+  canvas.addEventListener("mousedown", onMouseDown, { signal: abort.signal });
+  canvas.addEventListener("mouseup", onStrokeEnd, { signal: abort.signal });
+  canvas.addEventListener("mouseout", onStrokeEnd, { signal: abort.signal });
+  canvas.addEventListener("mouseenter", onMouseEnter, { signal: abort.signal });
+  canvas.addEventListener("touchstart", onTouchStart, { signal: abort.signal });
+  canvas.addEventListener("touchend", onTouchEnd, { signal: abort.signal });
+  canvas.addEventListener("touchcancel", onTouchEnd, { signal: abort.signal });
+  canvas.addEventListener("touchmove", onTouchMove, { signal: abort.signal });
+
+  return () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    abort.abort();
+  };
 }

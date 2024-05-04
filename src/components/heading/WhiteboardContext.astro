@@ -13,6 +13,7 @@
 
   const xPoolInitial = [-30, -15, 0, 15, 30];
   const yPoolInitial = [-80, -40, 0, 40, 80, 120];
+  const strokeOffset = 1624;
 
   @controller
   class MyWhiteboardElement extends HTMLElement {
@@ -20,6 +21,7 @@
     @target scribble: SVGPathElement;
     @target eraser: SVGElement;
     @target drawBtn: HTMLButtonElement | undefined;
+    @target closeBtn: HTMLButtonElement | undefined;
     @targets eyes: SVGElement[];
     @target canvas: HTMLCanvasElement;
 
@@ -32,6 +34,9 @@
 
     #faceAnim?: gsap.core.Tween;
     #eyesAnim?: gsap.core.Timeline;
+    #eraseAnim?: gsap.core.Timeline;
+
+    #resetCanvas?: () => void;
 
     scrollToVideos(e: MouseEvent) {
       e.preventDefault();
@@ -40,33 +45,70 @@
         ?.scrollIntoView({ behavior: "smooth" });
     }
 
+    stopDrawing() {
+      if (!this.drawing) return;
+      this.drawing = false;
+      if (this.drawBtn) {
+        this.drawBtn.disabled = this.drawing;
+      }
+      if (this.#resetCanvas) this.#resetCanvas();
+      this.closeBtn?.addEventListener(
+        "transitionend",
+        () => {
+          this.drawBtn?.focus();
+        },
+        { once: true }
+      );
+      this.#eraseAnim?.kill();
+      gsap.to(this.eraser, { x: 0, y: 0, duration: 0.4 });
+      gsap.to(this.scribble, {
+        strokeDashoffset: strokeOffset,
+        duration: 0.3,
+        onComplete: () => {
+          this.#faceAnim?.play();
+          this.#eyesAnim?.play();
+        },
+      });
+    }
+
     async startDrawing() {
       if (this.drawing) return;
       this.drawing = true;
       if (this.drawBtn) {
         this.drawBtn.disabled = this.drawing;
       }
-      const offset = 1600;
+
+      this.closeBtn?.addEventListener(
+        "transitionend",
+        () => {
+          this.closeBtn?.focus();
+        },
+        { once: true }
+      );
       this.#faceAnim?.pause();
       this.#eyesAnim?.pause();
 
       const mdBreakpoint = window.matchMedia("(max-width: 768px)");
       if (mdBreakpoint.matches) {
+        // We scale up the whiteboard
+        // from the nav bar on smaller layouts.
+        // Wait for scaling to complete
+        // before calculating the eraser's position.
         await new Promise((resolve) => setTimeout(() => resolve(null), 300));
       }
 
       const eraserRect = this.eraser.getBoundingClientRect();
       const scribbleRect = this.face.getBoundingClientRect();
 
-      const eraseTl = gsap.timeline().to(this.eraser, {
+      this.#eraseAnim = gsap.timeline().to(this.eraser, {
         x: -eraserRect.left + scribbleRect.left - 16,
         y: -eraserRect.top + scribbleRect.top - 40,
         ease: "elastic.out(1,1)",
         duration: 0.4,
       });
       for (let i = 1; i <= 6; i++) {
-        eraseTl.to(this.eraser, {
-          duration: 0.16,
+        this.#eraseAnim.to(this.eraser, {
+          duration: 0.155,
           delay: i === 1 ? -0.1 : 0,
           ease: "power2.out",
           motionPath: {
@@ -78,23 +120,23 @@
             end: i / 6,
           },
         });
-        eraseTl.to(
+        this.#eraseAnim.to(
           this.scribble,
           {
             ease: "power2.out",
             duration: 0.16,
-            strokeDashoffset: offset - (offset * i) / 6,
+            strokeDashoffset: strokeOffset - (strokeOffset * i) / 6,
           },
           "<"
         );
       }
-      eraseTl.to(this.eraser, {
+      this.#eraseAnim.to(this.eraser, {
         x: 0,
         y: 0,
         ease: "elastic.out(1,1)",
         duration: 0.4,
         onStart: () => {
-          setUpCanvas(this, this.canvas);
+          this.#resetCanvas = setUpCanvas(this, this.canvas);
         },
       });
     }
