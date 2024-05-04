@@ -1,12 +1,4 @@
----
-type Props = {
-  drawing?: boolean;
-};
-
-const { drawing } = Astro.props;
----
-
-<my-whiteboard data-drawing={drawing} class="group">
+<my-whiteboard class="group">
   <slot />
 </my-whiteboard>
 
@@ -48,12 +40,8 @@ const { drawing } = Astro.props;
         ?.scrollIntoView({ behavior: "smooth" });
     }
 
-    startDrawing() {
+    async startDrawing() {
       if (this.drawing) return;
-      this.eraserAnimation();
-    }
-
-    async eraserAnimation() {
       this.drawing = true;
       if (this.drawBtn) {
         this.drawBtn.disabled = this.drawing;
@@ -112,10 +100,6 @@ const { drawing } = Astro.props;
     }
 
     connectedCallback() {
-      if (this.drawing) {
-        this.eraserAnimation();
-      }
-
       this.#faceAnim = gsap.to(this.face, {
         x: () => {
           const next = this.#xPool[this.#xIdx];
