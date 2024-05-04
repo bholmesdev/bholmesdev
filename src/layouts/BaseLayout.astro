@@ -44,6 +44,9 @@ const { title = "Ben Holmes", headings } = Astro.props;
     <ViewTransitions />
   </head>
   <body class="bg-gray-950 text-white text-base">
+    <my-shroud
+      class="fixed inset-0 invisible bg-gray-950 opacity-0 z-30 data-[visible]:opacity-80 data-[visible]:visible transition-all"
+    ></my-shroud>
     <Nav headings={headings} />
     <div>
       <slot />
@@ -69,5 +72,24 @@ const { title = "Ben Holmes", headings } = Astro.props;
         cursor: pointer;
       }
     </style>
+    <script>
+      import { effect } from "@preact/signals";
+      import { isDrawing } from "../stores";
+      import { controller, attr } from "@github/catalyst";
+
+      @controller
+      class MyShroudElement extends HTMLElement {
+        @attr visible = false;
+
+        connectedCallback() {
+          effect(() => {
+            const mdBreakpoint = window.matchMedia("(max-width: 768px)");
+            if (mdBreakpoint.matches) {
+              this.visible = isDrawing.value;
+            }
+          });
+        }
+      }
+    </script>
   </body>
 </html>

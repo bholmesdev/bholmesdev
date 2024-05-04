@@ -8,6 +8,8 @@
   import { fisherYatesShuffle } from "../../utils.client";
   import MotionPathPlugin from "gsap/MotionPathPlugin";
   import { setUpCanvas } from "./canvas";
+  import { isDrawing } from "../../stores";
+  import { effect } from "@preact/signals";
 
   gsap.registerPlugin(MotionPathPlugin);
 
@@ -47,10 +49,8 @@
 
     stopDrawing() {
       if (!this.drawing) return;
-      this.drawing = false;
-      if (this.drawBtn) {
-        this.drawBtn.disabled = this.drawing;
-      }
+      isDrawing.value = false;
+
       if (this.#resetCanvas) this.#resetCanvas();
       this.closeBtn?.addEventListener(
         "transitionend",
@@ -73,10 +73,7 @@
 
     async startDrawing() {
       if (this.drawing) return;
-      this.drawing = true;
-      if (this.drawBtn) {
-        this.drawBtn.disabled = this.drawing;
-      }
+      isDrawing.value = true;
 
       this.closeBtn?.addEventListener(
         "transitionend",
@@ -142,6 +139,13 @@
     }
 
     connectedCallback() {
+      effect(() => {
+        this.drawing = isDrawing.value;
+        if (this.drawBtn) {
+          this.drawBtn.disabled = this.drawing;
+        }
+      });
+
       this.#faceAnim = gsap.to(this.face, {
         x: () => {
           const next = this.#xPool[this.#xIdx];
