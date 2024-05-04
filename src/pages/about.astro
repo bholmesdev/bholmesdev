@@ -1,0 +1,147 @@
+---
+import Whiteboard from "../components/heading/Whiteboard.astro";
+import WhiteboardContext from "../components/heading/WhiteboardContext.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About Ben">
+  <main class="md:flex max-w-[88ch] mx-auto gap-16">
+    <WhiteboardContext>
+      <Whiteboard />
+    </WhiteboardContext>
+    <article class="mt-6 md:mt-24 lg:mt-28">
+      <h1 class="text-3xl mb-3 font-heading">About me</h1>
+      <input id="inbrief-checkbox" class="hidden checkbox" type="checkbox" />
+      <label
+        class="font-bold cursor-pointer grid gap-2 items-center justify-between text-lg text-gray-400 mb-2"
+        for="inbrief-checkbox"
+      >
+        <span class="label-personal">Personal Mode</span>
+        <span
+          class="switch w-[0.6em] h-[1em] rounded-full flex justify-center relative before:transition-all before:ease-spring-3 before:"
+        ></span>
+        <span class="label-recruiter">Recruiter Mode</span>
+      </label>
+      <div class="content-personal">
+        <p>
+          Hey there! I’m Ben, a software dev from Charleston SC, USA, learning
+          how cold the northeast can be. You can call me a “traditional”
+          software developer by trade given my <a
+            href="https://www.cc.gatech.edu/degree-programs/bachelor-science-computer-science"
+            >BS in CS</a
+          > from Georgia Tech (go Jackets!). Today, I’ve channeled this technical
+          know-how into open source web development as a full-time maintainer at
+          <a href="https://astro.build">Astro</a>.
+        </p>
+        <p>
+          My core values are <strong>be caring, be clear, and be casual.</strong
+          >
+          Tech is a scary industry to jump into, especially without a sense of humor
+          to keep your head on straight. So as long as I’m a web developer, my goal
+          is to <a href="#i-teach">teach</a> and <a href="#i-create">build</a>
+          tools that help others become the best version of themselves. Well, assuming
+          we adhere to <a href="https://semver.org/"
+            >semantic versioning principles</a
+          >
+          😉
+        </p>
+      </div>
+      <div class="content-recruiter">
+        <p>
+          I'm a full-time software developer at <a href="https://astro.build"
+            >the Astro Technology Company</a
+          >, so I'm not looking for employment right now.
+        </p>
+        <p>
+          Still, here's all my skills / buzzwords you were going to search for: <strong
+            >NodeJS, ES6, ReactJS, NextJS, semantic HTML, understanding of a11y,
+            Angular 2+, SolidJS, SvelteJS, SCSS, NoSQL, OOP programming, C
+            Basic, unit testing w/ Jest</strong
+          >... Okay I'm getting tired typing.
+        </p>
+        <p>
+          <a href="https://www.linkedin.com/in/bholmesdev/"
+            >Just browse my LinkedIn</a
+          >
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  article :global(p) {
+    line-height: 1.5;
+    margin-block: 0.8rem;
+  }
+
+  label {
+    grid-template-areas:
+      "personal switch"
+      "recruiter switch";
+    letter-spacing: 0.9px;
+  }
+  .label-personal {
+    color: var(--color-primary-light);
+    grid-area: personal;
+  }
+  .label-recruiter {
+    grid-area: recruiter;
+  }
+  .switch {
+    grid-area: switch;
+    background: radial-gradient(
+        53.29% 50% at 50% 50%,
+        rgba(209, 198, 226, 0) 0%,
+        var(--color-gray-800) 100%
+      ),
+      var(--color-gray-700);
+  }
+  .switch:before {
+    content: "";
+    position: absolute;
+    width: 0.8em;
+    height: 0.8em;
+    background-image: radial-gradient(
+        85.1% 85.1% at 19.53% 20.31%,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(76, 5, 189, 0.4) 100%
+      ),
+      linear-gradient(149deg, #6200ff 0%, #4c05bd 100%);
+    filter: drop-shadow(0px 0.05em 0.05em rgba(22, 2, 55, 0.5))
+      drop-shadow(0px 0.1em 0.1em rgba(22, 2, 55, 0.5));
+    border-radius: 100%;
+    transform: translateY(-50%) rotate(50deg);
+  }
+
+  @media (min-width: 500px) {
+    label {
+      grid-template-areas: "personal switch recruiter";
+    }
+    .switch {
+      transform: rotate(0.75turn);
+    }
+  }
+  .checkbox:checked ~ label > .label-recruiter {
+    color: var(--color-primary-light);
+  }
+
+  .checkbox:checked ~ label > .label-personal {
+    color: var(--color-gray-400);
+  }
+  .content-personal {
+    display: block;
+  }
+  .content-recruiter {
+    display: none;
+  }
+  .checkbox:checked ~ .content-recruiter {
+    display: block;
+  }
+  .checkbox:checked ~ .content-personal {
+    display: none;
+  }
+  .checkbox:checked ~ label > .switch:before {
+    transform: translateY(70%) rotate(50deg);
+  }
+</style>

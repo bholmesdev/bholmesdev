@@ -1,173 +1,54 @@
 ---
 import { Icon } from "astro-icon/components";
 import Whiteboard from "./Whiteboard.astro";
+import WhiteboardContext from "./WhiteboardContext.astro";
 ---
 
-<my-whiteboard
-  class="group mb-8 flex max-w-[120ch] items-center justify-center gap-12 mx-auto p-3"
->
-  <div>
-    <h1 class="text-9xl">
-      Hi, I'm <strong
-        class="bg-clip-text text-transparent bg-gradient-to-r from-[#9b5dff] to-[#6200ff]"
-        >Ben.</strong
-      >
-    </h1>
-    <p class="text-xl mb-5 text-slate-400">
-      The <span class="text-white">whiteboard guy</span> who codes kinda well.
-    </p>
-    <div class="flex gap-6">
-      <a
-        class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
-        is="button"
-        href="#videos"
-        data-action="click:my-whiteboard#scrollToVideos"
-        data-watch-btn
-      >
-        <span
-          class="group-active/btn:scale-105 group-active/btn:rounded-2xl group-active/btn:scale-y-110 origin-top rounded-xl px-8 py-2 flex items-center justify-center gap-4"
+<WhiteboardContext>
+  <div
+    class="group mb-8 flex max-w-[120ch] items-center justify-center gap-12 mx-auto p-3"
+  >
+    <div>
+      <h1 class="text-9xl">
+        Hi, I'm <strong
+          class="bg-clip-text text-transparent bg-gradient-to-r from-[#9b5dff] to-[#6200ff]"
+          >Ben.</strong
         >
-          Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
-        </span>
-      </a>
-      <button
-        class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
-        data-draw-btn
-        data-target="my-whiteboard.drawBtn"
-        data-action="click:my-whiteboard#startDrawing"
-      >
-        <span
-          class="group-disabled/btn:scale-105 group-disabled/btn:rounded-2xl group-disabled/btn:scale-y-110 origin-top rounded-xl px-8 py-2 flex items-center justify-center gap-4"
+      </h1>
+      <p class="text-xl mb-5 text-slate-400">
+        The <span class="text-white">whiteboard guy</span> who codes kinda well.
+      </p>
+      <div class="flex gap-6">
+        <a
+          class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
+          is="button"
+          href="#videos"
+          data-action="click:my-whiteboard#scrollToVideos"
+          data-watch-btn
         >
-          Draw <Icon name="draw" class="mb-[2px]" />
-        </span>
-      </button>
+          <span
+            class="group-active/btn:scale-105 group-active/btn:rounded-2xl group-active/btn:scale-y-110 origin-top rounded-xl px-8 py-2 flex items-center justify-center gap-4"
+          >
+            Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
+          </span>
+        </a>
+        <button
+          class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
+          data-draw-btn
+          data-target="my-whiteboard.drawBtn"
+          data-action="click:my-whiteboard#startDrawing"
+        >
+          <span
+            class="group-disabled/btn:scale-105 group-disabled/btn:rounded-2xl group-disabled/btn:scale-y-110 origin-top rounded-xl px-8 py-2 flex items-center justify-center gap-4"
+          >
+            Draw <Icon name="draw" class="mb-[2px]" />
+          </span>
+        </button>
+      </div>
     </div>
+    <Whiteboard />
   </div>
-  <Whiteboard />
-</my-whiteboard>
-
-<script>
-  import { gsap } from "gsap";
-  import { attr, controller, target, targets } from "@github/catalyst";
-  import { fisherYatesShuffle } from "../../utils.client";
-  import MotionPathPlugin from "gsap/MotionPathPlugin";
-  import { setUpCanvas } from "./canvas";
-
-  gsap.registerPlugin(MotionPathPlugin);
-
-  const xPoolInitial = [-30, -15, 0, 15, 30];
-  const yPoolInitial = [-80, -40, 0, 40, 80, 120];
-
-  @controller
-  class MyWhiteboardElement extends HTMLElement {
-    @target face: SVGElement;
-    @target scribble: SVGPathElement;
-    @target eraser: SVGElement;
-    @target drawBtn: HTMLButtonElement;
-    @targets eyes: SVGElement[];
-    @target canvas: HTMLCanvasElement;
-
-    @attr drawing = false;
-
-    #xPool = fisherYatesShuffle(xPoolInitial);
-    #yPool = fisherYatesShuffle(yPoolInitial);
-    #xIdx = 0;
-    #yIdx = 0;
-
-    #faceAnim?: gsap.core.Tween;
-    #eyesAnim?: gsap.core.Timeline;
-
-    scrollToVideos(e: MouseEvent) {
-      e.preventDefault();
-      document
-        .querySelector((e.currentTarget as HTMLAnchorElement).hash)
-        ?.scrollIntoView({ behavior: "smooth" });
-    }
-
-    startDrawing() {
-      if (this.drawing) return;
-      this.drawing = true;
-      this.drawBtn.disabled = this.drawing;
-      const offset = 1600;
-      this.#faceAnim?.pause();
-      this.#eyesAnim?.pause();
-
-      const eraserRect = this.eraser.getBoundingClientRect();
-      const scribbleRect = this.face.getBoundingClientRect();
-
-      const eraseTl = gsap.timeline().to(this.eraser, {
-        x: -eraserRect.left + scribbleRect.left - 16,
-        y: -eraserRect.top + scribbleRect.top - 40,
-        ease: "elastic.out(1,1)",
-        duration: 0.4,
-      });
-      for (let i = 1; i <= 6; i++) {
-        eraseTl.to(this.eraser, {
-          duration: 0.16,
-          delay: i === 1 ? -0.1 : 0,
-          ease: "power2.out",
-          motionPath: {
-            // Different offset to account for stroke width
-            offsetX: -eraserRect.left + scribbleRect.left - 38,
-            offsetY: -eraserRect.top + scribbleRect.top - 70,
-            path: this.scribble,
-            start: (i - 1) / 6,
-            end: i / 6,
-          },
-        });
-        eraseTl.to(
-          this.scribble,
-          {
-            ease: "power2.out",
-            duration: 0.16,
-            strokeDashoffset: offset - (offset * i) / 6,
-          },
-          "<"
-        );
-      }
-      eraseTl.to(this.eraser, {
-        x: 0,
-        y: 0,
-        ease: "elastic.out(1,1)",
-        duration: 0.4,
-        onStart: () => {
-          setUpCanvas(this, this.canvas);
-        },
-      });
-    }
-
-    connectedCallback() {
-      this.#faceAnim = gsap.to(this.face, {
-        x: () => {
-          const next = this.#xPool[this.#xIdx];
-          this.#xIdx = (this.#xIdx + 1) % this.#xPool.length;
-          return next!;
-        },
-        y: () => {
-          const next = this.#yPool[this.#yIdx];
-          this.#yIdx = (this.#yIdx + 1) % this.#yPool.length;
-          return next!;
-        },
-        repeatRefresh: true,
-        repeat: -1,
-        repeatDelay: 4,
-        duration: 1,
-        delay: 4,
-        ease: "elastic.out(1, 0.5)",
-      });
-
-      this.#eyesAnim = gsap
-        .timeline()
-        .set(this.eyes, { transformOrigin: "center bottom" })
-        .to(this.eyes, { scaleY: 0.2, duration: 0.2 })
-        .to(this.eyes, { scaleY: 1, duration: 0.2 })
-        .repeatDelay(3)
-        .delay(2)
-        .repeat(-1);
-    }
-  }
-</script>
+</WhiteboardContext>
 
 <style>
   [data-watch-btn] {
