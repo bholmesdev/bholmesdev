@@ -1,6 +1,5 @@
 ---
 import type { MarkdownHeading } from "astro";
-import { isMatch } from "./Nav";
 import Toc from "./TOC.astro";
 import { scope } from "simple:scope";
 
@@ -14,32 +13,39 @@ const id = scope("nav");
 // Remove trailing slashes
 const urlPath = new URL(Astro.request.url).pathname.replace(/\/$/, "") || "/";
 
-type ListItem = { label: string; path: string };
+type ListItem = { label: string; url: string; external?: boolean };
 const links: ListItem[] = [
-  { label: "Ben", path: "/" },
-  { label: "Blog", path: "/blog" },
-  { label: "Talks", path: "/talks" },
-  { label: "Videos", path: "/videos" },
+  { label: "Ben", url: "/" },
+  { label: "About", url: "/about" },
+  { label: "Blog", url: "/blog" },
+  { label: "Videos", url: "https://wtw.dev", external: true },
 ];
+
+function isMatch(urlPath: string, linkPath: string) {
+  if (linkPath === "/") return urlPath === "/";
+  return urlPath.startsWith(linkPath);
+}
 ---
 
 <nav-open data-open class="group">
   <nav
-    class="sticky z-20 top-0 max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-3 px-5 transition-colors duration-300"
+    class="sticky z-20 top-0 max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-3 px-5"
   >
     {headings?.length ? <Toc {headings} /> : null}
-    <ul transition:persist id={id} class="flex gap-6 ml-auto items-center">
+    <ul id={id} class="flex gap-6 ml-auto items-center">
       {
         links.map((l, idx) => (
           <li
-            class="invisible opacity-0 group-[[data-open]]:opacity-100 group-[[data-open]]:visible"
+            class="invisible opacity-0 group-[[data-open]]:opacity-100 group-[[data-open]]:visible font-heading text-xl tracking-wide"
             style={{ "--idx": idx + 1 }}
           >
             <a
+              transition:animate="none"
+              transition:name={`link-${idx}`}
               data-targets="nav-open.links"
-              data-active={isMatch(urlPath, l.path)}
-              class="no-underline text-lg block scale-100 text-gray-300 data-[active]:text-white data-[active]:font-bold data-[active]:scale-110 transition-transform ease-spring-5 duration-500"
-              href={l.path}
+              data-active={l.external ? false : isMatch(urlPath, l.url)}
+              class="no-underline block text-gray-300 data-[active]:text-white data-[active]:font-bold scale-100 data-[active]:scale-105"
+              href={l.url}
             >
               {l.label}
             </a>
@@ -74,7 +80,6 @@ const links: ListItem[] = [
 
 <script>
   import { attr, target, targets, controller } from "@github/catalyst";
-  import { isMatch } from "./Nav";
   import { toAttr } from "../utils.client";
 
   @controller
@@ -110,18 +115,6 @@ const links: ListItem[] = [
         },
         { signal: this.#abort.signal }
       );
-      document.addEventListener(
-        "astro:page-load",
-        () => {
-          for (const link of this.links) {
-            link.toggleAttribute(
-              "data-active",
-              isMatch(window.location.pathname, link.pathname)
-            );
-          }
-        },
-        { signal: this.#abort.signal }
-      );
     }
 
     disconnectedCallback() {
@@ -129,6 +122,16 @@ const links: ListItem[] = [
     }
   }
 </script>
+
+<style is:global>
+  ::view-transition-group(link-0),
+  ::view-transition-group(link-1),
+  ::view-transition-group(link-2),
+  ::view-transition-group(link-3) {
+    animation-duration: 500ms;
+    animation-timing-function: var(--transition-timing-function-spring-5);
+  }
+</style>
 
 <style>
   li {
