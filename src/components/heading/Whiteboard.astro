@@ -6,7 +6,7 @@ import marker from "./marker.svg?raw";
 <div
   data-whiteboard-container
   transition:name="whiteboard"
-  class="relative rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
+  class="fixed z-30 top-0 left-0 scale-[0.1] origin-top-left md:scale-100 group-[[data-drawing]]:scale-100 md:relative rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
 >
   <canvas
     width="800"
@@ -20,7 +20,7 @@ import marker from "./marker.svg?raw";
     class="absolute left-[52px] bottom-[52px]"
   >
     <label
-      class="bg-marker-blue block w-[50px] h-[70px] rounded-xl group-[[data-drawing]]:not-has-checked:bg-marker-blue-light group-[[data-drawing]]:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
+      class="bg-marker-blue block md:scale-100 group-[[data-drawing]]:scale-100 scale-0 w-[50px] h-[70px] rounded-xl group-[[data-drawing]]:not-has-checked:bg-marker-blue-light group-[[data-drawing]]:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Eraser</span>
       <input class="sr-only" type="radio" value="eraser" name="color" />
@@ -96,6 +96,12 @@ import marker from "./marker.svg?raw";
           stroke="#6200FF"
           stroke-width="25"
           stroke-linecap="round"></path>
+        <path
+          class="md:hidden group-[[data-drawing]]:hidden"
+          d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
+          stroke="#6200FF"
+          stroke-width="35"
+          stroke-linecap="round"></path>
         <rect
           data-targets="my-whiteboard.eyes"
           x="90.7898"
@@ -104,6 +110,16 @@ import marker from "./marker.svg?raw";
           height="109.895"
           rx="10.2514"
           fill="#6200FF"></rect>
+
+        <rect
+          class="md:hidden group-[[data-drawing]]:hidden"
+          data-targets="my-whiteboard.eyes"
+          x="90.7898"
+          y="201.2"
+          width="30"
+          height="109.895"
+          rx="15"
+          fill="#6200FF"></rect>
         <rect
           data-targets="my-whiteboard.eyes"
           x="307.299"
@@ -111,6 +127,16 @@ import marker from "./marker.svg?raw";
           width="20.5027"
           height="109.895"
           rx="10.2514"
+          fill="#6200FF"></rect>
+
+        <rect
+          class="md:hidden group-[[data-drawing]]:hidden"
+          data-targets="my-whiteboard.eyes"
+          x="307.299"
+          y="201.2"
+          width="30"
+          height="109.895"
+          rx="15"
           fill="#6200FF"></rect>
         <path
           clip-path={`url(#${scope("scribble-bounds")})`}
@@ -189,9 +215,11 @@ import marker from "./marker.svg?raw";
 </div>
 
 <style>
-  [data-whiteboard-container] {
-    animation-play-state: running;
-    animation: float 4s ease-in-out infinite;
+  @media (min-width: 768px) {
+    [data-whiteboard-container] {
+      animation-play-state: running;
+      animation: float 4s ease-in-out infinite;
+    }
   }
 
   :global(my-whiteboard[data-drawing]) [data-whiteboard-container] {

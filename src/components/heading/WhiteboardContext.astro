@@ -1,4 +1,12 @@
-<my-whiteboard class="group">
+---
+type Props = {
+  drawing?: boolean;
+};
+
+const { drawing } = Astro.props;
+---
+
+<my-whiteboard data-drawing={drawing} class="group">
   <slot />
 </my-whiteboard>
 
@@ -42,6 +50,10 @@
 
     startDrawing() {
       if (this.drawing) return;
+      this.eraserAnimation();
+    }
+
+    async eraserAnimation() {
       this.drawing = true;
       if (this.drawBtn) {
         this.drawBtn.disabled = this.drawing;
@@ -49,6 +61,11 @@
       const offset = 1600;
       this.#faceAnim?.pause();
       this.#eyesAnim?.pause();
+
+      const mdBreakpoint = window.matchMedia("(max-width: 768px)");
+      if (mdBreakpoint.matches) {
+        await new Promise((resolve) => setTimeout(() => resolve(null), 300));
+      }
 
       const eraserRect = this.eraser.getBoundingClientRect();
       const scribbleRect = this.face.getBoundingClientRect();
@@ -95,6 +112,10 @@
     }
 
     connectedCallback() {
+      if (this.drawing) {
+        this.eraserAnimation();
+      }
+
       this.#faceAnim = gsap.to(this.face, {
         x: () => {
           const next = this.#xPool[this.#xIdx];
