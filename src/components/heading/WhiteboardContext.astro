@@ -109,10 +109,11 @@
           delay: i === 1 ? -0.1 : 0,
           ease: "power2.out",
           motionPath: {
-            // Different offset to account for stroke width
-            offsetX: -eraserRect.left + scribbleRect.left - 38,
-            offsetY: -eraserRect.top + scribbleRect.top - 70,
             path: this.scribble,
+            align: this.scribble,
+            offsetX: eraserRect.width / -2,
+            offsetY: eraserRect.height / -2,
+
             start: (i - 1) / 6,
             end: i / 6,
           },

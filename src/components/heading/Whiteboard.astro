@@ -7,21 +7,22 @@ import { Icon } from "astro-icon/components";
 <div
   data-whiteboard-container
   transition:name="whiteboard"
-  class="fixed z-30 top-1 left-4 scale-[0.06] origin-top-left md:scale-100 group-[[data-drawing]]:scale-100 md:relative rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
+  class="fixed z-30 max-w-[90vw] top-1 left-4 scale-[0.07] origin-top-left md:scale-100 group-[[data-drawing]]:scale-100 md:relative rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
 >
   <canvas
     width="800"
     height="1200"
     data-target="my-whiteboard.canvas"
     data-action="click:my-whiteboard#startDrawing"
-    class="absolute inset-[2.7rem] rounded-2xl"></canvas>
+    class="absolute w-[85%] h-[85.7%] inset-y-[7%] inset-x-[10.8%] rounded-[5%]"
+  ></canvas>
   <div
     data-action="click:my-whiteboard#startDrawing"
     data-target="my-whiteboard.eraser"
-    class="absolute left-[52px] bottom-[52px]"
+    class="absolute left-[14%] bottom-[9%] w-[13%] h-[13%]"
   >
     <label
-      class="bg-marker-blue block md:scale-100 group-[[data-drawing]]:scale-100 scale-0 w-[50px] h-[70px] rounded-xl group-[[data-drawing]]:not-has-checked:bg-marker-blue-light group-[[data-drawing]]:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
+      class="bg-marker-blue block md:scale-100 group-[[data-drawing]]:scale-100 scale-0 w-full h-full rounded-[20%] group-[[data-drawing]]:not-has-checked:bg-marker-blue-light group-[[data-drawing]]:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Eraser</span>
       <input class="sr-only" type="radio" value="eraser" name="color" />
@@ -38,11 +39,11 @@ import { Icon } from "astro-icon/components";
     </button>
   </div>
   <div
-    class="group/markers opacity-30 group-[[data-drawing]]:opacity-100 transition-opacity absolute bottom-2 left-11 right-4 flex justify-center gap-2"
+    class="group/markers opacity-30 group-[[data-drawing]]:opacity-100 transition-opacity absolute bottom-[2%] left-[10%] right-[5%] flex justify-center gap-[5%]"
     data-action="click:my-whiteboard#startDrawing"
   >
     <label
-      class="text-marker-red opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-red w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
       set:html={marker}
     >
       <span class="sr-only">Red</span>
@@ -50,14 +51,14 @@ import { Icon } from "astro-icon/components";
     </label>
     <label
       set:html={marker}
-      class="text-marker-blue opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-blue w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Blue</span>
       <input class="sr-only" type="radio" value="blue" name="color" />
     </label>
     <label
       set:html={marker}
-      class="text-marker-green opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-1 transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-green w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Green</span>
       <input class="sr-only" type="radio" value="green" name="color" />
@@ -68,6 +69,7 @@ import { Icon } from "astro-icon/components";
     height="600"
     viewBox="0 0 400 600"
     fill="none"
+    class="w-full h-full"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g>
@@ -199,9 +201,9 @@ import { Icon } from "astro-icon/components";
     animation-play-state: paused;
   }
 
-  canvas {
-    width: calc(100% - var(--spacing-11) - var(--spacing-4));
-    height: calc(100% - var(--spacing-11) * 2);
+  label :global(svg) {
+    width: 100%;
+    height: 100%;
   }
 
   @keyframes float {
