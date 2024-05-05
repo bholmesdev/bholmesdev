@@ -11,12 +11,6 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^5.0.1
     version: 5.0.1(astro@3.2.3)(tailwindcss@4.0.0-alpha.14)
-  '@fontsource/atkinson-hyperlegible':
-    specifier: ^5.0.5
-    version: 5.0.5
-  '@fontsource/ranga':
-    specifier: ^5.0.18
-    version: 5.0.18
   '@github/catalyst':
     specifier: ^1.6.0
     version: 1.6.0
@@ -35,6 +29,9 @@ dependencies:
   astro:
     specifier: ^3.2.3
     version: 3.2.3
+  astro-font:
+    specifier: ^0.0.80
+    version: 0.0.80
   astro-icon:
     specifier: ^1.1.0
     version: 1.1.0
@@ -991,14 +988,6 @@ packages:
     dev: false
     optional: true
 
-  /@fontsource/atkinson-hyperlegible@5.0.5:
-    resolution: {integrity: sha512-bilyGBdB2Us/OrSj6luzvHTI16pLuQVOUWARI7o+3NmpW2yUHjF8u7jbgNJgPDQ2//4tAjsWjVeqN9H222OFpg==}
-    dev: false
-
-  /@fontsource/ranga@5.0.18:
-    resolution: {integrity: sha512-IcAZFz6z99WxciqZGh1Pd6hU7Go+cBcXiPq7ZbHS0cGSxZ07iKpzbb25aJHbYq/BzWt38jLXhRcyh3CV7gbXJQ==}
-    dev: false
-
   /@github/catalyst@1.6.0:
     resolution: {integrity: sha512-u8A+DameixqpeyHzvnJWTGj+wfiskQOYHzSiJscCWVfMkIT3rxnbHMtGh3lMthaRY21nbUOK71WcsCnCrXhBJQ==}
     dev: false
@@ -1477,6 +1466,10 @@ packages:
 
   /array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
+    dev: false
+
+  /astro-font@0.0.80:
+    resolution: {integrity: sha512-RjUANXSNdt0Yp2Tpyn7woBg67hCX2Gy1OiiA7B0NX501LcrzvFHoX98CoBgJC5af3tj3fznfLqqBmMr7wu6+fQ==}
     dev: false
 
   /astro-icon@1.1.0:

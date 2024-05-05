@@ -1,16 +1,9 @@
 ---
-import "@fontsource/atkinson-hyperlegible/400.css";
-import "@fontsource/atkinson-hyperlegible/700.css";
-import "@fontsource/ranga/400.css";
-import "@fontsource/ranga/700.css";
-import "open-props/easings";
 import "./tailwind.css";
-import ranga400url from "@fontsource/ranga/files/ranga-latin-400-normal.woff2?url";
-import ranga700url from "@fontsource/ranga/files/ranga-latin-700-normal.woff2?url";
-import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url";
-import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
+import "open-props/easings";
 import Nav from "../components/Nav.astro";
 import type { MarkdownHeading } from "astro";
+import Fonts from "../components/Fonts.astro";
 import { ViewTransitions } from "astro:transitions";
 
 type Props = {
@@ -25,23 +18,10 @@ const { title = "Ben Holmes", headings } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="preload"
-      href={atkinson400url}
-      as="font"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      href={atkinson700url}
-      as="font"
-      crossorigin="anonymous"
-    />
-    <link rel="preload" href={ranga400url} as="font" crossorigin="anonymous" />
-    <link rel="preload" href={ranga700url} as="font" crossorigin="anonymous" />
     <slot name="head" />
     <title>{title}</title>
     <ViewTransitions />
+    <Fonts />
   </head>
   <body class="bg-gray-950 text-white text-base px-4 md:px-8">
     <my-shroud
