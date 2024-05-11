@@ -17,6 +17,8 @@
   --transition-timing-function-spring-4: var(--ease-spring-4);
   --transition-timing-function-spring-5: var(--ease-spring-5);
 
+  --width-prose: 60ch;
+
   --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
   --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
   --font-size-lg: clamp(1.12rem, 0.5vw + 1rem, 1.3rem);
