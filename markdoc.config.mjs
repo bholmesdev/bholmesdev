@@ -17,6 +17,12 @@ export default defineMarkdocConfig({
         id: { type: String, required: true },
       },
     },
+    youtube: {
+      render: component("astro-embed", "YouTube"),
+      attributes: {
+        id: { type: String, required: true },
+      },
+    },
   },
   extends: [shiki()],
 });
