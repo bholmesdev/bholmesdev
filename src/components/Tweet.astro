@@ -1,0 +1,11 @@
+---
+import { Tweet as TweetEmbed } from "astro-embed";
+
+type Props = {
+  id: string;
+};
+---
+
+<TweetEmbed id={Astro.props.id} />
+
+<script async src="https://platform.twitter.com/widgets.js"></script>

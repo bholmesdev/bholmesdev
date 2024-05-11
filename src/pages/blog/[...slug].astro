@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -14,6 +15,7 @@ const { Content, headings } = await post.render();
 ---
 
 <BaseLayout {headings}>
+  {post.data.image && <Image src={post.data.image} alt="" />}
   <main class="max-w-prose m-auto px-3 mb-24">
     <article-scroll>
       <h1 class="text-4xl mt-12">{post.data.title}</h1>
@@ -73,6 +75,7 @@ const { Content, headings } = await post.render();
     border-radius: 0.4rem;
     line-height: 1.7;
     margin-block: 1rem;
+    font-size: var(--font-size-sm);
   }
 </style>
 

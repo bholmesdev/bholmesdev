@@ -10,14 +10,22 @@ import ranga700url from "@fontsource/ranga/files/ranga-latin-700-normal.woff2?ur
 import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url";
 import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
 import Nav from "../components/Nav.astro";
-import type { MarkdownHeading } from "astro";
+import type { MarkdownHeading, ImageMetadata } from "astro";
 import { ViewTransitions } from "astro:transitions";
+import { getImage } from "astro:assets";
 
 type Props = {
   title?: string;
+  description?: string;
+  image?: ImageMetadata;
   headings?: MarkdownHeading[];
 };
-const { title = "Ben Holmes", headings } = Astro.props;
+const {
+  title = "Ben Holmes",
+  description = "The whiteboard guy at Astro that codes kinda well.",
+  headings,
+  image = await getImage({ src: import("~/assets/bholmesdev.png") }),
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -25,6 +33,18 @@ const { title = "Ben Holmes", headings } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Ben Holmes" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@bholmesdev" />
+    <meta name="twitter:creator" content="@bholmesdev" />
+    <meta name="description" content={description} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:image" content={image.src} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Ben Holmes" />
+    <meta property="og:title" />
+    <meta property="og:description" />
     <link
       rel="preload"
       href={atkinson400url}
