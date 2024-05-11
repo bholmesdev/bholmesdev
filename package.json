@@ -20,6 +20,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@tailwindcss/vite": "0.0.0-development.1",
     "astro": "^4.7.1",
+    "astro-embed": "^0.7.2",
     "astro-icon": "^1.1.0",
     "gsap": "^3.12.2",
     "nanoid": "^4.0.2",
