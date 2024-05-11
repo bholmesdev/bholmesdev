@@ -15,9 +15,19 @@ const { Content, headings } = await post.render();
 ---
 
 <BaseLayout {headings}>
-  {post.data.image && <Image src={post.data.image} alt="" />}
   <main class="max-w-prose mx-auto px-3 mb-24">
     <article-scroll>
+      {
+        post.data.image && (
+          <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
+            <Image
+              class="aspect-[4/3] object-cover object-left w-full"
+              src={post.data.image}
+              alt=""
+            />
+          </div>
+        )
+      }
       <h1 class="text-4xl mt-12">{post.data.title}</h1>
       <Content />
     </article-scroll>
