@@ -150,28 +150,27 @@ const { Content, headings } = await post.render();
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              if (headings.includes(entry.target as HTMLHeadingElement)) {
-                currentSectionIdx.value = headings.indexOf(
-                  entry.target as HTMLHeadingElement
-                );
+            if (!entry.isIntersecting) return;
+            if (headings.includes(entry.target as HTMLHeadingElement)) {
+              currentSectionIdx.value = headings.indexOf(
+                entry.target as HTMLHeadingElement
+              );
+            }
+            let heading: HTMLHeadingElement | null = null;
+            let previousSibling = entry.target.previousElementSibling;
+            while (!heading && previousSibling) {
+              previousSibling = previousSibling.previousElementSibling;
+              if (
+                previousSibling instanceof HTMLHeadingElement &&
+                headings.includes(previousSibling)
+              ) {
+                heading = previousSibling;
               }
-              let heading: HTMLHeadingElement | null = null;
-              let previousSibling = entry.target.previousElementSibling;
-              while (!heading && previousSibling) {
-                previousSibling = previousSibling.previousElementSibling;
-                if (
-                  previousSibling instanceof HTMLHeadingElement &&
-                  headings.includes(previousSibling)
-                ) {
-                  heading = previousSibling;
-                }
-              }
-              if (!heading) return;
-              const idx = headings.indexOf(heading);
-              if (idx >= 0) {
-                currentSectionIdx.value = idx;
-              }
+            }
+            if (!heading) return;
+            const idx = headings.indexOf(heading);
+            if (idx >= 0) {
+              currentSectionIdx.value = idx;
             }
           });
         },
