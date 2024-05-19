@@ -12,7 +12,6 @@
   "dependencies": {
     "@astrojs/cloudflare": "^10.2.6",
     "@astrojs/markdoc": "^0.11.0",
-    "@astrojs/tailwind": "^5.1.0",
     "@fontsource/atkinson-hyperlegible": "^5.0.5",
     "@fontsource/ranga": "^5.0.18",
     "@github/catalyst": "^1.6.0",
@@ -20,6 +19,7 @@
     "@tailwindcss/postcss": "4.0.0-alpha.14",
     "@tailwindcss/typography": "^0.5.10",
     "@tailwindcss/vite": "0.0.0-development.1",
+    "@upstash/redis": "^1.31.1",
     "astro": "^4.8.4",
     "astro-embed": "^0.7.2",
     "astro-icon": "^1.1.0",
