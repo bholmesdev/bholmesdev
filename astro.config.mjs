@@ -1,10 +1,18 @@
-import { defineConfig, squooshImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import simpleScope from "vite-plugin-simple-scope";
 import markdoc from "@astrojs/markdoc";
 import icon from "astro-icon";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "hybrid",
+  adapter: cloudflare({
+    imageService: "cloudflare",
+    platformProxy: {
+      enabled: true,
+    },
+  }),
   integrations: [
     markdoc({
       allowHTML: true,
@@ -12,8 +20,8 @@ export default defineConfig({
     icon(),
   ],
   image: {
-    service: squooshImageService(),
-    domains: ["https://dev-to-uploads.s3.amazonaws.com"],
+    // service: squooshImageService(),
+    // domains: ["https://dev-to-uploads.s3.amazonaws.com"],
   },
   vite: {
     plugins: [simpleScope()],
