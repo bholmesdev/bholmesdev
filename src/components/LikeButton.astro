@@ -1,0 +1,29 @@
+---
+type Props = {
+  postSlug: string;
+  serverLikes: number;
+  hasLiked: boolean;
+};
+
+const { postSlug, serverLikes, hasLiked } = Astro.props;
+---
+
+<button
+  class="pt-20 data-[liked]:bg-red-500"
+  data-liked={hasLiked}
+  data-post-slug={postSlug}>{serverLikes}</button
+>
+
+<script>
+  import { actions } from "astro:actions";
+
+  const button = document.querySelector("button[data-post-slug]")!;
+  const postSlug = button.getAttribute("data-post-slug")!;
+
+  button.addEventListener("click", async () => {
+    console.log("liking");
+    const { likes } = await actions.like({ postSlug });
+    button.textContent = likes.toString();
+    button.toggleAttribute("data-liked");
+  });
+</script>

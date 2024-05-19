@@ -29,4 +29,7 @@ export default defineConfig({
       keepNames: true,
     },
   },
+  experimental: {
+    actions: true,
+  },
 });
