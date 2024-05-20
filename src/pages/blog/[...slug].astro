@@ -3,6 +3,8 @@ import { type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LikeButton from "../../components/LikeButton.astro";
 import { Image } from "astro:assets";
+import { getLikes } from "~/utils.server";
+import { Redis } from "@upstash/redis/cloudflare";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -14,6 +16,9 @@ type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 if (!post) return Astro.rewrite("/404");
+
+const redis = Redis.fromEnv(Astro.locals.runtime.env);
+const likes = await getLikes(redis, post.slug);
 
 const { Content, headings } = await post.render();
 ---
