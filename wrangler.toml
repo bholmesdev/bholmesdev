@@ -1,6 +1,7 @@
 name = "bholmesdev"
 pages_build_output_dir = "./dist"
 compatibility_flags = [ "nodejs_compat" ]
+compatibility_date = "2024-05-20"
 
 [vars]
 UPSTASH_REDIS_REST_URL="https://saving-gopher-40785.upstash.io"
