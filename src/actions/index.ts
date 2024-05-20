@@ -5,17 +5,6 @@ import { getLikes, getVisitorId } from "~/utils.server";
 import { getEntry } from "astro:content";
 
 export const server = {
-  getLikes: defineAction({
-    input: z.object({
-      postSlug: z
-        .string()
-        .refine(async (s) => Boolean(await getEntry("blog", s))),
-    }),
-    handler: async ({ postSlug }) => {
-      const redis = Redis.fromEnv(getApiContext().locals.runtime.env);
-      return { likes: await getLikes(redis, postSlug) };
-    },
-  }),
   like: defineAction({
     input: z.object({
       postSlug: z
