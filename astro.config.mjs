@@ -28,6 +28,9 @@ export default defineConfig({
     esbuild: {
       keepNames: true,
     },
+    ssr: {
+      external: ["node:async_hooks", "node:crypto"],
+    },
   },
   experimental: {
     actions: true,
