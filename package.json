@@ -6,7 +6,7 @@
     "dev": "wrangler types && astro dev",
     "start": "wrangler types && astro dev",
     "build": "wrangler types && astro build",
-    "preview": "wrangler types && astro preview",
+    "preview": "wrangler pages dev ./dist",
     "astro": "astro"
   },
   "dependencies": {
