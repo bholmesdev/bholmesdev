@@ -2,16 +2,13 @@
 type Props = {
   postSlug: string;
   serverLikes: number;
-  hasLiked: boolean;
 };
 
-const { postSlug, serverLikes, hasLiked } = Astro.props;
+const { postSlug, serverLikes } = Astro.props;
 ---
 
-<button
-  class="pt-20 data-[liked]:bg-red-500"
-  data-liked={hasLiked}
-  data-post-slug={postSlug}>{serverLikes}</button
+<button class="pt-20 data-[liked]:bg-red-500" data-post-slug={postSlug}
+  >{serverLikes}</button
 >
 
 <script>
@@ -20,10 +17,28 @@ const { postSlug, serverLikes, hasLiked } = Astro.props;
   const button = document.querySelector("button[data-post-slug]")!;
   const postSlug = button.getAttribute("data-post-slug")!;
 
+  button.toggleAttribute("data-liked", Boolean(localStorage.getItem("isLike")));
+
   button.addEventListener("click", async () => {
-    console.log("liking");
-    const { likes } = await actions.like({ postSlug });
-    button.textContent = likes.toString();
-    button.toggleAttribute("data-liked");
+    const isLike = !Boolean(localStorage.getItem("isLike"));
+
+    const { data, error } = await actions.like.safe({
+      postSlug,
+      isLike: isLike,
+    });
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    button.textContent = data.likes.toString();
+    button.toggleAttribute("data-liked", isLike);
+
+    if (isLike) {
+      localStorage.setItem("isLike", "true");
+    } else {
+      localStorage.removeItem("isLike");
+    }
   });
 </script>

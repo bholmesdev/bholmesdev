@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import LikeButton from "../../components/LikeButton.astro";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
-import { getVisitorId } from "~/utils.server";
+import { getLikes } from "~/utils.server";
 import { Redis } from "@upstash/redis/cloudflare";
 
 export const prerender = false;
@@ -15,19 +15,14 @@ const post = await getEntry("blog", Astro.params.slug!);
 if (!post) return Astro.rewrite("/404");
 
 const redis = Redis.fromEnv(Astro.locals.runtime.env);
-const likes = await redis.scard(`likes:${post.slug}`);
-
-const visitorId = getVisitorId(Astro);
-const hasLiked = visitorId
-  ? Boolean(await redis.sismember(`likes:${post.slug}`, visitorId))
-  : false;
+const likes = await getLikes(redis, post.slug);
 
 const { Content, headings } = await post.render();
 ---
 
 <BaseLayout {headings}>
   <main class="max-w-prose mx-auto px-3 mb-24">
-    <LikeButton postSlug={post.slug} serverLikes={likes} {hasLiked} />
+    <LikeButton postSlug={post.slug} serverLikes={likes} />
     <article-scroll>
       {
         post.data.image && (

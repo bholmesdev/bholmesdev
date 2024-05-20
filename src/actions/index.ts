@@ -1,27 +1,37 @@
-import { defineAction, getApiContext, z } from "astro:actions";
+import { ActionError, defineAction, getApiContext, z } from "astro:actions";
 import { Redis } from "@upstash/redis/cloudflare";
-import { getVisitorId } from "~/utils.server";
+import { getLikes, getVisitorId } from "~/utils.server";
 
 export const server = {
   like: defineAction({
     input: z.object({
       postSlug: z.string(),
+      isLike: z.boolean().default(false),
     }),
-    handler: async ({ postSlug }) => {
+    handler: async ({ postSlug, isLike }) => {
       const ctx = getApiContext();
       const redis = Redis.fromEnv(ctx.locals.runtime.env);
 
       const visitorId = getVisitorId(ctx);
-      // TODO: decide behavior if visitorId is undefined
       if (!visitorId) {
-        return { likes: await redis.scard(`likes:${postSlug}`) };
+        throw new ActionError({
+          code: "FORBIDDEN",
+          message: "No header found for rate limiting.",
+        });
       }
-      if (await redis.sismember(`likes:${postSlug}`, visitorId)) {
-        await redis.srem(`likes:${postSlug}`, visitorId);
-      } else {
-        await redis.sadd(`likes:${postSlug}`, visitorId);
+
+      // throw new ActionError({
+      //   code: 'TOO_MANY_REQUESTS',
+      // })
+      // rate limit based on postSlug
+      const likes = await getLikes(redis, postSlug);
+      if (isLike) {
+        return { likes: await redis.incr(`likes:${postSlug}`) };
       }
-      return { likes: await redis.scard(`likes:${postSlug}`) };
+      if (likes > 0) {
+        return { likes: await redis.decr(`likes:${postSlug}`) };
+      }
+      return { likes };
     },
   }),
 };
