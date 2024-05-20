@@ -3,15 +3,18 @@ import { type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LikeButton from "../../components/LikeButton.astro";
 import { Image } from "astro:assets";
-import { getEntry } from "astro:content";
 import { getLikes } from "~/utils.server";
 import { Redis } from "@upstash/redis/cloudflare";
+import { getCollection } from "astro:content";
 
-export const prerender = false;
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((p) => ({ params: { slug: p.slug }, props: p }));
+}
 
 type Props = CollectionEntry<"blog">;
 
-const post = await getEntry("blog", Astro.params.slug!);
+const post = Astro.props;
 if (!post) return Astro.rewrite("/404");
 
 const redis = Redis.fromEnv(Astro.locals.runtime.env);
@@ -22,7 +25,7 @@ const { Content, headings } = await post.render();
 
 <BaseLayout {headings}>
   <main class="max-w-prose mx-auto px-3 mb-24">
-    <LikeButton postSlug={post.slug} serverLikes={likes} />
+    <LikeButton postSlug={post.slug} />
     <article-scroll>
       {
         post.data.image && (

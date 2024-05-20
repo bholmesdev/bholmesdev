@@ -1,14 +1,13 @@
 ---
 type Props = {
   postSlug: string;
-  serverLikes: number;
 };
 
-const { postSlug, serverLikes } = Astro.props;
+const { postSlug } = Astro.props;
 ---
 
 <button class="pt-20 data-[liked]:bg-red-500" data-post-slug={postSlug}
-  >{serverLikes}</button
+  >Loading</button
 >
 
 <script>
@@ -16,7 +15,9 @@ const { postSlug, serverLikes } = Astro.props;
 
   const button = document.querySelector("button[data-post-slug]")!;
   const postSlug = button.getAttribute("data-post-slug")!;
+  const { likes } = await actions.getLikes({ postSlug });
 
+  button.textContent = likes.toString();
   button.toggleAttribute("data-liked", Boolean(localStorage.getItem("isLike")));
 
   button.addEventListener("click", async () => {
