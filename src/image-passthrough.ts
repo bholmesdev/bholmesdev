@@ -12,5 +12,5 @@ export const GET: APIRoute = (ctx) => {
     return new Response("Invalid 'href' query parameter", { status: 400 });
   }
 
-  return fetch(new URL(ctx.url.origin, href));
+  return fetch(new URL(href, ctx.url.origin));
 };
