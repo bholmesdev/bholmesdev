@@ -8,7 +8,7 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   output: "hybrid",
   adapter: cloudflare({
-    imageService: "cloudflare",
+    imageService: "compile",
     platformProxy: {
       enabled: true,
     },
@@ -19,17 +19,13 @@ export default defineConfig({
     }),
     icon(),
   ],
-  image: {
-    // service: squooshImageService(),
-    // domains: ["https://dev-to-uploads.s3.amazonaws.com"],
-  },
   vite: {
     plugins: [simpleScope()],
     esbuild: {
       keepNames: true,
     },
     ssr: {
-      external: ["node:async_hooks", "node:crypto", "perf_hooks"],
+      external: ["node:async_hooks", "node:crypto", "perf_hooks", "sharp"],
     },
   },
   experimental: {
