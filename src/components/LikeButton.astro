@@ -21,18 +21,6 @@ const { postSlug, serverLikes } = Astro.props;
 
   button.addEventListener("click", async () => {
     const isLike = !Boolean(localStorage.getItem("isLike"));
-
-    const { data, error } = await actions.like.safe({
-      postSlug,
-      isLike: isLike,
-    });
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    button.textContent = data.likes.toString();
     button.toggleAttribute("data-liked", isLike);
 
     if (isLike) {
@@ -40,5 +28,15 @@ const { postSlug, serverLikes } = Astro.props;
     } else {
       localStorage.removeItem("isLike");
     }
+
+    const { data, error } = await actions.like.safe({
+      postSlug,
+      isLike: isLike,
+    });
+
+    // TODO: funny easter egg for too many requests
+    if (error) return;
+
+    button.textContent = data.likes.toString();
   });
 </script>

@@ -1,5 +1,6 @@
 import { ActionError, defineAction, getApiContext, z } from "astro:actions";
 import { Redis } from "@upstash/redis/cloudflare";
+import { Ratelimit } from "@upstash/ratelimit";
 import { getLikes, getVisitorId } from "~/utils.server";
 
 export const server = {
@@ -11,6 +12,10 @@ export const server = {
     handler: async ({ postSlug, isLike }) => {
       const ctx = getApiContext();
       const redis = Redis.fromEnv(ctx.locals.runtime.env);
+      const ratelimiter = new Ratelimit({
+        redis,
+        limiter: Ratelimit.slidingWindow(100, "1 d"),
+      });
 
       const visitorId = getVisitorId(ctx);
       if (!visitorId) {
@@ -20,10 +25,12 @@ export const server = {
         });
       }
 
-      // throw new ActionError({
-      //   code: 'TOO_MANY_REQUESTS',
-      // })
-      // rate limit based on postSlug
+      const { success } = await ratelimiter.limit(visitorId);
+      if (!success) {
+        throw new ActionError({
+          code: "TOO_MANY_REQUESTS",
+        });
+      }
       const likes = await getLikes(redis, postSlug);
       if (isLike) {
         return { likes: await redis.incr(`likes:${postSlug}`) };
