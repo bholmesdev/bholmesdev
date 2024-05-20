@@ -29,7 +29,7 @@ export default defineConfig({
       keepNames: true,
     },
     ssr: {
-      external: ["node:async_hooks", "node:crypto"],
+      external: ["node:async_hooks", "node:crypto", "node:perf_hooks"],
     },
   },
   experimental: {
