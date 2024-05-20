@@ -62,6 +62,9 @@ dependencies:
   vite-plugin-simple-scope:
     specifier: ^1.0.3
     version: 1.0.3
+  wrangler:
+    specifier: ^3.57.0
+    version: 3.57.0(@cloudflare/workers-types@4.20240512.0)
 
 devDependencies:
   typescript:

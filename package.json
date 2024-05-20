@@ -28,7 +28,8 @@
     "nanoid": "^4.0.2",
     "open-props": "^1.6.16",
     "tailwindcss": "4.0.0-alpha.14",
-    "vite-plugin-simple-scope": "^1.0.3"
+    "vite-plugin-simple-scope": "^1.0.3",
+    "wrangler": "^3.57.0"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
