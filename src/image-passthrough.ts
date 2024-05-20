@@ -8,7 +8,7 @@ export const GET: APIRoute = (ctx) => {
     return new Response("Missing 'href' query parameter", { status: 400 });
   }
 
-  if (import.meta.env.PROD && !href.startsWith("_astro")) {
+  if (import.meta.env.PROD && !href.startsWith("/_astro")) {
     return new Response("Invalid 'href' query parameter", { status: 400 });
   }
 
