@@ -2,11 +2,14 @@ import { ActionError, defineAction, getApiContext, z } from "astro:actions";
 import { Redis } from "@upstash/redis/cloudflare";
 import { Ratelimit } from "@upstash/ratelimit";
 import { getLikes, getVisitorId } from "~/utils.server";
+import { getEntry } from "astro:content";
 
 export const server = {
   like: defineAction({
     input: z.object({
-      postSlug: z.string(),
+      postSlug: z
+        .string()
+        .refine(async (s) => Boolean(await getEntry("blog", s))),
       isLike: z.boolean().default(false),
     }),
     handler: async ({ postSlug, isLike }) => {
