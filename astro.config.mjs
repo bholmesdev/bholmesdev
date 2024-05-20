@@ -8,11 +8,14 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   output: "hybrid",
   adapter: cloudflare({
-    imageService: "compile",
+    imageService: "custom",
     platformProxy: {
       enabled: true,
     },
   }),
+  image: {
+    endpoint: import.meta.env.PROD ? "./src/image-passthrough.ts" : undefined,
+  },
   integrations: [
     markdoc({
       allowHTML: true,
