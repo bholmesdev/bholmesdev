@@ -9,10 +9,13 @@ type Props = {
 const { postSlug, serverLikes } = Astro.props;
 ---
 
-<like-button data-post-slug={postSlug} class="group/like">
+<like-button
+  data-post-slug={postSlug}
+  class="group/like flex items-center gap-4"
+>
   <button
     data-action="click:like-button#toggleLike"
-    class="mt-20 w-[2.5em] h-[2.5em] bg-gradient-to-br from-slate-600 to-slate-900 rounded-full flex items-center justify-center"
+    class="w-[2.5em] h-[2.5em] bg-gradient-to-br from-slate-600 to-slate-900 rounded-full flex items-center justify-center"
   >
     <div
       class="group-data-[liked]/like:w-[75%] group-data-[liked]/like:h-[75%] w-[85%] h-[85%] rounded-full bg-gradient-to-br from-slate-800 to-slate-600 text-xl font-bold grid place-items-center transition-all -translate-y-[8%] group-data-[liked]/like:translate-y-0 ease-spring-5 duration-500"
@@ -27,7 +30,12 @@ const { postSlug, serverLikes } = Astro.props;
       />
     </div>
   </button>
-  <p data-target="like-button.text">{serverLikes}</p>
+  <p
+    data-target="like-button.text"
+    class="group-data-[pending]/like:opacity-60 transition-opacity"
+  >
+    {serverLikes}
+  </p>
 </like-button>
 
 <script>
@@ -38,6 +46,7 @@ const { postSlug, serverLikes } = Astro.props;
   class LikeButtonElement extends HTMLElement {
     @attr liked = Boolean(localStorage.getItem("isLike"));
     @attr postSlug = "";
+    @attr pending = false;
     @target text: HTMLElement;
 
     async toggleLike() {
@@ -49,10 +58,12 @@ const { postSlug, serverLikes } = Astro.props;
         localStorage.removeItem("isLike");
       }
 
+      this.pending = true;
       const { data, error } = await actions.like.safe({
         postSlug: this.postSlug,
         isLike: this.liked,
       });
+      this.pending = false;
 
       // TODO: funny easter egg for too many requests
       if (error) return;
