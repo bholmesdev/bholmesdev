@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import { getLikes } from "~/utils.server";
 import { Redis } from "@upstash/redis/cloudflare";
+import Newsletter from "~/components/Newsletter.astro";
 
 export const prerender = false;
 
@@ -34,35 +35,40 @@ const { Content, headings } = await post.render();
           </div>
         )
       }
-      <h1 class="text-4xl mt-12">{post.data.title}</h1>
-      <LikeButton postSlug={post.slug} serverLikes={likes} />
+      <div class="flex flex-col gap-4">
+        <h1 class="text-4xl mt-12">{post.data.title}</h1>
+        <LikeButton postSlug={post.slug} serverLikes={likes} />
+      </div>
       <Content />
+      <div class="mt-12">
+        <Newsletter />
+      </div>
     </article-scroll>
   </main>
 </BaseLayout>
 
 <style>
-  main {
+  main :global(article) {
     counter-reset: heading-counter;
   }
 
-  main :global(h3) {
+  main :global(article) :global(h3) {
     font-size: var(--font-size-xl);
     margin-block-start: 3rem;
   }
 
-  main :global(h4) {
+  main :global(article) :global(h4) {
     font-size: var(--font-size-lg);
     margin-block-start: 2.5rem;
   }
 
-  main :global(h2) {
+  main :global(article) :global(h2) {
     font-size: var(--font-size-2xl);
     margin-block-start: 5rem;
     position: relative;
   }
 
-  main :global(h2:before) {
+  main :global(article) :global(h2:before) {
     counter-increment: heading-counter;
     content: counter(heading-counter);
     position: absolute;
@@ -81,38 +87,39 @@ const { Content, headings } = await post.render();
     justify-content: center;
   }
 
-  main :global(:is(h1, h2, h3, h4)) {
+  h1,
+  main :global(article) :global(:is(h2, h3, h4)) {
     font-weight: bold;
     line-height: 1.3;
   }
 
-  main :global(ol) {
+  main :global(article) :global(ol) {
     list-style: decimal;
   }
 
-  main :global(ul) {
+  main :global(article) :global(ul) {
     list-style: disc;
   }
 
-  main :global(:is(ol, ul)) {
+  main :global(article) :global(:is(ol, ul)) {
     padding-inline-start: 1.5rem;
   }
 
-  main :global(:is(p, li)) {
+  main :global(article) :global(:is(p, li)) {
     line-height: 1.7;
     margin-block: 1.3rem;
   }
 
-  main :global(a) {
+  main :global(article) :global(a) {
     color: var(--color-primary-light);
     text-decoration: underline;
   }
 
-  main :global(li) {
+  main :global(article) :global(li) {
     margin-block: 0.5rem;
   }
 
-  main :global(pre) {
+  main :global(article) :global(pre) {
     padding-inline: 1rem;
     padding-block: 1.3rem;
     border-radius: 0.4rem;

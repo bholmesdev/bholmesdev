@@ -1,0 +1,68 @@
+---
+import { actions, getActionProps, isInputError } from "astro:actions";
+import { scope } from "simple:scope";
+
+const res = Astro.getActionResult(actions.subscribeToNewsletter);
+
+const fieldErrors = isInputError(res?.error) ? res.error.fields : {};
+---
+
+<section class="dark:bg-gray-900 -mx-4 bg-gray-100 rounded-2xl shadow-xl p-8">
+  <h2
+    class="font-bold font-heading dark:text-gray-200 text-gray-800 text-2xl mb-2"
+  >
+    The whiteboardist newsletter
+  </h2>
+  <p class="mb-8">
+    Occasional posts and learnings from a lead Astro maintainer.
+  </p>
+  <form method="POST" class="flex gap-4 items-start">
+    <input {...getActionProps(actions.subscribeToNewsletter)} />
+    <div class="flex flex-col gap-4 w-full">
+      <div class="flex gap-4">
+        <div class="flex flex-col gap-2 flex-1">
+          <label for={scope("email")} class="sr-only"> Email </label>
+          <input
+            id={scope("email")}
+            name="email"
+            type="email"
+            required
+            class="rounded px-4 py-3 border-2 dark:border-slate-700 focus:ring-0 focus:border-primary focus:outline-none transition-colors"
+          />
+          {
+            fieldErrors.email && (
+              <p class="dark:text-red-300">{fieldErrors.email}</p>
+            )
+          }
+        </div>
+        <button
+          class="bg-gradient-to-br from-slate-600 to-slate-900 rounded-lg flex items-center justify-center"
+          type="submit"
+        >
+          <span
+            class="m-1 w-full -translate-y-[4px] active:translate-y-0 ease-spring-5 duration-500 transition-transform action:m-0 bg-gradient-to-br from-slate-800 to-slate-600 px-4 py-2 rounded-md text-gray-100 font-bold"
+            >Subscribe</span
+          ></button
+        >
+      </div>
+      <div class="flex gap-2">
+        <input
+          id={scope("musicRecs")}
+          name="musicRecs"
+          type="checkbox"
+          checked
+        />
+        <label for={scope("musicRecs")}>
+          Get occassional music recs too ;)</label
+        >
+      </div>
+    </div>
+  </form>
+  {
+    res?.data?.success && (
+      <p class="bg-green-200 text-green-900 px-2 py-1 rounded mt-4">
+        Thanks! Check your inbox for a confirmation.
+      </p>
+    )
+  }
+</section>
