@@ -25,6 +25,13 @@ export const server = {
       });
 
       if (!res.ok) {
+        const json = await res.json();
+        if (json.code === "email_already_exists") {
+          throw new ActionError({
+            code: "CONFLICT",
+            message: "Email already subscribed to newsletter.",
+          });
+        }
         throw new ActionError({
           code: "BAD_REQUEST",
           message: "Unable to subscribe to newsletter.",

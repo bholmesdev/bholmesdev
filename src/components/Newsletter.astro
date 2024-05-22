@@ -65,4 +65,12 @@ const fieldErrors = isInputError(res?.error) ? res.error.fields : {};
       </p>
     )
   }
+  {
+    res?.error?.code === "CONFLICT" && (
+      <p class="bg-red-300 text-red-900 rounded px-2 py-1 mt-4">
+        Oh, looks like you already subscribed. Check your inbox for a
+        confirmation.
+      </p>
+    )
+  }
 </section>
