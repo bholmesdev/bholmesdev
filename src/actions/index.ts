@@ -20,20 +20,23 @@ export const server = {
         limiter: Ratelimit.slidingWindow(100, "1 d"),
       });
 
-      const visitorId = getVisitorId(ctx);
-      if (!visitorId) {
-        throw new ActionError({
-          code: "FORBIDDEN",
-          message: "No header found for rate limiting.",
-        });
+      if (import.meta.env.PROD) {
+        const visitorId = getVisitorId(ctx);
+        if (!visitorId) {
+          throw new ActionError({
+            code: "FORBIDDEN",
+            message: "No header found for rate limiting.",
+          });
+        }
+
+        const { success } = await ratelimiter.limit(visitorId);
+        if (!success) {
+          throw new ActionError({
+            code: "TOO_MANY_REQUESTS",
+          });
+        }
       }
 
-      const { success } = await ratelimiter.limit(visitorId);
-      if (!success) {
-        throw new ActionError({
-          code: "TOO_MANY_REQUESTS",
-        });
-      }
       const likes = await getLikes(redis, postSlug);
       if (isLike) {
         return { likes: await redis.incr(`likes:${postSlug}`) };
