@@ -5,7 +5,6 @@ import LikeButton from "../../components/LikeButton.astro";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import { getLikes } from "~/utils.server";
-import { Redis } from "@upstash/redis/cloudflare";
 import { Newsletter } from "~/components/Newsletter";
 
 export const prerender = false;
@@ -15,8 +14,7 @@ type Props = CollectionEntry<"blog">;
 const post = await getEntry("blog", Astro.params.slug!);
 if (!post) return Astro.rewrite("/404");
 
-const redis = Redis.fromEnv(Astro.locals.runtime.env);
-const likes = await getLikes(redis, post.slug);
+const likes = await getLikes(post.slug);
 
 const { Content, headings } = await post.render();
 ---

@@ -1,26 +1,38 @@
-import type { Redis } from "@upstash/redis/cloudflare";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis/cloudflare";
+import type { APIContext } from "astro";
+import { ActionError } from "astro:actions";
+import { db, eq, Post } from "astro:db";
 import { createHash } from "node:crypto";
 
-export function getVisitorId({
-  request,
-}: {
-  request: Request;
-}): string | undefined {
-  const ip = request.headers.get("cf-connecting-ip");
-  if (!ip) return undefined;
+export async function checkIfRateLimited(
+  ctx: Pick<APIContext, "request" | "locals">
+): Promise<boolean> {
+  const ip = ctx.request.headers.get("cf-connecting-ip");
+  if (!ip) {
+    throw new ActionError({
+      code: "FORBIDDEN",
+      message: "No header found for rate limiting.",
+    });
+  }
 
-  return createHash("sha256").update(ip).digest("hex");
+  const redis = Redis.fromEnv(ctx.locals.runtime.env);
+  const ipHash = createHash("sha256").update(ip).digest("hex");
+  const ratelimit = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(100, "1 d"),
+  });
+  const limited = await ratelimit.limit(ipHash);
+  return !limited.success;
 }
 
-export async function getLikes(
-  redis: Redis,
-  postSlug: string
-): Promise<number> {
-  const likesStr = await redis.get(`likes:${postSlug}`);
-  if (!likesStr) return 0;
+export async function getLikes(postSlug: string): Promise<number> {
+  const post = await db
+    .select({ likes: Post.likes })
+    .from(Post)
+    .where(eq(Post.slug, postSlug))
+    .get();
+  if (!post) return 0;
 
-  const num = Number(likesStr);
-  if (isNaN(num)) return 0;
-
-  return num;
+  return post.likes;
 }
