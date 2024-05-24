@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import { getLikes } from "~/utils.server";
 import { Redis } from "@upstash/redis/cloudflare";
-import Newsletter from "~/components/Newsletter.astro";
+import { Newsletter } from "~/components/Newsletter";
 
 export const prerender = false;
 
@@ -41,7 +41,7 @@ const { Content, headings } = await post.render();
       </div>
       <Content />
       <div class="mt-12">
-        <Newsletter />
+        <Newsletter client:visible />
       </div>
     </article-scroll>
   </main>
