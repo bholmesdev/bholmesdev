@@ -1,7 +1,6 @@
 import { ActionError, defineAction, z } from "astro:actions";
-import { checkIfRateLimited } from "~/utils.server";
+import { checkIfRateLimited, updateLikes } from "~/utils.server";
 import { getEntry } from "astro:content";
-import { Post, db, gt, sql } from "astro:db";
 
 const BUTTONDOWN_URL = "https://api.buttondown.email/v1/";
 
@@ -21,28 +20,7 @@ export const server = {
         });
       }
 
-      const upsert = await db
-        .insert(Post)
-        .values({
-          slug: postSlug,
-          likes: liked ? 1 : 0,
-        })
-        .onConflictDoUpdate(
-          liked
-            ? {
-                target: Post.slug,
-                set: { likes: sql`likes + 1` },
-              }
-            : {
-                target: Post.slug,
-                set: { likes: sql`likes - 1` },
-                where: gt(Post.likes, 0),
-              }
-        )
-        .returning()
-        .get();
-
-      return { likes: upsert?.likes ?? 0 };
+      return await updateLikes({ postSlug, liked });
     },
   }),
   subscribeToNewsletter: defineAction({

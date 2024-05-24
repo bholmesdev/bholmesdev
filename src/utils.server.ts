@@ -2,7 +2,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis/cloudflare";
 import type { APIContext } from "astro";
 import { ActionError } from "astro:actions";
-import { db, eq, Post } from "astro:db";
+import { db, eq, gt, Post, sql } from "astro:db";
 import { createHash } from "node:crypto";
 
 export async function checkIfRateLimited(
@@ -26,6 +26,37 @@ export async function checkIfRateLimited(
   });
   const limited = await ratelimit.limit(ipHash);
   return !limited.success;
+}
+
+export async function updateLikes({
+  postSlug,
+  liked,
+}: {
+  postSlug: string;
+  liked: boolean;
+}): Promise<{ likes: number }> {
+  const upsert = await db
+    .insert(Post)
+    .values({
+      slug: postSlug,
+      likes: liked ? 1 : 0,
+    })
+    .onConflictDoUpdate(
+      liked
+        ? {
+            target: Post.slug,
+            set: { likes: sql`likes + 1` },
+          }
+        : {
+            target: Post.slug,
+            set: { likes: sql`likes - 1` },
+            where: gt(Post.likes, 0),
+          }
+    )
+    .returning()
+    .get();
+
+  return upsert;
 }
 
 export async function getLikes(postSlug: string): Promise<number> {
