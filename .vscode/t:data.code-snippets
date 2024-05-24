@@ -1,0 +1,10 @@
+{
+  "t:data": {
+    "scope": "",
+    "prefix": "t:data",
+    "body": [
+      "      this.text.textContent = data.likes.toString();"
+    ],
+    "description": ""
+  }
+}

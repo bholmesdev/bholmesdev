@@ -1,0 +1,10 @@
+{
+  "t:refine": {
+    "scope": "",
+    "prefix": "t:refine",
+    "body": [
+      "async (s ) => Boolean(await getEntry('blog', s))"
+    ],
+    "description": ""
+  }
+}
