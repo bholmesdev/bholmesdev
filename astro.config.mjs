@@ -5,6 +5,8 @@ import icon from "astro-icon";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 
+import db from "@astrojs/db";
+
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
@@ -23,6 +25,7 @@ export default defineConfig({
     }),
     icon(),
     react(),
+    db(),
   ],
   vite: {
     plugins: [simpleScope()],
