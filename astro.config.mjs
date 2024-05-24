@@ -3,6 +3,7 @@ import simpleScope from "vite-plugin-simple-scope";
 import markdoc from "@astrojs/markdoc";
 import icon from "astro-icon";
 import cloudflare from "@astrojs/cloudflare";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,6 +22,7 @@ export default defineConfig({
       allowHTML: true,
     }),
     icon(),
+    react(),
   ],
   vite: {
     plugins: [simpleScope()],
