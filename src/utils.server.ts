@@ -8,7 +8,9 @@ import { createHash } from "node:crypto";
 export async function checkIfRateLimited(
   ctx: Pick<APIContext, "request" | "locals">
 ): Promise<boolean> {
-  const ip = ctx.request.headers.get("cf-connecting-ip");
+  const ip = import.meta.env.DEV
+    ? "development"
+    : ctx.request.headers.get("cf-connecting-ip");
   if (!ip) {
     throw new ActionError({
       code: "FORBIDDEN",
