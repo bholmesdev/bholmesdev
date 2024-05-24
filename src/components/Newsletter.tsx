@@ -4,10 +4,10 @@ import { experimental_withState as withState } from "@astrojs/react/actions";
 import { scope } from "simple:scope";
 
 export function Newsletter() {
-  const [state, action, pending] = useActionState(
-    withState(actions.subscribeToNewsletter.safe),
-    { data: { success: false }, error: undefined }
-  );
+  const [state, action, pending] = useActionState(() => undefined, {
+    data: { success: false },
+    error: undefined,
+  });
 
   const fieldErrors = isInputError(state.error) ? state.error.fields : {};
 

@@ -5,6 +5,8 @@ import { ActionError } from "astro:actions";
 import { db, eq, Post } from "astro:db";
 import { createHash } from "node:crypto";
 
+export const BUTTONDOWN_URL = "https://api.buttondown.email/v1/";
+
 export async function checkIfRateLimited(
   ctx: Pick<APIContext, "request" | "locals">
 ): Promise<boolean> {
@@ -22,7 +24,7 @@ export async function checkIfRateLimited(
   const ipHash = createHash("sha256").update(ip).digest("hex");
   const ratelimit = new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(100, "1 d"),
+    limiter: Ratelimit.slidingWindow(10, "1 d"),
   });
   const limited = await ratelimit.limit(ipHash);
   return !limited.success;

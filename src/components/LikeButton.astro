@@ -39,14 +39,12 @@ const { postSlug, serverLikes } = Astro.props;
 </like-button>
 
 <script>
-  import { actions } from "astro:actions";
   import { controller, attr, target } from "@github/catalyst";
 
   @controller
   class LikeButtonElement extends HTMLElement {
     @attr liked = Boolean(localStorage.getItem("isLike"));
     @attr postSlug = "";
-    @attr pending = false;
     @target text: HTMLElement;
 
     async toggleLike() {
@@ -57,18 +55,6 @@ const { postSlug, serverLikes } = Astro.props;
       } else {
         localStorage.removeItem("isLike");
       }
-
-      this.pending = true;
-      const { data, error } = await actions.like.safe({
-        postSlug: this.postSlug,
-        liked: this.liked,
-      });
-      this.pending = false;
-
-      // TODO: funny easter egg for too many requests
-      if (error) return;
-
-      this.text.textContent = data.likes.toString();
     }
   }
 </script>
