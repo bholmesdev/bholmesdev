@@ -6,6 +6,45 @@ import { Post, db, gt, sql } from "astro:db";
 const BUTTONDOWN_URL = "https://api.buttondown.email/v1/";
 
 export const server = {
+  like: defineAction({
+    input: z.object({
+      postSlug: z
+        .string()
+        .refine(async (s) => Boolean(await getEntry("blog", s))),
+      liked: z.boolean().default(false),
+    }),
+    handler: async ({ postSlug, liked }, ctx) => {
+      const isRateLimited = await checkIfRateLimited(ctx);
+      if (isRateLimited) {
+        throw new ActionError({
+          code: "TOO_MANY_REQUESTS",
+        });
+      }
+
+      const upsert = await db
+        .insert(Post)
+        .values({
+          slug: postSlug,
+          likes: liked ? 1 : 0,
+        })
+        .onConflictDoUpdate(
+          liked
+            ? {
+                target: Post.slug,
+                set: { likes: sql`likes + 1` },
+              }
+            : {
+                target: Post.slug,
+                set: { likes: sql`likes - 1` },
+                where: gt(Post.likes, 0),
+              }
+        )
+        .returning()
+        .get();
+
+      return { likes: upsert?.likes ?? 0 };
+    },
+  }),
   subscribeToNewsletter: defineAction({
     accept: "form",
     input: z.object({
@@ -36,47 +75,6 @@ export const server = {
         });
       }
       return { success: true };
-    },
-  }),
-  like: defineAction({
-    input: z.object({
-      postSlug: z
-        .string()
-        .refine(async (s) => Boolean(await getEntry("blog", s))),
-      isLike: z.boolean().default(false),
-    }),
-    handler: async ({ postSlug, isLike }, ctx) => {
-      if (import.meta.env.PROD) {
-        const isRateLimited = await checkIfRateLimited(ctx);
-        if (isRateLimited) {
-          throw new ActionError({
-            code: "TOO_MANY_REQUESTS",
-          });
-        }
-      }
-
-      const upsert = await db
-        .insert(Post)
-        .values({
-          slug: postSlug,
-          likes: isLike ? 1 : 0,
-        })
-        .onConflictDoUpdate(
-          isLike
-            ? {
-                target: Post.slug,
-                set: { likes: sql`likes + 1` },
-              }
-            : {
-                target: Post.slug,
-                set: { likes: sql`likes - 1` },
-                where: gt(Post.likes, 0),
-              }
-        )
-        .returning()
-        .get();
-
-      return { likes: upsert?.likes ?? 0 };
     },
   }),
 };

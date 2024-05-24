@@ -61,7 +61,7 @@ const { postSlug, serverLikes } = Astro.props;
       this.pending = true;
       const { data, error } = await actions.like.safe({
         postSlug: this.postSlug,
-        isLike: this.liked,
+        liked: this.liked,
       });
       this.pending = false;
 
