@@ -1,8 +1,10 @@
 import { ActionError, defineAction, z } from "astro:actions";
-import { checkIfRateLimited, updateLikes } from "~/utils.server";
+import {
+  checkIfRateLimited,
+  updateLikes,
+  BUTTONDOWN_URL,
+} from "~/utils.server";
 import { getEntry } from "astro:content";
-
-const BUTTONDOWN_URL = "https://api.buttondown.email/v1/";
 
 export const server = {
   like: defineAction({
