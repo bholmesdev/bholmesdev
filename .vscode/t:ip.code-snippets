@@ -3,7 +3,7 @@
     "scope": "",
     "prefix": "t:ip",
     "body": [
-      "  const ipHash = createHash(\"sha256\").update(ip).digest(\"hex\");"
+      "  const ip = import.meta.env.DEV\n    ? scope(\"development\")\n    : ctx.request.headers.get(\"cf-connecting-ip\");"
     ],
     "description": ""
   }
