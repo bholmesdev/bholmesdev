@@ -14,7 +14,7 @@ type Props = CollectionEntry<"blog">;
 const post = await getEntry("blog", Astro.params.slug!);
 if (!post) return Astro.rewrite("/404");
 
-const likes = await getLikes(post.slug);
+const likes = await getLikes({ postSlug: post.slug, ctx: Astro });
 
 const { Content, headings } = await post.render();
 ---

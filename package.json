@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "wrangler types && astro dev",
     "start": "wrangler types && astro dev",
-    "build": "wrangler types && astro build --remote",
+    "build": "wrangler types && astro build",
     "preview": "wrangler pages dev ./dist",
     "astro": "astro"
   },

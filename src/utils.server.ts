@@ -31,41 +31,36 @@ export async function checkIfRateLimited(
 export async function updateLikes({
   postSlug,
   liked,
+  ctx,
 }: {
   postSlug: string;
   liked: boolean;
+  ctx: Pick<APIContext, "locals">;
 }): Promise<{ likes: number }> {
-  const upsert = await db
-    .insert(Post)
-    .values({
-      slug: postSlug,
-      likes: liked ? 1 : 0,
-    })
-    .onConflictDoUpdate(
-      liked
-        ? {
-            target: Post.slug,
-            set: { likes: sql`likes + 1` },
-          }
-        : {
-            target: Post.slug,
-            set: { likes: sql`likes - 1` },
-            where: gt(Post.likes, 0),
-          }
-    )
-    .returning()
-    .get();
-
-  return upsert;
+  const redis = Redis.fromEnv(ctx.locals.runtime.env);
+  const likes = await getLikes({ postSlug, ctx });
+  if (liked) {
+    return { likes: await redis.incr(`likes:${postSlug}`) };
+  }
+  if (likes > 0) {
+    return { likes: await redis.decr(`likes:${postSlug}`) };
+  }
+  return { likes };
 }
 
-export async function getLikes(postSlug: string): Promise<number> {
-  const post = await db
-    .select({ likes: Post.likes })
-    .from(Post)
-    .where(eq(Post.slug, postSlug))
-    .get();
-  if (!post) return 0;
+export async function getLikes({
+  postSlug,
+  ctx,
+}: {
+  postSlug: string;
+  ctx: Pick<APIContext, "locals">;
+}): Promise<number> {
+  const redis = Redis.fromEnv(ctx.locals.runtime.env);
+  const likesStr = await redis.get(`likes:${postSlug}`);
+  if (!likesStr) return 0;
 
-  return post.likes;
+  const num = Number(likesStr);
+  if (isNaN(num)) return 0;
+
+  return num;
 }

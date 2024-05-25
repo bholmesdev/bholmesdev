@@ -20,7 +20,7 @@ export const server = {
         });
       }
 
-      return await updateLikes({ postSlug, liked });
+      return await updateLikes({ postSlug, liked, ctx });
     },
   }),
   subscribeToNewsletter: defineAction({
