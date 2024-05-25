@@ -1,0 +1,10 @@
+{
+  "t:forbidden": {
+    "scope": "",
+    "prefix": "t:forbidden",
+    "body": [
+      "    throw new ActionError({\n      code: \"FORBIDDEN\",\n      message: \"No header found for rate limiting.\",\n    });"
+    ],
+    "description": ""
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "t:redis": {
+    "scope": "",
+    "prefix": "t:redis",
+    "body": [
+      "  const redis = Redis.fromEnv(ctx.locals.runtime.env);"
+    ],
+    "description": ""
+  }
+}
