@@ -4,6 +4,8 @@ import type { APIContext } from "astro";
 import { ActionError } from "astro:actions";
 import { createHash } from "node:crypto";
 
+export const BUTTONDOWN_URL = "https://api.buttondown.email/v1/";
+
 export async function checkIfRateLimited(
   ctx: Pick<APIContext, "request" | "locals">
 ): Promise<boolean> {
