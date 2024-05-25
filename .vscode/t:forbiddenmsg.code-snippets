@@ -1,0 +1,10 @@
+{
+  "t:forbiddenmsg": {
+    "scope": "",
+    "prefix": "t:forbiddenmsg",
+    "body": [
+      "      message: \"No header found for rate limiting.\","
+    ],
+    "description": ""
+  }
+}
