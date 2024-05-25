@@ -2,7 +2,6 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis/cloudflare";
 import type { APIContext } from "astro";
 import { ActionError } from "astro:actions";
-import { db, eq, gt, Post, sql } from "astro:db";
 import { createHash } from "node:crypto";
 
 export async function checkIfRateLimited(
