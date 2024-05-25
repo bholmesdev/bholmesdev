@@ -1,10 +1,8 @@
 ---
-import { type CollectionEntry } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import LikeButton from "../../components/LikeButton.astro";
+import { type CollectionEntry, getEntry } from "astro:content";
 import { Image } from "astro:assets";
-import { getEntry } from "astro:content";
-import { getLikes } from "~/utils.server";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import LikeButton from "~/components/LikeButton.astro";
 import { Newsletter } from "~/components/Newsletter";
 
 export const prerender = false;
@@ -13,8 +11,6 @@ type Props = CollectionEntry<"blog">;
 
 const post = await getEntry("blog", Astro.params.slug!);
 if (!post) return Astro.rewrite("/404");
-
-const likes = await getLikes({ postSlug: post.slug, ctx: Astro });
 
 const { Content, headings } = await post.render();
 ---
@@ -35,7 +31,7 @@ const { Content, headings } = await post.render();
       }
       <div class="flex flex-col gap-4">
         <h1 class="text-4xl mt-12">{post.data.title}</h1>
-        <LikeButton postSlug={post.slug} serverLikes={likes} />
+        <LikeButton postSlug={post.slug} />
       </div>
       <Content />
       <div class="mt-12">
