@@ -1,0 +1,10 @@
+{
+  "t:withstate": {
+    "scope": "",
+    "prefix": "t:withstate",
+    "body": [
+      "import { experimental_withState as withState } from \"@astrojs/react/actions\";"
+    ],
+    "description": ""
+  }
+}

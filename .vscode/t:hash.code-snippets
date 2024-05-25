@@ -1,0 +1,10 @@
+{
+  "t:hash": {
+    "scope": "",
+    "prefix": "t:hash",
+    "body": [
+      "  const hash = createHash(\"sha256\").update(ip).digest(\"hex\");"
+    ],
+    "description": ""
+  }
+}

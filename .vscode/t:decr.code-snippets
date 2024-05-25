@@ -1,0 +1,10 @@
+{
+  "t:decr": {
+    "scope": "",
+    "prefix": "t:decr",
+    "body": [
+      "    return {likes: await redis.decr(`likes:\\${postSlug}`)}"
+    ],
+    "description": ""
+  }
+}
