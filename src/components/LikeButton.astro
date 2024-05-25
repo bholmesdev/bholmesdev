@@ -67,8 +67,13 @@ const likes = await getLikes({ postSlug, ctx: Astro });
       });
       this.pending = false;
 
-      // TODO: funny easter egg for too many requests
-      if (error) return;
+      if (error) {
+        this.text.textContent =
+          error.code === "TOO_MANY_REQUESTS"
+            ? "Slow down! Rate limited you for the day."
+            : "Oops, failed to update likes.";
+        return;
+      }
 
       this.text.textContent = data.likes.toString();
     }
