@@ -1,11 +1,13 @@
 import { useActionState } from "react";
-import { actions, isInputError } from "astro:actions";
-import { experimental_withState as withState } from "@astrojs/react/actions";
+import { isInputError } from "astro:actions";
 import { scope } from "simple:scope";
 
 export function Newsletter() {
   const [state, action, pending] = useActionState(
-    withState(actions.subscribeToNewsletter.safe),
+    () => {
+      /* TODO: call action */
+      return undefined;
+    },
     { data: { success: false }, error: undefined }
   );
 

@@ -59,23 +59,6 @@ const likes = await getLikes({ postSlug, ctx: Astro });
       } else {
         localStorage.removeItem("isLike");
       }
-
-      this.pending = true;
-      const { data, error } = await actions.like.safe({
-        postSlug: this.postSlug,
-        liked: this.liked,
-      });
-      this.pending = false;
-
-      if (error) {
-        this.text.textContent =
-          error.code === "TOO_MANY_REQUESTS"
-            ? "Slow down! Rate limited you for the day."
-            : "Oops, failed to update likes.";
-        return;
-      }
-
-      this.text.textContent = data.likes.toString();
     }
   }
 </script>
