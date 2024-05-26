@@ -5,5 +5,8 @@ import {
   BUTTONDOWN_URL,
 } from "~/utils.server";
 import { getEntry } from "astro:content";
+import { render } from "./render";
 
-export const server = {};
+export const server = {
+  render,
+};

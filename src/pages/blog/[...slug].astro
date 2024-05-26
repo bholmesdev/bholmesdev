@@ -34,9 +34,7 @@ const { Content, headings } = await post.render();
         <LikeButton postSlug={post.slug} />
       </div>
       <Content />
-      <div class="mt-12">
-        <Newsletter client:visible />
-      </div>
+      <div class="mt-12"></div>
     </article-scroll>
   </main>
 </BaseLayout>
@@ -127,13 +125,21 @@ const { Content, headings } = await post.render();
   import "../../components/article-scroll";
   import { controller, target } from "@github/catalyst";
   import { progress, currentSectionIdx } from "../../components/article-scroll";
+  import { actions } from "astro:actions";
 
   @controller
   class ArticleScrollElement extends HTMLElement {
     @target progress: HTMLProgressElement;
 
     abortScroll!: AbortController;
-    connectedCallback() {
+    async connectedCallback() {
+      const btnStr = await actions.render.component({
+        path: "/src/components/LikeButton.astro",
+        props: { serverLikes: 52 },
+      });
+      const el = document.createElement("div");
+      el.innerHTML = btnStr;
+      this.appendChild(el);
       this.abortScroll = new AbortController();
       const headings = [...this.querySelectorAll("h2")];
       let waitingOnAnimRequest = false;
