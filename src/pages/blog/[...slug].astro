@@ -17,7 +17,7 @@ const { Content, headings } = await post.render();
 
 <BaseLayout {headings}>
   <main class="max-w-prose mx-auto px-3 mb-24">
-    <article-scroll>
+    <article-scroll data-post-slug={post.slug}>
       {
         post.data.image && (
           <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
@@ -123,19 +123,20 @@ const { Content, headings } = await post.render();
 
 <script>
   import "../../components/article-scroll";
-  import { controller, target } from "@github/catalyst";
+  import { controller, target, attr } from "@github/catalyst";
   import { progress, currentSectionIdx } from "../../components/article-scroll";
   import { actions } from "astro:actions";
 
   @controller
   class ArticleScrollElement extends HTMLElement {
     @target progress: HTMLProgressElement;
+    @attr postSlug = "";
 
     abortScroll!: AbortController;
     async connectedCallback() {
       const btnStr = await actions.render.component({
         path: "/src/components/LikeButton.astro",
-        props: { serverLikes: 52 },
+        props: { postSlug: this.postSlug },
       });
       const el = document.createElement("div");
       el.innerHTML = btnStr;
