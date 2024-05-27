@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import LikeButton from "~/components/LikeButton.astro";
 import { Newsletter } from "~/components/Newsletter";
+import { Tweet } from "~/embeds/Tweet";
 
 export const prerender = false;
 
@@ -33,8 +34,39 @@ const { Content, headings } = await post.render();
         <h1 class="text-4xl mt-12">{post.data.title}</h1>
         <LikeButton postSlug={post.slug} />
       </div>
-      <Content />
-      <div class="mt-12"></div>
+      <div data-target="article-scroll.editableContent" contenteditable>
+        <Content />
+      </div>
+      <div class="mt-12">
+        <div class="hidden">
+          <Newsletter client:only="react" />
+          <Tweet client:only="react" id="bleh" />
+        </div>
+        <template data-target="article-scroll.newsletter">
+          <astro-island
+            uid="Zfxicy"
+            component-url="/src/components/Newsletter.tsx"
+            component-export="Newsletter"
+            renderer-url="/node_modules/.vite/deps/@astrojs_react_client__js.js"
+            props='{"data-astro-cid-7jjqptxk":[0,true]}'
+            ssr=""
+            client="only"
+            before-hydration-url="/@id/astro:scripts/before-hydration.js"
+            opts='{"name":"Newsletter","value":"react"}'></astro-island>
+        </template>
+        <template data-target="article-scroll.tweet">
+          <astro-island
+            uid="Zfxicy"
+            component-url="/src/embeds/Tweet.tsx"
+            component-export="Tweet"
+            renderer-url="/node_modules/.vite/deps/@astrojs_react_client__js.js"
+            props='{"data-astro-cid-7jjqptxk":[0,true],"id":"fake"}'
+            ssr=""
+            client="only"
+            before-hydration-url="/@id/astro:scripts/before-hydration.js"
+            opts='{"name":"Tweet","value":"react"}'></astro-island>
+        </template>
+      </div>
     </article-scroll>
   </main>
 </BaseLayout>
@@ -130,17 +162,27 @@ const { Content, headings } = await post.render();
   @controller
   class ArticleScrollElement extends HTMLElement {
     @target progress: HTMLProgressElement;
+    @target editableContent: HTMLElement;
     @attr postSlug = "";
+    @target newsletter: HTMLTemplateElement;
+    @target tweet: HTMLTemplateElement;
 
     abortScroll!: AbortController;
     async connectedCallback() {
-      const btnStr = await actions.render.component({
-        path: "/src/components/LikeButton.astro",
-        props: { postSlug: this.postSlug },
+      this.editableContent.addEventListener("input", (e) => {
+        if (!(e instanceof InputEvent)) return;
+
+        if (e.data === "/") {
+          const range = window.getSelection()?.getRangeAt(0);
+          if (!range) return;
+          const text = range.startContainer.textContent;
+          if (!text) return;
+          console.log(range, text);
+          const el = this.tweet.content.cloneNode(true) as HTMLElement;
+          range.insertNode(el);
+        }
       });
-      const el = document.createElement("div");
-      el.innerHTML = btnStr;
-      this.appendChild(el);
+
       this.abortScroll = new AbortController();
       const headings = [...this.querySelectorAll("h2")];
       let waitingOnAnimRequest = false;

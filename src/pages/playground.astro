@@ -1,0 +1,64 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { Tweet } from "~/embeds/Tweet";
+import { Sparkles } from "~/components/Sparkle";
+
+const example = await getEntry("blog", "future-of-ui");
+const { Content } = await example.render();
+---
+
+<BaseLayout title="Live edit">
+  <live-edit>
+    <Content />
+    <template data-id="sparkles">
+      <Sparkles client:only="react">Sparkles</Sparkles>
+    </template>
+  </live-edit>
+  <div hidden></div>
+  <div class="fixed bottom-0 bg-slate-950 p-3 w-full">
+    <label for="id">id</label>
+    <input id="id" name="id" />
+  </div>
+</BaseLayout>
+
+<script>
+  class LiveEdit extends HTMLElement {
+    recordToBuffer = false;
+    buffer = "";
+
+    connectedCallback() {
+      const tweet = this.querySelector(
+        '[data-id="sparkles"]'
+      ) as HTMLTemplateElement;
+
+      this.contentEditable = "true";
+      this.addEventListener("input", (e) => {
+        if (!(e instanceof InputEvent)) return;
+
+        if (this.recordToBuffer) {
+          this.buffer += e.data?.toLowerCase() ?? "";
+        }
+
+        if (e.data === "/") {
+          this.recordToBuffer = true;
+        }
+        if (e.inputType === "deleteContentBackward") {
+          this.buffer = this.buffer.slice(0, -1);
+        }
+        if (e.inputType === "insertParagraph") {
+          const range = window.getSelection()?.getRangeAt(0);
+          if (!range) return;
+          const text = range.startContainer.textContent;
+          if (!text) return;
+          console.log(range, text);
+          const el = tweet.content.cloneNode(true) as HTMLElement;
+          range.insertNode(el);
+          this.recordToBuffer = false;
+          this.buffer = "";
+        }
+      });
+    }
+  }
+  window.customElements.define("live-edit", LiveEdit);
+</script>
