@@ -36,11 +36,11 @@ const { Content, headings } = await post.render();
       <div class="flex flex-col gap-4">
         <h1 class="text-4xl mt-12">{post.data.title}</h1>
         <LikeButton postSlug={post.slug} serverLikes={likes} />
+        <div class="mt-24">
+          <Newsletter client:visible />
+        </div>
       </div>
       <Content />
-      <div class="mt-12">
-        <Newsletter client:visible />
-      </div>
     </article-scroll>
   </main>
 </BaseLayout>
