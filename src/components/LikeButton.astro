@@ -1,14 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
-import { getLikes } from "~/utils.server";
+import LikeCount from "./LikeCount.astro";
 
 type Props = {
   postSlug: string;
 };
 
 const { postSlug } = Astro.props;
-
-const likes = await getLikes({ postSlug, ctx: Astro });
 ---
 
 <like-button
@@ -36,7 +34,9 @@ const likes = await getLikes({ postSlug, ctx: Astro });
     data-target="like-button.text"
     class="group-data-[pending]/like:opacity-60 transition-opacity"
   >
-    {likes}
+    <LikeCount {postSlug} server:defer>
+      <span class="animate-pulse opacity-60" slot="fallback">-</span>
+    </LikeCount>
   </p>
 </like-button>
 

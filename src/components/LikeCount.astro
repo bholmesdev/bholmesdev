@@ -1,0 +1,13 @@
+---
+import { getLikes } from "~/utils.server";
+
+type Props = {
+  postSlug: string;
+};
+
+const { postSlug } = Astro.props;
+
+const likes = await getLikes({ postSlug, ctx: Astro });
+---
+
+<span>{likes}</span>
