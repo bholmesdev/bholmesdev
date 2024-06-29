@@ -29,9 +29,6 @@ dependencies:
   '@github/catalyst':
     specifier: ^1.6.0
     version: 1.6.0
-  '@preact/signals':
-    specifier: ^1.2.3
-    version: 1.2.3(preact@10.21.0)
   '@tailwindcss/postcss':
     specifier: 4.0.0-alpha.14
     version: 4.0.0-alpha.14(postcss@8.4.38)
@@ -2505,19 +2502,6 @@ packages:
   /@opentelemetry/semantic-conventions@1.25.1:
     resolution: {integrity: sha512-ZDjMJJQRlyk8A1KZFCc+bCbsyrn1wTwdNt56F7twdfUfnHUZUq77/WfONCj8p72NZOyP7pNTdUWSTYC3GTbuuQ==}
     engines: {node: '>=14'}
-    dev: false
-
-  /@preact/signals-core@1.6.0:
-    resolution: {integrity: sha512-O/XGxwP85h1F7+ouqTMOIZ3+V1whfaV9ToIVcuyGriD4JkSD00cQo54BKdqjvBJxbenvp7ynfqRHEwI6e+NIhw==}
-    dev: false
-
-  /@preact/signals@1.2.3(preact@10.21.0):
-    resolution: {integrity: sha512-M2DXse3Wi8HwjI1d2vQWOLJ3lHogvqTsJYvl4ofXRXgMFQzJ7kmlZvlt5i8x5S5VwgZu0ghru4HkLqOoFfU2JQ==}
-    peerDependencies:
-      preact: 10.x
-    dependencies:
-      '@preact/signals-core': 1.6.0
-      preact: 10.21.0
     dev: false
 
   /@protobufjs/aspromise@1.1.2:
@@ -5867,10 +5851,6 @@ packages:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.2.0
-    dev: false
-
-  /preact@10.21.0:
-    resolution: {integrity: sha512-aQAIxtzWEwH8ou+OovWVSVNlFImL7xUCwJX3YMqA3U8iKCNC34999fFOnWjYNsylgfPgMexpbk7WYOLtKr/mxg==}
     dev: false
 
   /preferred-pm@3.1.3:
