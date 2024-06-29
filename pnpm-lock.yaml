@@ -77,6 +77,9 @@ dependencies:
   sharp:
     specifier: ^0.33.4
     version: 0.33.4
+  signal-polyfill:
+    specifier: ^0.1.1
+    version: 0.1.1
   tailwindcss:
     specifier: 4.0.0-alpha.14
     version: 4.0.0-alpha.14
@@ -6362,6 +6365,10 @@ packages:
   /signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
+    dev: false
+
+  /signal-polyfill@0.1.1:
+    resolution: {integrity: sha512-ZihPkMjiWOCZaYOb/vi1YLj+f0GTKVF7tQVNovtK32yjqcvRvjGPTwwX3Ad45mQ8v08kLUBagsOkuyJ6gpwhWA==}
     dev: false
 
   /simple-swizzle@0.2.2:
