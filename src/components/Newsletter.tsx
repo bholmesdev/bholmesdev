@@ -12,8 +12,8 @@ export function Newsletter() {
   const fieldErrors = isInputError(state.error) ? state.error.fields : {};
 
   return (
-    <section className="dark:bg-gray-900 -mx-4 bg-gray-100 rounded-2xl shadow-xl p-8">
-      <h2 className="font-bold font-heading dark:text-gray-200 text-gray-800 text-2xl mb-2">
+    <section className="bg-gray-900 -mx-4 rounded-2xl shadow-xl p-8">
+      <h2 className="font-bold font-heading text-gray-200 text-2xl mb-2">
         The whiteboardist newsletter
       </h2>
       <p className="mb-8">
@@ -32,10 +32,10 @@ export function Newsletter() {
                 name="email"
                 type="email"
                 required
-                className="rounded px-4 py-3 border-2 dark:border-slate-700 focus:ring-0 focus:border-primary focus:outline-none transition-colors"
+                className="rounded px-4 py-3 border-2 border-slate-700 focus:ring-0 focus:border-primary focus:outline-none transition-colors"
               />
               {fieldErrors.email && (
-                <p className="dark:text-red-300">{fieldErrors.email}</p>
+                <p className="text-red-300">{fieldErrors.email}</p>
               )}
             </div>
             <button
