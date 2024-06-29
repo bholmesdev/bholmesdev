@@ -1,11 +1,22 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis/cloudflare";
 import type { APIContext } from "astro";
+import { z } from "astro/zod";
 import { ActionError } from "astro:actions";
 import { createHash } from "node:crypto";
 import { scope } from "simple:scope";
 
 export const BUTTONDOWN_URL = "https://api.buttondown.email/v1/";
+
+const envSchema = z.object({
+  BUTTONDOWN_API_KEY: z.string(),
+  UPSTASH_REDIS_REST_TOKEN: z.string(),
+  UPSTASH_REDIS_REST_URL: z.string(),
+});
+
+export function getEnv() {
+  return envSchema.parse(import.meta.env);
+}
 
 export async function checkIfRateLimited(
   ctx: Pick<APIContext, "request" | "locals">
@@ -20,7 +31,7 @@ export async function checkIfRateLimited(
     });
   }
 
-  const redis = Redis.fromEnv(ctx.locals.runtime.env);
+  const redis = Redis.fromEnv(getEnv());
   const ipHash = createHash("sha256").update(ip).digest("hex");
   const ratelimit = new Ratelimit({
     redis,
@@ -39,7 +50,7 @@ export async function updateLikes({
   liked: boolean;
   ctx: Pick<APIContext, "locals">;
 }): Promise<{ likes: number }> {
-  const redis = Redis.fromEnv(ctx.locals.runtime.env);
+  const redis = Redis.fromEnv(getEnv());
   const likes = await getLikes({ postSlug, ctx });
   if (liked) {
     return { likes: await redis.incr(`likes:${postSlug}`) };
@@ -57,7 +68,7 @@ export async function getLikes({
   postSlug: string;
   ctx: Pick<APIContext, "locals">;
 }): Promise<number> {
-  const redis = Redis.fromEnv(ctx.locals.runtime.env);
+  const redis = Redis.fromEnv(getEnv());
   const likesStr = await redis.get(`likes:${postSlug}`);
   if (!likesStr) return 0;
 

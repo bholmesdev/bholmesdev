@@ -3,6 +3,7 @@ import {
   checkIfRateLimited,
   updateLikes,
   BUTTONDOWN_URL,
+  getEnv,
 } from "~/utils.server";
 import { getEntry } from "astro:content";
 
@@ -31,13 +32,13 @@ export const server = {
       email: z.string().email(),
       musicRecs: z.boolean(),
     }),
-    handler: async ({ email, musicRecs }, ctx) => {
+    handler: async ({ email, musicRecs }) => {
       const res = await fetch(new URL("subscribers", BUTTONDOWN_URL), {
         method: "POST",
         body: JSON.stringify({ email, tags: musicRecs ? ["music"] : [] }),
         headers: {
           "content-type": "application/json",
-          Authorization: `Token ${ctx.locals.runtime.env.BUTTONDOWN_API_KEY}`,
+          Authorization: `Token ${getEnv().BUTTONDOWN_API_KEY}`,
         },
       });
 
