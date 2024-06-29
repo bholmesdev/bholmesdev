@@ -21,16 +21,9 @@ export function getEnv() {
 export async function checkIfRateLimited(
   ctx: Pick<APIContext, "request" | "locals">
 ): Promise<boolean> {
-  console.log("DEBUG");
-  console.log(
-    "context",
-    ctx.locals.netlify.context,
-    ctx.locals.netlify.context.ip
-  );
-  console.log("request", [...ctx.request.headers.entries()]);
   const ip = import.meta.env.DEV
     ? scope("development")
-    : ctx.request.headers.get("cf-connecting-ip");
+    : ctx.locals.netlify.context.ip;
   if (!ip) {
     throw new ActionError({
       code: "FORBIDDEN",
