@@ -12,6 +12,7 @@ import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyp
 import Nav from "../components/Nav.astro";
 import type { MarkdownHeading, ImageMetadata } from "astro";
 import { getImage } from "astro:assets";
+import { ViewTransitions } from "astro:transitions";
 
 type Props = {
   title?: string;
@@ -58,6 +59,7 @@ const {
     />
     <link rel="preload" href={ranga400url} as="font" crossorigin="anonymous" />
     <link rel="preload" href={ranga700url} as="font" crossorigin="anonymous" />
+    <ViewTransitions />
     <slot name="head" />
     <title>{title}</title>
   </head>
@@ -70,10 +72,6 @@ const {
       <slot />
     </div>
     <style is:global>
-      @view-transition {
-        navigation: auto;
-      }
-
       :root {
         --purple-hs: 263.1 100%;
         --purple: hsl(var(--purple-hs) 50%);
