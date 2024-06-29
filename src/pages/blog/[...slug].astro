@@ -139,9 +139,11 @@ const { Content, headings } = await post.render();
   @controller
   class ArticleScrollElement extends HTMLElement {
     @target progress: HTMLProgressElement;
+    article: HTMLDivElement;
 
     abortScroll!: AbortController;
     connectedCallback() {
+      this.article = this.querySelector("article") as HTMLDivElement;
       this.abortScroll = new AbortController();
       const headings = [...this.querySelectorAll("h2")];
       let waitingOnAnimRequest = false;
@@ -191,7 +193,7 @@ const { Content, headings } = await post.render();
         },
         { rootMargin: "-49% 0px", threshold: 0 }
       );
-      for (const element of this.children) {
+      for (const element of this.article.children) {
         observer.observe(element);
       }
     }
