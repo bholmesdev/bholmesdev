@@ -5,11 +5,11 @@
 <script>
   import { gsap } from "gsap";
   import { attr, controller, target, targets } from "@github/catalyst";
-  import { fisherYatesShuffle } from "../../utils.client";
+  import { fisherYatesShuffle } from "~/utils.client";
   import MotionPathPlugin from "gsap/MotionPathPlugin";
   import { setUpCanvas } from "./canvas";
-  import { isDrawing } from "../../stores";
-  import { effect } from "@preact/signals";
+  import { isDrawing } from "~/stores";
+  import { effect } from "~/lib/effect";
 
   gsap.registerPlugin(MotionPathPlugin);
 
@@ -49,7 +49,7 @@
 
     stopDrawing() {
       if (!this.drawing) return;
-      isDrawing.value = false;
+      isDrawing.set(false);
 
       if (this.#resetCanvas) this.#resetCanvas();
       this.closeBtn?.addEventListener(
@@ -73,7 +73,7 @@
 
     async startDrawing() {
       if (this.drawing) return;
-      isDrawing.value = true;
+      isDrawing.set(true);
 
       this.closeBtn?.addEventListener(
         "transitionend",
@@ -141,7 +141,7 @@
 
     connectedCallback() {
       effect(() => {
-        this.drawing = isDrawing.value;
+        this.drawing = isDrawing.get();
         if (this.drawBtn) {
           this.drawBtn.disabled = this.drawing;
         }

@@ -94,6 +94,7 @@ const {
       }
     </style>
     <script>
+      import { effect } from "~/lib/effect";
       import { isDrawing } from "../stores";
       import { controller, attr } from "@github/catalyst";
 
@@ -102,10 +103,11 @@ const {
         @attr visible = false;
 
         connectedCallback() {
-          isDrawing.subscribe((value) => {
+          effect(() => {
+            const visible = isDrawing.get();
             const mdBreakpoint = window.matchMedia("(max-width: 768px)");
             if (mdBreakpoint.matches) {
-              this.visible = value;
+              this.visible = visible;
             }
           });
         }

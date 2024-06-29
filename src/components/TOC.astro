@@ -52,8 +52,9 @@ const { headings } = Astro.props;
 
 <script>
   import { attr, target, targets, controller } from "@github/catalyst";
-  import { progress, currentSectionIdx } from "./article-scroll";
-  import { toAttr } from "../utils.client";
+  import { progress, currentSectionIdx } from "~/stores";
+  import { effect } from "~/lib/effect";
+  import { toAttr } from "~/utils.client";
 
   @controller
   class MyTocElement extends HTMLElement {
@@ -64,11 +65,12 @@ const { headings } = Astro.props;
     @targets links: HTMLAnchorElement[];
 
     connectedCallback() {
-      progress.subscribe((value) => {
-        this.progress.value = value;
-        this.doneReading = Math.round(value * 10) / 10 >= 1;
+      effect(() => {
+        this.progress.value = progress.get();
+        this.doneReading = Math.round(progress.get() * 10) / 10 >= 1;
       });
-      currentSectionIdx.subscribe((idx) => {
+      effect(() => {
+        const idx = currentSectionIdx.get();
         this.btn.style.setProperty(
           "--section-offset",
           `calc(-${idx} * (var(--spacing-3) + 1em))`
