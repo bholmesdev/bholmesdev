@@ -59,7 +59,7 @@ const {
     />
     <link rel="preload" href={ranga400url} as="font" crossorigin="anonymous" />
     <link rel="preload" href={ranga700url} as="font" crossorigin="anonymous" />
-    <ViewTransitions />
+    <ViewTransitions fallback="none" />
     <slot name="head" />
     <title>{title}</title>
   </head>
