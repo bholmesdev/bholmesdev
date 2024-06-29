@@ -2,7 +2,6 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis/cloudflare";
 import type { APIContext } from "astro";
 import { z } from "astro/zod";
-import { ActionError } from "astro:actions";
 import { createHash } from "node:crypto";
 import { scope } from "simple:scope";
 
