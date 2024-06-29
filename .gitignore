@@ -25,3 +25,6 @@ pnpm-debug.log*
 .dev.vars
 worker-configuration.d.ts
 .wrangler/
+
+# Netlify
+.netlify/
