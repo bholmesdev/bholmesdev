@@ -22,7 +22,7 @@ function processPending() {
   w.watch();
 }
 
-export function effect(callback: Function) {
+export function effect(callback: Function, opts?: { signal: AbortSignal }) {
   let cleanup: Function | undefined;
 
   const computed = new Signal.Computed(() => {
@@ -33,9 +33,13 @@ export function effect(callback: Function) {
   w.watch(computed);
   computed.get();
 
-  return () => {
-    w.unwatch(computed);
-    typeof cleanup === "function" && cleanup();
-    cleanup = undefined;
-  };
+  opts?.signal?.addEventListener(
+    "abort",
+    () => {
+      w.unwatch(computed);
+      typeof cleanup === "function" && cleanup();
+      cleanup = undefined;
+    },
+    { once: true }
+  );
 }

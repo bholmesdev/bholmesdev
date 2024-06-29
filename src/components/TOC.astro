@@ -64,12 +64,15 @@ const { headings } = Astro.props;
     @target progress: HTMLProgressElement;
     @targets links: HTMLAnchorElement[];
 
+    #disconnect = new AbortController();
+
     connectedCallback() {
       effect(() => {
         this.progress.value = progress.get();
         this.doneReading = Math.round(progress.get() * 10) / 10 >= 1;
-      });
+      }, this.#disconnect);
       effect(() => {
+        console.log("currentSectionIdx", currentSectionIdx.get());
         const idx = currentSectionIdx.get();
         this.btn.style.setProperty(
           "--section-offset",
@@ -78,7 +81,11 @@ const { headings } = Astro.props;
         for (const [linkIdx, link] of this.links.entries()) {
           link.toggleAttribute("data-active", linkIdx === idx);
         }
-      });
+      }, this.#disconnect);
+    }
+
+    disconnectedCallback() {
+      this.#disconnect.abort();
     }
 
     toggleMenu = () => {

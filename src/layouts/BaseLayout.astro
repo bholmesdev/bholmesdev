@@ -102,6 +102,8 @@ const {
       class MyShroudElement extends HTMLElement {
         @attr visible = false;
 
+        #disconnect = new AbortController();
+
         connectedCallback() {
           effect(() => {
             const visible = isDrawing.get();
@@ -109,7 +111,11 @@ const {
             if (mdBreakpoint.matches) {
               this.visible = visible;
             }
-          });
+          }, this.#disconnect);
+        }
+
+        disconnectedCallback() {
+          this.#disconnect.abort();
         }
       }
     </script>

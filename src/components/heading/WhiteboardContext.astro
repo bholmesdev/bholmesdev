@@ -39,6 +39,7 @@
     #eraseAnim?: gsap.core.Timeline;
 
     #resetCanvas?: () => void;
+    #disconnect = new AbortController();
 
     scrollToVideos(e: MouseEvent) {
       e.preventDefault();
@@ -145,7 +146,7 @@
         if (this.drawBtn) {
           this.drawBtn.disabled = this.drawing;
         }
-      });
+      }, this.#disconnect);
 
       this.#faceAnim = gsap.to(this.face, {
         x: () => {
@@ -174,6 +175,10 @@
         .repeatDelay(3)
         .delay(2)
         .repeat(-1);
+    }
+
+    disconnectedCallback() {
+      this.#disconnect.abort();
     }
   }
 </script>
