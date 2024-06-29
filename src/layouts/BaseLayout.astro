@@ -11,7 +11,6 @@ import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyp
 import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
 import Nav from "../components/Nav.astro";
 import type { MarkdownHeading, ImageMetadata } from "astro";
-import { ViewTransitions } from "astro:transitions";
 import { getImage } from "astro:assets";
 
 type Props = {
@@ -61,7 +60,6 @@ const {
     <link rel="preload" href={ranga700url} as="font" crossorigin="anonymous" />
     <slot name="head" />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
   <body class="bg-gray-950 text-white text-base px-4 md:px-8">
     <my-shroud
@@ -72,6 +70,10 @@ const {
       <slot />
     </div>
     <style is:global>
+      @view-transition {
+        navigation: auto;
+      }
+
       :root {
         --purple-hs: 263.1 100%;
         --purple: hsl(var(--purple-hs) 50%);
@@ -93,7 +95,6 @@ const {
       }
     </style>
     <script>
-      import { effect } from "@preact/signals";
       import { isDrawing } from "../stores";
       import { controller, attr } from "@github/catalyst";
 
