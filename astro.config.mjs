@@ -9,13 +9,7 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   output: "hybrid",
   adapter: netlify(),
-  integrations: [
-    markdoc({
-      allowHTML: true,
-    }),
-    icon(),
-    react(),
-  ],
+  integrations: [markdoc(), icon(), react()],
   vite: {
     plugins: [simpleScope()],
     esbuild: {
