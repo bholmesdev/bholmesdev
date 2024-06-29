@@ -44,14 +44,12 @@ export async function checkIfRateLimited(
 export async function updateLikes({
   postSlug,
   liked,
-  ctx,
 }: {
   postSlug: string;
   liked: boolean;
-  ctx: Pick<APIContext, "locals">;
 }): Promise<{ likes: number }> {
   const redis = Redis.fromEnv(getEnv());
-  const likes = await getLikes({ postSlug, ctx });
+  const { likes } = await getLikes({ postSlug });
   if (liked) {
     return { likes: await redis.incr(`likes:${postSlug}`) };
   }
@@ -63,17 +61,15 @@ export async function updateLikes({
 
 export async function getLikes({
   postSlug,
-  ctx,
 }: {
   postSlug: string;
-  ctx: Pick<APIContext, "locals">;
-}): Promise<number> {
+}): Promise<{ likes: number }> {
   const redis = Redis.fromEnv(getEnv());
   const likesStr = await redis.get(`likes:${postSlug}`);
-  if (!likesStr) return 0;
+  if (!likesStr) return { likes: 0 };
 
   const num = Number(likesStr);
-  if (isNaN(num)) return 0;
+  if (isNaN(num)) return { likes: 0 };
 
-  return num;
+  return { likes: num };
 }

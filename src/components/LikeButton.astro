@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import LikeCount from "./LikeCount.astro";
 
 type Props = {
   postSlug: string;
@@ -11,6 +10,7 @@ const { postSlug } = Astro.props;
 
 <like-button
   data-post-slug={postSlug}
+  data-pending
   class="group/like flex items-center gap-4"
 >
   <button
@@ -34,9 +34,7 @@ const { postSlug } = Astro.props;
     data-target="like-button.text"
     class="group-data-[pending]/like:opacity-60 transition-opacity"
   >
-    <LikeCount {postSlug} server:defer>
-      <span class="animate-pulse opacity-60" slot="fallback">-</span>
-    </LikeCount>
+    -
   </p>
 </like-button>
 
@@ -46,12 +44,27 @@ const { postSlug } = Astro.props;
 
   @controller
   class LikeButtonElement extends HTMLElement {
-    @attr liked = Boolean(localStorage.getItem("isLike"));
+    @attr liked = false;
     @attr postSlug = "";
-    @attr pending = false;
+    @attr pending = true;
     @target text: HTMLElement;
 
+    // Track promise to block toggleLike until likes are fetch
+    #likesPromise = Promise.resolve({ likes: 0 });
+
+    async connectedCallback() {
+      this.liked = Boolean(localStorage.getItem("isLike"));
+      this.#likesPromise = actions.getLikes({
+        postSlug: this.postSlug,
+      });
+      const { likes } = await this.#likesPromise;
+
+      this.pending = false;
+      this.text.textContent = likes.toString();
+    }
+
     async toggleLike() {
+      await this.#likesPromise;
       this.liked = !Boolean(localStorage.getItem("isLike"));
 
       if (this.liked) {

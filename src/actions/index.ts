@@ -4,6 +4,7 @@ import {
   updateLikes,
   BUTTONDOWN_URL,
   getEnv,
+  getLikes,
 } from "~/utils.server";
 import { getEntry } from "astro:content";
 
@@ -23,8 +24,14 @@ export const server = {
         });
       }
 
-      return await updateLikes({ postSlug, liked, ctx });
+      return await updateLikes({ postSlug, liked });
     },
+  }),
+  getLikes: defineAction({
+    input: z.object({
+      postSlug: z.string(),
+    }),
+    handler: getLikes,
   }),
   subscribeToNewsletter: defineAction({
     accept: "form",
