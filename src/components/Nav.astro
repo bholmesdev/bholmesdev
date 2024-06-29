@@ -40,7 +40,6 @@ function isMatch(urlPath: string, linkPath: string) {
             style={{ "--idx": idx + 1 }}
           >
             <a
-              transition:animate="none"
               transition:name={`link-${idx}`}
               data-targets="nav-open.links"
               data-active={l.external ? false : isMatch(urlPath, l.url)}
@@ -55,6 +54,7 @@ function isMatch(urlPath: string, linkPath: string) {
     </ul>
     <div>
       <button
+        transition:name="nav-toggle"
         class="h-[20px] w-[25px] flex flex-col justify-between relative bg-transparent before:absolute before:-inset-1 before:-z-10 before:rounded-md"
         data-action="click:nav-open#toggle"
         data-target="nav-open.btn"
@@ -124,6 +124,7 @@ function isMatch(urlPath: string, linkPath: string) {
 </script>
 
 <style is:global>
+  ::view-transition-group(nav-toggle),
   ::view-transition-group(link-0),
   ::view-transition-group(link-1),
   ::view-transition-group(link-2),
