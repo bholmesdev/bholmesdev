@@ -24,12 +24,6 @@ export async function checkIfRateLimited(
   const ip = import.meta.env.DEV
     ? scope("development")
     : ctx.locals.netlify.context.ip;
-  if (!ip) {
-    throw new ActionError({
-      code: "FORBIDDEN",
-      message: "No header found for rate limiting.",
-    });
-  }
 
   const redis = Redis.fromEnv(getEnv());
   const ipHash = createHash("sha256").update(ip).digest("hex");
