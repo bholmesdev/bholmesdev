@@ -166,10 +166,18 @@ const { headings } = Astro.props;
     translate: -0.4rem -0.4rem;
     transform-origin: 1em 1em;
     transition:
-      rotate 0.8s var(--transition-timing-function-spring),
-      visibility 0.8s,
+      rotate 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+      visibility 0.2s,
       scale 0.2s;
     border-radius: 1em;
+  }
+  @supports (transition-timing-function: linear(1, 1)) {
+    .panel {
+      transition:
+        rotate 0.8s var(--transition-timing-function-spring-5),
+        visibility 0.8s,
+        scale 0.2s;
+    }
   }
 
   [data-open] .panel {
