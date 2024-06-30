@@ -1,16 +1,52 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
 
 const posts = await getCollection("blog");
 ---
 
 <BaseLayout title="Blog posts">
-  {
-    posts.map((p) => (
-      <li>
-        <a href={`/blog/${p.slug}`}>{p.data.title}</a>
-      </li>
-    ))
-  }
+  <main class="max-w-prose mx-auto sm:px-8 mt-12">
+    <header class="px-4">
+      <h1 class="text-4xl mb-8">Blog Archive</h1>
+      <p class="max-w-[30em] leading-8 mb-12 text-gray-300">
+        To be honest, I don’t blog as much as I <a
+          href="https://youtube.com/@bholmesdev"
+          class="text-primary-light">make videos</a
+        > these days :) This is my archive of old posts and (maybe) future thoughts.
+      </p>
+    </header>
+    <section class="bg-gray-900 px-8 rounded">
+      {
+        posts
+          .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+          .map((p) => (
+            <a href={`/blog/${p.slug}`} class="block">
+              <article class="py-8 flex gap-4 sm:gap-8 group items-start justify-between border-b border-gray-800">
+                <div class="flex-1">
+                  <h2 class="mb-2">{p.data.title}</h2>
+                  <p class="mb-4 text-sm text-gray-400">{p.data.description}</p>
+                  {p.data.date ? (
+                    <p class="bg-slate-800 rounded px-2 py-1 text-gray-300 font-mono text-xs w-max">
+                      {p.data.date.toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </p>
+                  ) : null}
+                </div>
+                <Icon
+                  name="arrow-right"
+                  class=" text-slate-300 group-hover:translate-x-1 transition-transform group-hover:text-primary-light ease-spring-3 duration-500"
+                  size={24}
+                  title="Read more"
+                />
+              </article>
+            </a>
+          ))
+      }
+    </section>
+  </main>
 </BaseLayout>
