@@ -28,11 +28,13 @@ function isMatch(urlPath: string, linkPath: string) {
 }
 ---
 
-<nav-open data-open class="group block sticky z-20 top-0">
+<nav-open class="group block sticky z-20 top-0">
   <nav class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-3 px-5">
     {headings?.length ? <Toc {headings} /> : null}
     <h2 class="sr-only">Social links</h2>
-    <ul class="text-slate-200 flex gap-4 items-center relative">
+    <ul
+      class="text-slate-200 flex gap-4 items-center sm:relative absolute group-[[data-open]]:invisible group-[[data-open]]:opacity-0 sm:group-[[data-open]]:opacity-100 sm:group-[[data-open]]:visible opacity-100 visible transition-all"
+    >
       <li
         class="hover:text-white hover:scale-110 focus-within:scale-110 transition-all ease-spring-3 duration-700"
       >
@@ -115,7 +117,7 @@ function isMatch(urlPath: string, linkPath: string) {
 
   @controller
   class NavOpenElement extends HTMLElement {
-    @attr open = true;
+    @attr open = false;
     @target btn: HTMLButtonElement;
     @targets links: HTMLAnchorElement[];
 
@@ -130,18 +132,36 @@ function isMatch(urlPath: string, linkPath: string) {
     }
 
     connectedCallback() {
-      document.addEventListener(
-        "scroll",
-        () => {
-          this.scrollY = window.scrollY;
+      const scrollListener = () => {
+        this.scrollY = window.scrollY;
 
-          if (!this.ticking) {
-            window.requestAnimationFrame(() => {
-              this.open = this.scrollY < 20;
-              this.ticking = false;
+        if (!this.ticking) {
+          window.requestAnimationFrame(() => {
+            this.open = this.scrollY < 20;
+            this.ticking = false;
+          });
+
+          this.ticking = true;
+        }
+      };
+      const smBreakpointMatch = window.matchMedia("(min-width: 640px)");
+      this.open = smBreakpointMatch.matches;
+
+      if (smBreakpointMatch.matches) {
+        document.addEventListener("scroll", scrollListener, {
+          signal: this.#abort.signal,
+        });
+      }
+      smBreakpointMatch.addEventListener(
+        "change",
+        (e) => {
+          this.open = e.matches;
+          if (e.matches) {
+            document.addEventListener("scroll", scrollListener, {
+              signal: this.#abort.signal,
             });
-
-            this.ticking = true;
+          } else {
+            document.removeEventListener("scroll", scrollListener);
           }
         },
         { signal: this.#abort.signal }
