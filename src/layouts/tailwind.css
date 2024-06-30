@@ -39,11 +39,11 @@
 }
 
 @supports (transition-timing-function: linear(1, 1)) {
-  @theme {
-  --transition-timing-function-spring-1: var(--ease-spring-1);
-  --transition-timing-function-spring-2: var(--ease-spring-2);
-  --transition-timing-function-spring-3: var(--ease-spring-3);
-  --transition-timing-function-spring-4: var(--ease-spring-4);
-  --transition-timing-function-spring-5: var(--ease-spring-5);
+  :root {
+    --transition-timing-function-spring-1: var(--ease-spring-1);
+    --transition-timing-function-spring-2: var(--ease-spring-2);
+    --transition-timing-function-spring-3: var(--ease-spring-3);
+    --transition-timing-function-spring-4: var(--ease-spring-4);
+    --transition-timing-function-spring-5: var(--ease-spring-5);
   }
 }
