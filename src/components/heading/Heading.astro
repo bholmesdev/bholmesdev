@@ -13,7 +13,7 @@ import WhiteboardContext from "./WhiteboardContext.astro";
         <h1 class="text-9xl">
           <span class="md:inline hidden">Hi, </span>
           I'm <strong
-            class="bg-clip-text text-transparent bg-gradient-to-r from-[#9b5dff] to-[#6200ff]"
+            class="bg-clip-text text-transparent bg-gradient-to-r from-[#9b5dff] to-[#6200ff] animate-[shine_4s_ease-in-out_infinite]"
             >Ben.</strong
           >
         </h1>
@@ -26,7 +26,7 @@ import WhiteboardContext from "./WhiteboardContext.astro";
         class="flex self-start mt-12 sm:mt-0 sm:self-start sm:flex-row flex-col-reverse gap-6"
       >
         <a
-          class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
+          class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl sm:animate-[shine_4s_500ms_ease-in-out_infinite] animate-[shine_4s_1s_ease-in-out_infinite]"
           is="button"
           href="#videos"
           data-action="click:my-whiteboard#scrollToVideos"
@@ -39,7 +39,7 @@ import WhiteboardContext from "./WhiteboardContext.astro";
           </span>
         </a>
         <button
-          class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
+          class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl sm:animate-[shine_4s_1s_ease-in-out_infinite] animate-[shine_4s_500ms_ease-in-out_infinite]"
           data-draw-btn
           data-target="my-whiteboard.drawBtn"
           data-action="click:my-whiteboard#startDrawing"
@@ -145,11 +145,26 @@ import WhiteboardContext from "./WhiteboardContext.astro";
   }
 
   @keyframes squiggle {
-    0% {
+    from {
       transform: translateX(0);
     }
-    100% {
+    to {
       transform: translateX(-50%);
+    }
+  }
+
+  [data-shine] {
+    animation: shine 4s linear infinite;
+  }
+
+  @keyframes shine {
+    0%,
+    30%,
+    100% {
+      filter: brightness(1);
+    }
+    15% {
+      filter: brightness(1.25);
     }
   }
 </style>
