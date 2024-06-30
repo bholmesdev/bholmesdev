@@ -33,6 +33,7 @@ function isMatch(urlPath: string, linkPath: string) {
     {headings?.length ? <Toc {headings} /> : null}
     <h2 class="sr-only">Social links</h2>
     <ul
+      transition:name="social"
       class="text-slate-200 flex gap-4 items-center sm:relative absolute group-[[data-open]]:invisible group-[[data-open]]:opacity-0 sm:group-[[data-open]]:opacity-100 sm:group-[[data-open]]:visible opacity-100 visible transition-all"
     >
       <li
