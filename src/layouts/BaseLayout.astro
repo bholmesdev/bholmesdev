@@ -95,8 +95,9 @@ const {
     </style>
     <script>
       import { effect } from "~/lib/effect";
-      import { isDrawing } from "../stores";
+      import { isDrawing } from "~/stores";
       import { controller, attr } from "@github/catalyst";
+      import { Signal } from "signal-polyfill";
 
       @controller
       class MyShroudElement extends HTMLElement {
@@ -105,12 +106,13 @@ const {
         #disconnect = new AbortController();
 
         connectedCallback() {
+          const smBreakpointMatches = new Signal.State(false);
+          window.matchMedia("(min-width: 640px)").onchange = ({ matches }) => {
+            smBreakpointMatches.set(matches);
+          };
+
           effect(() => {
-            const visible = isDrawing.get();
-            const mdBreakpoint = window.matchMedia("(max-width: 768px)");
-            if (mdBreakpoint.matches) {
-              this.visible = visible;
-            }
+            this.visible = isDrawing.get() && !smBreakpointMatches.get();
           }, this.#disconnect);
         }
 

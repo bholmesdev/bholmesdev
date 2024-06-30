@@ -27,6 +27,8 @@
   --font-size-3xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
   --font-size-4xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
   --font-size-5xl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+  --font-size-8xl: clamp(5.8rem, 4.14vw + 4.05rem, 7.2rem);
+  --font-size-9xl: clamp(6.55rem, 4.34vw + 4.55rem, 8rem);
 
   --color-marker-red: #ff0000;
   --color-marker-blue: #0034ff;

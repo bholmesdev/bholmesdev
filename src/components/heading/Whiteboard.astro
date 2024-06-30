@@ -7,7 +7,7 @@ import { Icon } from "astro-icon/components";
 <div
   data-whiteboard-container
   transition:name="whiteboard"
-  class="fixed z-30 max-w-[90vw] top-1 left-4 scale-[0.07] origin-top-left md:scale-100 group-[[data-drawing]]:scale-100 md:relative rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
+  class="rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
 >
   <canvas
     width="800"
@@ -22,7 +22,7 @@ import { Icon } from "astro-icon/components";
     class="absolute left-[14%] bottom-[9%] w-[13%] h-[13%]"
   >
     <label
-      class="bg-marker-blue block md:scale-100 group-[[data-drawing]]:scale-100 scale-0 w-full h-full rounded-[20%] group-[[data-drawing]]:not-has-checked:bg-marker-blue-light group-[[data-drawing]]:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
+      class="bg-marker-blue block w-full h-full rounded-[20%] group-[[data-drawing]]:not-has-checked:bg-marker-blue-light group-[[data-drawing]]:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Eraser</span>
       <input class="sr-only" type="radio" value="eraser" name="color" />
@@ -94,7 +94,7 @@ import { Icon } from "astro-icon/components";
           stroke-width="25"
           stroke-linecap="round"></path>
         <path
-          class="md:hidden group-[[data-drawing]]:hidden"
+          class="sm:hidden group-[[data-drawing]]:hidden"
           d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
           stroke="#6200FF"
           stroke-width="35"
@@ -109,7 +109,7 @@ import { Icon } from "astro-icon/components";
           fill="#6200FF"></rect>
 
         <rect
-          class="md:hidden group-[[data-drawing]]:hidden"
+          class="sm:hidden group-[[data-drawing]]:hidden"
           data-targets="my-whiteboard.eyes"
           x="90.7898"
           y="201.2"
@@ -127,7 +127,7 @@ import { Icon } from "astro-icon/components";
           fill="#6200FF"></rect>
 
         <rect
-          class="md:hidden group-[[data-drawing]]:hidden"
+          class="sm:hidden group-[[data-drawing]]:hidden"
           data-targets="my-whiteboard.eyes"
           x="307.299"
           y="201.2"
@@ -190,11 +190,9 @@ import { Icon } from "astro-icon/components";
 </div>
 
 <style>
-  @media (min-width: 768px) {
-    [data-whiteboard-container] {
-      animation-play-state: running;
-      animation: float 4s ease-in-out infinite;
-    }
+  [data-whiteboard-container] {
+    animation-play-state: running;
+    animation: float 4s ease-in-out infinite;
   }
 
   :global(my-whiteboard[data-drawing]) [data-whiteboard-container] {

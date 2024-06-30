@@ -5,12 +5,11 @@ import WhiteboardContext from "./WhiteboardContext.astro";
 ---
 
 <WhiteboardContext>
-  <div
-    class="group mb-8 flex max-w-[120ch] items-center justify-center gap-12 mx-auto p-3"
-  >
-    <div>
+  <div data-grid class="group mb-8 flex max-w-[80ch] grid gap-8 mx-auto p-3">
+    <div style="grid-area: heading" class="sm:self-end mt-8">
       <h1 class="text-9xl">
-        Hi, I'm <strong
+        <span class="sm:inline hidden">Hi, </span>
+        I'm <strong
           class="bg-clip-text text-transparent bg-gradient-to-r from-[#9b5dff] to-[#6200ff]"
           >Ben.</strong
         >
@@ -18,39 +17,61 @@ import WhiteboardContext from "./WhiteboardContext.astro";
       <p class="text-xl mb-5 text-slate-400">
         The <span class="text-white">whiteboard guy</span> who codes kinda well.
       </p>
-      <div class="flex gap-6">
-        <a
-          class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
-          is="button"
-          href="#videos"
-          data-action="click:my-whiteboard#scrollToVideos"
-          data-watch-btn
-        >
-          <span
-            class="group-active/btn:scale-105 group-active/btn:rounded-2xl group-active/btn:scale-y-110 origin-top rounded-xl px-8 py-2 flex items-center justify-center gap-4"
-          >
-            Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
-          </span>
-        </a>
-        <button
-          class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
-          data-draw-btn
-          data-target="my-whiteboard.drawBtn"
-          data-action="click:my-whiteboard#startDrawing"
-        >
-          <span
-            class="group-disabled/btn:scale-105 group-disabled/btn:rounded-2xl group-disabled/btn:scale-y-110 origin-top rounded-xl px-8 py-2 flex items-center justify-center gap-4"
-          >
-            Draw <Icon name="draw" class="mb-[2px]" />
-          </span>
-        </button>
-      </div>
     </div>
-    <Whiteboard />
+    <div
+      style="grid-area: buttons"
+      class="flex self-start mt-12 sm:mt-0 sm:self-start sm:flex-row flex-col-reverse gap-6"
+    >
+      <a
+        class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
+        is="button"
+        href="#videos"
+        data-action="click:my-whiteboard#scrollToVideos"
+        data-watch-btn
+      >
+        <span
+          class="group-active/btn:scale-105 group-active/btn:rounded-2xl group-active/btn:scale-y-110 origin-top rounded-xl px-8 py-3 flex items-center justify-center gap-4"
+        >
+          Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
+        </span>
+      </a>
+      <button
+        class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl"
+        data-draw-btn
+        data-target="my-whiteboard.drawBtn"
+        data-action="click:my-whiteboard#startDrawing"
+      >
+        <span
+          class="group-disabled/btn:scale-105 group-disabled/btn:rounded-2xl group-disabled/btn:scale-y-110 origin-top rounded-xl px-8 py-3 flex items-center justify-center gap-4"
+        >
+          Draw <Icon name="draw" class="mb-[2px]" />
+        </span>
+      </button>
+    </div>
+    <div
+      style="grid-area: whiteboard"
+      class="place-self-center mr-[-30%] relative z-30 group-[[data-drawing]]:fixed sm:relative! group-[[data-drawing]]:mr-0 group-[[data-drawing]]:top-4 group-[[data-drawing]]:left-4 sm:top-0! sm:left-0!"
+    >
+      <Whiteboard />
+    </div>
   </div>
 </WhiteboardContext>
 
 <style>
+  [data-grid] {
+    grid-template-areas:
+      "heading heading"
+      "buttons whiteboard";
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 640px) {
+    [data-grid] {
+      grid-template-areas:
+        "heading whiteboard"
+        "buttons whiteboard";
+      grid-template-columns: auto;
+    }
+  }
   [data-watch-btn] {
     background: linear-gradient(139deg, #6200ff 23.15%, #3b0493 74.32%);
   }
