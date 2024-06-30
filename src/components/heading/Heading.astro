@@ -6,9 +6,12 @@ import WhiteboardContext from "./WhiteboardContext.astro";
 
 <WhiteboardContext>
   <div
-    class="relative before:absolute before:-inset-8 sm:before:bottom-[28%] before:bottom-[50%] before:bg-gray-900 before:-z-10"
+    class="relative before:absolute before:inset-0 sm:before:bottom-[12%] before:bottom-[50%] before:bg-gray-900 before:-z-10"
   >
-    <div data-grid class="group mb-8 flex max-w-[72ch] grid gap-8 mx-auto p-3">
+    <div
+      data-grid
+      class="group mb-8 flex max-w-[80ch] grid gap-8 mx-auto px-4 sm:px-8"
+    >
       <div style="grid-area: heading" class="sm:self-end mt-8">
         <h1 class="text-9xl">
           <span class="md:inline hidden">Hi, </span>
