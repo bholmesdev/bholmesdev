@@ -106,7 +106,9 @@ const {
         #disconnect = new AbortController();
 
         connectedCallback() {
-          const smBreakpointMatches = new Signal.State(false);
+          const smBreakpointMatches = new Signal.State(
+            window.matchMedia("(min-width: 640px)").matches
+          );
           window.matchMedia("(min-width: 640px)").onchange = ({ matches }) => {
             smBreakpointMatches.set(matches);
           };
