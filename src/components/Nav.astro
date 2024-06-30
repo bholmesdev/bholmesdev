@@ -27,10 +27,8 @@ function isMatch(urlPath: string, linkPath: string) {
 }
 ---
 
-<nav-open data-open class="group">
-  <nav
-    class="sticky z-20 top-0 max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-3 px-5"
-  >
+<nav-open data-open class="group sticky z-20 top-0">
+  <nav class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-3 px-5">
     {headings?.length ? <Toc {headings} /> : null}
     <ul id={id} class="flex gap-6 ml-auto items-center">
       {
@@ -147,7 +145,7 @@ function isMatch(urlPath: string, linkPath: string) {
     transition-delay: calc((4 - var(--idx)) * 50ms);
   }
 
-  nav:before {
+  nav-open:before {
     --bg: var(--color-gray-950);
     content: "";
     position: absolute;
