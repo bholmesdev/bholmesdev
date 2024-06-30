@@ -38,7 +38,7 @@
   --color-primary-light: #a08aff;
 }
 
-@supports (transition-timing-function: linear()) {
+@supports (transition-timing-function: linear(1, 1)) {
   @theme {
   --transition-timing-function-spring-1: var(--ease-spring-1);
   --transition-timing-function-spring-2: var(--ease-spring-2);
