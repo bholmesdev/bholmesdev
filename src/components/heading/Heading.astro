@@ -5,10 +5,10 @@ import WhiteboardContext from "./WhiteboardContext.astro";
 ---
 
 <WhiteboardContext>
-  <div data-grid class="group mb-8 flex max-w-[80ch] grid gap-8 mx-auto p-3">
+  <div data-grid class="group mb-8 flex max-w-[72ch] grid gap-8 mx-auto p-3">
     <div style="grid-area: heading" class="sm:self-end mt-8">
       <h1 class="text-9xl">
-        <span class="sm:inline hidden">Hi, </span>
+        <span class="md:inline hidden">Hi, </span>
         I'm <strong
           class="bg-clip-text text-transparent bg-gradient-to-r from-[#9b5dff] to-[#6200ff]"
           >Ben.</strong
@@ -50,7 +50,7 @@ import WhiteboardContext from "./WhiteboardContext.astro";
     </div>
     <div
       style="grid-area: whiteboard"
-      class="place-self-center mr-[-30%] relative z-30 group-[[data-drawing]]:fixed sm:relative! group-[[data-drawing]]:mr-0 group-[[data-drawing]]:top-4 group-[[data-drawing]]:left-4 sm:top-0! sm:left-0!"
+      class="place-self-center sm:min-w-56 mr-[-30%] relative group-[[data-drawing]]:z-30 group-[[data-drawing]]:fixed sm:relative! group-[[data-drawing]]:mr-0 group-[[data-drawing]]:top-4 group-[[data-drawing]]:left-4 sm:top-0! sm:left-0! sm:mr-auto"
     >
       <Whiteboard />
     </div>
