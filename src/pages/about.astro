@@ -5,10 +5,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About Ben">
-  <main class="md:grid grid-cols-[1fr_2fr] max-w-[88ch] mx-auto gap-16">
-    <WhiteboardContext>
-      <Whiteboard />
-    </WhiteboardContext>
+  <main class="px-4 sm:grid grid-cols-[1fr_2fr] max-w-[88ch] mx-auto gap-16">
+    <div class="sm:block hidden">
+      <WhiteboardContext>
+        <Whiteboard />
+      </WhiteboardContext>
+    </div>
     <article class="mt-6 md:mt-12 lg:mt-28">
       <h1 class="text-3xl mb-3 font-heading">About me</h1>
       <input id="inbrief-checkbox" class="hidden checkbox" type="checkbox" />
