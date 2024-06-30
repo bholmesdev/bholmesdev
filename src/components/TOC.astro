@@ -117,7 +117,7 @@ const { headings } = Astro.props;
     position: absolute;
     top: 0;
     right: 0;
-    background: var(--purple);
+    background: var(--color-primary);
     height: var(--done-size);
     width: var(--done-size);
     padding: 0.4rem;
@@ -137,16 +137,20 @@ const { headings } = Astro.props;
     border-radius: 1rem;
     overflow: hidden;
     height: 0.8rem;
-    background-color: hsl(var(--purple-hs) 90%);
+    background-color: color-mix(
+      in srgb,
+      var(--color-primary),
+      var(--color-gray-950) 60%
+    );
     margin-inline-end: calc(var(--done-size) / 2 - 0.4rem);
   }
 
   progress::-moz-progress-bar {
-    background-color: var(--purple);
+    background-color: var(--color-primary);
     border-radius: 1rem;
   }
   progress::-webkit-progress-value {
-    background-color: var(--purple);
+    background-color: var(--color-primary);
     border-radius: 1rem;
   }
   progress::-webkit-progress-bar {
@@ -159,7 +163,7 @@ const { headings } = Astro.props;
     max-width: 14em;
     padding: 0.4rem;
     box-shadow: var(--shadow-5);
-    border: 3px solid var(--purple);
+    border: 3px solid var(--color-primary);
     visibility: hidden;
     rotate: 70deg;
     scale: 0;
@@ -193,14 +197,14 @@ const { headings } = Astro.props;
   .inner {
     line-height: 1;
     height: 100%;
-    --purple-fill: radial-gradient(
+    --color-primary-fill: radial-gradient(
         170.26% 170.26% at 111.61% 118.75%,
         rgba(255, 255, 255, 0.4) 0%,
         rgba(98, 0, 255, 0.4) 50%,
         rgba(255, 255, 255, 0.4) 100%
       ),
       var(--color-primary);
-    background: var(--purple-fill);
+    background: var(--color-primary-fill);
     background-size: 200% 200%;
     background-position: 80% 80%;
     border-radius: 100%;
@@ -221,7 +225,7 @@ const { headings } = Astro.props;
     height: var(--size);
     padding: 3px;
     border-radius: 100%;
-    --purple-fill-back: radial-gradient(
+    --color-primary-fill-back: radial-gradient(
         111.94% 111.94% at 14.84% 14.84%,
         rgba(221, 202, 250, 0.6) 0%,
         rgba(76, 5, 189, 0.6) 50%,
@@ -234,7 +238,7 @@ const { headings } = Astro.props;
       drop-shadow(1px 8px 5px rgba(0, 0, 0, 0.13))
       drop-shadow(2px 14px 6px rgba(0, 0, 0, 0.04))
       drop-shadow(3px 22px 6px rgba(0, 0, 0, 0));
-    background: var(--purple-fill-back);
+    background: var(--color-primary-fill-back);
     font-weight: bold;
     background-position: 20% 20%;
     background-size: 200% 200%;

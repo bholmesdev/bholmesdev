@@ -73,18 +73,6 @@ const {
       <slot />
     </div>
     <style is:global>
-      :root {
-        --purple-hs: 263.1 100%;
-        --purple: hsl(var(--purple-hs) 50%);
-        --purple-light: hsl(var(--purple-hs) 80%);
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --purple: hsl(var(--purple-hs) 57%);
-        }
-      }
-
       h1 {
         font-family: var(--font-family-heading);
       }
