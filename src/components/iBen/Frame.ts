@@ -1,12 +1,15 @@
-export const showcaseVideo = "MaebEqhZR84";
+export const showcaseVideo = "_dtyYDwHAIc";
 
 export const videoIds = [
   showcaseVideo,
+  "GPYAC1qGD44",
+  "MaebEqhZR84",
   "Kpw1R7c1CfQ",
-  "1WuC6sykqj0",
-  "DQBbBFIfjQI",
-  "NkzzHYp3gag",
-  "vv3HaXTNqjQ",
+  "vioWIFInVVk",
+  "Ngxf64vYuUQ",
+  "J3W3s5O9wAs",
+  "Kpw1R7c1CfQ",
+  "nG3h5UolI9g",
 ];
 
 export function getImgSrc(id: string) {
