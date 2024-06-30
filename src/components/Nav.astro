@@ -32,7 +32,7 @@ function isMatch(urlPath: string, linkPath: string) {
   <nav class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-3 px-5">
     {headings?.length ? <Toc {headings} /> : null}
     <h2 class="sr-only">Social links</h2>
-    <ul class="text-slate-200 flex gap-4 items-center z-20">
+    <ul class="text-slate-200 flex gap-4 items-center relative">
       <li
         class="hover:text-white hover:scale-110 focus-within:scale-110 transition-all ease-spring-3 duration-700"
       >
