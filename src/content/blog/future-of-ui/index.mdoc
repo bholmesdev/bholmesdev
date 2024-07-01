@@ -1,0 +1,50 @@
+---
+title: The future of UI isn't React
+description: The next leap isn't a new React wrapper or JS. But it isn't text prompts either.
+date: 2024-06-01
+draft: true
+---
+
+The web is ready for the next turning in UI development. The first shift was from server-driven HTML to stateful UI with JQuery. The second shift was from spaghetti selectors to localized components with React. The third shift... well, it won't be direct JavaScript programming at all. But it won't be a GPT text prompt to "build the website for me" either.
+
+## The problem with GPT
+
+AI blew the doors off of what is possible with generative content. Book reports that used to take hours for students to write turned into a 1 minute prompt into ChatGPT. Debugging that took hours of searching to solve turned into a copy / paste to the AI overlords. Naturally, we want to push AI to the brink to see what it _can't_ do.
+
+Already... I think we're seeing the limits of models today. There's no guarantee the hockey stick of progress won't plateau either.
+
+I'm not worried about AI taking every last programmer job. Not because I _doubt_ AI can handle common developer tasks; I fear for the traditional "junior dev" in the job market this decade. I doubt the _interface_ we're using to build these websites: chat prompts.
+
+First, I don't think this matches the thought process of the average developer. Devs that _enjoy_ programming are often _not_ the best writers. I think this comes from the way they think; they're more visual than linguistic. They see patterns, not prose. It's why programmers gravitate to components in React, and enjoy the thrill of refactoring to new tech stacks. It feels like snapping Lego bricks together to build something new.
+
+AI is also excellent at recognizing patterns. But developers don't want to outsource every pattern-based problem to a bot. We want ot delegate the mundane mapping layers from the Lego tower in our head to the website on the screen. Leave the creative decisions to us.
+
+## A new layer of abstraction
+
+I think AI can help us take component-based thinking (really, pattern-based thinking) to a new level of abstraction. React is brilliant for refactorability and portability. But it's a _chore_ to wrangle the syntax, prop drill as-needed, and debug the perils of functional-based state.
+
+What if we could leave that challenge to the AI? As a programmer, you may write the following:
+
+```
+<Grid>
+  <Card>
+    <Image src="..." />
+    <Text>...</Text>
+    <Button onClick=`
+    - call API
+    - if success, redirect to checkout
+    - if error, show error message
+    `>Checkout</Button>
+  </Card>
+</Grid>
+```
+
+We control the heirarchy, we control the flow of interactivity. But the AI figures out the best practices for the middle parts:
+- How to fetch the API with graceful cancellations and JSON parsing
+- Converting Grid to the appropriate CSS
+
+This isn't just another abstraction layer either. The meaning of each instruction may change by environment:
+- "call API" could map to a third party service, a JS backend function, or a GraphQL layer.
+- "Grid" and "Card" could map to React components, Svelte components, or even native UI.
+- "Checkout" could be a hardcoded string or automatically localized with a dictionary you can view and edit.
+

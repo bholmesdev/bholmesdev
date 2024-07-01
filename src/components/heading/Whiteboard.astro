@@ -1,0 +1,216 @@
+---
+import { scope } from "simple:scope";
+import marker from "./marker.svg?raw";
+import { Icon } from "astro-icon/components";
+---
+
+<div
+  data-whiteboard-container
+  transition:name="whiteboard"
+  class="rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
+>
+  <canvas
+    width="800"
+    height="1200"
+    data-target="my-whiteboard.canvas"
+    data-action="click:my-whiteboard#startDrawing"
+    class="absolute w-[85%] h-[85.7%] inset-y-[7%] inset-x-[10.8%] rounded-[5%]"
+  ></canvas>
+  <div
+    data-action="click:my-whiteboard#startDrawing"
+    data-target="my-whiteboard.eraser"
+    class="absolute left-[14%] bottom-[9%] w-[13%] h-[13%]"
+  >
+    <label
+      class="bg-marker-blue block w-full h-full rounded-[20%] group-[[data-drawing]]:not-has-checked:bg-marker-blue-light group-[[data-drawing]]:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
+    >
+      <span class="sr-only">Eraser</span>
+      <input class="sr-only" type="radio" value="eraser" name="color" />
+    </label>
+  </div>
+  <div>
+    <button
+      class="invisible opacity-0 group-[[data-drawing]]:opacity-100 group-[[data-drawing]]:visible transition-all absolute top-6 right-2 p-2 bg-slate-500 rounded-full"
+      data-target="my-whiteboard.closeBtn"
+      data-action="click:my-whiteboard#stopDrawing"
+    >
+      <span class="sr-only">Close</span>
+      <Icon name="close" class="text-white" />
+    </button>
+  </div>
+  <div
+    class="group/markers opacity-30 group-[[data-drawing]]:opacity-100 transition-opacity absolute bottom-[2%] left-[10%] right-[5%] flex justify-center gap-[5%]"
+    data-action="click:my-whiteboard#startDrawing"
+  >
+    <label
+      class="text-marker-red w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
+      set:html={marker}
+    >
+      <span class="sr-only">Red</span>
+      <input checked class="sr-only" type="radio" value="red" name="color" />
+    </label>
+    <label
+      set:html={marker}
+      class="text-marker-blue w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
+    >
+      <span class="sr-only">Blue</span>
+      <input class="sr-only" type="radio" value="blue" name="color" />
+    </label>
+    <label
+      set:html={marker}
+      class="text-marker-green w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
+    >
+      <span class="sr-only">Green</span>
+      <input class="sr-only" type="radio" value="green" name="color" />
+    </label>
+  </div>
+  <svg
+    width="400"
+    height="600"
+    viewBox="0 0 400 600"
+    fill="none"
+    class="w-full h-full"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g>
+      <rect
+        x="34.7048"
+        y="34.1074"
+        width="356.747"
+        height="530.61"
+        rx="30"
+        fill="#334155"></rect>
+      <rect
+        x="44.4192"
+        y="42.8673"
+        width="337.318"
+        height="513.09"
+        rx="20"
+        fill="#F9FAFB"></rect>
+      <g data-target="my-whiteboard.face">
+        <path
+          d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
+          stroke="#6200FF"
+          stroke-width="25"
+          stroke-linecap="round"></path>
+        <path
+          class="sm:hidden group-[[data-drawing]]:hidden"
+          d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
+          stroke="#6200FF"
+          stroke-width="35"
+          stroke-linecap="round"></path>
+        <rect
+          data-targets="my-whiteboard.eyes"
+          x="90.7898"
+          y="201.2"
+          width="20.5027"
+          height="109.895"
+          rx="10.2514"
+          fill="#6200FF"></rect>
+
+        <rect
+          class="sm:hidden group-[[data-drawing]]:hidden"
+          data-targets="my-whiteboard.eyes"
+          x="90.7898"
+          y="201.2"
+          width="30"
+          height="109.895"
+          rx="15"
+          fill="#6200FF"></rect>
+        <rect
+          data-targets="my-whiteboard.eyes"
+          x="307.299"
+          y="201.2"
+          width="20.5027"
+          height="109.895"
+          rx="10.2514"
+          fill="#6200FF"></rect>
+
+        <rect
+          class="sm:hidden group-[[data-drawing]]:hidden"
+          data-targets="my-whiteboard.eyes"
+          x="307.299"
+          y="201.2"
+          width="30"
+          height="109.895"
+          rx="15"
+          fill="#6200FF"></rect>
+        <path
+          clip-path={`url(#${scope("scribble-bounds")})`}
+          data-target="my-whiteboard.scribble"
+          d="M22.2191 30.6216C89.0424 33.6849 240.261 44.5515 300.44 82.6372C224.592 53.5359 59.8409 59.4502 22.688 89.3778C61.8098 73.8145 248.839 102.982 279.368 142.084C232.335 109.693 49.0079 123.682 20.1221 147.941C57.2131 132.178 252.802 157.562 275.461 202.292C242.329 178.056 52.5287 185.746 26.0628 206.139"
+          stroke="#F9FAFB"
+          transform="translate(58 160)"
+          stroke-dasharray="1630"
+          stroke-dashoffset="1630"
+          stroke-width="60"></path>
+        <defs>
+          <clipPath id={scope("scribble-bounds")}>
+            <rect x="30" y="0" width="245" height="300" rx="20"></rect>
+          </clipPath>
+        </defs>
+      </g>
+    </g>
+    <defs>
+      <linearGradient
+        id="paint2_linear_222_3"
+        x1="119.576"
+        y1="574.191"
+        x2="119.24"
+        y2="588.886"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#64748B"></stop>
+        <stop offset="1" stop-color="#47576C"></stop>
+      </linearGradient>
+      <linearGradient
+        id="paint3_linear_222_3"
+        x1="224.576"
+        y1="573.191"
+        x2="224.24"
+        y2="587.886"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#64748B"></stop>
+        <stop offset="1" stop-color="#47576C"></stop>
+      </linearGradient>
+      <linearGradient
+        id="paint4_linear_222_3"
+        x1="329.576"
+        y1="573.191"
+        x2="329.24"
+        y2="587.886"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#64748B"></stop>
+        <stop offset="1" stop-color="#47576C"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<style>
+  [data-whiteboard-container] {
+    animation-play-state: running;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  :global(my-whiteboard[data-drawing]) [data-whiteboard-container] {
+    animation-play-state: paused;
+  }
+
+  label :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 10px;
+    }
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+
+---
+
+<div class="flex-1 self-stretch mx-[4%]">
+  <div
+    data-target="my-computer.cdDrive"
+    data-cd-drive
+    class="grid place-items-center w-full h-[60%] bg-slate-700 rounded-b-md"
+  >
+    <div data-eject-btn-outer class="w-[25%] h-[30%] rounded-full">
+      <div data-eject-btn class="rounded-full w-full h-[90%]"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  [data-eject-btn] {
+    background-image: linear-gradient(
+      hsla(194, 82%, 56%, 1),
+      hsla(216, 65%, 53%, 1)
+    );
+  }
+
+  [data-cd-drive] {
+    /* Hack: set font size to use `em` for `box-shadow` */
+    font-size: 5%;
+    transform-origin: center 20%;
+    scale: 1.15;
+    filter: brightness(0.9);
+    box-shadow: 5em 5em 30em var(--color-slate-800);
+  }
+
+  [data-eject-btn-outer] {
+    background-image: linear-gradient(
+      hsla(196, 82%, 40%, 1),
+      hsla(213, 77%, 32%, 1)
+    );
+    animation: eject-btn-pop 0.1s linear forwards;
+    animation-delay: 0.4s;
+  }
+
+  :global(my-computer[data-welcome]) [data-cd-drive] {
+    animation: close-drive 0.7s var(--ease-spring-5) forwards;
+  }
+
+  @keyframes close-drive {
+    to {
+      scale: 1;
+      filter: brightness(1);
+      box-shadow: 5em 5em 10em var(--color-slate-800);
+    }
+  }
+
+  @keyframes eject-btn-pop {
+    0%,
+    100% {
+      scale: 1;
+    }
+    50% {
+      scale: 1.03;
+    }
+  }
+</style>

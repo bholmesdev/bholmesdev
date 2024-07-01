@@ -1,0 +1,10 @@
+{
+  "t:likehandler": {
+    "scope": "",
+    "prefix": "t:likehandler",
+    "body": [
+      "    handler: async ({ postSlug, liked }, ctx) => {\n\n    },"
+    ],
+    "description": ""
+  }
+}

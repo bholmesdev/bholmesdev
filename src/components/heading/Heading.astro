@@ -1,0 +1,189 @@
+---
+import { Icon } from "astro-icon/components";
+import Whiteboard from "./Whiteboard.astro";
+import WhiteboardContext from "./WhiteboardContext.astro";
+---
+
+<WhiteboardContext>
+  <div class="pt-16 mb-32 relative">
+    <div
+      class="inset-0 absolute sm:bottom-[30%] bottom-[50%] bg-gray-900 -z-10"
+    >
+      <svg
+        class="absolute -bottom-8 left-0 right-0 w-full h-8 text-gray-900 -z-10"
+        width="1229"
+        height="38"
+        viewBox="0 0 1229 38"
+        fill="none"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1230 0H0V33.6109C20.6569 36.0522 44.4097 36.0018 66.5979 35.9546C69.6164 35.9482 72.6068 35.9419 75.5558 35.9419C105.988 35.9419 164.838 30.8506 191.215 25.2975C197.321 23.9655 201.852 22.8609 205.589 21.9496L205.593 21.9488L205.594 21.9485C218.102 18.899 221.73 18.0145 245.811 18.0145C267.483 18.0145 275.245 20.2183 286.697 23.4699C291.951 24.9617 297.982 26.674 306.489 28.4951C332.355 34.0482 349.815 37.4421 412.685 37.5703C443.114 37.5691 485.54 36.3716 511.566 30.8213C538.28 25.0306 561.101 20.3403 592.38 20.3403C623.825 20.3403 661.528 25.6702 688.072 31.4608C714.275 37.0139 752.826 37.9482 783.427 37.9482C813.689 37.9482 835.496 36.0546 861.534 30.5015C888.249 24.7109 916.482 21.2999 948.099 21.2999C979.376 21.2999 1002.03 25.6702 1028.91 31.4608C1053.5 36.7076 1082.78 36.6893 1111.47 36.6712H1111.48C1113.15 36.6702 1114.82 36.6692 1116.48 36.6692C1146.91 36.6692 1193.08 35.0953 1218.95 29.5422C1222.66 28.7427 1226.22 27.9519 1229.68 27.1827C1229.79 27.1591 1229.89 27.1356 1230 27.112V0Z"
+          fill="currentColor"></path>
+      </svg>
+    </div>
+
+    <div
+      data-grid
+      class="group mb-8 flex max-w-[80ch] grid gap-8 mx-auto px-4 sm:px-8"
+    >
+      <div style="grid-area: heading" class="sm:self-end mt-8">
+        <h1 class="text-9xl">
+          <span class="md:inline hidden">Hi, </span>
+          I'm <strong
+            class="bg-clip-text text-transparent bg-gradient-to-r from-[#9b5dff] to-[#6200ff] animate-[shine_4s_ease-in-out_infinite]"
+            >Ben.</strong
+          >
+        </h1>
+        <p class="text-xl mb-5 text-slate-400">
+          The <span class="text-white">whiteboard guy</span> who codes kinda well.
+        </p>
+      </div>
+      <div
+        style="grid-area: buttons"
+        class="flex self-start mt-12 sm:mt-0 sm:self-start sm:flex-row flex-col-reverse gap-6"
+      >
+        <a
+          class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl sm:animate-[shine_4s_500ms_ease-in-out_infinite] animate-[shine_4s_1s_ease-in-out_infinite]"
+          is="button"
+          href="#videos"
+          data-action="click:my-whiteboard#scrollToVideos"
+          data-watch-btn
+        >
+          <span
+            class="group-active/btn:scale-105 group-active/btn:rounded-2xl group-active/btn:scale-y-110 origin-top rounded-xl px-8 py-3 flex items-center justify-center gap-4"
+          >
+            Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
+          </span>
+        </a>
+        <button
+          class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl sm:animate-[shine_4s_1s_ease-in-out_infinite] animate-[shine_4s_500ms_ease-in-out_infinite]"
+          data-draw-btn
+          data-target="my-whiteboard.drawBtn"
+          data-action="click:my-whiteboard#startDrawing"
+        >
+          <span
+            class="group-disabled/btn:scale-105 group-disabled/btn:rounded-2xl group-disabled/btn:scale-y-110 origin-top rounded-xl px-8 py-3 flex items-center justify-center gap-4"
+          >
+            Draw <Icon name="draw" class="mb-[2px]" />
+          </span>
+        </button>
+      </div>
+      <div
+        style="grid-area: whiteboard"
+        class="place-self-center sm:min-w-56 mr-[-30%] relative group-[[data-drawing]]:z-30 group-[[data-drawing]]:fixed sm:relative! group-[[data-drawing]]:mr-0 group-[[data-drawing]]:top-4 group-[[data-drawing]]:left-4 sm:top-0! sm:left-0! sm:mr-auto"
+      >
+        <Whiteboard />
+        <div
+          class="group-[[data-drawing]]:opacity-0 transition-opacity absolute bottom-[10%] sm:right-[50%] right-[90%] -z-10 w-full overflow-hidden"
+        >
+          <div
+            class="absolute z-10 top-0 left-0 w-[50%] h-full bg-gradient-to-r from-gray-950 to-transparent"
+          >
+          </div>
+          <svg
+            width="491"
+            height="36"
+            viewBox="0 0 491 36"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            data-squiggle
+          >
+            <path
+              d="M472.406 24.6495C476.931 30.2651 479.986 33.6972 490.985 33.8269V18.384C483.985 18.3015 480.512 15.7827 475.987 10.2476C471.255 4.39142 466.019 0.942017 460.488 0.942017C455.016 0.942017 449.721 4.39142 445.077 10.2476C440.462 15.7827 435.375 19.0717 430.051 19.0717C424.727 19.0717 419.61 15.7827 417.652 8.33795C412.979 2.48193 405.087 0.942078 399.615 0.942017C394.084 0.942017 388.819 4.39142 384.115 10.2476C379.589 15.7827 374.442 19.0717 369.118 19.0717C363.824 19.0717 358.677 15.7827 354.122 10.2476C349.42 4.39142 344.155 0.942017 338.683 0.942017C333.151 0.942017 327.886 4.39142 323.213 10.2476C318.657 15.7827 313.54 19.0717 308.245 19.0717C302.891 19.0717 297.774 15.7827 293.19 10.2476C288.546 4.39142 283.252 0.942017 277.75 0.942017C272.278 0.942017 266.984 4.39142 262.31 10.2476C257.754 15.7827 251.302 18.9408 245.978 18.9408V18.9419C238.984 18.8576 235.512 16.3386 230.988 10.8056C226.256 4.9494 221.02 1.5 215.489 1.5C210.017 1.5 204.722 4.9494 200.078 10.8056C195.463 16.3407 190.376 19.6297 185.052 19.6297C179.727 19.6297 174.611 16.3407 172.653 8.89594C167.98 3.03992 160.088 1.50006 154.616 1.5C149.085 1.5 143.82 4.9494 139.116 10.8056C134.59 16.3407 129.443 19.6297 124.119 19.6297C118.825 19.6297 113.678 16.3407 109.123 10.8056C104.421 4.9494 99.1557 1.5 93.6838 1.5C88.1523 1.5 82.8872 4.9494 78.2135 10.8056C73.6579 16.3407 68.5407 19.6297 63.2461 19.6297C57.8924 19.6297 52.7754 16.3407 48.1912 10.8056C43.5473 4.9494 38.253 1.5 32.7514 1.5C27.2792 1.5 21.9845 4.9494 17.3108 10.8056C12.7553 16.3407 6.30317 19.4988 0.979004 19.4988V34.942C6.30317 34.942 13.731 33.7334 18.2864 28.1178C22.9602 22.2619 26.9528 17.5187 32.4251 17.5187C37.9266 17.5187 44.5229 22.9086 49.1668 28.7645C53.751 34.3801 60.4957 35.325 65.8494 35.325C71.144 35.325 74.9591 33.41 79.5147 27.7944C84.1884 21.9385 89.128 18.4891 94.6595 18.4891C100.131 18.4891 104.094 22.9086 108.797 28.7645C113.1 34.0704 118.223 34.0519 123.241 34.0336C123.534 34.0326 123.827 34.0316 124.118 34.0316C129.443 34.0316 137.519 32.4399 142.045 26.8243C142.694 26.0157 143.317 25.2161 143.923 24.4382C147.705 19.5828 150.824 15.5789 155.592 15.5789C161.064 15.5789 166.34 21.9498 171.013 27.806C175.153 32.8771 180.515 32.8114 185.437 32.751C185.965 32.7445 186.488 32.7381 187.004 32.7381C192.328 32.7381 202.624 27.5894 207.239 21.9738C208.308 20.6262 209.101 19.5089 209.755 18.5871C211.943 15.5032 212.578 14.6087 216.791 14.6087C220.582 14.6087 221.94 16.8374 223.944 20.1256C224.863 21.6342 225.918 23.3658 227.407 25.2075C231.932 30.8231 234.987 34.2552 245.986 34.3849C251.31 34.3837 258.732 33.1727 263.285 27.5598C267.959 21.7039 271.952 16.9608 277.424 16.9608C282.926 16.9608 289.522 22.3506 294.166 28.2065C298.75 33.8221 305.495 34.767 310.848 34.767C316.143 34.767 319.958 32.8521 324.514 27.2365C329.187 21.3806 334.127 17.9312 339.658 17.9312C345.13 17.9312 349.093 22.3506 353.796 28.2065C358.1 33.5125 363.222 33.4939 368.24 33.4756C368.533 33.4746 368.826 33.4736 369.118 33.4736C374.442 33.4736 382.518 31.882 387.044 26.2664C387.693 25.4578 388.316 24.6581 388.922 23.8802C392.704 19.0248 395.823 15.0209 400.591 15.0209C406.063 15.0209 411.339 21.3918 416.012 27.248C420.152 32.3192 425.514 32.2534 430.436 32.193C430.964 32.1865 431.487 32.1801 432.003 32.1801C437.327 32.1801 447.623 27.0314 452.238 21.4158C453.307 20.0682 454.1 18.9509 454.754 18.0291C456.942 14.9453 457.577 14.0507 461.79 14.0507C465.581 14.0507 466.939 16.2794 468.943 19.5676C469.862 21.0762 470.917 22.8078 472.406 24.6495Z"
+              fill="var(--color-primary)"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</WhiteboardContext>
+
+<style>
+  [data-grid] {
+    grid-template-areas:
+      "heading heading"
+      "buttons whiteboard";
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 640px) {
+    [data-grid] {
+      grid-template-areas:
+        "heading whiteboard"
+        "buttons whiteboard";
+      grid-template-columns: auto;
+    }
+  }
+  [data-watch-btn] {
+    background: linear-gradient(139deg, #6200ff 23.15%, #3b0493 74.32%);
+  }
+  [data-watch-btn] span {
+    background: linear-gradient(288deg, #6200ff80 59.32%, #a571f980 92.52%),
+      linear-gradient(129deg, #7c2aff 27.53%, #6200ff 67.2%);
+  }
+  [data-draw-btn] span {
+    background: linear-gradient(
+        288deg,
+        rgba(49, 62, 81, 0.2) 59.32%,
+        rgba(133, 155, 187, 0.2) 92.52%
+      ),
+      linear-gradient(129deg, #334155 27.53%, #303c4f 67.2%);
+  }
+  [data-watch-btn] span,
+  [data-draw-btn] span {
+    transition:
+      transform 0.5s var(--ease-spring-4),
+      filter 0.18s,
+      border-radius 0.3s;
+  }
+  [data-draw-btn]:not(:disabled) span:hover {
+    filter: brightness(1.25);
+  }
+  [data-draw-btn] {
+    background: linear-gradient(139deg, #2f3d4f 23.15%, #131f31 74.32%);
+    transition:
+      transform 0.5s var(--ease-spring-4),
+      filter 0.3s;
+  }
+  [data-squiggle] {
+    animation: squiggle 5s linear infinite;
+  }
+  [data-squiggle-container]:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      45deg,
+      var(--bg-gray-950) 0%,
+      transparent 100%
+    );
+  }
+
+  @keyframes squiggle {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  [data-shine] {
+    animation: shine 4s linear infinite;
+  }
+
+  @keyframes shine {
+    0%,
+    30%,
+    100% {
+      filter: brightness(1);
+    }
+    15% {
+      filter: brightness(1.5);
+    }
+  }
+</style>

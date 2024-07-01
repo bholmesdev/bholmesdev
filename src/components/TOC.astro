@@ -1,0 +1,246 @@
+---
+import type { MarkdownHeading } from "astro";
+import { Icon } from "astro-icon/components";
+import { scope } from "simple:scope";
+
+type Props = {
+  headings: MarkdownHeading[];
+};
+
+const { headings } = Astro.props;
+---
+
+<my-toc class="block z-10">
+  <div class="panel bg-gray-950">
+    <div class="progress-container">
+      <progress data-target="my-toc.progress" max="1"></progress>
+      <Icon class="done" name="check" />
+    </div>
+    <ul class="p-5 pb-3" id={scope("panel")} role="list">
+      {
+        headings
+          .filter((h) => h.depth === 2)
+          .map((h) => (
+            <li class="my-2 text-ellipsis whitespace-nowrap overflow-hidden text-sm">
+              <a
+                data-targets="my-toc.links"
+                class="data-[active]:text-primary-light"
+                href={`#${h.slug}`}
+              >
+                {h.text}
+              </a>
+            </li>
+          ))
+      }
+    </ul>
+  </div>
+  <button
+    data-action="click:my-toc#toggleMenu"
+    data-target="my-toc.btn"
+    aria-controls={scope("panel")}
+    class="transition-all ease-spring-3 duration-500"
+  >
+    <div class="inner overflow-y-hidden">
+      <div
+        class="flex flex-col w-full gap-3 pt-2 translate-y-[--section-offset] transition-transform duration-700 ease-spring-5"
+      >
+        {headings.map((_, idx) => <span>{idx + 1}</span>)}
+      </div>
+    </div>
+  </button>
+</my-toc>
+
+<script>
+  import { attr, target, targets, controller } from "@github/catalyst";
+  import { progress, currentSectionIdx } from "~/stores";
+  import { effect } from "~/lib/effect";
+  import { toAttr } from "~/utils.client";
+
+  @controller
+  class MyTocElement extends HTMLElement {
+    @attr open = false;
+    @attr doneReading = false;
+    @target btn: HTMLButtonElement;
+    @target progress: HTMLProgressElement;
+    @targets links: HTMLAnchorElement[];
+
+    #disconnect = new AbortController();
+
+    connectedCallback() {
+      effect(() => {
+        this.progress.value = progress.get();
+        this.doneReading = Math.round(progress.get() * 10) / 10 >= 1;
+      }, this.#disconnect);
+      effect(() => {
+        console.log("currentSectionIdx", currentSectionIdx.get());
+        const idx = currentSectionIdx.get();
+        this.btn.style.setProperty(
+          "--section-offset",
+          `calc(-${idx} * (var(--spacing-3) + 1em))`
+        );
+        for (const [linkIdx, link] of this.links.entries()) {
+          link.toggleAttribute("data-active", linkIdx === idx);
+        }
+      }, this.#disconnect);
+    }
+
+    disconnectedCallback() {
+      this.#disconnect.abort();
+    }
+
+    toggleMenu = () => {
+      this.open = !this.open;
+      this.btn.ariaExpanded = toAttr(this.open);
+    };
+  }
+</script>
+
+<style>
+  .progress-container {
+    --done-size: 1.8rem;
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: var(--done-size);
+    margin-block-start: 0.2rem;
+  }
+
+  .done {
+    scale: 0;
+    visibility: hidden;
+    transition:
+      scale 0.2s,
+      visibility 0.2s;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--color-primary);
+    height: var(--done-size);
+    width: var(--done-size);
+    padding: 0.4rem;
+  }
+
+  [data-done-reading] .done {
+    scale: 1;
+    visibility: visible;
+  }
+
+  progress {
+    background: transparent;
+    border: none; /* Reset for firefox */
+    -webkit-appearance: none; /* Reset for WebKit/Blink */
+    appearance: none;
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 0.8rem;
+    background-color: color-mix(
+      in srgb,
+      var(--color-primary),
+      var(--color-gray-950) 60%
+    );
+    margin-inline-end: calc(var(--done-size) / 2 - 0.4rem);
+  }
+
+  progress::-moz-progress-bar {
+    background-color: var(--color-primary);
+    border-radius: 1rem;
+  }
+  progress::-webkit-progress-value {
+    background-color: var(--color-primary);
+    border-radius: 1rem;
+  }
+  progress::-webkit-progress-bar {
+    background: transparent;
+  }
+
+  .panel {
+    border-radius: 1.2em;
+    position: absolute;
+    max-width: 14em;
+    padding: 0.4rem;
+    box-shadow: var(--shadow-5);
+    border: 3px solid var(--color-primary);
+    visibility: hidden;
+    rotate: 70deg;
+    scale: 0;
+    translate: -0.4rem -0.4rem;
+    transform-origin: 1em 1em;
+    transition:
+      rotate 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+      visibility 0.2s,
+      scale 0.2s;
+    border-radius: 1em;
+  }
+  @supports (transition-timing-function: linear(1, 1)) {
+    .panel {
+      transition:
+        rotate 0.8s var(--transition-timing-function-spring-5),
+        visibility 0.8s,
+        scale 0.2s;
+    }
+  }
+
+  [data-open] .panel {
+    visibility: visible;
+    rotate: 0deg;
+    scale: 1;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .inner {
+    line-height: 1;
+    height: 100%;
+    --color-primary-fill: radial-gradient(
+        170.26% 170.26% at 111.61% 118.75%,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(98, 0, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.4) 100%
+      ),
+      var(--color-primary);
+    background: var(--color-primary-fill);
+    background-size: 200% 200%;
+    background-position: 80% 80%;
+    border-radius: 100%;
+    color: white;
+    transform: translateY(-3px);
+    transition: inherit;
+  }
+  [data-open] .inner {
+    background-position: 60% 60%;
+    transform: scale(0.9) translateY(0);
+  }
+  [data-open] button {
+    background-position: 40% 40%;
+  }
+  button {
+    --size: 2em;
+    width: var(--size);
+    height: var(--size);
+    padding: 3px;
+    border-radius: 100%;
+    --color-primary-fill-back: radial-gradient(
+        111.94% 111.94% at 14.84% 14.84%,
+        rgba(221, 202, 250, 0.6) 0%,
+        rgba(76, 5, 189, 0.6) 50%,
+        rgba(218, 196, 251, 0.6) 100%
+      ),
+      var(--color-primary);
+    filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.26))
+      drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.26))
+      drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.22))
+      drop-shadow(1px 8px 5px rgba(0, 0, 0, 0.13))
+      drop-shadow(2px 14px 6px rgba(0, 0, 0, 0.04))
+      drop-shadow(3px 22px 6px rgba(0, 0, 0, 0));
+    background: var(--color-primary-fill-back);
+    font-weight: bold;
+    background-position: 20% 20%;
+    background-size: 200% 200%;
+  }
+</style>

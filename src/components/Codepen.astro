@@ -1,0 +1,34 @@
+---
+type Props = {
+  height?: 400;
+  defaultTab?: "html" | "css" | "js" | "result";
+  url: string;
+};
+
+const { height = 400, defaultTab, url } = Astro.props;
+const slugMatches = url.match(/\/pen\/([\w|\d]*)$/);
+
+if (!slugMatches?.[1]) {
+  throw new Error(`Invalid CodePen URL: ${url}`);
+}
+const slug = slugMatches[1];
+---
+
+<p
+  class="codepen"
+  data-height={height}
+  data-theme-id="dark"
+  data-default-tab={defaultTab}
+  data-user="bholmesdev"
+  data-slug-hash={slug}
+  style=`height: ${height}px; text-align: center`
+  data-pen-title="Detect current section"
+>
+  <span
+    ><a href={url}>See the Pen</a> by Benjamin Holmes (<a
+      href="https://codepen.io/bholmesdev">@bholmesdev</a
+    >) on <a href="https://codepen.io">CodePen</a>.</span
+  >
+</p>
+
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>

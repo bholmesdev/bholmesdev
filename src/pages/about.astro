@@ -1,0 +1,153 @@
+---
+import Whiteboard from "../components/heading/Whiteboard.astro";
+import WhiteboardContext from "../components/heading/WhiteboardContext.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About Ben">
+  <main class="px-4 sm:grid grid-cols-[1fr_2fr] max-w-[88ch] mx-auto gap-16">
+    <div class="sm:block hidden mt-16">
+      <WhiteboardContext>
+        <Whiteboard />
+      </WhiteboardContext>
+    </div>
+    <article class="mt-6 md:mt-12 lg:mt-28">
+      <h1 class="text-4xl mb-4 sm:mb-8 font-heading">About me</h1>
+      <input id="inbrief-checkbox" class="hidden checkbox" type="checkbox" />
+      <label
+        class="font-bold cursor-pointer grid gap-2 items-center justify-between text-lg text-gray-400 mb-2"
+        for="inbrief-checkbox"
+      >
+        <span class="label-personal">Personal Mode</span>
+        <span
+          class="switch w-[0.6em] h-[1em] rounded-full flex justify-center relative before:transition-all before:ease-spring-3 before:"
+        ></span>
+        <span class="label-recruiter">Recruiter Mode</span>
+      </label>
+      <div class="content-personal">
+        <p>
+          Hey there! I’m Ben, a senior web developer from Charleston SC, USA.
+          You might know me from my <a
+            href="https://www.youtube.com/@bholmesdev/shorts"
+            >short whiteboard videos</a
+          > breaking down all sorts of topics (React Server Components, HTMX, and
+          SQLite to name a few). You also might know me as the inventor of <a
+            href="https://astro.build">Astro.</a
+          > No, <strong>I didn't invent Astro.</strong> But I'm a proud full time
+          developer driving it forward!
+        </p>
+        <p>
+          I've been a web programmer since the pre-npm days. This taught me
+          some... Bower-ful lessons on what it takes to build scalable software.
+          It's a lot more than JQuery and a dream.
+        </p>
+        <p>
+          I've since picked up every meta-framework you can think of, and even <a
+            href="https://slinkity.dev">invented my own</a
+          > before joining Astro. As much as I love building web experiences, I've
+          realized I'm into tech for the tech itself. So, I've devoted myself to
+          helping
+          <em>you</em> build better websites. Through tools, through videos, through
+          puns, and a healthy <s>tolerance</s> love for JavaScript.
+        </p>
+      </div>
+      <div class="content-recruiter">
+        <p>
+          I'm a full-time software developer at <a href="https://astro.build"
+            >the Astro Technology Company</a
+          >, so I'm not looking for employment.
+        </p>
+        <p>
+          Still, here's all my skills / buzzwords you were going to search for: <strong
+            >NodeJS, ES6, ReactJS, NextJS, semantic HTML, understanding of a11y,
+            Angular 2+, SolidJS, SvelteJS, SCSS, MySQL, NoSQL, OOP programming,
+            C Basic, unit testing w/ Jest</strong
+          >...
+        </p>
+        <p>
+          Okay I'm getting tired typing.
+          <a href="https://www.linkedin.com/in/bholmesdev/"
+            >Just browse my LinkedIn.</a
+          >
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  article :global(p) {
+    line-height: 1.5;
+    margin-block: 0.8rem;
+  }
+
+  label {
+    grid-template-areas:
+      "personal switch"
+      "recruiter switch";
+    letter-spacing: 0.9px;
+  }
+  .label-personal {
+    color: var(--color-primary-light);
+    grid-area: personal;
+  }
+  .label-recruiter {
+    grid-area: recruiter;
+  }
+  .switch {
+    grid-area: switch;
+    background: radial-gradient(
+        53.29% 50% at 50% 50%,
+        rgba(209, 198, 226, 0) 0%,
+        var(--color-gray-800) 100%
+      ),
+      var(--color-gray-700);
+  }
+  .switch:before {
+    content: "";
+    position: absolute;
+    width: 0.8em;
+    height: 0.8em;
+    background-image: radial-gradient(
+        85.1% 85.1% at 19.53% 20.31%,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(76, 5, 189, 0.4) 100%
+      ),
+      linear-gradient(149deg, #6200ff 0%, #4c05bd 100%);
+    filter: drop-shadow(0px 0.05em 0.05em rgba(22, 2, 55, 0.5))
+      drop-shadow(0px 0.1em 0.1em rgba(22, 2, 55, 0.5));
+    border-radius: 100%;
+    transform: translateY(-50%) rotate(50deg);
+  }
+
+  @media (min-width: 500px) {
+    label {
+      grid-template-areas: "personal switch recruiter";
+    }
+    .switch {
+      transform: rotate(0.75turn);
+    }
+  }
+  .checkbox:checked ~ label > .label-recruiter {
+    color: var(--color-primary-light);
+  }
+
+  .checkbox:checked ~ label > .label-personal {
+    color: var(--color-gray-400);
+  }
+  .content-personal {
+    display: block;
+  }
+  .content-recruiter {
+    display: none;
+  }
+  .checkbox:checked ~ .content-recruiter {
+    display: block;
+  }
+  .checkbox:checked ~ .content-personal {
+    display: none;
+  }
+  .checkbox:checked ~ label > .switch:before {
+    transform: translateY(70%) rotate(50deg);
+  }
+</style>

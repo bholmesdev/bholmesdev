@@ -1,0 +1,10 @@
+{
+  "t:likesinsert": {
+    "scope": "",
+    "prefix": "t:likesinsert",
+    "body": [
+      "      const upsert = await db\n        .insert(Post)\n        .values({\n          slug: postSlug,\n          likes: liked ? 1 : 0,\n        })\n        .onConflictDoUpdate(\n          liked\n            ? {\n                target: Post.slug,\n                set: { likes: sql`likes + 1` },\n              }\n            : {\n                target: Post.slug,\n                set: { likes: sql`likes - 1` },\n                where: gt(Post.likes, 0),\n              }\n        )\n        .returning()\n        .get();\n\n      return { likes: upsert?.likes ?? 0 };"
+    ],
+    "description": ""
+  }
+}

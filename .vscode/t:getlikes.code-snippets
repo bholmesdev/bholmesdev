@@ -1,0 +1,10 @@
+{
+  "t:getlikes": {
+    "scope": "",
+    "prefix": "t:getlikes",
+    "body": [
+      "  const likes = Number(await redis.get(`likes:\\${postSlug}`));\n\n  if (isNaN(likes)) {\n    return 0;\n  }\n  return likes;"
+    ],
+    "description": ""
+  }
+}

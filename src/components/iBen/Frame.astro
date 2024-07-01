@@ -1,0 +1,283 @@
+---
+import iBen from "./iBen.svg?raw";
+import Button from "./Button.astro";
+import CdDrive from "./CdDrive.astro";
+import { getImgSrc, showcaseVideo } from "./Frame";
+import { Icon } from "astro-icon/components";
+
+const showcaseSrc = getImgSrc(showcaseVideo);
+---
+
+<div class="mt-24 px-2 sm:px-4 text-center max-w-prose mx-auto">
+  <h2 class="text-5xl sm:text-7xl mb-4 font-heading">
+    I make <span class="text-cyan-300 font-bold">videos</span>
+  </h2>
+  <p class="text-slate-400 text-xl leading-9">
+    About the hardest parts of web dev. <strong
+      class="text-slate-50 animate-pulse"
+      ><a
+        class="text-cyan-300"
+        href="https://youtube.com/@bholmesdev?sub_confirmation=1">Subscribe</a
+      ></strong
+    > for practical examples, diagrams, and 60 second explainers.
+  </p>
+</div>
+<my-computer id="videos" class="block sm:px-6 -mx-3">
+  <div data-container class="py-8 max-w-prose mx-auto grid relative">
+    <img
+      data-glow
+      data-target="my-computer.glow"
+      src={showcaseSrc}
+      alt=""
+      class="pt-[0%] w-full"
+      aria-hidden="true"
+    />
+    <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
+      <img
+        data-thumbnail
+        data-target="my-computer.thumbnail"
+        src={showcaseSrc}
+        alt="A gud video"
+        class="absolute top-0 w-full aspect-[3/2] leading-none object-cover"
+      />
+      <div
+        data-scan-line-overlay
+        class="absolute inset-0 pointer-events-none aspect-[3/2] flex flex-col justify-between"
+      >
+        <div data-scan-line class="w-full h-1 bg-slate-200 opacity-30"></div>
+        <div
+          data-target="my-computer.btnLabels"
+          data-btn-labels
+          class="px-[7%] pb-[2%] pt-[10%] flex justify-between font-bold bg-gradient-to-t from-slate-950 to-transparent"
+        >
+          <span class="w-[6ch] flex flex-col items-center"
+            >Play <Icon name="chevron-down" /></span
+          >
+          <span class="w-[6ch] flex flex-col items-center"
+            >Random <Icon name="chevron-down" /></span
+          >
+        </div>
+      </div>
+
+      <template data-target="my-computer.iframeTemplate">
+        <iframe
+          class="absolute top-0 w-full aspect-[3/2] h-auto"
+          width="560"
+          height="315"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </template>
+    </div>
+    <div
+      data-computer
+      class="z-10 m-auto w-full pointer-events-none"
+      set:html={iBen}
+    />
+    <div
+      data-btn-overlay
+      class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
+    >
+      <Button
+        data-action="click:my-computer#play"
+        icon="play"
+        aria-label="Play video"
+      />
+
+      <CdDrive />
+      <Button
+        data-action="click:my-computer#random"
+        icon="random"
+        aria-label="Get random video"
+      />
+    </div>
+  </div>
+</my-computer>
+
+<script>
+  import { controller, target, attr } from "@github/catalyst";
+  import { getEmbedSrc, getImgSrc, videoIds, showcaseVideo } from "./Frame";
+  import {
+    hideTemplate,
+    showTemplate,
+    fisherYatesShuffle,
+  } from "../../utils.client";
+
+  const [_showcase, ...otherVideos] = videoIds;
+
+  @controller
+  class MyComputerElement extends HTMLElement {
+    @attr playing = false;
+    @attr welcome = false;
+    @attr videoIdx = 0;
+
+    @target btnLabels: HTMLDivElement;
+    @target thumbnail: HTMLImageElement;
+    @target iframeTemplate: HTMLTemplateElement;
+    @target cdDrive: HTMLElement;
+
+    #videoIds: string[] = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
+
+    #setPlay(playing: boolean) {
+      this.playing = playing;
+
+      if (this.playing) {
+        const iframe = showTemplate(this.iframeTemplate) as HTMLIFrameElement;
+        iframe.src = getEmbedSrc(this.#videoIds[this.videoIdx]!);
+      } else {
+        hideTemplate(this.iframeTemplate);
+      }
+    }
+
+    play() {
+      this.#setPlay(!this.playing);
+    }
+
+    random() {
+      this.#setPlay(false);
+      this.videoIdx = (this.videoIdx + 1) % videoIds.length;
+      this.thumbnail.src = getImgSrc(this.#videoIds[this.videoIdx]!);
+    }
+
+    #observer: IntersectionObserver;
+
+    connectedCallback() {
+      this.#observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry?.isIntersecting) {
+            this.welcome = true;
+          }
+        },
+        { threshold: 0.7 }
+      );
+
+      this.#observer.observe(this.cdDrive);
+    }
+    disconnectedCallback() {
+      this.#observer.disconnect();
+    }
+  }
+</script>
+
+<style>
+  my-computer {
+    --anim-delay: 0.5s;
+  }
+
+  my-computer[data-welcome] [data-scan-line] {
+    animation: scan 4s linear infinite;
+    animation-delay: var(--anim-delay);
+  }
+
+  [data-scan-line-overlay] {
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.08) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    background-size: 100% 6px;
+    background-repeat: repeat;
+  }
+
+  @keyframes delayed-reveal {
+    to {
+      opacity: 1;
+    }
+  }
+
+  [data-computer] :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  [data-container] > * {
+    /* Overlap all children in same grid column */
+    grid-area: 1/1;
+  }
+
+  [data-glow] {
+    filter: brightness(7) blur(50px) !important;
+  }
+
+  my-computer[data-welcome] [data-glow] {
+    visibility: visible;
+    filter: brightness(7) blur(20px);
+    transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
+    transform-origin: bottom center;
+    animation:
+      glow-reveal 0.2s ease-in forwards,
+      pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation-delay: var(--anim-delay);
+    opacity: 0;
+    scale: 0.8;
+  }
+
+  [data-thumbnail] {
+    transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
+    transform-origin: bottom center;
+  }
+
+  [data-thumbnail],
+  [data-glow],
+  [data-btn-labels] {
+    visibility: hidden;
+  }
+
+  my-computer[data-welcome] [data-thumbnail] {
+    visibility: visible;
+    filter: brightness(0.3);
+    animation: img-reveal 0.3s ease-in forwards;
+    animation-delay: var(--anim-delay);
+    clip-path: ellipse(0% 0% at center);
+  }
+
+  my-computer[data-welcome] [data-btn-labels] {
+    opacity: 0;
+    animation: delayed-reveal 0.3s ease-in forwards;
+    animation-delay: var(--anim-delay);
+    visibility: visible;
+  }
+
+  my-computer[data-playing] :is([data-thumbnail], [data-btn-labels]) {
+    visibility: hidden;
+  }
+
+  [data-btn-overlay] {
+    bottom: calc(var(--spacing-6) + 4.4%);
+  }
+
+  [data-btn-overlay] :global([data-icon="random"]) {
+    transition: transform 0.7s var(--ease-spring-2);
+    transform-origin: center 45%;
+  }
+  [data-btn-overlay] :global(:is(button:hover) [data-icon="random"]) {
+    transform: rotate(730deg);
+  }
+
+  @keyframes img-reveal {
+    to {
+      clip-path: ellipse(100% 100% at center);
+      filter: brightness(1);
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.7;
+    }
+  }
+  @keyframes glow-reveal {
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+  @keyframes scan {
+    to {
+      transform: translateY(400px);
+      opacity: 0;
+    }
+  }
+</style>

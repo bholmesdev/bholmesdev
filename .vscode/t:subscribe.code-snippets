@@ -1,0 +1,10 @@
+{
+  "t:subscribe": {
+    "scope": "",
+    "prefix": "t:subscribe",
+    "body": [
+      "  subscribeToNewsletter: defineAction({\n    input: z.object({\n      email: z.string().email(),\n      musicRecs: z.boolean(),\n    }),\n    handler: async ({ email, musicRecs }, ctx) => {\n      const res = await fetch(new URL(\"subscribers\", BUTTONDOWN_URL), {\n        method: \"POST\",\n        body: JSON.stringify({ email, tags: musicRecs ? [\"music\"] : [] }),\n        headers: {\n          \"content-type\": \"application/json\",\n          Authorization: `Token \\${ctx.locals.runtime.env.BUTTONDOWN_API_KEY}`,\n        },\n      });\n\n      if (!res.ok) {\n        const json = await res.json();\n        if (json.code === \"email_already_exists\") {\n          throw new ActionError({\n            code: \"CONFLICT\",\n            message: \"Email already subscribed to newsletter.\",\n          });\n        }\n        throw new ActionError({\n          code: \"BAD_REQUEST\",\n          message: \"Unable to subscribe to newsletter.\",\n        });\n      }\n      return { success: true };\n    },\n  }),"
+    ],
+    "description": ""
+  }
+}

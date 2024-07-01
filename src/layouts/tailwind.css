@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Default theme: https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/theme.css */
+  --font-family-heading: "Ranga", system-ui, -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+  "Helvetica Neue", sans-serif;
+
+  --font-family-sans: "Atkinson Hyperlegible", system-ui, -apple-system,
+  BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+  "Open Sans", "Helvetica Neue", sans-serif;
+
+  --transition-timing-function-spring-1: cubic-bezier(0, 1.49, 0.38, 0.86);
+  --transition-timing-function-spring-2: cubic-bezier(0.02, 1.63, 0.39, 0.81);
+  --transition-timing-function-spring-3: cubic-bezier(0.02, 1.72, 0.43, 0.79);
+  --transition-timing-function-spring-4: cubic-bezier(0.01, 1.8, 0.41, 0.76);
+  --transition-timing-function-spring-5: cubic-bezier(0.01, 1.9, 0.41, 0.76);
+
+  --width-prose: 60ch;
+
+  --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+  --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+  --font-size-lg: clamp(1.12rem, 0.5vw + 1rem, 1.3rem);
+  --font-size-xl: clamp(1.4rem, 0.61vw + 1.1rem, 1.58rem);
+  --font-size-2xl: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+  --font-size-3xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+  --font-size-4xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+  --font-size-5xl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+  --font-size-7xl: clamp(5.2rem, 3.94vw + 3.75rem, 6.4rem);
+  --font-size-8xl: clamp(5.8rem, 4.14vw + 4.05rem, 7.2rem);
+  --font-size-9xl: clamp(6.55rem, 4.34vw + 4.55rem, 8rem);
+
+  --color-marker-red: #ff0000;
+  --color-marker-blue: #0034ff;
+  --color-marker-blue-light: color-mix(in srgb, var(--color-marker-blue), white 20%);
+  --color-marker-green: var(--color-green-600);
+
+  --color-primary: #6200ff;
+  --color-primary-light: #a08aff;
+}
+
+@supports (transition-timing-function: linear(1, 1)) {
+  :root {
+    --transition-timing-function-spring-1: var(--ease-spring-1);
+    --transition-timing-function-spring-2: var(--ease-spring-2);
+    --transition-timing-function-spring-3: var(--ease-spring-3);
+    --transition-timing-function-spring-4: var(--ease-spring-4);
+    --transition-timing-function-spring-5: var(--ease-spring-5);
+  }
+}

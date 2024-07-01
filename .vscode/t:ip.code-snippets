@@ -1,0 +1,10 @@
+{
+  "t:ip": {
+    "scope": "",
+    "prefix": "t:ip",
+    "body": [
+      "  const ip = import.meta.env.DEV\n    ? scope(\"development\")\n    : ctx.request.headers.get(\"cf-connecting-ip\");"
+    ],
+    "description": ""
+  }
+}

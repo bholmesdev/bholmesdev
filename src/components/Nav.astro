@@ -1,0 +1,223 @@
+---
+import type { MarkdownHeading } from "astro";
+import Toc from "./TOC.astro";
+import { scope } from "simple:scope";
+import { Icon } from "astro-icon/components";
+
+type Props = {
+  headings: MarkdownHeading[] | undefined;
+};
+
+const { headings } = Astro.props;
+const id = scope("nav");
+
+// Remove trailing slashes
+const urlPath = new URL(Astro.request.url).pathname.replace(/\/$/, "") || "/";
+
+type ListItem = { label: string; url: string; external?: boolean };
+const links: ListItem[] = [
+  { label: "Ben", url: "/" },
+  { label: "About", url: "/about" },
+  { label: "Blog", url: "/blog" },
+  { label: "Videos", url: "https://wtw.dev", external: true },
+];
+
+function isMatch(urlPath: string, linkPath: string) {
+  if (linkPath === "/") return urlPath === "/";
+  return urlPath.startsWith(linkPath);
+}
+---
+
+<nav-open class="group block sticky z-20 top-0">
+  <nav class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-3 px-5">
+    {headings?.length ? <Toc {headings} /> : null}
+    <h2 class="sr-only">Social links</h2>
+    <ul
+      transition:name="social"
+      class="text-slate-200 flex gap-4 items-center sm:relative absolute group-[[data-open]]:invisible group-[[data-open]]:opacity-0 sm:group-[[data-open]]:opacity-100 sm:group-[[data-open]]:visible opacity-100 visible transition-all"
+    >
+      <li
+        class="hover:text-white hover:scale-110 focus-within:scale-110 transition-all ease-spring-3 duration-700"
+      >
+        <a href="https://youtube.com/@bholmesdev"
+          ><Icon name="youtube" title="Youtube" size={28} /></a
+        >
+      </li>
+      <li
+        class="hover:text-white hover:scale-110 focus-within:scale-110 transition-all ease-spring-3 duration-700"
+      >
+        <a href="https://x.com/bholmesdev"
+          ><Icon name="x" title="X / Twitter" size={28} /></a
+        >
+      </li>
+      <li
+        class="hover:text-white hover:scale-110 focus-within:scale-110 transition-all ease-spring-3 duration-700"
+      >
+        <a href="https://github.com/bholmesdev"
+          ><Icon name="github" title="GitHub" size={24} /></a
+        >
+      </li>
+      <li
+        class="hover:text-white hover:scale-110 focus-within:scale-110 transition-all ease-spring-3 duration-700"
+      >
+        <a href="https://twitch.tv/bholmesdev"
+          ><Icon name="twitch" title="Twitch" size={24} /></a
+        >
+      </li>
+    </ul>
+    <h2 class="sr-only">Site links</h2>
+    <ul id={id} class="flex gap-6 ml-auto items-center">
+      {
+        links.map((l, idx) => (
+          <li
+            class="invisible opacity-0 group-[[data-open]]:opacity-100 group-[[data-open]]:visible font-heading text-xl tracking-wide"
+            style={{ "--idx": idx + 1 }}
+          >
+            <a
+              transition:name={`link-${idx}`}
+              data-targets="nav-open.links"
+              data-active={l.external ? false : isMatch(urlPath, l.url)}
+              class="no-underline block text-gray-300 data-[active]:text-white data-[active]:font-bold scale-100 data-[active]:scale-105"
+              href={l.url}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div>
+      <button
+        transition:name="nav-toggle"
+        class="h-[20px] w-[25px] flex flex-col justify-between relative bg-transparent before:absolute before:-inset-1 before:-z-10 before:rounded-md"
+        data-action="click:nav-open#toggle"
+        data-target="nav-open.btn"
+        aria-controls={id}
+        aria-label="Toggle menu"
+      >
+        <div
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-top-right group-[[data-open]]:-rotate-45"
+        >
+        </div>
+        <div
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-center group-[[data-open]]:scale-0"
+        >
+        </div>
+        <div
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-bottom-right group-[[data-open]]:rotate-45"
+        >
+        </div>
+      </button>
+    </div>
+  </nav>
+</nav-open>
+
+<script>
+  import { attr, target, targets, controller } from "@github/catalyst";
+  import { toAttr } from "../utils.client";
+
+  @controller
+  class NavOpenElement extends HTMLElement {
+    @attr open = false;
+    @target btn: HTMLButtonElement;
+    @targets links: HTMLAnchorElement[];
+
+    scrollY = 0;
+    ticking = false;
+
+    #abort = new AbortController();
+
+    toggle() {
+      this.open = !this.open;
+      this.btn.ariaExpanded = toAttr(this.open);
+    }
+
+    connectedCallback() {
+      const scrollListener = () => {
+        this.scrollY = window.scrollY;
+
+        if (!this.ticking) {
+          window.requestAnimationFrame(() => {
+            this.open = this.scrollY < 20;
+            this.ticking = false;
+          });
+
+          this.ticking = true;
+        }
+      };
+      const smBreakpointMatch = window.matchMedia("(min-width: 640px)");
+      this.open = smBreakpointMatch.matches;
+
+      if (smBreakpointMatch.matches) {
+        document.addEventListener("scroll", scrollListener, {
+          signal: this.#abort.signal,
+        });
+      }
+      smBreakpointMatch.addEventListener(
+        "change",
+        (e) => {
+          this.open = e.matches;
+          if (e.matches) {
+            document.addEventListener("scroll", scrollListener, {
+              signal: this.#abort.signal,
+            });
+          } else {
+            document.removeEventListener("scroll", scrollListener);
+          }
+        },
+        { signal: this.#abort.signal }
+      );
+    }
+
+    disconnectedCallback() {
+      this.#abort.abort();
+    }
+  }
+</script>
+
+<style is:global>
+  ::view-transition-group(nav-toggle),
+  ::view-transition-group(link-0),
+  ::view-transition-group(link-1),
+  ::view-transition-group(link-2),
+  ::view-transition-group(link-3) {
+    animation-duration: 500ms;
+    animation-timing-function: var(--transition-timing-function-spring-5);
+  }
+</style>
+
+<style>
+  li {
+    transform: translateX(calc((4.5em - (var(--idx) * 1em))));
+    transition-delay: calc(var(--idx) * 50ms);
+    transition-timing-function: var(--transition-timing-function-spring-5);
+    transition-duration: 500ms;
+  }
+
+  [data-open] li {
+    transform: translateX(0);
+    transition-delay: calc((4 - var(--idx)) * 50ms);
+  }
+
+  nav-open:before {
+    --bg: var(--color-gray-950);
+    content: "";
+    position: absolute;
+    inset: 0;
+    bottom: -100%;
+    pointer-events: none;
+    background-image: linear-gradient(
+      180deg,
+      var(--bg) 0%,
+      color-mix(in srgb, var(--bg) 90%, transparent) 22%,
+      color-mix(in srgb, var(--bg) 80%, transparent) 32%,
+      color-mix(in srgb, var(--bg) 60%, transparent) 40%,
+      color-mix(in srgb, var(--bg) 50%, transparent) 48%,
+      color-mix(in srgb, var(--bg) 40%, transparent) 55%,
+      color-mix(in srgb, var(--bg) 30%, transparent) 62%,
+      color-mix(in srgb, var(--bg) 20%, transparent) 70%,
+      color-mix(in srgb, var(--bg) 10%, transparent) 80%,
+      transparent 100%
+    );
+  }
+</style>

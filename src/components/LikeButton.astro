@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+
+type Props = {
+  postSlug: string;
+};
+
+const { postSlug } = Astro.props;
+---
+
+<like-button
+  data-post-slug={postSlug}
+  data-pending
+  class="group/like flex items-center gap-4"
+>
+  <button
+    data-action="click:like-button#toggleLike"
+    class="w-[2.5em] h-[2.5em] bg-gradient-to-br from-slate-600 to-slate-900 rounded-full flex items-center justify-center"
+  >
+    <div
+      class="group-data-[liked]/like:w-[75%] group-data-[liked]/like:h-[75%] w-[85%] h-[85%] rounded-full bg-gradient-to-br from-slate-800 to-slate-600 text-xl font-bold grid place-items-center transition-all -translate-y-[8%] group-data-[liked]/like:translate-y-0 ease-spring-5 duration-500"
+    >
+      <Icon
+        name="heart"
+        class="row-start-1 col-start-1 transition-colors text-slate-300 group-data-[liked]/like:text-red-400"
+      />
+      <Icon
+        name="heart"
+        class="row-start-1 col-start-1 transition-colors text-slate-300 group-data-[liked]/like:text-red-400 blur-0 group-data-[liked]/like:blur-[2px]"
+      />
+    </div>
+  </button>
+  <p
+    data-target="like-button.text"
+    class="group-data-[pending]/like:opacity-60 transition-opacity"
+  >
+    -
+  </p>
+</like-button>
+
+<script>
+  import { actions } from "astro:actions";
+  import { controller, attr, target } from "@github/catalyst";
+
+  @controller
+  class LikeButtonElement extends HTMLElement {
+    @attr liked = false;
+    @attr postSlug = "";
+    @attr pending = true;
+    @target text: HTMLElement;
+
+    // Track promise to block toggleLike until likes are fetch
+    #likesPromise = Promise.resolve({ likes: 0 });
+
+    async connectedCallback() {
+      this.liked = Boolean(localStorage.getItem("isLike"));
+      this.#likesPromise = actions.getLikes({
+        postSlug: this.postSlug,
+      });
+      const { likes } = await this.#likesPromise;
+
+      this.pending = false;
+      this.text.textContent = likes.toString();
+    }
+
+    async toggleLike() {
+      await this.#likesPromise;
+      this.liked = !Boolean(localStorage.getItem("isLike"));
+
+      if (this.liked) {
+        localStorage.setItem("isLike", "true");
+      } else {
+        localStorage.removeItem("isLike");
+      }
+
+      this.pending = true;
+      const { data, error } = await actions.like.safe({
+        postSlug: this.postSlug,
+        liked: this.liked,
+      });
+      this.pending = false;
+
+      if (error) {
+        this.text.textContent =
+          error.code === "TOO_MANY_REQUESTS"
+            ? "Slow down! Rate limited you for the day."
+            : "Oops, failed to update likes.";
+        return;
+      }
+
+      this.text.textContent = data.likes.toString();
+    }
+  }
+</script>

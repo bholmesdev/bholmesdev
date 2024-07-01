@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Heading from "../components/heading/Heading.astro";
+import IBen from "../components/iBen/Frame.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout>
+  <!-- Negative margin to let heading color tuck under the nav -->
+  <main class="overflow-hidden -mt-12">
+    <Heading />
+    <IBen />
+    <div class="max-w-prose mx-auto px-2 mt-4">
+      <a
+        href="/about"
+        data-draw-btn
+        class="group/btn mx-auto gap-4 text-center text-xl font-bold pb-2 px-1 no-underline block rounded-2xl transition-all"
+      >
+        <span
+          class="origin-top rounded-xl px-8 py-3 flex items-center justify-center gap-4 group-active/btn:scale-x-[1.01] group-active/btn:scale-y-110 group-active/btn:rounded-2xl transition-all ease-spring-5 duration-500"
+        >
+          More about me <Icon name="arrow-right" /></span
+        ></a
+      >
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  [data-draw-btn] span {
+    background: linear-gradient(
+        288deg,
+        rgba(49, 62, 81, 0.2) 59.32%,
+        rgba(133, 155, 187, 0.2) 92.52%
+      ),
+      linear-gradient(129deg, #334155 27.53%, #303c4f 67.2%);
+  }
+  [data-draw-btn] span:hover {
+    filter: brightness(1.25);
+  }
+  [data-draw-btn] {
+    background: linear-gradient(139deg, #2f3d4f 23.15%, #131f31 74.32%);
+    transition:
+      transform 0.5s var(--ease-spring-4),
+      filter 0.3s;
+  }
+</style>

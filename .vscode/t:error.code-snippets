@@ -1,0 +1,10 @@
+{
+  "t:error": {
+    "scope": "",
+    "prefix": "t:error",
+    "body": [
+      "        this.text.textContent =\n          error.code === \"TOO_MANY_REQUESTS\"\n            ? \"Slow down! Rate limited you for the day.\"\n            : \"Oops, failed to update likes.\";\n        return;"
+    ],
+    "description": ""
+  }
+}
