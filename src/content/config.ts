@@ -23,6 +23,7 @@ const blog = defineCollection({
         .or(image())
         .optional(),
       date: z.coerce.date().default(() => new Date()),
+      draft: z.boolean().default(false),
     }),
 });
 
