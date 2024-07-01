@@ -136,6 +136,11 @@ const { Content, headings } = await post.render();
     margin-block: 1rem;
     font-size: var(--font-size-sm);
   }
+
+  main :global(article) :global(code) {
+    /* Prevent long URLs from overflowing */
+    word-break: break-all;
+  }
 </style>
 
 <script>
