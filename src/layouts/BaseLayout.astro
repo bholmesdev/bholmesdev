@@ -85,6 +85,13 @@ const {
       button {
         cursor: pointer;
       }
+
+      article a {
+        color: var(--color-primary-light);
+      }
+      article a:is(:hover, :focus) {
+        filter: brightness(1.2);
+      }
     </style>
     <script>
       import { effect } from "~/lib/effect";
