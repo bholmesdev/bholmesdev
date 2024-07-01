@@ -26,7 +26,11 @@ if (!post) return Astro.rewrite("/404");
 const { Content, headings } = await post.render();
 ---
 
-<BaseLayout {headings}>
+<BaseLayout
+  {headings}
+  title={post.data.title}
+  description={post.data.description}
+>
   <main class="max-w-prose mx-auto px-3 mb-24">
     <article-scroll>
       {
