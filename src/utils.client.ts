@@ -2,7 +2,8 @@ const templateToShownMap = new WeakMap<HTMLTemplateElement, ChildNode>();
 
 export function showTemplate(template: HTMLTemplateElement) {
   const content = template.content.cloneNode(true);
-  if (!content.firstChild) {
+  const firstChild = [...content.childNodes].find((n) => n instanceof Element);
+  if (!firstChild) {
     throw new Error(
       "Template show failed. Template does not have any content."
     );
@@ -13,10 +14,7 @@ export function showTemplate(template: HTMLTemplateElement) {
     );
   }
 
-  const element = template.parentElement.insertBefore(
-    content.firstChild,
-    template
-  );
+  const element = template.parentElement.insertBefore(firstChild, template);
   templateToShownMap.set(template, element);
   return element;
 }
