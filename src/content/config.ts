@@ -22,7 +22,7 @@ const blog = defineCollection({
         )
         .or(image())
         .optional(),
-      date: z.coerce.date().default(() => new Date()),
+      date: z.coerce.date(),
       draft: z.boolean().default(false),
     }),
 });
