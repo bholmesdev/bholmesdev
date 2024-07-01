@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^10.2.6",
     "@astrojs/db": "^0.11.4",
     "@astrojs/markdoc": "^0.11.0",
     "@astrojs/netlify": "^5.3.3",

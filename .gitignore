@@ -21,10 +21,5 @@ pnpm-debug.log*
 .DS_Store
 .vercel
 
-# Cloudflare
-.dev.vars
-worker-configuration.d.ts
-.wrangler/
-
 # Netlify
 .netlify/
