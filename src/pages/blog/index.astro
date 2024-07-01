@@ -10,10 +10,11 @@ const posts = await getCollection("blog");
   <main class="max-w-prose mx-auto sm:px-8 mt-12">
     <header class="px-4">
       <h1 class="text-4xl mb-8">Blog Archive</h1>
-      <p class="max-w-[30em] leading-8 mb-12 text-gray-300">
+      <p class="max-w-[30em] leading-7 mb-12 text-gray-300">
         To be honest, I don’t blog as much as I <a
           href="https://youtube.com/@bholmesdev"
-          class="text-primary-light">make videos</a
+          class="text-primary-light hover:brightness-125 transition-all"
+          >make videos</a
         > these days :) This is my archive of old posts and (maybe) future thoughts.
       </p>
     </header>
@@ -23,7 +24,10 @@ const posts = await getCollection("blog");
           .filter((p) => !p.data.draft)
           .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
           .map((p) => (
-            <a href={`/blog/${p.slug}`} class="block">
+            <a
+              href={`/blog/${p.slug}`}
+              class="block hover:brightness-125 transition-all"
+            >
               <article class="py-8 flex gap-4 sm:gap-8 group items-start justify-between border-b border-gray-800">
                 <div class="flex-1">
                   <h2 class="mb-2">{p.data.title}</h2>
