@@ -52,8 +52,12 @@ const { postSlug } = Astro.props;
     // Track promise to block toggleLike until likes are fetch
     #likesPromise = Promise.resolve({ likes: 0 });
 
+    getStorageKey() {
+      return `isLike:${this.postSlug}`;
+    }
+
     async connectedCallback() {
-      this.liked = Boolean(localStorage.getItem("isLike"));
+      this.liked = Boolean(localStorage.getItem(this.getStorageKey()));
       this.#likesPromise = actions.getLikes({
         postSlug: this.postSlug,
       });
@@ -65,12 +69,12 @@ const { postSlug } = Astro.props;
 
     async toggleLike() {
       await this.#likesPromise;
-      this.liked = !Boolean(localStorage.getItem("isLike"));
+      this.liked = !Boolean(localStorage.getItem(this.getStorageKey()));
 
       if (this.liked) {
-        localStorage.setItem("isLike", "true");
+        localStorage.setItem(this.getStorageKey(), "true");
       } else {
-        localStorage.removeItem("isLike");
+        localStorage.removeItem(this.getStorageKey());
       }
 
       this.pending = true;
