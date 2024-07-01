@@ -37,12 +37,11 @@ export const server = {
     accept: "form",
     input: z.object({
       email: z.string().email(),
-      musicRecs: z.boolean(),
     }),
-    handler: async ({ email, musicRecs }) => {
+    handler: async ({ email }) => {
       const res = await fetch(new URL("subscribers", BUTTONDOWN_URL), {
         method: "POST",
-        body: JSON.stringify({ email, tags: musicRecs ? ["music"] : [] }),
+        body: JSON.stringify({ email, tags: ["music"] }),
         headers: {
           "content-type": "application/json",
           Authorization: `Token ${getEnv().BUTTONDOWN_API_KEY}`,

@@ -51,17 +51,6 @@ export function Newsletter() {
               </span>
             </button>
           </div>
-          <div className="flex gap-2">
-            <input
-              id={scope("musicRecs")}
-              name="musicRecs"
-              type="checkbox"
-              defaultChecked
-            />
-            <label htmlFor={scope("musicRecs")}>
-              Get occasional music recs too {";)"}
-            </label>
-          </div>
         </div>
       </form>
       {state?.data?.success && (
