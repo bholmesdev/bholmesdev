@@ -21,7 +21,7 @@ const { headings } = Astro.props;
         headings
           .filter((h) => h.depth === 2)
           .map((h) => (
-            <li class="my-1 text-ellipsis whitespace-nowrap overflow-hidden">
+            <li class="my-2 text-ellipsis whitespace-nowrap overflow-hidden text-sm">
               <a
                 data-targets="my-toc.links"
                 class="data-[active]:text-primary-light"
