@@ -20,6 +20,7 @@ const posts = await getCollection("blog");
     <section class="bg-gray-900 px-8 rounded">
       {
         posts
+          .filter((p) => !p.data.draft)
           .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
           .map((p) => (
             <a href={`/blog/${p.slug}`} class="block">
