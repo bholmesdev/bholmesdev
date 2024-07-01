@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@astrojs/cloudflare':
-    specifier: ^10.2.6
-    version: 10.2.6(astro@4.11.3)
   '@astrojs/db':
     specifier: ^0.11.4
     version: 0.11.4(@opentelemetry/api@1.9.0)(react@19.0.0-beta-26f2496093-20240514)(types-react@19.0.0-rc.0)
@@ -85,7 +82,7 @@ dependencies:
     version: 1.0.3
   wrangler:
     specifier: ^3.57.1
-    version: 3.57.1(@cloudflare/workers-types@4.20240512.0)
+    version: 3.57.1
 
 devDependencies:
   typescript:
@@ -167,27 +164,6 @@ packages:
       lite-youtube-embed: 0.3.2
     dev: false
 
-  /@astrojs/cloudflare@10.2.6(astro@4.11.3):
-    resolution: {integrity: sha512-pgAT9+D866T/ER/L1+t2HvTtJzWhnZF7h7g2ur2ssv3AriJsXrS+Pny6ZTLYY11tuCx7GNxjY4H0jz1AOxuLig==}
-    peerDependencies:
-      astro: ^4.2.0
-    dependencies:
-      '@astrojs/internal-helpers': 0.3.0
-      '@astrojs/underscore-redirects': 0.3.3
-      '@cloudflare/workers-types': 4.20240512.0
-      astro: 4.11.3(typescript@5.2.2)
-      esbuild: 0.19.12
-      estree-walker: 3.0.3
-      magic-string: 0.30.10
-      miniflare: 3.20240512.0
-      tiny-glob: 0.2.9
-      wrangler: 3.57.1(@cloudflare/workers-types@4.20240512.0)
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-    dev: false
-
   /@astrojs/compiler@2.8.1:
     resolution: {integrity: sha512-NGfPAgU/9rvDEwsXu82RI1AxiivaxtEYBK9saW1f+2fTHUUqCJQ27HYtb2akG2QxCmFikgZ9zk26BEWgiHho1Q==}
     dev: false
@@ -237,10 +213,6 @@ packages:
       - sql.js
       - sqlite3
       - utf-8-validate
-    dev: false
-
-  /@astrojs/internal-helpers@0.3.0:
-    resolution: {integrity: sha512-tGmHvrhpzuz0JBHaJX8GywN9g4rldVNHtkoVDC3m/DdzBO70jGoVuc0uuNVglRYnsdwkbG0K02Iw3nOOR3/Y4g==}
     dev: false
 
   /@astrojs/internal-helpers@0.4.0:
@@ -900,10 +872,6 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
-
-  /@cloudflare/workers-types@4.20240512.0:
-    resolution: {integrity: sha512-o2yTEWg+YK/I1t/Me+dA0oarO0aCbjibp6wSeaw52DSE9tDyKJ7S+Qdyw/XsMrKn4t8kF6f/YOba+9O4MJfW9w==}
-    dev: false
 
   /@cspotcode/source-map-support@0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -4362,14 +4330,6 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /globalyzer@0.1.0:
-    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-    dev: false
-
-  /globrex@0.1.2:
-    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
-    dev: false
-
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
     dev: false
@@ -6530,13 +6490,6 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /tiny-glob@0.2.9:
-    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
-    dev: false
-
   /to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
@@ -6958,7 +6911,7 @@ packages:
       '@cloudflare/workerd-windows-64': 1.20240512.0
     dev: false
 
-  /wrangler@3.57.1(@cloudflare/workers-types@4.20240512.0):
+  /wrangler@3.57.1:
     resolution: {integrity: sha512-M8YnWUwdrb8AFiRePtVnzlDn02OX4osWvdl8oVh6eyZqqkqXYg7lwlYBr14Qj92pMN4JvMBmDZoukkYHvwpJRg==}
     engines: {node: '>=16.17.0'}
     hasBin: true
@@ -6969,7 +6922,6 @@ packages:
         optional: true
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.2
-      '@cloudflare/workers-types': 4.20240512.0
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)
       '@esbuild-plugins/node-modules-polyfill': 0.2.2(esbuild@0.17.19)
       blake3-wasm: 2.1.5
