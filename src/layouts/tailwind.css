@@ -37,15 +37,6 @@
 
   --color-primary: #6200ff;
   --color-primary-light: #a08aff;
-
-  /*
-  Tailwind omits default values for certain variables.
-  This renders correctly in chrome and webkit, but not Firefox.
-  */
-  --tw-gradient-from-position: 0;
-  --tw-gradient-to-position: 100%;
-  --tw-translate-x: 0;
-  --tw-border-style: solid;
 }
 
 @supports (transition-timing-function: linear(1, 1)) {
