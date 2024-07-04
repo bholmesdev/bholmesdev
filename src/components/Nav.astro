@@ -29,7 +29,9 @@ function isMatch(urlPath: string, linkPath: string) {
 ---
 
 <nav-open class="group block sticky z-20 top-0">
-  <nav class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-3 px-5">
+  <nav
+    class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-2 px-3 sm:py-3"
+  >
     {headings?.length ? <Toc {headings} /> : null}
     <h2 class="sr-only">Social links</h2>
     <ul
