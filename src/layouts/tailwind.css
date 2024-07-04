@@ -37,6 +37,9 @@
 
   --color-primary: #6200ff;
   --color-primary-light: #a08aff;
+
+  --tw-gradient-from-position: 0;
+  --tw-gradient-to-position: 100%;
 }
 
 @supports (transition-timing-function: linear(1, 1)) {
