@@ -16,7 +16,7 @@ const { headings } = Astro.props;
       <progress data-target="my-toc.progress" max="1"></progress>
       <Icon class="done" name="check" />
     </div>
-    <ul class="p-5 pb-3" id={scope("panel")} role="list">
+    <ul class="p-3 sm:p-5 pb-3" id={scope("panel")} role="list">
       {
         headings
           .filter((h) => h.depth === 2)
@@ -160,7 +160,7 @@ const { headings } = Astro.props;
   .panel {
     border-radius: 1.2em;
     position: absolute;
-    max-width: 14em;
+    max-width: min(calc(100vw - 2 * var(--spacing-3) - 6px), 25rem);
     padding: 0.4rem;
     box-shadow: var(--shadow-5);
     border: 3px solid var(--color-primary);
