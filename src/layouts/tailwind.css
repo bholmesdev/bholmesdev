@@ -45,6 +45,7 @@
   --tw-gradient-from-position: 0;
   --tw-gradient-to-position: 100%;
   --tw-translate-x: 0;
+  --tw-border-style: solid;
 }
 
 @supports (transition-timing-function: linear(1, 1)) {
