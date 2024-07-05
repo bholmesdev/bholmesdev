@@ -33,11 +33,13 @@ const posts = await getCollection("blog");
                   <h2 class="mb-2">{p.data.title}</h2>
                   <p class="mb-4 text-sm text-gray-400">{p.data.description}</p>
                   <p class="bg-slate-800 rounded px-2 py-1 text-gray-300 font-mono text-xs w-max">
-                    {p.data.date.toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
+                    <time datetime={p.data.date.toISOString()}>
+                      {p.data.date.toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </time>
                   </p>
                 </div>
                 <Icon
