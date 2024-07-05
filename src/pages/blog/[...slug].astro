@@ -51,13 +51,15 @@ const { Content, headings } = await post.render();
           <p
             class="bg-slate-800 rounded px-2 py-1 text-gray-300 font-mono text-sm w-max"
           >
-            Published {
-              post.data.date.toLocaleDateString(undefined, {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })
-            }
+            Published <time datetime={post.data.date.toISOString()}
+              >{
+                post.data.date.toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })
+              }</time
+            >
           </p>
         </div>
       </div>
