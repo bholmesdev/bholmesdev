@@ -32,15 +32,13 @@ const posts = await getCollection("blog");
                 <div class="flex-1">
                   <h2 class="mb-2">{p.data.title}</h2>
                   <p class="mb-4 text-sm text-gray-400">{p.data.description}</p>
-                  {p.data.date ? (
-                    <p class="bg-slate-800 rounded px-2 py-1 text-gray-300 font-mono text-xs w-max">
-                      {p.data.date.toLocaleDateString(undefined, {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </p>
-                  ) : null}
+                  <p class="bg-slate-800 rounded px-2 py-1 text-gray-300 font-mono text-xs w-max">
+                    {p.data.date.toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </p>
                 </div>
                 <Icon
                   name="arrow-right"
