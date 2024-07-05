@@ -26,20 +26,18 @@ function isMatch(urlPath: string, linkPath: string) {
   if (linkPath === "/") return urlPath === "/";
   return urlPath.startsWith(linkPath);
 }
-
-const showToc = Boolean(headings?.length);
 ---
 
 <nav-open class="group block sticky z-20 top-0">
   <nav
     class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-2 px-3 sm:py-3"
   >
-    {showToc ? <Toc {headings} /> : null}
+    {headings?.length ? <Toc {headings} /> : null}
     <h2 class="sr-only">Social links</h2>
     <ul
       transition:name="social"
-      data-toc-visible={showToc}
-      class="text-slate-200 flex gap-4 items-center sm:relative absolute data-[toc-visible]:ml-14 sm:ml-0 group-[[data-open]]:invisible group-[[data-open]]:opacity-0 sm:group-[[data-open]]:opacity-100 sm:group-[[data-open]]:visible opacity-100 visible transition-all"
+      data-toc-visible={headings?.length}
+      class="text-slate-200 flex gap-4 items-center sm:relative absolute data-[toc-visible]:ml-14 data-[toc-visible]:sm:ml-0 group-[[data-open]]:invisible group-[[data-open]]:opacity-0 sm:group-[[data-open]]:opacity-100 sm:group-[[data-open]]:visible opacity-100 visible transition-all"
     >
       <li
         class="hover:text-white hover:scale-110 focus-within:scale-110 transition-all ease-spring-3 duration-700"
