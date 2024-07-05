@@ -12,7 +12,7 @@ export function Newsletter() {
   const fieldErrors = isInputError(state.error) ? state.error.fields : {};
 
   return (
-    <section className="bg-gray-900 -mx-4 rounded-2xl shadow-xl p-8">
+    <section className="bg-gray-900 -mx-4 rounded-2xl shadow-xl py-8 px-4 sm:px-8">
       <h2 className="font-bold font-heading text-gray-200 text-2xl mb-2">
         The whiteboardist newsletter
       </h2>
@@ -21,7 +21,7 @@ export function Newsletter() {
       </p>
       <form action={action} className="flex gap-4 items-start">
         <div className="flex flex-col gap-4 w-full">
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap">
             <div className="flex flex-col gap-2 flex-1">
               <label htmlFor={scope("email")} className="sr-only">
                 {" "}
