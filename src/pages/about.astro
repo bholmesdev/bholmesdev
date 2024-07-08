@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Whiteboard from "../components/heading/Whiteboard.astro";
 import WhiteboardContext from "../components/heading/WhiteboardContext.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -33,8 +34,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           > breaking down all sorts of topics (React Server Components, HTMX, and
           SQLite to name a few). You also might know me as the inventor of <a
             href="https://astro.build">Astro.</a
-          > No, <strong>I didn't invent Astro.</strong> But I'm a proud full time
-          developer driving it forward!
+          >
+          <strong>I didn't invent Astro.</strong> But I'm a proud full time developer
+          driving it forward :)
         </p>
         <p>
           I've been a web programmer since the pre-npm days. This taught me
@@ -48,7 +50,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           realized I'm into tech for the tech itself. So, I've devoted myself to
           helping
           <em>you</em> build better websites. Through tools, through videos, through
-          puns, and a healthy <s>tolerance</s> love for JavaScript.
+          puns, and a healthy <s>love</s> tolerance for JavaScript.
         </p>
       </div>
       <div class="content-recruiter">
@@ -71,11 +73,40 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           >
         </p>
       </div>
+      <a
+        href="https://www.youtube.com/@bholmesdev/shorts?sub_confirmation=1"
+        data-draw-btn
+        class="mt-12 text-white! group/btn mx-auto gap-4 text-center text-xl font-bold pb-2 px-1 no-underline block rounded-2xl transition-all"
+      >
+        <span
+          class="origin-top rounded-xl px-8 py-3 flex items-center justify-center gap-4 group-active/btn:scale-x-[1.01] group-active/btn:scale-y-110 group-active/btn:rounded-2xl transition-all ease-spring-5 duration-500"
+        >
+          Watch some videos <Icon name="youtube" /></span
+        ></a
+      >
     </article>
   </main>
 </BaseLayout>
 
 <style>
+  [data-draw-btn] span {
+    background: linear-gradient(
+        288deg,
+        rgba(49, 62, 81, 0.2) 59.32%,
+        rgba(133, 155, 187, 0.2) 92.52%
+      ),
+      linear-gradient(129deg, #334155 27.53%, #303c4f 67.2%);
+  }
+  [data-draw-btn] span:hover {
+    filter: brightness(1.25);
+  }
+  [data-draw-btn] {
+    background: linear-gradient(139deg, #2f3d4f 23.15%, #131f31 74.32%);
+    transition:
+      transform 0.5s var(--ease-spring-4),
+      filter 0.3s;
+  }
+
   article :global(p) {
     line-height: 1.5;
     margin-block: 0.8rem;
