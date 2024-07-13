@@ -10,10 +10,10 @@ This project is built using [Astro.](https://astro.build) To run this project on
 
 Interactive features including the like button and newsletter sign-up form rely on third-party services:
 
-- [Upstash](https://upstash.com/) for persisted storage
+- [Upstash](https://upstash.com/) for persistent storage
 - [Buttondown API](https://docs.buttondown.email/api-introduction) for newsletter signups
 
-To try these features locally, you will need to generate API credentials by creating accounts for each. Place these credentials in a `.env` file following the `.env.example` file as a template.
+To try these features locally, you will need to generate API credentials for each. See the `.env.example` for credentials you will need to retrieve. Then, place these variables in `.env` file following the same format.
 
 ## Production deployment
 
@@ -40,11 +40,10 @@ This project follows the standard structure of an Astro codebase:
 
 ## Astro commands
 
-All commands are run from the root of the project, from a terminal:
+All commands are run from the root of the project using your terminal:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
 | `pnpm dev`             | Starts local dev server at `localhost:4321`      |
 | `pnpm build`           | Build your production site to `./dist/`          |
 | `pnpm preview`         | Preview your build locally, before deploying     |
