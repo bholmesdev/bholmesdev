@@ -1,47 +1,16 @@
-# Astro Starter Kit: Minimal
+# Hi, I'm Ben 👋
 
-```
-npm create astro@latest -- --template minimal
-```
+Hey there! I’m Ben, a senior web developer at Astro. You might know me from my short whiteboard videos breaking down all sorts of topics (React Server Components, HTMX, and SQLite to name a few). You also might know me as the inventor of Astro. **I didn't invent Astro.** But I'm a proud full time developer driving it forward :)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Find repositories from my content
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+You may have seen one of my GitHub repositories featured in a recent video, tweet, blog post, friend flashing their phone in your face, etc. I've labeled these repositories using [topics](https://github.com/topics). You can search my repositories using the syntax `topic:video`, or use one of these quick search links:
 
-## 🚀 Project Structure
+- 🎥 [Repo from a video](https://github.com/bholmesdev?tab=repositories&q=topic:video&type=&language=&sort=)
+- 🐦 [Repo from a tweet](https://github.com/bholmesdev?tab=repositories&q=topic:tweet&type=&language=&sort=)
+- 🔴 [Repo from a livetream](https://github.com/bholmesdev?tab=repositories&q=topic:livestream&type=&language=&sort=)
+- 📝 [Repo from a bg post or newsletter](https://github.com/bholmesdev?tab=repositories&q=topic:blog&type=&language=&sort=)
 
-Inside of your Astro project, you'll see the following folders and files:
+## Run the bholmes.dev site
 
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+If you're reading this README from the [bholmes.dev repository](https://github.com/bholmesdev/bholmesdev), visit the SETUP.md guide.
