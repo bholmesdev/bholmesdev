@@ -9,6 +9,7 @@ You may have seen one of my GitHub repositories featured in a recent video, twee
 - 🎥 [Repo from a video](https://github.com/bholmesdev?tab=repositories&q=topic:video&type=&language=&sort=)
 - 🐦 [Repo from a tweet](https://github.com/bholmesdev?tab=repositories&q=topic:twitter&type=&language=&sort=)
 - 🔴 [Repo from a livetream](https://github.com/bholmesdev?tab=repositories&q=topic:livestream&type=&language=&sort=)
+- 🎥 [Repo from a talk](https://github.com/bholmesdev?tab=repositories&q=topic:talk&type=&language=&sort=)
 - 📝 [Repo from a blog post or newsletter](https://github.com/bholmesdev?tab=repositories&q=topic:blog&type=&language=&sort=)
 
 ## Run the bholmes.dev site
