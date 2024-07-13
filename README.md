@@ -7,9 +7,9 @@ Hey there! I’m Ben, a senior web developer at Astro. You might know me from my
 You may have seen one of my GitHub repositories featured in a recent video, tweet, blog post, friend flashing their phone in your face, etc. I've labeled these repositories using [topics](https://github.com/topics). You can search my repositories using the syntax `topic:video`, or use one of these quick search links:
 
 - 🎥 [Repo from a video](https://github.com/bholmesdev?tab=repositories&q=topic:video&type=&language=&sort=)
-- 🐦 [Repo from a tweet](https://github.com/bholmesdev?tab=repositories&q=topic:tweet&type=&language=&sort=)
+- 🐦 [Repo from a tweet](https://github.com/bholmesdev?tab=repositories&q=topic:twitter&type=&language=&sort=)
 - 🔴 [Repo from a livetream](https://github.com/bholmesdev?tab=repositories&q=topic:livestream&type=&language=&sort=)
-- 📝 [Repo from a bg post or newsletter](https://github.com/bholmesdev?tab=repositories&q=topic:blog&type=&language=&sort=)
+- 📝 [Repo from a blog post or newsletter](https://github.com/bholmesdev?tab=repositories&q=topic:blog&type=&language=&sort=)
 
 ## Run the bholmes.dev site
 
