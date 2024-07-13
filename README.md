@@ -14,4 +14,4 @@ You may have seen one of my GitHub repositories featured in a recent video, twee
 
 ## Run the bholmes.dev site
 
-If you're reading this README from the [bholmes.dev repository](https://github.com/bholmesdev/bholmesdev), visit the SETUP.md guide.
+If you're reading this README from the [bholmes.dev repository](https://github.com/bholmesdev/bholmesdev), visit the [SETUP.md](https://github.com/bholmesdev/bholmesdev/blob/main/SETUP.md) guide.
