@@ -1,0 +1,10 @@
+{
+  "cc:posts": {
+    "scope": "",
+    "prefix": "cc:posts",
+    "body": [
+      "      for (const post of posts.slice(0, 10)) {\n        store.set({ id: post.id, data: post });\n      }"
+    ],
+    "description": ""
+  }
+}

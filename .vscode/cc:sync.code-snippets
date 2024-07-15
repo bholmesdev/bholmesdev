@@ -1,0 +1,10 @@
+{
+  "cc:sync": {
+    "scope": "",
+    "prefix": "cc:sync",
+    "body": [
+      "      // Don't sync more than once a minute\n      if (lastSynced && Date.now() - Number(lastSynced) < 1000 * 60) {\n        logger.info(\"Skipping Strapi sync\");\n        return;\n      }"
+    ],
+    "description": ""
+  }
+}
