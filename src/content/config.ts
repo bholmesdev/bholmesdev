@@ -64,8 +64,6 @@ function postLoader(config: PostLoaderConfig): Loader {
       meta.set("lastSynced", String(Date.now()));
     },
     schema: async () => {
-      // Simulate a delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       return z.object({
         title: z.string(),
         description: z.string(),
