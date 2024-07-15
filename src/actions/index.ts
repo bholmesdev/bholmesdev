@@ -12,7 +12,7 @@ export const server = {
     input: z.object({
       postSlug: z
         .string()
-        .refine(async (s) => Boolean(await getEntry("blog", s))),
+        .refine(async (s) => Boolean(await getEntry("strapiBlog", s))),
       liked: z.boolean().default(false),
     }),
     handler: async ({ postSlug, liked }, ctx) => {
