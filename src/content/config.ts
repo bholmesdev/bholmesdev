@@ -31,16 +31,12 @@ const blog = defineCollection({
 
 const strapiBlog = defineCollection({
   type: "experimental_data",
-  loader: postLoader({ url: "https://jsonplaceholder.typicode.com/posts" }),
+  loader: strapiLoader({ contentType: "blog-post" }),
 });
 
 export const collections = { blog, strapiBlog };
 
-export interface PostLoaderConfig {
-  url: string;
-}
-
-function postLoader(config: PostLoaderConfig): Loader {
+function strapiLoader({ contentType }: { contentType: string }): Loader {
   return {
     name: "post-loader",
     load: async ({ store, meta, logger }) => {
@@ -53,7 +49,7 @@ function postLoader(config: PostLoaderConfig): Loader {
       }
 
       logger.info("Fetching posts from Strapi");
-      const res = await fetchStrapi("GET", "/api/blog-posts");
+      const res = await fetchStrapi("GET", `/api/${contentType}s`);
       const posts = (await res.json()).data;
 
       store.clear();
@@ -64,12 +60,21 @@ function postLoader(config: PostLoaderConfig): Loader {
       meta.set("lastSynced", String(Date.now()));
     },
     schema: async () => {
-      return z.object({
-        title: z.string(),
-        description: z.string(),
-        draft: z.boolean().default(false),
-        body: z.string(),
-      });
+      const res = await fetchStrapi(
+        "GET",
+        `/api/content-type-builder/content-types/api::${contentType}.${contentType}`
+      );
+      if (!res.ok) {
+        throw new Error(`Failed to fetch content type: ${contentType}`);
+      }
+      const contentTypeRes = await res.json();
+      const attributes = contentTypeRes.data.schema.attributes;
+      let validator: any = {};
+      for (const [name, properties] of Object.entries(attributes)) {
+        const { required } = properties as any;
+        validator[name] = required ? z.string() : z.string().optional();
+      }
+      return z.object(validator);
     },
   };
 }

@@ -1,0 +1,10 @@
+{
+  "cc:validator": {
+    "scope": "",
+    "prefix": "cc:validator",
+    "body": [
+      "      const res = await fetchStrapi(\n        \"GET\",\n        `/api/content-type-builder/content-types/api::\\${contentType}.\\${contentType}`\n      );\n      if (!res.ok) {\n        throw new Error(`Failed to fetch content type: \\${contentType}`);\n      }\n      const contentTypeRes = await res.json();\n      const attributes = contentTypeRes.data.schema.attributes;\n      let validator: any = {};\n      for (const [name, properties] of Object.entries(attributes)) {\n        const { required } = properties as any;\n        validator[name] = required ? z.string() : z.string().optional();\n      }\n      return z.object(validator);"
+    ],
+    "description": ""
+  }
+}
