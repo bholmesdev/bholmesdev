@@ -44,16 +44,15 @@ function postLoader(config: PostLoaderConfig): Loader {
   return {
     name: "post-loader",
     load: async ({ store, meta, logger }) => {
-      logger.info("Loading posts");
-
       const lastSynced = meta.get("lastSynced");
 
       // Don't sync more than once a minute
       if (lastSynced && Date.now() - Number(lastSynced) < 1000 * 60) {
-        logger.info("Skipping sync");
+        logger.info("Skipping Strapi sync");
         return;
       }
 
+      logger.info("Fetching posts from Strapi");
       const res = await fetchStrapi("GET", "/api/blog-posts");
       const posts = (await res.json()).data;
 
