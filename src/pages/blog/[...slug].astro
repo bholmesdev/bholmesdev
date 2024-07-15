@@ -5,66 +5,43 @@ import { Image } from "astro:assets";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import LikeButton from "~/components/LikeButton.astro";
 import { Newsletter } from "~/components/Newsletter";
+import { Renderer } from "@astrojs/markdoc/components";
+import Markdoc from "@markdoc/markdoc";
 import { getCollection } from "astro:content";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("strapiBlog");
   return posts
     .filter((p) => !p.data.draft)
-    .map((p) => ({
-      params: { slug: p.slug },
-      props: { post: p },
-    }));
+    .map((p) => {
+      return {
+        params: { slug: p.id },
+        props: { post: p },
+      };
+    });
 };
 
-type Props = { post: CollectionEntry<"blog"> };
+type Props = { post: CollectionEntry<"strapiBlog"> };
 
 const { post } = Astro.props;
 
-if (!post) return Astro.rewrite("/404");
-
-const { Content, headings } = await post.render();
+const markdoc = Markdoc.parse(post.data.body);
 ---
 
 <BaseLayout
-  {headings}
+  headings={[]}
   title={post.data.title}
   description={post.data.description}
-  image={post.data.image}
 >
   <main class="max-w-prose mx-auto px-3 mb-24">
     <article-scroll>
-      {
-        post.data.image && (
-          <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
-            <Image
-              class="aspect-[4/3] object-cover object-left w-full"
-              src={post.data.image}
-              alt=""
-            />
-          </div>
-        )
-      }
       <div class="flex flex-col gap-4">
         <h1 class="text-4xl mt-12">{post.data.title}</h1>
         <div class="flex flex-wrap gap-6 items-center mb-8">
-          <LikeButton postSlug={post.slug} />
-          <p
-            class="bg-slate-800 rounded px-2 py-1 text-gray-300 font-mono text-sm w-max"
-          >
-            Published <time datetime={post.data.date.toISOString()}
-              >{
-                post.data.date.toLocaleDateString(undefined, {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })
-              }</time
-            >
-          </p>
+          <LikeButton postSlug={post.id} />
         </div>
       </div>
-      <Content />
+      <Renderer stringifiedAst={JSON.stringify(markdoc)} config={{}} />
       <div class="mt-12">
         <Newsletter client:visible />
       </div>

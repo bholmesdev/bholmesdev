@@ -84,8 +84,10 @@ export async function fetchStrapi(method: string, path: string, payload?: any) {
   return fetch(url.href, {
     method: method,
     headers,
-    body: JSON.stringify({
-      data: payload,
-    }),
+    body: payload
+      ? JSON.stringify({
+          data: payload,
+        })
+      : undefined,
   });
 }
