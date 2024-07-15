@@ -1,18 +1,11 @@
 ---
-import "@fontsource/atkinson-hyperlegible/400.css";
-import "@fontsource/atkinson-hyperlegible/700.css";
-import "@fontsource/ranga/400.css";
-import "@fontsource/ranga/700.css";
 import "open-props/easings";
 import "./tailwind.css";
-import ranga400url from "@fontsource/ranga/files/ranga-latin-400-normal.woff2?url";
-import ranga700url from "@fontsource/ranga/files/ranga-latin-700-normal.woff2?url";
-import atkinson400url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url";
-import atkinson700url from "@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2?url";
-import Nav from "../components/Nav.astro";
+import Nav from "~/components/Nav.astro";
 import type { MarkdownHeading, ImageMetadata } from "astro";
 import { getImage } from "astro:assets";
 import { ViewTransitions } from "astro:transitions";
+import Font from "~/components/Font.astro";
 
 type Props = {
   title?: string;
@@ -46,21 +39,8 @@ const {
     <meta property="og:title" />
     <meta property="og:description" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link
-      rel="preload"
-      href={atkinson400url}
-      as="font"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      href={atkinson700url}
-      as="font"
-      crossorigin="anonymous"
-    />
-    <link rel="preload" href={ranga400url} as="font" crossorigin="anonymous" />
-    <link rel="preload" href={ranga700url} as="font" crossorigin="anonymous" />
     <ViewTransitions fallback="none" />
+    <Font />
     {
       import.meta.env.PROD && (
         <script
