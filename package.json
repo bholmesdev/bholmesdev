@@ -15,7 +15,6 @@
     "@astrojs/react": "^3.6.0",
     "@github/catalyst": "^1.6.0",
     "@tailwindcss/postcss": "^4.0.0-alpha.17",
-    "@tailwindcss/typography": "^0.5.10",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@upstash/ratelimit": "^1.1.3",
