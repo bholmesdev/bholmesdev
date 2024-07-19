@@ -8,3 +8,5 @@ type NetlifyLocals = import("@astrojs/netlify").NetlifyLocals;
 declare namespace App {
   interface Locals extends NetlifyLocals {}
 }
+
+declare function el<T extends HTMLElement = HTMLElement>(selector: string): T;

@@ -22,11 +22,10 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     > for practical examples, diagrams, and 60 second explainers.
   </p>
 </div>
-<my-computer id="videos" class="block sm:px-6 -mx-3">
+<my-computer id="videos" class="block sm:px-6 -mx-3" data-el={el("container")}>
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
-      data-target="my-computer.glow"
       src={showcaseSrc}
       alt=""
       class="pt-[0%] w-full"
@@ -35,7 +34,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
       <img
         data-thumbnail
-        data-target="my-computer.thumbnail"
+        data-el={el("thumbnail")}
         src={showcaseSrc}
         alt="A gud video"
         class="absolute top-0 w-full aspect-[3/2] leading-none object-cover"
@@ -46,7 +45,6 @@ const showcaseSrc = getImgSrc(showcaseVideo);
       >
         <div data-scan-line class="w-full h-1 bg-slate-200 opacity-30"></div>
         <div
-          data-target="my-computer.btnLabels"
           data-btn-labels
           class="px-[7%] pb-[2%] pt-[10%] flex justify-between font-bold bg-gradient-to-t from-slate-950 to-transparent"
         >
@@ -59,7 +57,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
         </div>
       </div>
 
-      <template data-target="my-computer.iframeTemplate">
+      <template data-el={el("iframe-template")}>
         <iframe
           class="absolute top-0 w-full aspect-[3/2] h-auto"
           width="560"
@@ -77,17 +75,14 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     />
     <div
       data-btn-overlay
+      data-el={el("cd-drive")}
       class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
     >
-      <Button
-        data-action="click:my-computer#play"
-        icon="play"
-        aria-label="Play video"
-      />
+      <Button data-el={el("play")} icon="play" aria-label="Play video" />
 
       <CdDrive />
       <Button
-        data-action="click:my-computer#random"
+        data-el={el("random")}
         icon="random"
         aria-label="Get random video"
       />
@@ -96,68 +91,60 @@ const showcaseSrc = getImgSrc(showcaseVideo);
 </my-computer>
 
 <script>
-  import { controller, target, attr } from "@github/catalyst";
   import { getEmbedSrc, getImgSrc, videoIds, showcaseVideo } from "./Frame";
   import {
     hideTemplate,
     showTemplate,
     fisherYatesShuffle,
   } from "../../utils.client";
+  import { effect, onPageLoad } from "~/lib/effect";
+  import { Signal } from "signal-polyfill";
 
   const [_showcase, ...otherVideos] = videoIds;
 
-  @controller
-  class MyComputerElement extends HTMLElement {
-    @attr playing = false;
-    @attr welcome = false;
-    @attr videoIdx = 0;
+  onPageLoad(async () => {
+    const playing = new Signal.State(false);
+    const welcome = new Signal.State(false);
+    const videoIdx = new Signal.State(0);
+    const videoIds = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
 
-    @target btnLabels: HTMLDivElement;
-    @target thumbnail: HTMLImageElement;
-    @target iframeTemplate: HTMLTemplateElement;
-    @target cdDrive: HTMLElement;
+    effect(() => {
+      el("container").toggleAttribute("data-playing", playing.get());
+      el("container").toggleAttribute("data-welcome", welcome.get());
 
-    #videoIds: string[] = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
-
-    #setPlay(playing: boolean) {
-      this.playing = playing;
-
-      if (this.playing) {
-        const iframe = showTemplate(this.iframeTemplate) as HTMLIFrameElement;
-        iframe.src = getEmbedSrc(this.#videoIds[this.videoIdx]!);
+      if (playing.get()) {
+        const iframe = showTemplate(el("iframe-template")) as HTMLIFrameElement;
+        iframe.src = getEmbedSrc(videoIds[videoIdx.get()]!);
       } else {
-        hideTemplate(this.iframeTemplate);
+        hideTemplate(el("iframe-template"));
       }
-    }
+    });
 
-    play() {
-      this.#setPlay(!this.playing);
-    }
+    el("play").addEventListener("click", () => {
+      playing.set(!playing.get());
+    });
 
-    random() {
-      this.#setPlay(false);
-      this.videoIdx = (this.videoIdx + 1) % videoIds.length;
-      this.thumbnail.src = getImgSrc(this.#videoIds[this.videoIdx]!);
-    }
-
-    #observer: IntersectionObserver;
-
-    connectedCallback() {
-      this.#observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry?.isIntersecting) {
-            this.welcome = true;
-          }
-        },
-        { threshold: 0.7 }
+    el("random").addEventListener("click", () => {
+      playing.set(false);
+      videoIdx.set((videoIdx.get() + 1) % videoIds.length);
+      el<HTMLImageElement>("thumbnail").src = getImgSrc(
+        videoIds[videoIdx.get()]!
       );
+    });
 
-      this.#observer.observe(this.cdDrive);
-    }
-    disconnectedCallback() {
-      this.#observer.disconnect();
-    }
-  }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          welcome.set(true);
+        }
+      },
+      { threshold: 0.7 }
+    );
+
+    observer.observe(el("cd-drive"));
+
+    return () => observer.disconnect();
+  });
 </script>
 
 <style>
