@@ -10,10 +10,10 @@ type Props = {
 const { headings } = Astro.props;
 ---
 
-<my-toc class="block z-10">
+<div class="z-10" data-el={el("container")}>
   <div class="panel bg-gray-950">
     <div class="progress-container">
-      <progress data-target="my-toc.progress" max="1"></progress>
+      <progress data-el={el("progress")} max="1"></progress>
       <Icon class="done" name="check" />
     </div>
     <ul class="p-3 sm:p-5 pb-3" id={scope("panel")} role="list">
@@ -23,7 +23,7 @@ const { headings } = Astro.props;
           .map((h) => (
             <li class="my-2 text-ellipsis whitespace-nowrap overflow-hidden text-sm">
               <a
-                data-targets="my-toc.links"
+                data-el={el("links")}
                 class="data-[active]:text-primary-light"
                 href={`#${h.slug}`}
               >
@@ -35,8 +35,7 @@ const { headings } = Astro.props;
     </ul>
   </div>
   <button
-    data-action="click:my-toc#toggleMenu"
-    data-target="my-toc.btn"
+    data-el={el("btn")}
     aria-controls={scope("panel")}
     class="transition-all ease-spring-3 duration-500"
   >
@@ -48,51 +47,38 @@ const { headings } = Astro.props;
       </div>
     </div>
   </button>
-</my-toc>
+</div>
 
 <script>
-  import { attr, target, targets, controller } from "@github/catalyst";
   import { progress, currentSectionIdx } from "~/stores";
-  import { effect } from "~/lib/effect";
-  import { toAttr } from "~/utils.client";
+  import { effect, onPageLoad } from "~/lib/effect";
+  import { Signal } from "signal-polyfill";
 
-  @controller
-  class MyTocElement extends HTMLElement {
-    @attr open = false;
-    @attr doneReading = false;
-    @target btn: HTMLButtonElement;
-    @target progress: HTMLProgressElement;
-    @targets links: HTMLAnchorElement[];
+  onPageLoad(() => {
+    const open = new Signal.State(false);
 
-    #disconnect = new AbortController();
+    effect(() => {
+      el("container").toggleAttribute("data-open", open.get());
+      el<HTMLProgressElement>("progress").value = progress.get();
 
-    connectedCallback() {
-      effect(() => {
-        this.progress.value = progress.get();
-        this.doneReading = Math.round(progress.get() * 10) / 10 >= 1;
-      }, this.#disconnect);
-      effect(() => {
-        console.log("currentSectionIdx", currentSectionIdx.get());
-        const idx = currentSectionIdx.get();
-        this.btn.style.setProperty(
-          "--section-offset",
-          `calc(-${idx} * (var(--spacing-3) + 1em))`
-        );
-        for (const [linkIdx, link] of this.links.entries()) {
-          link.toggleAttribute("data-active", linkIdx === idx);
-        }
-      }, this.#disconnect);
-    }
+      el("container").toggleAttribute(
+        "data-done-reading",
+        Math.round(progress.get() * 10) / 10 >= 1
+      );
+      const idx = currentSectionIdx.get();
+      el("btn").style.setProperty(
+        "--section-offset",
+        `calc(-${idx} * (var(--spacing-3) + 1em))`
+      );
+      for (const [linkIdx, link] of el("links").all().entries()) {
+        link.toggleAttribute("data-active", linkIdx === idx);
+      }
+    });
 
-    disconnectedCallback() {
-      this.#disconnect.abort();
-    }
-
-    toggleMenu = () => {
-      this.open = !this.open;
-      this.btn.ariaExpanded = toAttr(this.open);
-    };
-  }
+    el("btn").addEventListener("click", () => {
+      open.set(!open.get());
+    });
+  });
 </script>
 
 <style>
