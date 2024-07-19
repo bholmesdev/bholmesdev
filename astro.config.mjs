@@ -36,6 +36,8 @@ export default defineConfig({
           const element = document.querySelector(selector);
           if (!element) throw new Error(\`Element not found: \${selector}\`);
 
+          element.all = (selector) => [...element.querySelectorAll(selector)];
+
           return element;
         }\n${code}`; 
       }
