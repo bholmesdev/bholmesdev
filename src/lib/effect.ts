@@ -23,19 +23,12 @@ function processPending() {
   w.watch();
 }
 
-let effectCleanupFns = new Set<() => void>();
-
 export function effect(callback: Function, opts?: { signal: AbortSignal }) {
   let cleanup: Function | undefined;
 
   const computed = new Signal.Computed(() => {
     typeof cleanup === "function" && cleanup();
     cleanup = callback();
-    effectCleanupFns.add(() => {
-      w.unwatch(computed);
-      typeof cleanup === "function" && cleanup();
-      cleanup = undefined;
-    });
   });
 
   w.watch(computed);
@@ -59,8 +52,6 @@ export function onPageLoad(callback: Function) {
     let cleanup: Function | undefined;
 
     document.addEventListener("astro:page-load", async () => {
-      for (const d of effectCleanupFns) d();
-      effectCleanupFns.clear();
       if (cleanup) cleanup();
 
       if (route === location.pathname) {
