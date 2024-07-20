@@ -9,8 +9,9 @@ declare namespace App {
   interface Locals extends NetlifyLocals {}
 }
 
-declare function $<T extends HTMLElement = HTMLElement>(
-  selector: string
+declare function $<T extends Element = HTMLElement>(
+  selector: string,
+  opts?: { optional: boolean }
 ): T & {
   all: () => T[];
 };

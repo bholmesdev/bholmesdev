@@ -34,9 +34,11 @@ export default defineConfig({
         import { scope } from 'simple:scope';
         import { transitionEnabledOnThisPage } from 'astro:transitions/client';
 
-        const $ = (scopeId) => {
+        const $ = (scopeId, opts) => {
           const selector = \`[data-target=\${scope(scopeId)}]\`;
           const element = document.querySelector(selector);
+          
+          if (opts?.optional && !element) return undefined;
           if (!element) throw new Error(\`Element not found: \${selector}\`);
 
           element.all = () => [...document.querySelectorAll(selector)];
