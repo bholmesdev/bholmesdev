@@ -1,10 +1,13 @@
-<my-whiteboard class="group">
-  <slot />
+---
+const html = Astro.slots.render("default", [$]);
+---
+
+<my-whiteboard class="group" data-target={$("container")}>
+  <Fragment set:html={html} />
 </my-whiteboard>
 
 <script>
   import { gsap } from "gsap";
-  import { attr, controller, target, targets } from "@github/catalyst";
   import { fisherYatesShuffle } from "~/utils.client";
   import MotionPathPlugin from "gsap/MotionPathPlugin";
   import { setUpCanvas } from "./canvas";
@@ -17,74 +20,98 @@
   const yPoolInitial = [-80, -40, 0, 40, 80, 120];
   const strokeOffset = 1624;
 
-  @controller
-  class MyWhiteboardElement extends HTMLElement {
-    @target face: SVGElement;
-    @target scribble: SVGPathElement;
-    @target eraser: SVGElement;
-    @target drawBtn: HTMLButtonElement | undefined;
-    @target closeBtn: HTMLButtonElement | undefined;
-    @targets eyes: SVGElement[];
-    @target canvas: HTMLCanvasElement;
+  ready(() => {
+    isDrawing.set(false);
 
-    @attr drawing = false;
+    const xPool = fisherYatesShuffle(xPoolInitial);
+    const yPool = fisherYatesShuffle(yPoolInitial);
+    let xIdx = 0;
+    let yIdx = 0;
+    let resetCanvas: () => void | undefined;
+    let eraseAnim: gsap.core.Timeline | undefined;
+    let faceAnim = gsap.to($("face"), {
+      x: () => {
+        const next = xPool[xIdx];
+        xIdx = (xIdx + 1) % xPool.length;
+        return next!;
+      },
+      y: () => {
+        const next = yPool[yIdx];
+        yIdx = (yIdx + 1) % yPool.length;
+        return next!;
+      },
+      repeatRefresh: true,
+      repeat: -1,
+      repeatDelay: 4,
+      duration: 1,
+      delay: 4,
+      ease: "elastic.out(1, 0.5)",
+    });
 
-    #xPool = fisherYatesShuffle(xPoolInitial);
-    #yPool = fisherYatesShuffle(yPoolInitial);
-    #xIdx = 0;
-    #yIdx = 0;
+    let eyesAnim = gsap
+      .timeline()
+      .set($("eyes").all(), { transformOrigin: "center bottom" })
+      .to($("eyes").all(), { scaleY: 0.2, duration: 0.2 })
+      .to($("eyes").all(), { scaleY: 1, duration: 0.2 })
+      .repeatDelay(3)
+      .delay(2)
+      .repeat(-1);
 
-    #faceAnim?: gsap.core.Tween;
-    #eyesAnim?: gsap.core.Timeline;
-    #eraseAnim?: gsap.core.Timeline;
+    const drawBtn = $<HTMLButtonElement>("drawBtn", { optional: true });
 
-    #resetCanvas?: () => void;
-    #disconnect = new AbortController();
+    effect(() => {
+      $("container").toggleAttribute("data-drawing", isDrawing.get());
+      if (drawBtn) {
+        drawBtn.disabled = isDrawing.get();
+      }
+    });
 
-    scrollToVideos(e: MouseEvent) {
-      e.preventDefault();
-      document
-        .querySelector((e.currentTarget as HTMLAnchorElement).hash)
-        ?.scrollIntoView({ behavior: "smooth" });
-    }
+    $("draw-trigger", { optional: true })?.addEventListener(
+      "click",
+      startDrawing
+    );
+    $("canvas").addEventListener("click", startDrawing);
+    $("eraser").addEventListener("click", startDrawing);
+    $("markers").addEventListener("click", startDrawing);
+    $("closeBtn").addEventListener("click", stopDrawing);
 
-    stopDrawing() {
-      if (!this.drawing) return;
+    function stopDrawing() {
+      if (!isDrawing.get()) return;
       isDrawing.set(false);
 
-      if (this.#resetCanvas) this.#resetCanvas();
-      this.closeBtn?.addEventListener(
+      if (resetCanvas) resetCanvas();
+      $("closeBtn").addEventListener(
         "transitionend",
         () => {
-          this.drawBtn?.focus();
+          drawBtn?.focus();
         },
         { once: true }
       );
-      this.#eraseAnim?.kill();
-      gsap.to(this.eraser, { x: 0, y: 0, duration: 0.4 });
-      gsap.to(this.scribble, {
+      eraseAnim?.kill();
+      gsap.to($("eraser"), { x: 0, y: 0, duration: 0.4 });
+      gsap.to($("scribble"), {
         strokeDashoffset: strokeOffset,
         duration: 0.3,
         onComplete: () => {
-          this.#faceAnim?.play();
-          this.#eyesAnim?.play();
+          faceAnim?.play();
+          eyesAnim?.play();
         },
       });
     }
 
-    async startDrawing() {
-      if (this.drawing) return;
+    async function startDrawing() {
+      if (isDrawing.get()) return;
       isDrawing.set(true);
 
-      this.closeBtn?.addEventListener(
+      $("closeBtn")?.addEventListener(
         "transitionend",
         () => {
-          this.closeBtn?.focus();
+          $("closeBtn")?.focus();
         },
         { once: true }
       );
-      this.#faceAnim?.pause();
-      this.#eyesAnim?.pause();
+      faceAnim?.pause();
+      eyesAnim?.pause();
 
       const mdBreakpoint = window.matchMedia("(max-width: 768px)");
       if (mdBreakpoint.matches) {
@@ -95,23 +122,23 @@
         await new Promise((resolve) => setTimeout(() => resolve(null), 300));
       }
 
-      const eraserRect = this.eraser.getBoundingClientRect();
-      const scribbleRect = this.face.getBoundingClientRect();
+      const eraserRect = $("eraser").getBoundingClientRect();
+      const scribbleRect = $("face").getBoundingClientRect();
 
-      this.#eraseAnim = gsap.timeline().to(this.eraser, {
+      eraseAnim = gsap.timeline().to($("eraser"), {
         x: -eraserRect.left + scribbleRect.left - 16,
         y: -eraserRect.top + scribbleRect.top - 40,
         ease: "elastic.out(1,1)",
         duration: 0.4,
       });
       for (let i = 1; i <= 6; i++) {
-        this.#eraseAnim.to(this.eraser, {
+        eraseAnim.to($("eraser"), {
           duration: 0.155,
           delay: i === 1 ? -0.1 : 0,
           ease: "power2.out",
           motionPath: {
-            path: this.scribble,
-            align: this.scribble,
+            path: $<SVGPathElement>("scribble"),
+            align: $<SVGPathElement>("scribble"),
             offsetX: eraserRect.width / -2,
             offsetY: eraserRect.height / -2,
 
@@ -119,8 +146,8 @@
             end: i / 6,
           },
         });
-        this.#eraseAnim.to(
-          this.scribble,
+        eraseAnim.to(
+          $("scribble"),
           {
             ease: "power2.out",
             duration: 0.16,
@@ -129,56 +156,15 @@
           "<"
         );
       }
-      this.#eraseAnim.to(this.eraser, {
+      eraseAnim.to($("eraser"), {
         x: 0,
         y: 0,
         ease: "elastic.out(1,1)",
         duration: 0.4,
         onStart: () => {
-          this.#resetCanvas = setUpCanvas(this, this.canvas);
+          resetCanvas = setUpCanvas($("container"), $("canvas"));
         },
       });
     }
-
-    connectedCallback() {
-      effect(() => {
-        this.drawing = isDrawing.get();
-        if (this.drawBtn) {
-          this.drawBtn.disabled = this.drawing;
-        }
-      }, this.#disconnect);
-
-      this.#faceAnim = gsap.to(this.face, {
-        x: () => {
-          const next = this.#xPool[this.#xIdx];
-          this.#xIdx = (this.#xIdx + 1) % this.#xPool.length;
-          return next!;
-        },
-        y: () => {
-          const next = this.#yPool[this.#yIdx];
-          this.#yIdx = (this.#yIdx + 1) % this.#yPool.length;
-          return next!;
-        },
-        repeatRefresh: true,
-        repeat: -1,
-        repeatDelay: 4,
-        duration: 1,
-        delay: 4,
-        ease: "elastic.out(1, 0.5)",
-      });
-
-      this.#eyesAnim = gsap
-        .timeline()
-        .set(this.eyes, { transformOrigin: "center bottom" })
-        .to(this.eyes, { scaleY: 0.2, duration: 0.2 })
-        .to(this.eyes, { scaleY: 1, duration: 0.2 })
-        .repeatDelay(3)
-        .delay(2)
-        .repeat(-1);
-    }
-
-    disconnectedCallback() {
-      this.#disconnect.abort();
-    }
-  }
+  });
 </script>
