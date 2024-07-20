@@ -55,9 +55,11 @@ const {
     <title>{title}</title>
   </head>
   <body class="bg-gray-950 text-white text-base">
-    <my-shroud
+    <div
+      data-target={$("shroud")}
       class="fixed inset-0 invisible bg-gray-950 opacity-0 z-30 data-[visible]:opacity-80 data-[visible]:visible transition-all"
-    ></my-shroud>
+    >
+    </div>
     <Nav headings={headings} />
     <div class="min-h-[80dvh]">
       <slot />
@@ -87,32 +89,23 @@ const {
     <script>
       import { effect } from "~/lib/effect";
       import { isDrawing } from "~/stores";
-      import { controller, attr } from "@github/catalyst";
       import { Signal } from "signal-polyfill";
 
-      @controller
-      class MyShroudElement extends HTMLElement {
-        @attr visible = false;
+      ready(() => {
+        const smBreakpointMatches = new Signal.State(
+          window.matchMedia("(min-width: 640px)").matches
+        );
+        window.matchMedia("(min-width: 640px)").onchange = ({ matches }) => {
+          smBreakpointMatches.set(matches);
+        };
 
-        #disconnect = new AbortController();
-
-        connectedCallback() {
-          const smBreakpointMatches = new Signal.State(
-            window.matchMedia("(min-width: 640px)").matches
+        effect(() => {
+          $("shroud").toggleAttribute(
+            "data-visible",
+            isDrawing.get() && !smBreakpointMatches.get()
           );
-          window.matchMedia("(min-width: 640px)").onchange = ({ matches }) => {
-            smBreakpointMatches.set(matches);
-          };
-
-          effect(() => {
-            this.visible = isDrawing.get() && !smBreakpointMatches.get();
-          }, this.#disconnect);
-        }
-
-        disconnectedCallback() {
-          this.#disconnect.abort();
-        }
-      }
+        });
+      });
     </script>
   </body>
 </html>
