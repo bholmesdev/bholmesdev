@@ -1,9 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
+import { $ } from "simple:query";
 
 type Props = {
   postSlug: string;
 };
+
+console.log("button id", $("button"));
 
 const { postSlug } = Astro.props;
 ---
@@ -14,6 +17,7 @@ const { postSlug } = Astro.props;
   class="group/like flex items-center gap-4"
 >
   <button
+    id={$("button")}
     data-action="click:like-button#toggleLike"
     class="w-[2.5em] h-[2.5em] bg-gradient-to-br from-slate-600 to-slate-900 rounded-full flex items-center justify-center"
   >
@@ -41,6 +45,7 @@ const { postSlug } = Astro.props;
 <script>
   import { actions } from "astro:actions";
   import { controller, attr, target } from "@github/catalyst";
+  import { $ } from "simple:query";
 
   @controller
   class LikeButtonElement extends HTMLElement {

@@ -24,6 +24,7 @@
     "astro-font": "^0.0.81",
     "astro-icon": "^1.1.0",
     "gsap": "^3.12.2",
+    "jquery": "^3.7.1",
     "open-props": "^1.6.16",
     "postcss": "^8.4.39",
     "react": "19.0.0-beta-26f2496093-20240514",
@@ -38,6 +39,8 @@
     "@types/react-dom": "npm:types-react-dom@rc"
   },
   "devDependencies": {
-    "typescript": "^5.2.2"
+    "@types/jquery": "^3.5.30",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.4"
   }
 }
