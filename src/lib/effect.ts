@@ -43,22 +43,4 @@ export function effect(callback: Function, opts?: { signal: AbortSignal }) {
     },
     { once: true }
   );
-
-}
-
-export function onPageLoad(callback: Function) {
-  if (transitionEnabledOnThisPage()) {
-    let route = location.pathname;
-    let cleanup: Function | undefined;
-
-    document.addEventListener("astro:page-load", async () => {
-      if (cleanup) cleanup();
-
-      if (route === location.pathname) {
-        cleanup = await callback();
-      }
-    });
-  } else {
-    callback();
-  }
 }

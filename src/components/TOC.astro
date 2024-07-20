@@ -10,10 +10,10 @@ type Props = {
 const { headings } = Astro.props;
 ---
 
-<div class="z-10" data-el={el("container")}>
+<div class="z-10" data-target={$("container")}>
   <div class="panel bg-gray-950">
     <div class="progress-container">
-      <progress data-el={el("progress")} max="1"></progress>
+      <progress data-target={$("progress")} max="1"></progress>
       <Icon class="done" name="check" />
     </div>
     <ul class="p-3 sm:p-5 pb-3" id={scope("panel")} role="list">
@@ -23,7 +23,7 @@ const { headings } = Astro.props;
           .map((h) => (
             <li class="my-2 text-ellipsis whitespace-nowrap overflow-hidden text-sm">
               <a
-                data-el={el("links")}
+                data-target={$("links")}
                 class="data-[active]:text-primary-light"
                 href={`#${h.slug}`}
               >
@@ -35,7 +35,7 @@ const { headings } = Astro.props;
     </ul>
   </div>
   <button
-    data-el={el("btn")}
+    data-target={$("btn")}
     aria-controls={scope("panel")}
     class="transition-all ease-spring-3 duration-500"
   >
@@ -51,31 +51,31 @@ const { headings } = Astro.props;
 
 <script>
   import { progress, currentSectionIdx } from "~/stores";
-  import { effect, onPageLoad } from "~/lib/effect";
+  import { effect } from "~/lib/effect";
   import { Signal } from "signal-polyfill";
 
-  onPageLoad(() => {
+  ready(() => {
     const open = new Signal.State(false);
 
     effect(() => {
-      el("container").toggleAttribute("data-open", open.get());
-      el<HTMLProgressElement>("progress").value = progress.get();
+      $("container").toggleAttribute("data-open", open.get());
+      $<HTMLProgressElement>("progress").value = progress.get();
 
-      el("container").toggleAttribute(
+      $("container").toggleAttribute(
         "data-done-reading",
         Math.round(progress.get() * 10) / 10 >= 1
       );
       const idx = currentSectionIdx.get();
-      el("btn").style.setProperty(
+      $("btn").style.setProperty(
         "--section-offset",
         `calc(-${idx} * (var(--spacing-3) + 1em))`
       );
-      for (const [linkIdx, link] of el("links").all().entries()) {
+      for (const [linkIdx, link] of $("links").all().entries()) {
         link.toggleAttribute("data-active", linkIdx === idx);
       }
     });
 
-    el("btn").addEventListener("click", () => {
+    $("btn").addEventListener("click", () => {
       open.set(!open.get());
     });
   });

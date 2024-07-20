@@ -32,7 +32,7 @@ function isMatch(urlPath: string, linkPath: string) {
 }
 ---
 
-<div data-el={el("container")} class="group block sticky z-40 top-0">
+<div data-target={$("container")} class="group block sticky z-40 top-0">
   <nav
     class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-2 px-3 sm:py-3"
   >
@@ -96,7 +96,7 @@ function isMatch(urlPath: string, linkPath: string) {
     <div>
       <button
         transition:name="nav-toggle"
-        data-el={el("btn")}
+        data-target={$("btn")}
         class="h-[20px] w-[25px] flex flex-col justify-between relative bg-transparent before:absolute before:-inset-1 before:-z-10 before:rounded-md"
         aria-controls={id}
         aria-label="Toggle menu"
@@ -119,22 +119,22 @@ function isMatch(urlPath: string, linkPath: string) {
 </div>
 
 <script>
-  import { effect, onPageLoad } from "~/lib/effect";
+  import { effect } from "~/lib/effect";
   import { Signal } from "signal-polyfill";
 
-  onPageLoad(() => {
+  ready(() => {
     const open = new Signal.State(false);
     let scrollY = 0;
     let ticking = false;
     const abort = new AbortController();
 
-    el("btn").addEventListener("click", () => {
+    $("btn").addEventListener("click", () => {
       open.set(!open.get());
     });
 
     effect(() => {
-      el("container").toggleAttribute("data-open", open.get());
-      el("btn").toggleAttribute("aria-expanded", open.get());
+      $("container").toggleAttribute("data-open", open.get());
+      $("btn").toggleAttribute("aria-expanded", open.get());
     });
 
     const scrollListener = () => {

@@ -9,6 +9,10 @@ declare namespace App {
   interface Locals extends NetlifyLocals {}
 }
 
-declare function el<T extends HTMLElement = HTMLElement>(selector: string): T & {
-  all: () => HTMLElement[];
+declare function $<T extends HTMLElement = HTMLElement>(
+  selector: string
+): T & {
+  all: () => T[];
 };
+
+declare function ready(callback: Function): void | Function;

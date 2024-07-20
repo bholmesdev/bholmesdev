@@ -9,12 +9,12 @@ const { postSlug } = Astro.props;
 ---
 
 <like-button
-  data-el={el("container")}
+  data-target={$("container")}
   data-post-slug={postSlug}
   class="group/like flex items-center gap-4"
 >
   <button
-    data-el={el("button")}
+    data-target={$("button")}
     data-action="click:like-button#toggleLike"
     class="w-[2.5em] h-[2.5em] bg-gradient-to-br from-slate-600 to-slate-900 rounded-full flex items-center justify-center"
   >
@@ -32,7 +32,7 @@ const { postSlug } = Astro.props;
     </div>
   </button>
   <p
-    data-el={el("text")}
+    data-target={$("text")}
     data-target="like-button.text"
     class="group-data-[pending]/like:opacity-60 transition-opacity"
   >
@@ -43,21 +43,21 @@ const { postSlug } = Astro.props;
 <script>
   import { actions } from "astro:actions";
   import { Signal } from "signal-polyfill";
-  import { effect, onPageLoad } from "~/lib/effect";
+  import { effect } from "~/lib/effect";
 
-  onPageLoad(async () => {
-    const postSlug = el("container").getAttribute("data-post-slug") ?? "";
+  ready(async () => {
+    const postSlug = $("container").getAttribute("data-post-slug") ?? "";
     const pending = new Signal.State(false);
     const liked = new Signal.State(
       Boolean(localStorage.getItem(`isLike:${postSlug}`))
     );
 
     const { likes } = await actions.getLikes({ postSlug });
-    el("text").textContent = likes.toString();
+    $("text").textContent = likes.toString();
 
     effect(() => {
-      el("container").toggleAttribute("data-liked", liked.get());
-      el("container").toggleAttribute("data-pending", pending.get());
+      $("container").toggleAttribute("data-liked", liked.get());
+      $("container").toggleAttribute("data-pending", pending.get());
 
       if (liked.get()) {
         localStorage.setItem(`isLike:${postSlug}`, "true");
@@ -66,7 +66,7 @@ const { postSlug } = Astro.props;
       }
     });
 
-    el("button").addEventListener("click", async () => {
+    $("button").addEventListener("click", async () => {
       pending.set(true);
       liked.set(!liked.get());
 
@@ -77,14 +77,14 @@ const { postSlug } = Astro.props;
 
       pending.set(false);
       if (error) {
-        el("text").textContent =
+        $("text").textContent =
           error.code === "TOO_MANY_REQUESTS"
             ? "Slow down! Rate limited you for the day."
             : "Oops, failed to update likes.";
         return;
       }
 
-      el("text").textContent = data.likes.toString();
+      $("text").textContent = data.likes.toString();
     });
   });
 </script>

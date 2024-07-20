@@ -22,7 +22,11 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     > for practical examples, diagrams, and 60 second explainers.
   </p>
 </div>
-<my-computer id="videos" class="block sm:px-6 -mx-3" data-el={el("container")}>
+<my-computer
+  id="videos"
+  class="block sm:px-6 -mx-3"
+  data-target={$("container")}
+>
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
@@ -34,7 +38,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     <div class="w-[89%] mt-[8.5%] mx-[5.5%] bg-slate-950 relative">
       <img
         data-thumbnail
-        data-el={el("thumbnail")}
+        data-target={$("thumbnail")}
         src={showcaseSrc}
         alt="A gud video"
         class="absolute top-0 w-full aspect-[3/2] leading-none object-cover"
@@ -57,7 +61,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
         </div>
       </div>
 
-      <template data-el={el("iframe-template")}>
+      <template data-target={$("iframe-template")}>
         <iframe
           class="absolute top-0 w-full aspect-[3/2] h-auto"
           width="560"
@@ -75,14 +79,14 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     />
     <div
       data-btn-overlay
-      data-el={el("cd-drive")}
+      data-target={$("cd-drive")}
       class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
     >
-      <Button data-el={el("play")} icon="play" aria-label="Play video" />
+      <Button data-target={$("play")} icon="play" aria-label="Play video" />
 
       <CdDrive />
       <Button
-        data-el={el("random")}
+        data-target={$("random")}
         icon="random"
         aria-label="Get random video"
       />
@@ -97,37 +101,37 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     showTemplate,
     fisherYatesShuffle,
   } from "../../utils.client";
-  import { effect, onPageLoad } from "~/lib/effect";
+  import { effect } from "~/lib/effect";
   import { Signal } from "signal-polyfill";
 
   const [_showcase, ...otherVideos] = videoIds;
 
-  onPageLoad(async () => {
+  ready(async () => {
     const playing = new Signal.State(false);
     const welcome = new Signal.State(false);
     const videoIdx = new Signal.State(0);
     const videoIds = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
 
     effect(() => {
-      el("container").toggleAttribute("data-playing", playing.get());
-      el("container").toggleAttribute("data-welcome", welcome.get());
+      $("container").toggleAttribute("data-playing", playing.get());
+      $("container").toggleAttribute("data-welcome", welcome.get());
 
       if (playing.get()) {
-        const iframe = showTemplate(el("iframe-template")) as HTMLIFrameElement;
+        const iframe = showTemplate($("iframe-template")) as HTMLIFrameElement;
         iframe.src = getEmbedSrc(videoIds[videoIdx.get()]!);
       } else {
-        hideTemplate(el("iframe-template"));
+        hideTemplate($("iframe-template"));
       }
     });
 
-    el("play").addEventListener("click", () => {
+    $("play").addEventListener("click", () => {
       playing.set(!playing.get());
     });
 
-    el("random").addEventListener("click", () => {
+    $("random").addEventListener("click", () => {
       playing.set(false);
       videoIdx.set((videoIdx.get() + 1) % videoIds.length);
-      el<HTMLImageElement>("thumbnail").src = getImgSrc(
+      $<HTMLImageElement>("thumbnail").src = getImgSrc(
         videoIds[videoIdx.get()]!
       );
     });
@@ -141,7 +145,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
       { threshold: 0.7 }
     );
 
-    observer.observe(el("cd-drive"));
+    observer.observe($("cd-drive"));
 
     return () => observer.disconnect();
   });

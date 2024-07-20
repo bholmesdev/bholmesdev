@@ -11,37 +11,61 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [markdoc(), icon(), react()],
   vite: {
-    plugins: [simpleScope(), {
-      name: 'el',
-      transform(code, id, opts) {
-        const [baseId, search] = id.split('?');
-        if (!baseId?.endsWith('.astro')) return;
+    plugins: [
+      simpleScope(),
+      {
+        name: "simple-stack-dom",
+        transform(code, id, opts) {
+          const [baseId, search] = id.split("?");
+          if (!baseId?.endsWith(".astro")) return;
 
-        const isAstroFrontmatter = !search;
+          const isAstroFrontmatter = !search;
 
-        if (isAstroFrontmatter) {
-          return `
+          if (isAstroFrontmatter) {
+            return `
           import { scope } from 'simple:scope';
-          const el = scope;\n${code}`;
-        }
+          const $ = scope;\n${code}`;
+          }
 
-        const searchParams = new URLSearchParams(search);
-        if (!searchParams.has('lang.ts')) return;
+          const searchParams = new URLSearchParams(search);
+          if (!searchParams.has("lang.ts")) return;
 
-        return `
+          return `
         import { scope } from 'simple:scope';
+        import { transitionEnabledOnThisPage } from 'astro:transitions/client';
 
-        const el = (scopeId) => {
-          const selector = \`[data-el=\${scope(scopeId)}]\`;
+        const $ = (scopeId) => {
+          const selector = \`[data-target=\${scope(scopeId)}]\`;
           const element = document.querySelector(selector);
           if (!element) throw new Error(\`Element not found: \${selector}\`);
 
           element.all = (selector) => [...element.querySelectorAll(selector)];
 
           return element;
-        }\n${code}`; 
-      }
-    }],
+        }
+
+        function hasScopeElement() {
+          return !!document.querySelector(\`[data-target$="\${scope()}"]\`);
+        }
+          
+        function ready(callback) {
+          if (transitionEnabledOnThisPage()) {
+            let cleanup;
+
+            document.addEventListener("astro:page-load", async () => {
+              if (cleanup) cleanup();
+              if (!hasScopeElement()) return;
+
+              cleanup = await callback();
+            });
+          } else {
+            if (!hasScopeElement()) return;
+            callback();
+          }
+        }\n${code}`;
+        },
+      },
+    ],
     esbuild: {
       keepNames: true,
     },
