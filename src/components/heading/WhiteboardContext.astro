@@ -2,9 +2,9 @@
 const html = Astro.slots.render("default", [$]);
 ---
 
-<my-whiteboard class="group" data-target={$("container")}>
+<div class="group" data-target={$("container")}>
   <Fragment set:html={html} />
-</my-whiteboard>
+</div>
 
 <script>
   import { gsap } from "gsap";
