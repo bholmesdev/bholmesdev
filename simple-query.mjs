@@ -31,9 +31,8 @@ export function create$(scope) {
  * @param {(id: string) => string} scope
  */
 export function createReady(scope) {
-  const scopeSelector = JSON.stringify(scope());
+  const selector = `[data-target$=${JSON.stringify(scope())}`;
   function hasScopeElement() {
-    const selector = `[data-target$=${scopeSelector}`;
     return Boolean(document.querySelector(selector));
   }
 
