@@ -70,7 +70,7 @@ const { headings } = Astro.props;
         "--section-offset",
         `calc(-${idx} * (var(--spacing-3) + 1em))`
       );
-      for (const [linkIdx, link] of $("links").all().entries()) {
+      for (const [linkIdx, link] of $.all("links").entries()) {
         link.toggleAttribute("data-active", linkIdx === idx);
       }
     });

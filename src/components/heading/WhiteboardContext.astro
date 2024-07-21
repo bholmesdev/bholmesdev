@@ -50,14 +50,14 @@ const html = Astro.slots.render("default", [$]);
 
     let eyesAnim = gsap
       .timeline()
-      .set($("eyes").all(), { transformOrigin: "center bottom" })
-      .to($("eyes").all(), { scaleY: 0.2, duration: 0.2 })
-      .to($("eyes").all(), { scaleY: 1, duration: 0.2 })
+      .set($.all("eyes"), { transformOrigin: "center bottom" })
+      .to($.all("eyes"), { scaleY: 0.2, duration: 0.2 })
+      .to($.all("eyes"), { scaleY: 1, duration: 0.2 })
       .repeatDelay(3)
       .delay(2)
       .repeat(-1);
 
-    const drawBtn = $<HTMLButtonElement>("drawBtn", { optional: true });
+    const drawBtn = $.optional<HTMLButtonElement>("drawBtn");
 
     effect(() => {
       $("container").toggleAttribute("data-drawing", isDrawing.get());
@@ -66,10 +66,7 @@ const html = Astro.slots.render("default", [$]);
       }
     });
 
-    $("draw-trigger", { optional: true })?.addEventListener(
-      "click",
-      startDrawing
-    );
+    $.optional("draw-trigger")?.addEventListener("click", startDrawing);
     $("canvas").addEventListener("click", startDrawing);
     $("eraser").addEventListener("click", startDrawing);
     $("markers").addEventListener("click", startDrawing);

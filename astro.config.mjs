@@ -34,21 +34,28 @@ export default defineConfig({
         import { scope } from 'simple:scope';
         import { transitionEnabledOnThisPage } from 'astro:transitions/client';
 
-        const $ = (scopeId, opts) => {
-          const selector = \`[data-target=\${scope(scopeId)}]\`;
-          const element = document.querySelector(selector);
-          
-          if (opts?.optional && !element) return undefined;
+        function $(scopeId) {
+          const element = document.querySelector($._getSelector(scopeId));
           if (!element) throw new Error(\`Element not found: \${selector}\`);
-
-          element.all = () => [...document.querySelectorAll(selector)];
-
           return element;
         }
-
-        function hasScopeElement() {
-          return !!document.querySelector(\`[data-target$="\${scope()}"]\`);
-        }
+        Object.assign($, {
+          optional(scopeId) {
+            const selector = $._getSelector(scopeId);
+            return document.querySelector(selector) ?? undefined
+          },
+          all(scopeId) {
+            const selector = $._getSelector(scopeId);
+            return [...document.querySelectorAll(selector)];
+          },
+          _getSelector(scopeId) {
+            return \`[data-target=\${JSON.stringify(scope(scopeId))}]\`
+          },
+          _hasScopeElement() {
+            const selector = \`[data-target$=\${JSON.stringify(scope())}\`;
+            return Boolean(document.querySelector(selector));
+          },
+        });
           
         function ready(callback) {
           if (transitionEnabledOnThisPage()) {
@@ -56,12 +63,12 @@ export default defineConfig({
 
             document.addEventListener("astro:page-load", async () => {
               if (cleanup) cleanup();
-              if (!hasScopeElement()) return;
+              if (!$._hasScopeElement()) return;
 
               cleanup = await callback();
             });
           } else {
-            if (!hasScopeElement()) return;
+            if (!$._hasScopeElement()) return;
             callback();
           }
         }\n${code}`;
