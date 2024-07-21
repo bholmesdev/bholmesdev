@@ -22,11 +22,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     > for practical examples, diagrams, and 60 second explainers.
   </p>
 </div>
-<my-computer
-  id="videos"
-  class="block sm:px-6 -mx-3"
-  data-target={$("container")}
->
+<div id="videos" class="block sm:px-6 -mx-3" data-target={$("container")}>
   <div data-container class="py-8 max-w-prose mx-auto grid relative">
     <img
       data-glow
@@ -92,7 +88,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
       />
     </div>
   </div>
-</my-computer>
+</div>
 
 <script>
   import { getEmbedSrc, getImgSrc, videoIds, showcaseVideo } from "./Frame";
@@ -152,11 +148,11 @@ const showcaseSrc = getImgSrc(showcaseVideo);
 </script>
 
 <style>
-  my-computer {
+  #videos {
     --anim-delay: 0.5s;
   }
 
-  my-computer[data-welcome] [data-scan-line] {
+  #videos[data-welcome] [data-scan-line] {
     animation: scan 4s linear infinite;
     animation-delay: var(--anim-delay);
   }
@@ -192,7 +188,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     filter: brightness(7) blur(50px) !important;
   }
 
-  my-computer[data-welcome] [data-glow] {
+  #videos[data-welcome] [data-glow] {
     visibility: visible;
     filter: brightness(7) blur(20px);
     transform: perspective(1000px) rotate3d(1, 0, 0, 4deg);
@@ -216,7 +212,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     visibility: hidden;
   }
 
-  my-computer[data-welcome] [data-thumbnail] {
+  #videos[data-welcome] [data-thumbnail] {
     visibility: visible;
     filter: brightness(0.3);
     animation: img-reveal 0.3s ease-in forwards;
@@ -224,14 +220,14 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     clip-path: ellipse(0% 0% at center);
   }
 
-  my-computer[data-welcome] [data-btn-labels] {
+  #videos[data-welcome] [data-btn-labels] {
     opacity: 0;
     animation: delayed-reveal 0.3s ease-in forwards;
     animation-delay: var(--anim-delay);
     visibility: visible;
   }
 
-  my-computer[data-playing] :is([data-thumbnail], [data-btn-labels]) {
+  #videos[data-playing] :is([data-thumbnail], [data-btn-labels]) {
     visibility: hidden;
   }
 
