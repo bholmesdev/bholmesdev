@@ -66,8 +66,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       simple-stack-query:
-        specifier: ^0.0.1
-        version: 0.0.1(@types/node@20.11.20)(lightningcss@1.25.1)
+        specifier: file:./simple-stack-query-0.0.1.tgz
+        version: file:simple-stack-query-0.0.1.tgz(@types/node@20.11.20)(lightningcss@1.25.1)
       tailwindcss:
         specifier: ^4.0.0-alpha.17
         version: 4.0.0-alpha.17
@@ -2637,8 +2637,9 @@ packages:
   signal-polyfill@0.1.1:
     resolution: {integrity: sha512-ZihPkMjiWOCZaYOb/vi1YLj+f0GTKVF7tQVNovtK32yjqcvRvjGPTwwX3Ad45mQ8v08kLUBagsOkuyJ6gpwhWA==}
 
-  simple-stack-query@0.0.1:
-    resolution: {integrity: sha512-0HwhO/mqUOQEbgm+YMzemhPrn19Xg5BhmIsrLvS35RnnxYAX48u2h5qcGxCPJAp3MIxqNpYrzeK5xrTt/aPBSA==}
+  simple-stack-query@file:simple-stack-query-0.0.1.tgz:
+    resolution: {integrity: sha512-b6kHGez+zvr6hKPgzdUjcFU+eGikka5GaNFxGzrOYKQT1ia/7V4R3HyKYuAhXDqJV25nA0RkVyV3YddYNhlfNw==, tarball: file:simple-stack-query-0.0.1.tgz}
+    version: 0.0.1
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
 
   simple-swizzle@0.2.2:
@@ -5992,7 +5993,7 @@ snapshots:
 
   signal-polyfill@0.1.1: {}
 
-  simple-stack-query@0.0.1(@types/node@20.11.20)(lightningcss@1.25.1):
+  simple-stack-query@file:simple-stack-query-0.0.1.tgz(@types/node@20.11.20)(lightningcss@1.25.1):
     dependencies:
       vite-plugin-simple-scope: 2.0.0(@types/node@20.11.20)(lightningcss@1.25.1)
     transitivePeerDependencies:
