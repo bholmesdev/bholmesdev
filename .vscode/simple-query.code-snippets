@@ -1,0 +1,10 @@
+{
+  "query target": {
+    "prefix": "$:target",
+    "body": ["data-target={$('$1')}"]
+  },
+  "query ready block": {
+    "prefix": "$:ready",
+    "body": ["ready(async () => {", "  $1", "});"]
+  }
+}
