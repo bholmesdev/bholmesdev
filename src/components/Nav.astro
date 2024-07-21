@@ -201,7 +201,7 @@ function isMatch(urlPath: string, linkPath: string) {
     transition-delay: calc((4 - var(--idx)) * 50ms);
   }
 
-  nav-open:before {
+  [data-target^="container"]:before {
     --bg: var(--color-gray-950);
     content: "";
     position: absolute;
