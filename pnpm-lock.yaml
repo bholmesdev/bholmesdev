@@ -66,14 +66,14 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       simple-stack-query:
-        specifier: file:./simple-stack-query-0.0.1.tgz
-        version: file:simple-stack-query-0.0.1.tgz(@types/node@20.11.20)(lightningcss@1.25.1)
+        specifier: ^0.0.3
+        version: 0.0.3(@types/node@20.11.20)(lightningcss@1.25.1)
       tailwindcss:
         specifier: ^4.0.0-alpha.17
         version: 4.0.0-alpha.17
       vite-plugin-simple-scope:
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^2.0.2
+        version: 2.0.2(@types/node@20.11.20)(lightningcss@1.25.1)
     devDependencies:
       '@astrojs/check':
         specifier: ^0.8.2
@@ -2278,11 +2278,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.0.3:
-    resolution: {integrity: sha512-I7X2b22cxA4LIHXPSqbBCEQSL+1wv8TuoefejsX4HFWyC6jc5JG7CEaxOltiKjc1M+YCS2YkrZZcj4+dytw9GA==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
-
   nlcst-to-string@4.0.0:
     resolution: {integrity: sha512-YKLBCcUYKAg0FNlOBT6aI91qFmSiFKiluk655WzPF+DDMA02qIyy8uiRqI8QXtcFpEvll12LpL5MXqEmAZ+dcA==}
 
@@ -2637,9 +2632,8 @@ packages:
   signal-polyfill@0.1.1:
     resolution: {integrity: sha512-ZihPkMjiWOCZaYOb/vi1YLj+f0GTKVF7tQVNovtK32yjqcvRvjGPTwwX3Ad45mQ8v08kLUBagsOkuyJ6gpwhWA==}
 
-  simple-stack-query@file:simple-stack-query-0.0.1.tgz:
-    resolution: {integrity: sha512-b6kHGez+zvr6hKPgzdUjcFU+eGikka5GaNFxGzrOYKQT1ia/7V4R3HyKYuAhXDqJV25nA0RkVyV3YddYNhlfNw==, tarball: file:simple-stack-query-0.0.1.tgz}
-    version: 0.0.1
+  simple-stack-query@0.0.3:
+    resolution: {integrity: sha512-tvYRwJveAIVaNTcesboAEgMKOFUFJaHDYPVTc4N4vNHT9ZV6iYO6qKVAgy4aqsy94Vlqv7rbPHUhUHMYmtvGeg==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
 
   simple-swizzle@0.2.2:
@@ -2779,6 +2773,11 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  typescript@5.5.3:
+    resolution: {integrity: sha512-/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   ufo@1.4.0:
     resolution: {integrity: sha512-Hhy+BhRBleFjpJ2vchUNN40qgkh0366FWJGqVLYBHev0vpHTrXSA0ryT+74UiW6KWsldNurQMKGqCm1M2zBciQ==}
 
@@ -2845,12 +2844,8 @@ packages:
   vfile@6.0.1:
     resolution: {integrity: sha512-1bYqc7pt6NIADBJ98UiG0Bn/CHIVOoZ/IyEkqIruLg0mE1BKzkOXY2D6CSqQIcKqgadppE5lrxgWXJmXd7zZJw==}
 
-  vite-plugin-simple-scope@1.0.3:
-    resolution: {integrity: sha512-ZKs0Me9GohASaYL7pGEj4L6d2ebbfhr94HYZamEBZTGPwqc87wURNbK29uBnSf2fboLXd5MNAwqEQOyVil9GpQ==}
-    engines: {node: '>=18.14.1'}
-
-  vite-plugin-simple-scope@2.0.0:
-    resolution: {integrity: sha512-qGFVOVfo9KSGLK/toXbmqWvBsxZuGYvIEcCE2xuR6CnX00CWIA5+Eb3VAbYEVvqS3qSks7YzSV7ylEHqGONmUA==}
+  vite-plugin-simple-scope@2.0.2:
+    resolution: {integrity: sha512-UvF++rRZbmGK4A+JsTo0YVKw55wk5IyBTgURspzlkjbt66FXWMOND5yZmGB/2CtFky7wKNz6LHB2B6gHCVrfAw==}
     engines: {node: '>=18.14.1'}
 
   vite@5.3.2:
@@ -5558,8 +5553,6 @@ snapshots:
 
   nanoid@3.3.7: {}
 
-  nanoid@5.0.3: {}
-
   nlcst-to-string@4.0.0:
     dependencies:
       '@types/nlcst': 2.0.3
@@ -5993,9 +5986,9 @@ snapshots:
 
   signal-polyfill@0.1.1: {}
 
-  simple-stack-query@file:simple-stack-query-0.0.1.tgz(@types/node@20.11.20)(lightningcss@1.25.1):
+  simple-stack-query@0.0.3(@types/node@20.11.20)(lightningcss@1.25.1):
     dependencies:
-      vite-plugin-simple-scope: 2.0.0(@types/node@20.11.20)(lightningcss@1.25.1)
+      vite-plugin-simple-scope: 2.0.2(@types/node@20.11.20)(lightningcss@1.25.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -6131,6 +6124,8 @@ snapshots:
 
   typescript@5.2.2: {}
 
+  typescript@5.5.3: {}
+
   ufo@1.4.0: {}
 
   uhyphen@0.2.0: {}
@@ -6224,12 +6219,9 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-plugin-simple-scope@1.0.3:
+  vite-plugin-simple-scope@2.0.2(@types/node@20.11.20)(lightningcss@1.25.1):
     dependencies:
-      nanoid: 5.0.3
-
-  vite-plugin-simple-scope@2.0.0(@types/node@20.11.20)(lightningcss@1.25.1):
-    dependencies:
+      typescript: 5.5.3
       vite: 5.3.2(@types/node@20.11.20)(lightningcss@1.25.1)
     transitivePeerDependencies:
       - '@types/node'
