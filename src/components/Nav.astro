@@ -32,7 +32,11 @@ function isMatch(urlPath: string, linkPath: string) {
 }
 ---
 
-<div data-target={$("container")} class="group block sticky z-40 top-0">
+<div
+  data-open
+  data-target={$("container")}
+  class="group block sticky z-40 top-0"
+>
   <nav
     class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-2 px-3 sm:py-3"
   >
@@ -122,8 +126,9 @@ function isMatch(urlPath: string, linkPath: string) {
   import { effect } from "~/lib/effect";
   import { Signal } from "signal-polyfill";
 
+  const open = new Signal.State(false);
+
   ready(() => {
-    const open = new Signal.State(false);
     let scrollY = 0;
     let ticking = false;
     const abort = new AbortController();
