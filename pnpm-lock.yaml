@@ -17,9 +17,6 @@ importers:
       '@astrojs/react':
         specifier: ^3.6.0
         version: 3.6.0(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)(types-react-dom@19.0.0-rc.0)(types-react@19.0.0-rc.0)(vite@5.3.2(@types/node@20.11.20)(lightningcss@1.25.1))
-      '@github/catalyst':
-        specifier: ^1.6.0
-        version: 1.6.0
       '@tailwindcss/postcss':
         specifier: ^4.0.0-alpha.17
         version: 4.0.0-alpha.17(postcss@8.4.39)
@@ -608,9 +605,6 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
-
-  '@github/catalyst@1.6.0':
-    resolution: {integrity: sha512-u8A+DameixqpeyHzvnJWTGj+wfiskQOYHzSiJscCWVfMkIT3rxnbHMtGh3lMthaRY21nbUOK71WcsCnCrXhBJQ==}
 
   '@grpc/grpc-js@1.10.10':
     resolution: {integrity: sha512-HPa/K5NX6ahMoeBv15njAc/sfF4/jmiXLar9UlC2UfHFKZzsCVLc3wbe7+7qua7w9VPh2/L6EBxyAV7/E8Wftg==}
@@ -3566,8 +3560,6 @@ snapshots:
 
   '@esbuild/win32-x64@0.22.0':
     optional: true
-
-  '@github/catalyst@1.6.0': {}
 
   '@grpc/grpc-js@1.10.10':
     dependencies:

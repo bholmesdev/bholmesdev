@@ -13,7 +13,6 @@
     "@astrojs/markdoc": "^0.11.1",
     "@astrojs/netlify": "^5.3.5",
     "@astrojs/react": "^3.6.0",
-    "@github/catalyst": "^1.6.0",
     "@tailwindcss/postcss": "^4.0.0-alpha.17",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
