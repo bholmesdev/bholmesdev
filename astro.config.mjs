@@ -32,46 +32,10 @@ export default defineConfig({
 
           return `
         import { scope } from 'simple:scope';
-        import { transitionEnabledOnThisPage } from 'astro:transitions/client';
+        import * as __queryInternals from '/simple-query.mjs';
 
-        function $(scopeId) {
-          const element = document.querySelector($._getSelector(scopeId));
-          if (!element) throw new Error(\`Element not found: \${selector}\`);
-          return element;
-        }
-        Object.assign($, {
-          optional(scopeId) {
-            const selector = $._getSelector(scopeId);
-            return document.querySelector(selector) ?? undefined
-          },
-          all(scopeId) {
-            const selector = $._getSelector(scopeId);
-            return [...document.querySelectorAll(selector)];
-          },
-          _getSelector(scopeId) {
-            return \`[data-target=\${JSON.stringify(scope(scopeId))}]\`
-          },
-          _hasScopeElement() {
-            const selector = \`[data-target$=\${JSON.stringify(scope())}\`;
-            return Boolean(document.querySelector(selector));
-          },
-        });
-          
-        function ready(callback) {
-          if (transitionEnabledOnThisPage()) {
-            let cleanup;
-
-            document.addEventListener("astro:page-load", async () => {
-              if (cleanup) cleanup();
-              if (!$._hasScopeElement()) return;
-
-              cleanup = await callback();
-            });
-          } else {
-            if (!$._hasScopeElement()) return;
-            callback();
-          }
-        }\n${code}`;
+        const $ = __queryInternals.create$(scope);
+        const ready = __queryInternals.createReady(scope);\n${code}`;
         },
       },
     ],
