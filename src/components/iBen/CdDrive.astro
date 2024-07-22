@@ -4,7 +4,6 @@
 
 <div class="flex-1 self-stretch mx-[4%]">
   <div
-    data-target="my-computer.cdDrive"
     data-cd-drive
     class="grid place-items-center w-full h-[60%] bg-slate-700 rounded-b-md"
   >
@@ -40,7 +39,7 @@
     animation-delay: 0.4s;
   }
 
-  :global(my-computer[data-welcome]) [data-cd-drive] {
+  :global([data-welcome]) [data-cd-drive] {
     animation: close-drive 0.7s var(--ease-spring-5) forwards;
   }
 

@@ -33,7 +33,7 @@ const { Content, headings } = await post.render();
   image={post.data.image}
 >
   <main class="max-w-prose mx-auto px-3 mb-24">
-    <article-scroll>
+    <div data-target={$("article-scroll")}>
       {
         post.data.image && (
           <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
@@ -68,7 +68,7 @@ const { Content, headings } = await post.render();
       <div class="mt-12">
         <Newsletter client:visible />
       </div>
-    </article-scroll>
+    </div>
   </main>
 </BaseLayout>
 
@@ -160,72 +160,66 @@ const { Content, headings } = await post.render();
 </style>
 
 <script>
-  import { controller, target } from "@github/catalyst";
   import { progress, currentSectionIdx } from "~/stores";
 
-  @controller
-  class ArticleScrollElement extends HTMLElement {
-    @target progress: HTMLProgressElement;
-    article: HTMLDivElement;
+  $.ready(() => {
+    const article = $("article-scroll").querySelector("article");
+    const disconnect = new AbortController();
+    if (!article) return;
 
-    abortScroll!: AbortController;
-    connectedCallback() {
-      this.article = this.querySelector("article") as HTMLDivElement;
-      this.abortScroll = new AbortController();
-      const headings = [...this.querySelectorAll("h2")];
-      let waitingOnAnimRequest = false;
+    const headings = [...article.querySelectorAll("h2")];
+    let waitingOnAnimRequest = false;
 
-      document.addEventListener(
-        "scroll",
-        () => {
-          if (waitingOnAnimRequest) return;
-          window.requestAnimationFrame(() => {
-            waitingOnAnimRequest = false;
-            const articleRect = this.getBoundingClientRect();
-            const articleHeight = this.offsetTop + articleRect.height;
-            progress.set(
-              Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
+    document.addEventListener(
+      "scroll",
+      () => {
+        if (waitingOnAnimRequest) return;
+        window.requestAnimationFrame(() => {
+          waitingOnAnimRequest = false;
+          const articleRect = $("article-scroll").getBoundingClientRect();
+          const articleHeight =
+            $("article-scroll").offsetTop + articleRect.height;
+          progress.set(
+            Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
+          );
+        });
+        waitingOnAnimRequest = true;
+      },
+      disconnect
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          if (headings.includes(entry.target as HTMLHeadingElement)) {
+            currentSectionIdx.set(
+              headings.indexOf(entry.target as HTMLHeadingElement)
             );
-          });
-          waitingOnAnimRequest = true;
-        },
-        { signal: this.abortScroll.signal }
-      );
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            if (headings.includes(entry.target as HTMLHeadingElement)) {
-              currentSectionIdx.set(
-                headings.indexOf(entry.target as HTMLHeadingElement)
-              );
+          }
+          let heading: HTMLHeadingElement | null = null;
+          let previousSibling = entry.target.previousElementSibling;
+          while (!heading && previousSibling) {
+            previousSibling = previousSibling.previousElementSibling;
+            if (
+              previousSibling instanceof HTMLHeadingElement &&
+              headings.includes(previousSibling)
+            ) {
+              heading = previousSibling;
             }
-            let heading: HTMLHeadingElement | null = null;
-            let previousSibling = entry.target.previousElementSibling;
-            while (!heading && previousSibling) {
-              previousSibling = previousSibling.previousElementSibling;
-              if (
-                previousSibling instanceof HTMLHeadingElement &&
-                headings.includes(previousSibling)
-              ) {
-                heading = previousSibling;
-              }
-            }
-            if (!heading) return;
-            const idx = headings.indexOf(heading);
-            if (idx >= 0) {
-              currentSectionIdx.set(idx);
-            }
-          });
-        },
-        { rootMargin: "-49% 0px", threshold: 0 }
-      );
-      for (const element of this.article.children) {
-        observer.observe(element);
-      }
+          }
+          if (!heading) return;
+          const idx = headings.indexOf(heading);
+          if (idx >= 0) {
+            currentSectionIdx.set(idx);
+          }
+        });
+      },
+      { rootMargin: "-49% 0px", threshold: 0 }
+    );
+    for (const element of article.children) {
+      observer.observe(element);
     }
-    disconnectedCallback() {
-      this.abortScroll.abort();
-    }
-  }
+
+    return () => disconnect.abort();
+  });
 </script>

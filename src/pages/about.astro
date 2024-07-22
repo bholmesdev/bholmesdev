@@ -9,7 +9,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <main class="px-4 sm:grid grid-cols-[1fr_2fr] max-w-[88ch] mx-auto gap-16">
     <div class="sm:block hidden mt-12">
       <WhiteboardContext>
-        <Whiteboard />
+        {($context: typeof $) => <Whiteboard {$context} />}
       </WhiteboardContext>
     </div>
     <article class="mt-6 md:mt-12 lg:mt-16">

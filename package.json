@@ -13,7 +13,6 @@
     "@astrojs/markdoc": "^0.11.1",
     "@astrojs/netlify": "^5.3.5",
     "@astrojs/react": "^3.6.0",
-    "@github/catalyst": "^1.6.0",
     "@tailwindcss/postcss": "^4.0.0-alpha.17",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
@@ -30,14 +29,16 @@
     "react-dom": "19.0.0-beta-26f2496093-20240514",
     "sharp": "^0.33.4",
     "signal-polyfill": "^0.1.1",
+    "simple-stack-query": "^0.1.0",
     "tailwindcss": "^4.0.0-alpha.17",
-    "vite-plugin-simple-scope": "^1.0.3"
+    "vite-plugin-simple-scope": "^2.0.2"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.8.2",
     "typescript": "^5.2.2"
   }
 }

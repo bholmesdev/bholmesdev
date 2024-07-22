@@ -32,7 +32,11 @@ function isMatch(urlPath: string, linkPath: string) {
 }
 ---
 
-<nav-open class="group block sticky z-40 top-0">
+<div
+  data-open
+  data-target={$("container")}
+  class="group block sticky z-40 top-0"
+>
   <nav
     class="max-w-[80ch] mx-auto flex gap-6 items-center text-lg py-2 px-3 sm:py-3"
   >
@@ -96,9 +100,8 @@ function isMatch(urlPath: string, linkPath: string) {
     <div>
       <button
         transition:name="nav-toggle"
+        data-target={$("btn")}
         class="h-[20px] w-[25px] flex flex-col justify-between relative bg-transparent before:absolute before:-inset-1 before:-z-10 before:rounded-md"
-        data-action="click:nav-open#toggle"
-        data-target="nav-open.btn"
         aria-controls={id}
         aria-label="Toggle menu"
       >
@@ -117,69 +120,61 @@ function isMatch(urlPath: string, linkPath: string) {
       </button>
     </div>
   </nav>
-</nav-open>
+</div>
 
 <script>
-  import { attr, target, targets, controller } from "@github/catalyst";
-  import { toAttr } from "../utils.client";
+  import { effect } from "~/lib/effect";
+  import { Signal } from "signal-polyfill";
 
-  @controller
-  class NavOpenElement extends HTMLElement {
-    @attr open = false;
-    @target btn: HTMLButtonElement;
-    @targets links: HTMLAnchorElement[];
+  const open = new Signal.State(false);
 
-    scrollY = 0;
-    ticking = false;
+  $.ready(() => {
+    let scrollY = 0;
+    let ticking = false;
+    const abort = new AbortController();
 
-    #abort = new AbortController();
+    $("btn").addEventListener("click", () => {
+      open.set(!open.get());
+    });
 
-    toggle() {
-      this.open = !this.open;
-      this.btn.ariaExpanded = toAttr(this.open);
-    }
+    effect(() => {
+      $("container").toggleAttribute("data-open", open.get());
+      $("btn").toggleAttribute("aria-expanded", open.get());
+    });
 
-    connectedCallback() {
-      const scrollListener = () => {
-        this.scrollY = window.scrollY;
+    const scrollListener = () => {
+      scrollY = window.scrollY;
 
-        if (!this.ticking) {
-          window.requestAnimationFrame(() => {
-            this.open = this.scrollY < 20;
-            this.ticking = false;
-          });
-
-          this.ticking = true;
-        }
-      };
-      const smBreakpointMatch = window.matchMedia("(min-width: 640px)");
-      this.open = smBreakpointMatch.matches;
-
-      if (smBreakpointMatch.matches) {
-        document.addEventListener("scroll", scrollListener, {
-          signal: this.#abort.signal,
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          open.set(scrollY < 20);
+          ticking = false;
         });
-      }
-      smBreakpointMatch.addEventListener(
-        "change",
-        (e) => {
-          this.open = e.matches;
-          if (e.matches) {
-            document.addEventListener("scroll", scrollListener, {
-              signal: this.#abort.signal,
-            });
-          } else {
-            document.removeEventListener("scroll", scrollListener);
-          }
-        },
-        { signal: this.#abort.signal }
-      );
-    }
 
-    disconnectedCallback() {
-      this.#abort.abort();
+        ticking = true;
+      }
+    };
+    const smBreakpointMatch = window.matchMedia("(min-width: 640px)");
+    open.set(smBreakpointMatch.matches);
+
+    if (smBreakpointMatch.matches) {
+      document.addEventListener("scroll", scrollListener, abort);
     }
-  }
+    smBreakpointMatch.addEventListener(
+      "change",
+      (e) => {
+        open.set(e.matches);
+        if (e.matches) {
+          document.addEventListener("scroll", scrollListener, abort);
+        } else {
+          document.removeEventListener("scroll", scrollListener);
+        }
+      },
+      abort
+    );
+
+    return () => abort.abort();
+  });
 </script>
 
 <style is:global>
@@ -206,7 +201,7 @@ function isMatch(urlPath: string, linkPath: string) {
     transition-delay: calc((4 - var(--idx)) * 50ms);
   }
 
-  nav-open:before {
+  [data-target^="container"]:before {
     --bg: var(--color-gray-950);
     content: "";
     position: absolute;

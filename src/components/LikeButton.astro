@@ -9,11 +9,12 @@ const { postSlug } = Astro.props;
 ---
 
 <like-button
+  data-target={$("container")}
   data-post-slug={postSlug}
-  data-pending
   class="group/like flex items-center gap-4"
 >
   <button
+    data-target={$("button")}
     data-action="click:like-button#toggleLike"
     class="w-[2.5em] h-[2.5em] bg-gradient-to-br from-slate-600 to-slate-900 rounded-full flex items-center justify-center"
   >
@@ -31,6 +32,7 @@ const { postSlug } = Astro.props;
     </div>
   </button>
   <p
+    data-target={$("text")}
     data-target="like-button.text"
     class="group-data-[pending]/like:opacity-60 transition-opacity"
   >
@@ -40,59 +42,49 @@ const { postSlug } = Astro.props;
 
 <script>
   import { actions } from "astro:actions";
-  import { controller, attr, target } from "@github/catalyst";
+  import { Signal } from "signal-polyfill";
+  import { effect } from "~/lib/effect";
 
-  @controller
-  class LikeButtonElement extends HTMLElement {
-    @attr liked = false;
-    @attr postSlug = "";
-    @attr pending = true;
-    @target text: HTMLElement;
+  $.ready(async () => {
+    const postSlug = $("container").getAttribute("data-post-slug") ?? "";
+    const pending = new Signal.State(false);
+    const liked = new Signal.State(
+      Boolean(localStorage.getItem(`isLike:${postSlug}`))
+    );
 
-    // Track promise to block toggleLike until likes are fetch
-    #likesPromise = Promise.resolve({ likes: 0 });
+    const { likes } = await actions.getLikes({ postSlug });
+    $("text").textContent = likes.toString();
 
-    getStorageKey() {
-      return `isLike:${this.postSlug}`;
-    }
+    effect(() => {
+      $("container").toggleAttribute("data-liked", liked.get());
+      $("container").toggleAttribute("data-pending", pending.get());
 
-    async connectedCallback() {
-      this.liked = Boolean(localStorage.getItem(this.getStorageKey()));
-      this.#likesPromise = actions.getLikes({
-        postSlug: this.postSlug,
-      });
-      const { likes } = await this.#likesPromise;
-
-      this.pending = false;
-      this.text.textContent = likes.toString();
-    }
-
-    async toggleLike() {
-      await this.#likesPromise;
-      this.liked = !Boolean(localStorage.getItem(this.getStorageKey()));
-
-      if (this.liked) {
-        localStorage.setItem(this.getStorageKey(), "true");
+      if (liked.get()) {
+        localStorage.setItem(`isLike:${postSlug}`, "true");
       } else {
-        localStorage.removeItem(this.getStorageKey());
+        localStorage.removeItem(`isLike:${postSlug}`);
       }
+    });
 
-      this.pending = true;
+    $("button").addEventListener("click", async () => {
+      pending.set(true);
+      liked.set(!liked.get());
+
       const { data, error } = await actions.like.safe({
-        postSlug: this.postSlug,
-        liked: this.liked,
+        postSlug,
+        liked: liked.get(),
       });
-      this.pending = false;
 
+      pending.set(false);
       if (error) {
-        this.text.textContent =
+        $("text").textContent =
           error.code === "TOO_MANY_REQUESTS"
             ? "Slow down! Rate limited you for the day."
             : "Oops, failed to update likes.";
         return;
       }
 
-      this.text.textContent = data.likes.toString();
-    }
-  }
+      $("text").textContent = data.likes.toString();
+    });
+  });
 </script>

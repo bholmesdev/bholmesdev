@@ -1,6 +1,7 @@
 // Sample effect implementation from signal-polyfill:
 // https://github.com/proposal-signals/signal-polyfill?tab=readme-ov-file#creating-a-simple-effect
 
+import { transitionEnabledOnThisPage } from "astro:transitions/client";
 import { Signal } from "signal-polyfill";
 
 let needsEnqueue = true;
