@@ -71,9 +71,6 @@ importers:
       tailwindcss:
         specifier: ^4.0.0-alpha.17
         version: 4.0.0-alpha.17
-      vite-plugin-simple-scope:
-        specifier: ^2.0.2
-        version: 2.0.2(@types/node@20.11.20)(lightningcss@1.25.1)
     devDependencies:
       '@astrojs/check':
         specifier: ^0.8.2
