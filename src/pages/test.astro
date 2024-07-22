@@ -1,0 +1,20 @@
+---
+const links = ["wtw.dev", "bholmes.dev"];
+---
+
+{
+  links.map((link) => (
+    <a href={link} data-target={$("link")}>
+      {link}
+    </a>
+  ))
+}
+
+<script>
+  $.ready(() => {
+    $.all("link").forEach((linkElement) => {
+      console.log(linkElement);
+      /* ... */
+    });
+  });
+</script>

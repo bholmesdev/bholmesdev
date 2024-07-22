@@ -91,7 +91,7 @@ const {
       import { isDrawing } from "~/stores";
       import { Signal } from "signal-polyfill";
 
-      ready(() => {
+      $.ready(() => {
         const smBreakpointMatches = new Signal.State(
           window.matchMedia("(min-width: 640px)").matches
         );

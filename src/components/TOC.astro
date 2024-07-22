@@ -54,7 +54,7 @@ const { headings } = Astro.props;
   import { effect } from "~/lib/effect";
   import { Signal } from "signal-polyfill";
 
-  ready(() => {
+  $.ready(() => {
     const open = new Signal.State(false);
 
     effect(() => {

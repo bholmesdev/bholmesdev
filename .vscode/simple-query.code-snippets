@@ -2,11 +2,17 @@
   "query target": {
     "scope": "typescriptreact,javascriptreact",
     "prefix": "$:target",
-    "body": ["data-target={$('$1')}"]
+    "body": [
+      "data-target={$('$1')}"
+    ]
   },
   "query ready block": {
     "scope": "typescript,javascript",
     "prefix": "$:ready",
-    "body": ["ready(async () => {", "  $1", "});"]
+    "body": [
+      "$.ready(async () => {",
+      "  $1",
+      "});"
+    ]
   }
 }

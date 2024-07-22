@@ -162,7 +162,7 @@ const { Content, headings } = await post.render();
 <script>
   import { progress, currentSectionIdx } from "~/stores";
 
-  ready(() => {
+  $.ready(() => {
     const article = $("article-scroll").querySelector("article");
     const disconnect = new AbortController();
     if (!article) return;

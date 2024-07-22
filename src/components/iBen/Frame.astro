@@ -102,7 +102,7 @@ const showcaseSrc = getImgSrc(showcaseVideo);
 
   const [_showcase, ...otherVideos] = videoIds;
 
-  ready(async () => {
+  $.ready(async () => {
     const playing = new Signal.State(false);
     const welcome = new Signal.State(false);
     const videoIdx = new Signal.State(0);

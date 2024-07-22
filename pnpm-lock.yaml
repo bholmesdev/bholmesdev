@@ -66,8 +66,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       simple-stack-query:
-        specifier: ^0.0.3
-        version: 0.0.3(@types/node@20.11.20)(lightningcss@1.25.1)
+        specifier: ^0.1.0
+        version: 0.1.0(@types/node@20.11.20)(lightningcss@1.25.1)
       tailwindcss:
         specifier: ^4.0.0-alpha.17
         version: 4.0.0-alpha.17
@@ -299,6 +299,14 @@ packages:
   '@babel/types@7.24.7':
     resolution: {integrity: sha512-XEFXSlxiG5td2EJRe8vOmRbaXVgfcBlszKujvVmWIK/UpywWljQCfzAv3RQCGujWQ1RD4YYWEAqDXfuJiy8f5Q==}
     engines: {node: '>=6.9.0'}
+
+  '@clack/core@0.3.4':
+    resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
+
+  '@clack/prompts@0.7.0':
+    resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
+    bundledDependencies:
+      - is-unicode-supported
 
   '@emmetio/abbreviation@2.3.3':
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
@@ -2632,8 +2640,8 @@ packages:
   signal-polyfill@0.1.1:
     resolution: {integrity: sha512-ZihPkMjiWOCZaYOb/vi1YLj+f0GTKVF7tQVNovtK32yjqcvRvjGPTwwX3Ad45mQ8v08kLUBagsOkuyJ6gpwhWA==}
 
-  simple-stack-query@0.0.3:
-    resolution: {integrity: sha512-tvYRwJveAIVaNTcesboAEgMKOFUFJaHDYPVTc4N4vNHT9ZV6iYO6qKVAgy4aqsy94Vlqv7rbPHUhUHMYmtvGeg==}
+  simple-stack-query@0.1.0:
+    resolution: {integrity: sha512-s3b8HwAhKe8fxpU5Hd8HugpZ2+8seth0TatwJWE+bz/CPME+iphNfDbuhRgpPBFSM6FRPgaq5NyjisJ/uL26nQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
 
   simple-swizzle@0.2.2:
@@ -3387,6 +3395,17 @@ snapshots:
       '@babel/helper-string-parser': 7.24.7
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
+
+  '@clack/core@0.3.4':
+    dependencies:
+      picocolors: 1.0.1
+      sisteransi: 1.0.5
+
+  '@clack/prompts@0.7.0':
+    dependencies:
+      '@clack/core': 0.3.4
+      picocolors: 1.0.1
+      sisteransi: 1.0.5
 
   '@emmetio/abbreviation@2.3.3':
     dependencies:
@@ -5986,8 +6005,10 @@ snapshots:
 
   signal-polyfill@0.1.1: {}
 
-  simple-stack-query@0.0.3(@types/node@20.11.20)(lightningcss@1.25.1):
+  simple-stack-query@0.1.0(@types/node@20.11.20)(lightningcss@1.25.1):
     dependencies:
+      '@clack/prompts': 0.7.0
+      kleur: 4.1.5
       vite-plugin-simple-scope: 2.0.2(@types/node@20.11.20)(lightningcss@1.25.1)
     transitivePeerDependencies:
       - '@types/node'

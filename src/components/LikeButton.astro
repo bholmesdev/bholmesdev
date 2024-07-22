@@ -45,7 +45,7 @@ const { postSlug } = Astro.props;
   import { Signal } from "signal-polyfill";
   import { effect } from "~/lib/effect";
 
-  ready(async () => {
+  $.ready(async () => {
     const postSlug = $("container").getAttribute("data-post-slug") ?? "";
     const pending = new Signal.State(false);
     const liked = new Signal.State(

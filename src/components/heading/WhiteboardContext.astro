@@ -20,7 +20,7 @@ const html = Astro.slots.render("default", [$]);
   const yPoolInitial = [-80, -40, 0, 40, 80, 120];
   const strokeOffset = 1624;
 
-  ready(() => {
+  $.ready(() => {
     isDrawing.set(false);
 
     const xPool = fisherYatesShuffle(xPoolInitial);
