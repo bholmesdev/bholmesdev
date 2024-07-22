@@ -29,7 +29,7 @@
     "react-dom": "19.0.0-beta-26f2496093-20240514",
     "sharp": "^0.33.4",
     "signal-polyfill": "^0.1.1",
-    "simple-stack-query": "^0.1.0",
+    "simple-stack-query": "^0.1.1",
     "tailwindcss": "^4.0.0-alpha.17",
     "vite-plugin-simple-scope": "^2.0.2"
   },

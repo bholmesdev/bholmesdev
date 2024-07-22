@@ -66,8 +66,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       simple-stack-query:
-        specifier: ^0.1.0
-        version: 0.1.0(@types/node@20.11.20)(lightningcss@1.25.1)
+        specifier: ^0.1.1
+        version: 0.1.1(@types/node@20.11.20)(lightningcss@1.25.1)
       tailwindcss:
         specifier: ^4.0.0-alpha.17
         version: 4.0.0-alpha.17
@@ -2423,9 +2423,6 @@ packages:
   pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
 
-  picocolors@1.0.0:
-    resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
-
   picocolors@1.0.1:
     resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
 
@@ -2640,8 +2637,8 @@ packages:
   signal-polyfill@0.1.1:
     resolution: {integrity: sha512-ZihPkMjiWOCZaYOb/vi1YLj+f0GTKVF7tQVNovtK32yjqcvRvjGPTwwX3Ad45mQ8v08kLUBagsOkuyJ6gpwhWA==}
 
-  simple-stack-query@0.1.0:
-    resolution: {integrity: sha512-s3b8HwAhKe8fxpU5Hd8HugpZ2+8seth0TatwJWE+bz/CPME+iphNfDbuhRgpPBFSM6FRPgaq5NyjisJ/uL26nQ==}
+  simple-stack-query@0.1.1:
+    resolution: {integrity: sha512-jqx20JqAndY+64qha/+fD36oYLaIh4e7vdH/0kuH0HtYC7Wdno2b6+CeXxTT7dqyn1OEwe+LrEyMDnASh9Olow==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
 
   simple-swizzle@0.2.2:
@@ -5702,8 +5699,6 @@ snapshots:
 
   pend@1.2.0: {}
 
-  picocolors@1.0.0: {}
-
   picocolors@1.0.1: {}
 
   picomatch@2.3.1: {}
@@ -6005,7 +6000,7 @@ snapshots:
 
   signal-polyfill@0.1.1: {}
 
-  simple-stack-query@0.1.0(@types/node@20.11.20)(lightningcss@1.25.1):
+  simple-stack-query@0.1.1(@types/node@20.11.20)(lightningcss@1.25.1):
     dependencies:
       '@clack/prompts': 0.7.0
       kleur: 4.1.5
@@ -6095,7 +6090,7 @@ snapshots:
       css-select: 5.1.0
       css-tree: 2.3.1
       csso: 5.0.5
-      picocolors: 1.0.0
+      picocolors: 1.0.1
 
   tailwindcss@4.0.0-alpha.17: {}
 
