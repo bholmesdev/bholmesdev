@@ -8,10 +8,7 @@ type Props = {
 const { postSlug } = Astro.props;
 ---
 
-<RootElement
-  data-post-slug={postSlug}
-  class="group/like flex items-center gap-4"
->
+<RootElement data={{ postSlug }} class="group/like flex items-center gap-4">
   <button
     data-target="button"
     data-action="click:like-button#toggleLike"
@@ -42,8 +39,8 @@ const { postSlug } = Astro.props;
   import { actions } from "astro:actions";
   import { Signal } from "signal-polyfill";
 
-  RootElement.ready(async ($, ctx) => {
-    const postSlug = $.self.getAttribute("data-post-slug") ?? "";
+  RootElement.ready<{ postSlug: string }>(async ($, ctx) => {
+    const { postSlug } = ctx.data;
     const pending = new Signal.State(false);
     const liked = new Signal.State(
       Boolean(localStorage.getItem(`isLike:${postSlug}`))
