@@ -82,7 +82,6 @@ function isMatch(urlPath: string, linkPath: string) {
           >
             <a
               transition:name={`link-${idx}`}
-              data-targets="nav-open.links"
               data-active={l.external ? false : isMatch(urlPath, l.url)}
               class="no-underline block text-gray-300 data-[active]:text-white data-[active]:font-bold scale-100 data-[active]:scale-105"
               href={l.url}
