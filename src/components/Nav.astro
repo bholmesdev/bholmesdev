@@ -126,7 +126,6 @@ function isMatch(urlPath: string, linkPath: string) {
   RootElement.ready(($, ctx) => {
     let scrollY = 0;
     let ticking = false;
-    const abort = new AbortController();
 
     $("btn").addEventListener("click", () => {
       open.set(!open.get());
@@ -153,22 +152,24 @@ function isMatch(urlPath: string, linkPath: string) {
     open.set(smBreakpointMatch.matches);
 
     if (smBreakpointMatch.matches) {
-      document.addEventListener("scroll", scrollListener, abort);
+      document.addEventListener("scroll", scrollListener, {
+        signal: ctx.abortSignal,
+      });
     }
     smBreakpointMatch.addEventListener(
       "change",
       (e) => {
         open.set(e.matches);
         if (e.matches) {
-          document.addEventListener("scroll", scrollListener, abort);
+          document.addEventListener("scroll", scrollListener, {
+            signal: ctx.abortSignal,
+          });
         } else {
           document.removeEventListener("scroll", scrollListener);
         }
       },
-      abort
+      { signal: ctx.abortSignal }
     );
-
-    return () => abort.abort();
   });
 </script>
 

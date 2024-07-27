@@ -162,9 +162,8 @@ const { Content, headings } = await post.render();
 <script>
   import { progress, currentSectionIdx } from "~/stores";
 
-  RootElement.ready(($) => {
+  RootElement.ready(($, ctx) => {
     const article = $.self.querySelector("article");
-    const disconnect = new AbortController();
     if (!article) return;
 
     const headings = [...article.querySelectorAll("h2")];
@@ -184,7 +183,7 @@ const { Content, headings } = await post.render();
         });
         waitingOnAnimRequest = true;
       },
-      disconnect
+      { signal: ctx.abortSignal }
     );
     const observer = new IntersectionObserver(
       (entries) => {
@@ -218,7 +217,5 @@ const { Content, headings } = await post.render();
     for (const element of article.children) {
       observer.observe(element);
     }
-
-    return () => disconnect.abort();
   });
 </script>
