@@ -41,9 +41,8 @@ const { postSlug } = Astro.props;
 <script>
   import { actions } from "astro:actions";
   import { Signal } from "signal-polyfill";
-  import { effect } from "~/lib/effect";
 
-  RootElement.ready(async ($) => {
+  RootElement.ready(async ($, ctx) => {
     const postSlug = $.self.getAttribute("data-post-slug") ?? "";
     const pending = new Signal.State(false);
     const liked = new Signal.State(
@@ -53,7 +52,7 @@ const { postSlug } = Astro.props;
     const { likes } = await actions.getLikes({ postSlug });
     $("text").textContent = likes.toString();
 
-    effect(() => {
+    ctx.effect(() => {
       $.self.toggleAttribute("data-liked", liked.get());
       $.self.toggleAttribute("data-pending", pending.get());
 

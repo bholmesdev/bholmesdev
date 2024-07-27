@@ -98,18 +98,17 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     showTemplate,
     fisherYatesShuffle,
   } from "../../utils.client";
-  import { effect } from "~/lib/effect";
   import { Signal } from "signal-polyfill";
 
   const [_showcase, ...otherVideos] = videoIds;
 
-  RootElement.ready(async ($) => {
+  RootElement.ready(async ($, ctx) => {
     const playing = new Signal.State(false);
     const welcome = new Signal.State(false);
     const videoIdx = new Signal.State(0);
     const videoIds = [showcaseVideo, ...fisherYatesShuffle(otherVideos)];
 
-    effect(() => {
+    ctx.effect(() => {
       $.self.toggleAttribute("data-playing", playing.get());
       $.self.toggleAttribute("data-welcome", welcome.get());
 

@@ -14,7 +14,6 @@ const html = Astro.slots.render("default", [scope]);
   import MotionPathPlugin from "gsap/MotionPathPlugin";
   import { setUpCanvas } from "./canvas";
   import { isDrawing } from "~/stores";
-  import { effect } from "~/lib/effect";
 
   gsap.registerPlugin(MotionPathPlugin);
 
@@ -22,7 +21,7 @@ const html = Astro.slots.render("default", [scope]);
   const yPoolInitial = [-80, -40, 0, 40, 80, 120];
   const strokeOffset = 1624;
 
-  RootElement.ready(($) => {
+  RootElement.ready(($, ctx) => {
     isDrawing.set(false);
 
     const xPool = fisherYatesShuffle(xPoolInitial);
@@ -61,7 +60,7 @@ const html = Astro.slots.render("default", [scope]);
 
     const drawBtn = $.optional<HTMLButtonElement>("drawBtn");
 
-    effect(() => {
+    ctx.effect(() => {
       $.self.toggleAttribute("data-drawing", isDrawing.get());
       if (drawBtn) {
         drawBtn.disabled = isDrawing.get();

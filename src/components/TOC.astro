@@ -51,13 +51,12 @@ const { headings } = Astro.props;
 
 <script>
   import { progress, currentSectionIdx } from "~/stores";
-  import { effect } from "~/lib/effect";
   import { Signal } from "signal-polyfill";
 
-  RootElement.ready(($) => {
+  RootElement.ready(($, ctx) => {
     const open = new Signal.State(false);
 
-    effect(() => {
+    ctx.effect(() => {
       $.self.toggleAttribute("data-open", open.get());
       $<HTMLProgressElement>("progress").value = progress.get();
 

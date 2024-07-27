@@ -119,12 +119,11 @@ function isMatch(urlPath: string, linkPath: string) {
 </RootElement>
 
 <script>
-  import { effect } from "~/lib/effect";
   import { Signal } from "signal-polyfill";
 
   const open = new Signal.State(false);
 
-  RootElement.ready(($) => {
+  RootElement.ready(($, ctx) => {
     let scrollY = 0;
     let ticking = false;
     const abort = new AbortController();
@@ -133,7 +132,7 @@ function isMatch(urlPath: string, linkPath: string) {
       open.set(!open.get());
     });
 
-    effect(() => {
+    ctx.effect(() => {
       $.self.toggleAttribute("data-open", open.get());
       $("btn").toggleAttribute("aria-expanded", open.get());
     });
