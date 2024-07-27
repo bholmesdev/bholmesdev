@@ -3,13 +3,14 @@ import { Icon } from "astro-icon/components";
 import Whiteboard from "../components/heading/Whiteboard.astro";
 import WhiteboardContext from "../components/heading/WhiteboardContext.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import type { scope } from "simple:scope";
 ---
 
 <BaseLayout title="About Ben">
   <main class="px-4 sm:grid grid-cols-[1fr_2fr] max-w-[88ch] mx-auto gap-16">
     <div class="sm:block hidden mt-12">
       <WhiteboardContext>
-        {($context: typeof $) => <Whiteboard {$context} />}
+        {($scope: typeof scope) => <Whiteboard {$scope} />}
       </WhiteboardContext>
     </div>
     <article class="mt-6 md:mt-12 lg:mt-16">

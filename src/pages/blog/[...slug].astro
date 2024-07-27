@@ -33,7 +33,7 @@ const { Content, headings } = await post.render();
   image={post.data.image}
 >
   <main class="max-w-prose mx-auto px-3 mb-24">
-    <div data-target={$("article-scroll")}>
+    <RootElement>
       {
         post.data.image && (
           <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
@@ -68,7 +68,7 @@ const { Content, headings } = await post.render();
       <div class="mt-12">
         <Newsletter client:visible />
       </div>
-    </div>
+    </RootElement>
   </main>
 </BaseLayout>
 
@@ -162,8 +162,8 @@ const { Content, headings } = await post.render();
 <script>
   import { progress, currentSectionIdx } from "~/stores";
 
-  $.ready(() => {
-    const article = $("article-scroll").querySelector("article");
+  RootElement.ready(($) => {
+    const article = $.self.querySelector("article");
     const disconnect = new AbortController();
     if (!article) return;
 
@@ -176,9 +176,8 @@ const { Content, headings } = await post.render();
         if (waitingOnAnimRequest) return;
         window.requestAnimationFrame(() => {
           waitingOnAnimRequest = false;
-          const articleRect = $("article-scroll").getBoundingClientRect();
-          const articleHeight =
-            $("article-scroll").offsetTop + articleRect.height;
+          const articleRect = $.self.getBoundingClientRect();
+          const articleHeight = $.self.offsetTop + articleRect.height;
           progress.set(
             Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
           );

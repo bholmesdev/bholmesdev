@@ -55,11 +55,9 @@ const {
     <title>{title}</title>
   </head>
   <body class="bg-gray-950 text-white text-base">
-    <div
-      data-target={$("shroud")}
+    <RootElement
       class="fixed inset-0 invisible bg-gray-950 opacity-0 z-30 data-[visible]:opacity-80 data-[visible]:visible transition-all"
-    >
-    </div>
+    />
     <Nav headings={headings} />
     <div class="min-h-[80dvh]">
       <slot />
@@ -91,7 +89,7 @@ const {
       import { isDrawing } from "~/stores";
       import { Signal } from "signal-polyfill";
 
-      $.ready(() => {
+      RootElement.ready(($) => {
         const smBreakpointMatches = new Signal.State(
           window.matchMedia("(min-width: 640px)").matches
         );
@@ -100,7 +98,7 @@ const {
         };
 
         effect(() => {
-          $("shroud").toggleAttribute(
+          $.self.toggleAttribute(
             "data-visible",
             isDrawing.get() && !smBreakpointMatches.get()
           );

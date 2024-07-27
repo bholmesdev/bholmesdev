@@ -4,10 +4,10 @@ import marker from "./marker.svg?raw";
 import { Icon } from "astro-icon/components";
 
 type Props = {
-  $context: typeof $;
+  $scope: typeof scope;
 };
 
-const { $context } = Astro.props;
+const { $scope } = Astro.props;
 ---
 
 <div
@@ -18,11 +18,11 @@ const { $context } = Astro.props;
   <canvas
     width="800"
     height="1200"
-    data-target={$context("canvas")}
+    data-target={$scope("canvas")}
     class="absolute w-[85%] h-[85.7%] inset-y-[7%] inset-x-[10.8%] rounded-[5%]"
   ></canvas>
   <div
-    data-target={$context("eraser")}
+    data-target={$scope("eraser")}
     class="absolute left-[14%] bottom-[9%] w-[13%] h-[13%]"
   >
     <label
@@ -35,7 +35,7 @@ const { $context } = Astro.props;
   <div>
     <button
       class="invisible opacity-0 group-[[data-drawing]]:opacity-100 group-[[data-drawing]]:visible transition-all absolute top-6 right-2 p-2 bg-slate-500 rounded-full"
-      data-target={$context("closeBtn")}
+      data-target={$scope("closeBtn")}
     >
       <span class="sr-only">Close</span>
       <Icon name="close" class="text-white" />
@@ -43,7 +43,7 @@ const { $context } = Astro.props;
   </div>
   <div
     class="group/markers opacity-30 group-[[data-drawing]]:opacity-100 transition-opacity absolute bottom-[2%] left-[10%] right-[5%] flex justify-center gap-[5%]"
-    data-target={$context("markers")}
+    data-target={$scope("markers")}
   >
     <label
       class="text-marker-red w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
@@ -90,7 +90,7 @@ const { $context } = Astro.props;
         height="513.09"
         rx="20"
         fill="#F9FAFB"></rect>
-      <g data-target={$context("face")}>
+      <g data-target={$scope("face")}>
         <path
           d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
           stroke="#6200FF"
@@ -103,7 +103,7 @@ const { $context } = Astro.props;
           stroke-width="35"
           stroke-linecap="round"></path>
         <rect
-          data-target={$context("eyes")}
+          data-target={$scope("eyes")}
           x="90.7898"
           y="201.2"
           width="20.5027"
@@ -113,7 +113,7 @@ const { $context } = Astro.props;
 
         <rect
           class="sm:hidden group-[[data-drawing]]:hidden"
-          data-target={$context("eyes")}
+          data-target={$scope("eyes")}
           x="90.7898"
           y="201.2"
           width="30"
@@ -121,7 +121,7 @@ const { $context } = Astro.props;
           rx="15"
           fill="#6200FF"></rect>
         <rect
-          data-target={$context("eyes")}
+          data-target={$scope("eyes")}
           x="307.299"
           y="201.2"
           width="20.5027"
@@ -131,7 +131,7 @@ const { $context } = Astro.props;
 
         <rect
           class="sm:hidden group-[[data-drawing]]:hidden"
-          data-target={$context("eyes")}
+          data-target={$scope("eyes")}
           x="307.299"
           y="201.2"
           width="30"
@@ -140,7 +140,7 @@ const { $context } = Astro.props;
           fill="#6200FF"></rect>
         <path
           clip-path={`url(#${scope("scribble-bounds")})`}
-          data-target={$context("scribble")}
+          data-target={$scope("scribble")}
           d="M22.2191 30.6216C89.0424 33.6849 240.261 44.5515 300.44 82.6372C224.592 53.5359 59.8409 59.4502 22.688 89.3778C61.8098 73.8145 248.839 102.982 279.368 142.084C232.335 109.693 49.0079 123.682 20.1221 147.941C57.2131 132.178 252.802 157.562 275.461 202.292C242.329 178.056 52.5287 185.746 26.0628 206.139"
           stroke="#F9FAFB"
           transform="translate(58 160)"

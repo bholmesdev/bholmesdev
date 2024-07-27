@@ -1,10 +1,12 @@
 ---
-const html = Astro.slots.render("default", [$]);
+import { scope } from "simple:scope";
+
+const html = Astro.slots.render("default", [scope]);
 ---
 
-<div class="group" data-target={$("container")}>
+<RootElement class="group block">
   <Fragment set:html={html} />
-</div>
+</RootElement>
 
 <script>
   import { gsap } from "gsap";
@@ -20,7 +22,7 @@ const html = Astro.slots.render("default", [$]);
   const yPoolInitial = [-80, -40, 0, 40, 80, 120];
   const strokeOffset = 1624;
 
-  $.ready(() => {
+  RootElement.ready(($) => {
     isDrawing.set(false);
 
     const xPool = fisherYatesShuffle(xPoolInitial);
@@ -60,7 +62,7 @@ const html = Astro.slots.render("default", [$]);
     const drawBtn = $.optional<HTMLButtonElement>("drawBtn");
 
     effect(() => {
-      $("container").toggleAttribute("data-drawing", isDrawing.get());
+      $.self.toggleAttribute("data-drawing", isDrawing.get());
       if (drawBtn) {
         drawBtn.disabled = isDrawing.get();
       }
@@ -159,7 +161,7 @@ const html = Astro.slots.render("default", [$]);
         ease: "elastic.out(1,1)",
         duration: 0.4,
         onStart: () => {
-          resetCanvas = setUpCanvas($("container"), $("canvas"));
+          resetCanvas = setUpCanvas($.self, $("canvas"));
         },
       });
     }
