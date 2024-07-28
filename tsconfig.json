@@ -3,7 +3,6 @@
   "include": ["src", "astro.config.mjs"],
   "compilerOptions": {
     "target": "ES2020",
-    "noUnusedLocals": false,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]

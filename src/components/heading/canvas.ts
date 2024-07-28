@@ -108,7 +108,7 @@ export function setUpCanvas(
     onMouseDown(evt);
   }
 
-  function onStrokeEnd(evt: MouseEvent) {
+  function onStrokeEnd() {
     if (!drawing) return;
 
     drawing = false;
