@@ -5,7 +5,7 @@ import { scope } from "simple:scope";
 
 export function Newsletter() {
   const [state, action, pending] = useActionState(
-    withState(actions.subscribeToNewsletter.safe),
+    withState(actions.subscribeToNewsletter),
     { data: { success: false }, error: undefined }
   );
 

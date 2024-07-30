@@ -45,7 +45,7 @@ const { postSlug } = Astro.props;
       Boolean(localStorage.getItem(`isLike:${postSlug}`))
     );
 
-    const { likes } = await actions.getLikes({ postSlug });
+    const { likes } = await actions.getLikes.orThrow({ postSlug });
     $("text").textContent = likes.toString();
 
     ctx.effect(() => {
@@ -63,7 +63,7 @@ const { postSlug } = Astro.props;
       pending.set(true);
       liked.set(!liked.get());
 
-      const { data, error } = await actions.like.safe({
+      const { data, error } = await actions.like({
         postSlug,
         liked: liked.get(),
       });
