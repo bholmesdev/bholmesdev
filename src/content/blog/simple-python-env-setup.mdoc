@@ -1,0 +1,32 @@
+---
+title: The python environment setup cheatsheet
+description: A checklist for setting up your Python 3 environment in any editor
+date: 2024-09-01T22:02:02.829Z
+---
+
+Python seems to have a million different options to set up an environment. So I did what any good developer does: I asked Claude. Here's the checklist I used.
+
+## Setup
+
+Prerequisite: you'll want to have [`python3` installed on your machine](https://www.python.org/downloads/).
+
+1. Create a virtual environment in your current directory with `python3 -m venv .venv`. `.venv/` will be a generated folder, so add this to your `.gitignore`.
+2. Activate the environment with `source venv/bin/activate`. Run this every time you open your project directory from your editor, or when you open a new terminal instance.
+3. List all dependencies in a `requirements.txt` file.
+4. Install dependencies with `pip install -r requirements.txt`. Run this again whenever you add a new dependency to your `requirements.txt`.
+5. Run your scripts with `python3 name.py`.
+
+## Editor tooling
+
+VS Code seems to [generate helpful prompts](https://code.visualstudio.com/docs/python/environments#_create-a-virtual-environment-in-the-terminal) when creating a new environment to set up editor tooling.
+
+Outside of VS Code, I would install the pyright LSP. You can [install this into neovim environments](https://github.com/fannheyward/coc-pyright), or use the built-in pyright LSP when using Zed (my editor of choice).
+
+To tell pyright where your python env is located, add a `pyrightconfig.json` with a path to your `venv/` directory:
+
+```json
+{
+  "venvPath": ".",
+  "venv": ".venv"
+}
+```
