@@ -8,101 +8,108 @@ import { ViewTransitions } from "astro:transitions";
 import Font from "~/components/Font.astro";
 
 type Props = {
-  title?: string;
-  description?: string;
-  image?: ImageMetadata;
-  headings?: MarkdownHeading[];
+    title?: string;
+    description?: string;
+    image?: ImageMetadata;
+    headings?: MarkdownHeading[];
 };
 const {
-  title = "Ben Holmes",
-  description = "The whiteboard guy at Astro that codes kinda well.",
-  headings,
-  image = await getImage({ src: import("~/assets/bholmesdev.png") }),
+    title = "Ben Holmes",
+    description = "The whiteboard guy at Astro that codes kinda well.",
+    headings,
+    image = await getImage({ src: import("~/assets/bholmesdev.png") }),
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Ben Holmes" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@bholmesdev" />
-    <meta name="twitter:creator" content="@bholmesdev" />
-    <meta name="description" content={description} />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:image" content={image.src} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Ben Holmes" />
-    <meta property="og:title" />
-    <meta property="og:description" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <ViewTransitions fallback="none" />
-    <Font />
-    {
-      import.meta.env.PROD && (
-        <script
-          defer
-          data-domain="bholmes.dev"
-          src="https://plausible.io/js/script.outbound-links.js"
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Ben Holmes" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@bholmesdev" />
+        <meta name="twitter:creator" content="@bholmesdev" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image.src} />
+
+        <meta name="description" content={description} />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:image" content={image.src} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Ben Holmes" />
+        <meta property="og:title" />
+        <meta property="og:description" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <ViewTransitions fallback="none" />
+        <Font />
+        {
+            import.meta.env.PROD && (
+                <script
+                    is:inline
+                    defer
+                    data-domain="bholmes.dev"
+                    src="https://plausible.io/js/script.outbound-links.js"
+                />
+            )
+        }
+
+        <slot name="head" />
+        <title>{title}</title>
+    </head>
+    <body class="bg-gray-950 text-white text-base">
+        <RootElement
+            class="fixed inset-0 invisible bg-gray-950 opacity-0 z-30 data-[visible]:opacity-80 data-[visible]:visible transition-all"
         />
-      )
-    }
+        <Nav headings={headings} />
+        <div class="min-h-[80dvh]">
+            <slot />
+        </div>
+        <footer>
+            <p class="text-center py-8 text-sm">
+                &copy; 2020-present Ben Holmes. All rights reserved.
+            </p>
+        </footer>
+        <style is:global>
+            h1 {
+                font-family: var(--font-family-heading);
+            }
 
-    <slot name="head" />
-    <title>{title}</title>
-  </head>
-  <body class="bg-gray-950 text-white text-base">
-    <RootElement
-      class="fixed inset-0 invisible bg-gray-950 opacity-0 z-30 data-[visible]:opacity-80 data-[visible]:visible transition-all"
-    />
-    <Nav headings={headings} />
-    <div class="min-h-[80dvh]">
-      <slot />
-    </div>
-    <footer>
-      <p class="text-center py-8 text-sm">
-        &copy; 2020-present Ben Holmes. All rights reserved.
-      </p>
-    </footer>
-    <style is:global>
-      h1 {
-        font-family: var(--font-family-heading);
-      }
+            button {
+                cursor: pointer;
+            }
 
-      button {
-        cursor: pointer;
-      }
+            article a {
+                color: var(--color-primary-light);
+                transition: filter 0.15s;
+            }
+            article a:is(:hover, :focus) {
+                filter: brightness(1.25);
+            }
+        </style>
+        <script>
+            import { isDrawing } from "~/stores";
+            import { Signal } from "signal-polyfill";
 
-      article a {
-        color: var(--color-primary-light);
-        transition: filter 0.15s;
-      }
-      article a:is(:hover, :focus) {
-        filter: brightness(1.25);
-      }
-    </style>
-    <script>
-      import { isDrawing } from "~/stores";
-      import { Signal } from "signal-polyfill";
+            RootElement.ready(($, ctx) => {
+                const smBreakpointMatches = new Signal.State(
+                    window.matchMedia("(min-width: 640px)").matches,
+                );
+                window.matchMedia("(min-width: 640px)").onchange = ({
+                    matches,
+                }) => {
+                    smBreakpointMatches.set(matches);
+                };
 
-      RootElement.ready(($, ctx) => {
-        const smBreakpointMatches = new Signal.State(
-          window.matchMedia("(min-width: 640px)").matches
-        );
-        window.matchMedia("(min-width: 640px)").onchange = ({ matches }) => {
-          smBreakpointMatches.set(matches);
-        };
-
-        ctx.effect(() => {
-          $.self.toggleAttribute(
-            "data-visible",
-            isDrawing.get() && !smBreakpointMatches.get()
-          );
-        });
-      });
-    </script>
-  </body>
+                ctx.effect(() => {
+                    $.self.toggleAttribute(
+                        "data-visible",
+                        isDrawing.get() && !smBreakpointMatches.get(),
+                    );
+                });
+            });
+        </script>
+    </body>
 </html>
