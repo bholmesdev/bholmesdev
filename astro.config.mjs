@@ -8,11 +8,6 @@ import simpleQuery from "simple-stack-query";
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
-  adapter: netlify({
-    edgeMiddleware:true
-  }),
+  adapter: netlify(),
   integrations: [markdoc(), icon(), react(), simpleQuery()],
-  experimental: {
-    actions: true,
-  },
 });
