@@ -16,7 +16,7 @@ const { headings } = Astro.props;
       <progress data-target="progress" max="1"></progress>
       <Icon class="done" name="check" />
     </div>
-    <ul class="p-3 sm:p-5 pb-3" id={scope("panel")} role="list">
+    <ul class="p-3 min-w-3xs" id={scope("panel")} role="list">
       {
         headings
           .filter((h) => h.depth === 2)
