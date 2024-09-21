@@ -1,4 +1,4 @@
-import { ActionError, defineAction, z } from "astro:actions";
+import { ActionError, defineAction } from "astro:actions";
 import {
   checkIfRateLimited,
   updateLikes,
@@ -6,6 +6,7 @@ import {
   getEnv,
   getLikes,
 } from "~/utils.server";
+import { z } from "astro:schema";
 import { getEntry } from "astro:content";
 
 export const server = {
