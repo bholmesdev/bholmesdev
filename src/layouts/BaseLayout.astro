@@ -3,24 +3,23 @@ import "open-props/easings";
 import "./tailwind.css";
 import Nav from "~/components/Nav.astro";
 import type { MarkdownHeading, ImageMetadata } from "astro";
-import { getImage } from "astro:assets";
 import { ViewTransitions } from "astro:transitions";
 import Font from "~/components/Font.astro";
 
 type Props = {
     title?: string;
     description?: string;
-    image?: ImageMetadata;
+    image?: string | ImageMetadata;
     headings?: MarkdownHeading[];
 };
 const {
     title = "Ben Holmes",
     description = "The whiteboard guy at Astro that codes kinda well.",
     headings,
-    image = await getImage({ src: import("~/assets/bholmesdev.png") }),
+    image = '/social.jpg'
 } = Astro.props;
 
-const ogImage = new URL(image.src, Astro.site).href;
+const ogImage = new URL(typeof image === 'string' ? image : image.src, Astro.site).href;
 ---
 
 <!doctype html>
