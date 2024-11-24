@@ -71,22 +71,23 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     </div>
     <div
       data-computer
-      class="z-10 m-auto w-full pointer-events-none"
+      class="flex flex-col justify-end z-10"
       set:html={iBen}
-    />
-    <div
-      data-btn-overlay
-      data-target="cd-drive"
-      class="absolute left-0 right-0 z-20 flex justify-between items-end px-[5%] h-[13%]"
     >
-      <Button data-target={scope("play")} icon="play" aria-label="Play video" />
+        <div
+        data-btn-overlay
+        data-target="cd-drive"
+        class="absolute left-0 right-0 mb-[3.1%] flex justify-between items-end px-[5%] h-[12.5%]"
+        >
+        <Button data-target={scope("play")} icon="play" aria-label="Play video" />
 
-      <CdDrive />
-      <Button
-        data-target={scope("random")}
-        icon="random"
-        aria-label="Get random video"
-      />
+        <CdDrive />
+        <Button
+            data-target={scope("random")}
+            icon="random"
+            aria-label="Get random video"
+        />
+        </div>
     </div>
   </div>
 </RootElement>
