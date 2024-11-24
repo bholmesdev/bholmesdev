@@ -13,7 +13,7 @@ const { $scope } = Astro.props;
 <div
   data-whiteboard-container
   transition:name="whiteboard"
-  class="rotate-3 group-[[data-drawing]]:rotate-0 transition-transform duration-300"
+  class="rotate-3 group-data-drawing:rotate-0 transition-transform duration-300"
 >
   <canvas
     width="800"
@@ -26,7 +26,7 @@ const { $scope } = Astro.props;
     class="absolute left-[14%] bottom-[9%] w-[13%] h-[13%]"
   >
     <label
-      class="bg-marker-blue block w-full h-full rounded-[20%] group-[[data-drawing]]:not-has-checked:bg-marker-blue-light group-[[data-drawing]]:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
+      class="bg-marker-blue block w-full h-full rounded-[20%] group-data-drawing:not-has-checked:bg-marker-blue-light group-data-drawing:has-checked:scale-110 transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Eraser</span>
       <input class="sr-only" type="radio" value="eraser" name="color" />
@@ -34,7 +34,7 @@ const { $scope } = Astro.props;
   </div>
   <div>
     <button
-      class="invisible opacity-0 group-[[data-drawing]]:opacity-100 group-[[data-drawing]]:visible transition-all absolute top-6 right-2 p-2 bg-slate-500 rounded-full"
+      class="invisible opacity-0 group-data-drawing:opacity-100 group-data-drawing:visible transition-all absolute top-6 right-2 p-2 bg-slate-500 rounded-full"
       data-target={$scope("closeBtn")}
     >
       <span class="sr-only">Close</span>
@@ -42,11 +42,11 @@ const { $scope } = Astro.props;
     </button>
   </div>
   <div
-    class="group/markers opacity-30 group-[[data-drawing]]:opacity-100 transition-opacity absolute bottom-[2%] left-[10%] right-[5%] flex justify-center gap-[5%]"
+    class="group/markers opacity-30 group-data-drawing:opacity-100 transition-opacity absolute bottom-[2%] left-[10%] right-[5%] flex justify-center gap-[5%]"
     data-target={$scope("markers")}
   >
     <label
-      class="text-marker-red w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-red w-[24%] opacity-80 translate-y-0 group-data-drawing:has-checked:opacity-100 group-data-drawing:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
       set:html={marker}
     >
       <span class="sr-only">Red</span>
@@ -54,14 +54,14 @@ const { $scope } = Astro.props;
     </label>
     <label
       set:html={marker}
-      class="text-marker-blue w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-blue w-[24%] opacity-80 translate-y-0 group-data-drawing:has-checked:opacity-100 group-data-drawing:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Blue</span>
       <input class="sr-only" type="radio" value="blue" name="color" />
     </label>
     <label
       set:html={marker}
-      class="text-marker-green w-[24%] opacity-80 translate-y-0 group-[[data-drawing]]:has-checked:opacity-100 group-[[data-drawing]]:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
+      class="text-marker-green w-[24%] opacity-80 translate-y-0 group-data-drawing:has-checked:opacity-100 group-data-drawing:has-checked:-translate-y-[30%] transition-opacity transition-transform ease-spring-5 duration-700"
     >
       <span class="sr-only">Green</span>
       <input class="sr-only" type="radio" value="green" name="color" />
@@ -97,7 +97,7 @@ const { $scope } = Astro.props;
           stroke-width="25"
           stroke-linecap="round"></path>
         <path
-          class="sm:hidden group-[[data-drawing]]:hidden"
+          class="sm:hidden group-data-drawing:hidden"
           d="M158.262 319.189C168.246 330.416 185.183 338.872 211.569 338.872C237.955 338.872 254.892 330.416 264.876 319.189"
           stroke="#6200FF"
           stroke-width="35"
@@ -112,7 +112,7 @@ const { $scope } = Astro.props;
           fill="#6200FF"></rect>
 
         <rect
-          class="sm:hidden group-[[data-drawing]]:hidden"
+          class="sm:hidden group-data-drawing:hidden"
           data-target={$scope("eyes")}
           x="90.7898"
           y="201.2"
@@ -130,7 +130,7 @@ const { $scope } = Astro.props;
           fill="#6200FF"></rect>
 
         <rect
-          class="sm:hidden group-[[data-drawing]]:hidden"
+          class="sm:hidden group-data-drawing:hidden"
           data-target={$scope("eyes")}
           x="307.299"
           y="201.2"

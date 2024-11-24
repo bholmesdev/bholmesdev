@@ -1,0 +1,49 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props<T extends 'a' | 'button' = 'button'> = HTMLAttributes<T> & {
+  as?: T;
+  variant?: 'primary' | 'secondary';
+};
+
+const {class: cls, as: As = 'button', variant = 'secondary', ...props} = Astro.props;
+---
+
+<As data-container {...props} class:list={[
+  cls,
+  variant,
+  "h-14 flex group/btn ease-spring-3 duration-300 active:scale-y-90 origin-bottom font-bold rounded-2xl px-1 active:px-0",
+]}>
+    <span class="px-8 w-full h-12 origin-top group-hover/btn:brightness-125 group-active/btn:scale-y-105 group-active/btn:rounded-2xl flex gap-2 items-center justify-center rounded-xl">
+        <slot />
+    </span>
+</As>
+
+<style>
+    [data-container], span {
+        transition:
+          scale 0.5s var(--ease-spring-3),
+          filter 0.18s,
+          border-radius 0.2s,
+          padding 0.2s;
+    }
+    .primary {
+      background: linear-gradient(139deg, #6200ff 23.15%, #3b0493 74.32%);
+    }
+    .primary span {
+      background: linear-gradient(288deg, #6200ff80 59.32%, #a571f980 92.52%),
+        linear-gradient(129deg, #7c2aff 27.53%, #6200ff 67.2%);
+    }
+    .secondary {
+      background: linear-gradient(139deg, #2f3d4f 23.15%, #131f31 74.32%);
+    }
+    .secondary span {
+      background: linear-gradient(
+          288deg,
+          rgba(49, 62, 81, 0.2) 59.32%,
+          rgba(133, 155, 187, 0.2) 92.52%
+        ),
+        linear-gradient(129deg, #334155 27.53%, #303c4f 67.2%);
+    }
+
+</style>

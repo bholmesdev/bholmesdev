@@ -4,6 +4,7 @@ import icon from "astro-icon";
 import react from "@astrojs/react";
 import netlify from "@astrojs/netlify";
 import simpleQuery from "simple-stack-query";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,4 +12,7 @@ export default defineConfig({
   output: "hybrid",
   adapter: netlify(),
   integrations: [markdoc(), icon(), react(), simpleQuery()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

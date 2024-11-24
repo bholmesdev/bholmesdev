@@ -24,7 +24,7 @@ const { headings } = Astro.props;
             <li class="my-2 text-ellipsis whitespace-nowrap overflow-hidden text-sm">
               <a
                 data-target="links"
-                class="data-[active]:text-primary-light"
+                class="data-active:text-primary-light"
                 href={`#${h.slug}`}
               >
                 {h.text}
@@ -163,7 +163,7 @@ const { headings } = Astro.props;
   @supports (transition-timing-function: linear(1, 1)) {
     .panel {
       transition:
-        rotate 0.8s var(--transition-timing-function-spring-5),
+        rotate 0.8s var(--ease-spring-5),
         visibility 0.8s,
         scale 0.2s;
     }
