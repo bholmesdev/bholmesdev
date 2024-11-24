@@ -179,7 +179,7 @@ function isMatch(urlPath: string, linkPath: string) {
   ::view-transition-group(link-2),
   ::view-transition-group(link-3) {
     animation-duration: 500ms;
-    animation-timing-function: var(--transition-timing-function-spring-5);
+    animation-timing-function: var(--ease-spring-5);
   }
 </style>
 
@@ -187,7 +187,7 @@ function isMatch(urlPath: string, linkPath: string) {
   li {
     transform: translateX(calc((4.5em - (var(--idx) * 1em))));
     transition-delay: calc(var(--idx) * 50ms);
-    transition-timing-function: var(--transition-timing-function-spring-5);
+    transition-timing-function: var(--ease-spring-5);
     transition-duration: 500ms;
   }
 

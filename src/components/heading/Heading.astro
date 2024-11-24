@@ -28,42 +28,41 @@ import type { scope } from "simple:scope";
 
         <div
           data-grid
-          class="group mb-8 flex max-w-[80ch] grid gap-8 mx-auto px-4 sm:px-8"
+          class="group mb-8 max-w-[100ch] grid gap-6 mx-auto px-4 sm:px-8"
         >
-          <div style="grid-area: heading" class="sm:self-end mt-8">
-            <h1 class="text-9xl">
-              <span class="md:inline hidden">Hi, </span>
+          <div style="grid-area: heading" class="sm:self-end mt-8 @container">
+            <h1 class="text-8xl">
+              <span class="@sm:inline hidden">Hi, </span>
               I'm{" "}
               <strong class="bg-clip-text text-transparent bg-gradient-to-r from-[#9b5dff] to-[#6200ff] animate-[shine_4s_ease-in-out_infinite]">
                 Ben.
               </strong>
             </h1>
-            <p class="text-xl mb-5 text-slate-400">
+            <p class="text-lg mb-5 text-slate-400">
               The <span class="text-white">whiteboard guy</span> who codes kinda
               well.
             </p>
           </div>
           <div
             style="grid-area: buttons"
-            class="flex self-start mt-12 sm:mt-0 sm:self-start sm:flex-row flex-col-reverse gap-6"
+            class="flex self-start mt-12 sm:mt-0 sm:self-start sm:flex-row flex-col-reverse gap-6 text-lg"
           >
             <a
-              class="cursor-pointer group/btn active:scale-y-95 active:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl sm:animate-[shine_4s_500ms_ease-in-out_infinite] animate-[shine_4s_1s_ease-in-out_infinite]"
-              is="button"
+              class="h-14 group/btn cursor-pointer ease-spring-3 transition duration-300 active:scale-y-90 origin-bottom font-bold rounded-2xl px-1 no-underline sm:animate-[shine_4s_500ms_ease-in-out_infinite] animate-[shine_4s_1s_ease-in-out_infinite]"
               href="#videos"
               data-target="scroll-trigger"
               data-watch-btn
             >
-              <span class="group-active/btn:scale-105 group-active/btn:rounded-2xl group-active/btn:scale-y-110 origin-top rounded-xl px-8 py-3 flex items-center justify-center gap-4">
+              <span class="px-8 h-12 origin-top group-hover/btn:brightness-125 group-active/btn:scale-105 group-active/btn:rounded-2xl flex gap-2 items-center justify-center rounded-xl">
                 Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
               </span>
             </a>
             <button
-              class="group/btn disabled:brightness-[80%] disabled:scale-y-95 disabled:translate-y-1 font-bold rounded-2xl pb-2 px-1 no-underline text-xl sm:animate-[shine_4s_1s_ease-in-out_infinite] animate-[shine_4s_500ms_ease-in-out_infinite]"
+              class="h-14 flex group/btn ease-spring-3 transition duration-300 active:scale-y-90 origin-bottom font-bold rounded-2xl px-1 sm:animate-[shine_4s_1s_ease-in-out_infinite] animate-[shine_4s_500ms_ease-in-out_infinite]"
               data-draw-btn
               data-target={$scope("draw-trigger")}
             >
-              <span class="group-disabled/btn:scale-105 group-disabled/btn:rounded-2xl group-disabled/btn:scale-y-110 origin-top rounded-xl px-8 py-3 flex items-center justify-center gap-4">
+              <span class="px-8 w-full h-12 origin-top group-hover/btn:brightness-125 group-active/btn:scale-105 group-active/btn:rounded-2xl flex gap-2 items-center justify-center rounded-xl">
                 Draw <Icon name="draw" class="mb-[2px]" />
               </span>
             </button>
@@ -140,18 +139,12 @@ import type { scope } from "simple:scope";
   [data-watch-btn] span,
   [data-draw-btn] span {
     transition:
-      transform 0.5s var(--ease-spring-4),
+      scale 0.5s var(--ease-spring-3),
       filter 0.18s,
-      border-radius 0.3s;
-  }
-  [data-draw-btn]:not(:disabled) span:hover {
-    filter: brightness(1.25);
+      border-radius 0.2s;
   }
   [data-draw-btn] {
     background: linear-gradient(139deg, #2f3d4f 23.15%, #131f31 74.32%);
-    transition:
-      transform 0.5s var(--ease-spring-4),
-      filter 0.3s;
   }
   [data-squiggle] {
     animation: squiggle 5s linear infinite;
