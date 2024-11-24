@@ -2,7 +2,8 @@
 import { Icon } from "astro-icon/components";
 import Whiteboard from "./Whiteboard.astro";
 import WhiteboardContext from "./WhiteboardContext.astro";
-import type { scope } from "simple:scope";
+import { scope } from "simple:scope";
+import SquooshButton from "../SquooshButton.astro";
 ---
 
 <WhiteboardContext>
@@ -47,25 +48,21 @@ import type { scope } from "simple:scope";
             style="grid-area: buttons"
             class="flex self-start mt-12 sm:mt-0 sm:self-start sm:flex-row flex-col-reverse gap-6 text-lg"
           >
-            <a
-              class="h-14 group/btn cursor-pointer ease-spring-3 transition duration-300 active:scale-y-90 origin-bottom font-bold rounded-2xl px-1 no-underline sm:animate-[shine_4s_500ms_ease-in-out_infinite] animate-[shine_4s_1s_ease-in-out_infinite]"
+            <SquooshButton
+              as="a"
+              variant="primary"
+              class="sm:w-40 sm:animate-[shine_4s_500ms_ease-in-out_infinite] animate-[shine_4s_1s_ease-in-out_infinite]"
               href="#videos"
-              data-target="scroll-trigger"
-              data-watch-btn
+              data-target={scope("scroll-trigger")}
             >
-              <span class="px-8 h-12 origin-top group-hover/btn:brightness-125 group-active/btn:scale-105 group-active/btn:rounded-2xl flex gap-2 items-center justify-center rounded-xl">
                 Watch <Icon name="arrow-down" class="mx-[-3px] mb-[2px]" />
-              </span>
-            </a>
-            <button
-              class="h-14 flex group/btn ease-spring-3 transition duration-300 active:scale-y-90 origin-bottom font-bold rounded-2xl px-1 sm:animate-[shine_4s_1s_ease-in-out_infinite] animate-[shine_4s_500ms_ease-in-out_infinite]"
-              data-draw-btn
+            </SquooshButton>
+            <SquooshButton
+              class="sm:w-40 sm:animate-[shine_4s_1s_ease-in-out_infinite] animate-[shine_4s_500ms_ease-in-out_infinite]"
               data-target={$scope("draw-trigger")}
             >
-              <span class="px-8 w-full h-12 origin-top group-hover/btn:brightness-125 group-active/btn:scale-105 group-active/btn:rounded-2xl flex gap-2 items-center justify-center rounded-xl">
                 Draw <Icon name="draw" class="mb-[2px]" />
-              </span>
-            </button>
+            </SquooshButton>
           </div>
           <div
             style="grid-area: whiteboard"
@@ -120,31 +117,6 @@ import type { scope } from "simple:scope";
         "buttons whiteboard";
       grid-template-columns: auto;
     }
-  }
-  [data-watch-btn] {
-    background: linear-gradient(139deg, #6200ff 23.15%, #3b0493 74.32%);
-  }
-  [data-watch-btn] span {
-    background: linear-gradient(288deg, #6200ff80 59.32%, #a571f980 92.52%),
-      linear-gradient(129deg, #7c2aff 27.53%, #6200ff 67.2%);
-  }
-  [data-draw-btn] span {
-    background: linear-gradient(
-        288deg,
-        rgba(49, 62, 81, 0.2) 59.32%,
-        rgba(133, 155, 187, 0.2) 92.52%
-      ),
-      linear-gradient(129deg, #334155 27.53%, #303c4f 67.2%);
-  }
-  [data-watch-btn] span,
-  [data-draw-btn] span {
-    transition:
-      scale 0.5s var(--ease-spring-3),
-      filter 0.18s,
-      border-radius 0.2s;
-  }
-  [data-draw-btn] {
-    background: linear-gradient(139deg, #2f3d4f 23.15%, #131f31 74.32%);
   }
   [data-squiggle] {
     animation: squiggle 5s linear infinite;
