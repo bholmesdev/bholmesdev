@@ -4,6 +4,32 @@
   --font-heading: var(--font-family-heading);
   --font-sans: var(--font-family-sans);
 
+  --text-sm: clamp(0.91rem, 0.24vw + 0.83rem, 1rem);
+  --text-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+  --text-lg: clamp(1.12rem, 0.5vw + 1rem, 1.3rem);
+  --text-xl: clamp(1.4rem, 0.61vw + 1.1rem, 1.58rem);
+  --text-2xl: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+  --text-3xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+  --text-4xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+  --text-5xl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+  --text-7xl: clamp(5.2rem, 3.94vw + 3.75rem, 6.4rem);
+  --text-8xl: clamp(5.8rem, 4.14vw + 4.05rem, 7.2rem);
+
+  --color-marker-red: #ff0000;
+  --color-marker-blue: #0034ff;
+  --color-marker-blue-light: color-mix(
+    in srgb,
+    var(--color-marker-blue),
+    white 20%
+  );
+  --color-marker-green: var(--color-green-600);
+  --color-primary: #6200ff;
+  --color-primary-light: #a08aff;
+
+  --width-prose: 60ch;
+
+  /* Pulled from open props
+     https://github.com/argyleink/open-props/blob/main/src/props.easing.css */
   --ease-spring-1: linear(
     0,
     0.006,
@@ -119,29 +145,4 @@
     1.001 87.2%,
     1
   );
-
-  --width-prose: 60ch;
-
-  --text-sm: clamp(0.91rem, 0.24vw + 0.83rem, 1rem);
-  --text-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-  --text-lg: clamp(1.12rem, 0.5vw + 1rem, 1.3rem);
-  --text-xl: clamp(1.4rem, 0.61vw + 1.1rem, 1.58rem);
-  --text-2xl: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
-  --text-3xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
-  --text-4xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-  --text-5xl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
-  --text-7xl: clamp(5.2rem, 3.94vw + 3.75rem, 6.4rem);
-  --text-8xl: clamp(5.8rem, 4.14vw + 4.05rem, 7.2rem);
-
-  --color-marker-red: #ff0000;
-  --color-marker-blue: #0034ff;
-  --color-marker-blue-light: color-mix(
-    in srgb,
-    var(--color-marker-blue),
-    white 20%
-  );
-  --color-marker-green: var(--color-green-600);
-
-  --color-primary: #6200ff;
-  --color-primary-light: #a08aff;
 }
