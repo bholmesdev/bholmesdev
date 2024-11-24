@@ -50,9 +50,6 @@ importers:
       gsap:
         specifier: ^3.12.2
         version: 3.12.2
-      open-props:
-        specifier: ^1.6.16
-        version: 1.6.16
       postcss:
         specifier: ^8.4.39
         version: 8.4.39
@@ -2555,9 +2552,6 @@ packages:
   onetime@7.0.0:
     resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
     engines: {node: '>=18'}
-
-  open-props@1.6.16:
-    resolution: {integrity: sha512-QogvUMJUa/SxW5kjmZM+6bqSE2JMLKNWRbFUksEJAGYC9tmewuavHzZPq+dCeZtam+n0Q+D6DGA0DPjNeCVJNg==}
 
   ora@8.1.0:
     resolution: {integrity: sha512-GQEkNkH/GHOhPFXcqZs3IDahXEQcQxsSjEkK4KvEEST4t7eNzoMjxTzef+EZ+JluDEV+Raoi3WQ2CflnRdSVnQ==}
@@ -6180,8 +6174,6 @@ snapshots:
   onetime@7.0.0:
     dependencies:
       mimic-function: 5.0.1
-
-  open-props@1.6.16: {}
 
   ora@8.1.0:
     dependencies:
