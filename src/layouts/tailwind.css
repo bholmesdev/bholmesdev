@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-family-heading: var(--font-family-heading);
-  --font-family-sans: var(--font-family-sans);
+  --font-heading: var(--font-family-heading);
+  --font-sans: var(--font-family-sans);
 
   /* Default theme: https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/theme.css */
   --transition-timing-function-spring-1: cubic-bezier(0, 1.49, 0.38, 0.86);
