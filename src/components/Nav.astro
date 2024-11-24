@@ -41,7 +41,7 @@ function isMatch(urlPath: string, linkPath: string) {
     <ul
       transition:name="social"
       data-toc-visible={headings?.length}
-      class="text-slate-200 flex gap-4 items-center sm:relative absolute data-[toc-visible]:ml-14 data-[toc-visible]:sm:ml-0 group-[[data-open]]:invisible group-[[data-open]]:opacity-0 sm:group-[[data-open]]:opacity-100 sm:group-[[data-open]]:visible opacity-100 visible transition-all"
+      class="text-slate-200 flex gap-4 items-center sm:relative absolute data-toc-visible:ml-14 data-toc-visible:sm:ml-0 group-data-open:invisible group-data-open:opacity-0 sm:group-data-open:opacity-100 sm:group-data-open:visible opacity-100 visible transition-all"
     >
       <li
         class="hover:text-white hover:scale-110 focus-within:scale-110 transition-all ease-spring-3 duration-700"
@@ -77,13 +77,13 @@ function isMatch(urlPath: string, linkPath: string) {
       {
         links.map((l, idx) => (
           <li
-            class="invisible opacity-0 group-[[data-open]]:opacity-100 group-[[data-open]]:visible font-heading text-xl tracking-wide"
+            class="invisible opacity-0 group-data-open:opacity-100 group-data-open:visible font-heading text-xl tracking-wide"
             style={{ "--idx": idx + 1 }}
           >
             <a
               transition:name={`link-${idx}`}
               data-active={l.external ? false : isMatch(urlPath, l.url)}
-              class="no-underline block text-gray-300 data-[active]:text-white data-[active]:font-bold scale-100 data-[active]:scale-105"
+              class="no-underline block text-gray-300 data-active:text-white data-active:font-bold scale-100 data-active:scale-105"
               href={l.url}
             >
               {l.label}
@@ -101,15 +101,15 @@ function isMatch(urlPath: string, linkPath: string) {
         aria-label="Toggle menu"
       >
         <div
-          class="h-[3px] w-full rounded-full bg-current transition-transform origin-top-right group-[[data-open]]:-rotate-45"
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-top-right group-data-open:-rotate-45"
         >
         </div>
         <div
-          class="h-[3px] w-full rounded-full bg-current transition-transform origin-center group-[[data-open]]:scale-0"
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-center group-data-open:scale-0"
         >
         </div>
         <div
-          class="h-[3px] w-full rounded-full bg-current transition-transform origin-bottom-right group-[[data-open]]:rotate-45"
+          class="h-[3px] w-full rounded-full bg-current transition-transform origin-bottom-right group-data-open:rotate-45"
         >
         </div>
       </button>

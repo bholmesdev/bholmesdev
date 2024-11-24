@@ -61,7 +61,7 @@ const ogImage = new URL(typeof image === 'string' ? image : image.src, Astro.sit
     </head>
     <body class="bg-gray-950 text-white text-base">
         <RootElement
-            class="fixed inset-0 invisible bg-gray-950 opacity-0 z-30 data-[visible]:opacity-80 data-[visible]:visible transition-all"
+            class="fixed inset-0 invisible bg-gray-950 opacity-0 z-30 data-visible:opacity-80 data-visible:visible transition-all"
         />
         <Nav headings={headings} />
         <div class="min-h-[80dvh]">
