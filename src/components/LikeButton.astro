@@ -8,27 +8,27 @@ type Props = {
 const { postSlug } = Astro.props;
 ---
 
-<RootElement data={{ postSlug }} class="group/like flex items-center gap-4">
+<RootElement data={{ postSlug }} class="flex items-center gap-4">
   <button
     data-target="button"
     class="w-[2.5em] h-[2.5em] bg-gradient-to-br from-slate-600 to-slate-900 rounded-full flex items-center justify-center"
   >
     <div
-      class="group-data-[liked]/like:w-[75%] group-data-[liked]/like:h-[75%] w-[85%] h-[85%] rounded-full bg-gradient-to-br from-slate-800 to-slate-600 text-xl font-bold grid place-items-center transition-all -translate-y-[8%] group-data-[liked]/like:translate-y-0 ease-spring-5 duration-500"
+      class="in-data-liked:w-[75%] in-data-liked:h-[75%] w-[85%] h-[85%] rounded-full bg-gradient-to-br from-slate-800 to-slate-600 text-xl font-bold grid place-items-center transition-all -translate-y-[8%] in-data-liked:translate-y-0 ease-spring-5 duration-500"
     >
       <Icon
         name="heart"
-        class="row-start-1 col-start-1 transition-colors text-slate-300 group-data-[liked]/like:text-red-400"
+        class="row-start-1 col-start-1 transition-colors text-slate-300 in-data-liked:text-red-400"
       />
       <Icon
         name="heart"
-        class="row-start-1 col-start-1 transition-colors text-slate-300 group-data-[liked]/like:text-red-400 blur-0 group-data-[liked]/like:blur-[2px]"
+        class="row-start-1 col-start-1 transition-colors text-slate-300 in-data-liked:text-red-400 blur-0 in-data-liked:blur-[2px]"
       />
     </div>
   </button>
   <p
     data-target="text"
-    class="group-data-[pending]/like:opacity-60 transition-opacity"
+    class="in-data-pending:opacity-60 transition-opacity"
   >
     -
   </p>
