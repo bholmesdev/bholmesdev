@@ -71,13 +71,13 @@ const showcaseSrc = getImgSrc(showcaseVideo);
     </div>
     <div
       data-computer
-      class="flex flex-col justify-end z-10"
+      class="pointer-events-none flex flex-col justify-end z-10"
       set:html={iBen}
     >
         <div
         data-btn-overlay
         data-target="cd-drive"
-        class="absolute left-0 right-0 mb-[3.1%] flex justify-between items-end px-[5%] h-[12.5%]"
+        class="pointer-events-auto absolute left-0 right-0 mb-[3.1%] flex justify-between items-end px-[5%] h-[12.5%]"
         >
         <Button data-target={scope("play")} icon="play" aria-label="Play video" />
 
