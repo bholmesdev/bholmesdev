@@ -9,7 +9,7 @@ export function setUpCanvas(
     red: getCssVar("--color-marker-red"),
     blue: getCssVar("--color-marker-blue"),
     green: getCssVar("--color-marker-green"),
-    eraser: "white",
+    eraser: "#F9FAFB",
   };
 
   function getColor(name: string): string {
