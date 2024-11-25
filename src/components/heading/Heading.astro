@@ -29,7 +29,7 @@ import SquooshButton from "../SquooshButton.astro";
 
         <div
           data-grid
-          class="group mb-8 max-w-[100ch] grid gap-6 mx-auto px-4 sm:px-8"
+          class="group mb-8 max-w-[80ch] grid grid-cols-[4fr_3fr] gap-6 mx-auto px-4 sm:px-8"
         >
           <div style="grid-area: heading" class="sm:self-end mt-8 @container">
             <h1 class="text-8xl">
@@ -66,7 +66,7 @@ import SquooshButton from "../SquooshButton.astro";
           </div>
           <div
             style="grid-area: whiteboard"
-            class="place-self-center sm:min-w-56 mr-[-30%] relative group-data-drawing:z-30 group-data-drawing:fixed sm:relative! group-data-drawing:mr-0 group-data-drawing:top-4 group-data-drawing:left-4 sm:top-0! sm:left-0! sm:mr-auto"
+            class="-mr-[30%] sm:mr-0 sm:min-w-56 relative group-data-drawing:z-30 group-data-drawing:fixed sm:relative! group-data-drawing:mr-0 group-data-drawing:top-4 group-data-drawing:left-4 sm:top-0! sm:left-0!"
           >
             <Whiteboard {$scope} />
             <div class="group-data-drawing:opacity-0 transition-opacity absolute bottom-[10%] sm:right-[50%] right-[90%] -z-10 w-full overflow-hidden">
@@ -108,14 +108,12 @@ import SquooshButton from "../SquooshButton.astro";
     grid-template-areas:
       "heading heading"
       "buttons whiteboard";
-    grid-template-columns: 1fr 1fr;
   }
   @media (min-width: 640px) {
     [data-grid] {
       grid-template-areas:
         "heading whiteboard"
         "buttons whiteboard";
-      grid-template-columns: auto;
     }
   }
   [data-squiggle] {
