@@ -18,11 +18,12 @@ const blog = defineCollection({
               width: 1200,
               height: 630,
               format: "jpeg",
-            } satisfies ImageMetadata)
+            }) satisfies ImageMetadata,
         )
         .or(image())
         .optional(),
       date: z.coerce.date(),
+      updated: z.coerce.date().optional(),
       draft: z.boolean().default(false),
     }),
 });

@@ -8,13 +8,13 @@ import { Newsletter } from "~/components/Newsletter";
 import { getCollection } from "astro:content";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getCollection("blog");
-  return posts
-    .filter((p) => !p.data.draft)
-    .map((p) => ({
-      params: { slug: p.slug },
-      props: { post: p },
-    }));
+    const posts = await getCollection("blog");
+    return posts
+        .filter((p) => !p.data.draft)
+        .map((p) => ({
+            params: { slug: p.slug },
+            props: { post: p },
+        }));
 };
 
 type Props = { post: CollectionEntry<"blog"> };
@@ -27,195 +27,221 @@ const { Content, headings } = await post.render();
 ---
 
 <BaseLayout
-  {headings}
-  title={post.data.title}
-  description={post.data.description}
-  image={post.data.image}
+    {headings}
+    title={post.data.title}
+    description={post.data.description}
+    image={post.data.image}
 >
-  <main class="max-w-prose mx-auto px-3 mb-24">
-    <RootElement class="block">
-      {
-        post.data.image && (
-          <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
-            <Image
-              class="aspect-[4/3] object-cover object-left w-full"
-              src={post.data.image}
-              alt=""
-            />
-          </div>
-        )
-      }
-      <div class="flex flex-col gap-4">
-        <h1 class="text-4xl mt-12">{post.data.title}</h1>
-        <div class="flex flex-wrap gap-6 items-center mb-8">
-          <LikeButton postSlug={post.slug} />
-          <p
-            class="bg-slate-800 rounded px-2 py-1 text-gray-300 font-mono text-sm w-max"
-          >
-            Published <time datetime={post.data.date.toISOString()}
-              >{
-                post.data.date.toLocaleDateString(undefined, {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })
-              }</time
-            >
-          </p>
-        </div>
-      </div>
-      <Content />
-      <div class="mt-12">
-        <Newsletter client:visible />
-      </div>
-    </RootElement>
-  </main>
+    <main class="max-w-prose mx-auto px-3 mb-24">
+        <RootElement class="block">
+            {
+                post.data.image && (
+                    <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
+                        <Image
+                            class="aspect-[4/3] object-cover object-left w-full"
+                            src={post.data.image}
+                            alt=""
+                        />
+                    </div>
+                )
+            }
+            <div class="flex flex-col gap-4">
+                <h1 class="text-4xl mt-12">{post.data.title}</h1>
+                <div class="flex flex-wrap gap-6 items-center mb-8">
+                    <LikeButton postSlug={post.slug} />
+                    <p
+                        class="bg-slate-800 rounded px-2 py-1 text-gray-300 font-mono text-sm w-max"
+                    >
+                        Published <time datetime={post.data.date.toISOString()}
+                            >{
+                                post.data.date.toLocaleDateString(undefined, {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric",
+                                })
+                            }</time
+                        >
+                    </p>
+                    {
+                        post.data.updated && (
+                            <p class="text-gray-400 font-mono text-sm w-max italic">
+                                Updated{" "}
+                                <time
+                                    datetime={post.data.updated.toISOString()}
+                                >
+                                    {post.data.date.toLocaleDateString(
+                                        undefined,
+                                        {
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "numeric",
+                                        },
+                                    )}
+                                </time>
+                            </p>
+                        )
+                    }
+                </div>
+            </div>
+            <Content />
+            <div class="mt-12">
+                <Newsletter client:visible />
+            </div>
+        </RootElement>
+    </main>
 </BaseLayout>
 
 <style>
-  main :global(article) {
-    counter-reset: heading-counter;
-  }
+    main :global(article) {
+        counter-reset: heading-counter;
+    }
 
-  main :global(article) :global(h3) {
-    font-size: var(--font-size-xl);
-    margin-block-start: 3rem;
-  }
+    main :global(article) :global(h3) {
+        font-size: var(--font-size-xl);
+        margin-block-start: 3rem;
+    }
 
-  main :global(article) :global(h4) {
-    font-size: var(--font-size-lg);
-    margin-block-start: 2.5rem;
-  }
+    main :global(article) :global(h4) {
+        font-size: var(--font-size-lg);
+        margin-block-start: 2.5rem;
+    }
 
-  main :global(article) :global(h2) {
-    font-size: var(--font-size-2xl);
-    margin-block-start: 5rem;
-    position: relative;
-  }
+    main :global(article) :global(h2) {
+        font-size: var(--font-size-2xl);
+        margin-block-start: 5rem;
+        position: relative;
+    }
 
-  main :global(article) :global(h2:before) {
-    counter-increment: heading-counter;
-    content: counter(heading-counter);
-    position: absolute;
-    border-radius: calc(infinity * 1px);
-    background: var(--color-gray-900);
-    height: 2.4em;
-    width: 2.4em;
-    top: -1.1em;
-    left: -1em;
-    display: flex;
-    z-index: -1;
-    line-height: 1.3;
-    color: var(--color-gray-600);
-    font-size: var(--font-size-2xl);
-    font-family: var(--font-family-heading);
-    justify-content: center;
-  }
+    main :global(article) :global(h2:before) {
+        counter-increment: heading-counter;
+        content: counter(heading-counter);
+        position: absolute;
+        border-radius: calc(infinity * 1px);
+        background: var(--color-gray-900);
+        height: 2.4em;
+        width: 2.4em;
+        top: -1.1em;
+        left: -1em;
+        display: flex;
+        z-index: -1;
+        line-height: 1.3;
+        color: var(--color-gray-600);
+        font-size: var(--font-size-2xl);
+        font-family: var(--font-family-heading);
+        justify-content: center;
+    }
 
-  h1,
-  main :global(article) :global(:is(h2, h3, h4)) {
-    font-weight: bold;
-    line-height: 1.3;
-  }
+    h1,
+    main :global(article) :global(:is(h2, h3, h4)) {
+        font-weight: bold;
+        line-height: 1.3;
+    }
 
-  main :global(article) :global(ol) {
-    list-style: decimal;
-  }
+    main :global(article) :global(ol) {
+        list-style: decimal;
+    }
 
-  main :global(article) :global(ul) {
-    list-style: disc;
-  }
+    main :global(article) :global(ul) {
+        list-style: disc;
+    }
 
-  main :global(article) :global(:is(ol, ul)) {
-    padding-inline-start: 1.5rem;
-  }
+    main :global(article) :global(:is(ol, ul)) {
+        padding-inline-start: 1.5rem;
+    }
 
-  main :global(article) :global(:is(p, li)) {
-    line-height: 1.7;
-    margin-block: 1.3rem;
-  }
+    main :global(article) :global(:is(p, li)) {
+        line-height: 1.7;
+        margin-block: 1.3rem;
+    }
 
-  main :global(article) :global(a) {
-    color: var(--color-primary-light);
-    text-decoration: underline;
-  }
+    main :global(article) :global(a) {
+        color: var(--color-primary-light);
+        text-decoration: underline;
+    }
 
-  main :global(article) :global(li) {
-    margin-block: 0.5rem;
-  }
+    main :global(article) :global(li) {
+        margin-block: 0.5rem;
+    }
 
-  main :global(article) :global(pre) {
-    padding-inline: 1rem;
-    padding-block: 1.3rem;
-    border-radius: 0.4rem;
-    line-height: 1.7;
-    margin-block: 1rem;
-    font-size: var(--font-size-sm);
-  }
+    main :global(article) :global(pre) {
+        padding-inline: 1rem;
+        padding-block: 1.3rem;
+        border-radius: 0.4rem;
+        line-height: 1.7;
+        margin-block: 1rem;
+        font-size: var(--font-size-sm);
+    }
 
-  main :global(article) :global(code) {
-    /* Prevent long URLs from overflowing */
-    word-break: break-all;
-  }
+    main :global(article) :global(code) {
+        /* Prevent long URLs from overflowing */
+        word-break: break-all;
+    }
 </style>
 
 <script>
-  import { progress, currentSectionIdx } from "~/stores";
+    import { progress, currentSectionIdx } from "~/stores";
 
-  RootElement.ready(($, ctx) => {
-    const article = $.self.querySelector("article");
-    if (!article) return;
+    RootElement.ready(($, ctx) => {
+        const article = $.self.querySelector("article");
+        if (!article) return;
 
-    const headings = [...article.querySelectorAll("h2")];
-    let waitingOnAnimRequest = false;
+        const headings = [...article.querySelectorAll("h2")];
+        let waitingOnAnimRequest = false;
 
-    document.addEventListener(
-      "scroll",
-      () => {
-        if (waitingOnAnimRequest) return;
-        window.requestAnimationFrame(() => {
-          waitingOnAnimRequest = false;
-          const articleRect = $.self.getBoundingClientRect();
-          const articleHeight = $.self.offsetTop + articleRect.height;
-          progress.set(
-            Math.min((window.scrollY + window.innerHeight) / articleHeight, 1)
-          );
-        });
-        waitingOnAnimRequest = true;
-      },
-      { signal: ctx.abortSignal }
-    );
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          if (headings.includes(entry.target as HTMLHeadingElement)) {
-            currentSectionIdx.set(
-              headings.indexOf(entry.target as HTMLHeadingElement)
-            );
-          }
-          let heading: HTMLHeadingElement | null = null;
-          let previousSibling = entry.target.previousElementSibling;
-          while (!heading && previousSibling) {
-            previousSibling = previousSibling.previousElementSibling;
-            if (
-              previousSibling instanceof HTMLHeadingElement &&
-              headings.includes(previousSibling)
-            ) {
-              heading = previousSibling;
-            }
-          }
-          if (!heading) return;
-          const idx = headings.indexOf(heading);
-          if (idx >= 0) {
-            currentSectionIdx.set(idx);
-          }
-        });
-      },
-      { rootMargin: "-49% 0px", threshold: 0 }
-    );
-    for (const element of article.children) {
-      observer.observe(element);
-    }
-  });
+        document.addEventListener(
+            "scroll",
+            () => {
+                if (waitingOnAnimRequest) return;
+                window.requestAnimationFrame(() => {
+                    waitingOnAnimRequest = false;
+                    const articleRect = $.self.getBoundingClientRect();
+                    const articleHeight = $.self.offsetTop + articleRect.height;
+                    progress.set(
+                        Math.min(
+                            (window.scrollY + window.innerHeight) /
+                                articleHeight,
+                            1,
+                        ),
+                    );
+                });
+                waitingOnAnimRequest = true;
+            },
+            { signal: ctx.abortSignal },
+        );
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    if (headings.includes(entry.target as HTMLHeadingElement)) {
+                        currentSectionIdx.set(
+                            headings.indexOf(
+                                entry.target as HTMLHeadingElement,
+                            ),
+                        );
+                    }
+                    let heading: HTMLHeadingElement | null = null;
+                    let previousSibling = entry.target.previousElementSibling;
+                    while (!heading && previousSibling) {
+                        previousSibling =
+                            previousSibling.previousElementSibling;
+                        if (
+                            previousSibling instanceof HTMLHeadingElement &&
+                            headings.includes(previousSibling)
+                        ) {
+                            heading = previousSibling;
+                        }
+                    }
+                    if (!heading) return;
+                    const idx = headings.indexOf(heading);
+                    if (idx >= 0) {
+                        currentSectionIdx.set(idx);
+                    }
+                });
+            },
+            { rootMargin: "-49% 0px", threshold: 0 },
+        );
+        for (const element of article.children) {
+            observer.observe(element);
+        }
+    });
 </script>
