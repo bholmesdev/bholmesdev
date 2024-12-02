@@ -34,7 +34,7 @@ If this seems confusing, let's consider a CSS variable like this one on the `bod
 body {
 	--mobile-breakpoint: 600px;
 }
-@media(max-width: var(--mobile-breakpoint)) {...}
+@media(max-width: var(--mobile-breakpoint)) { /* ... */ }
 ```
 
 Since our `@media` query is global, it cannot know about this `--mobile-breakpoint` variable. This extends to the `:root` selector as well.
