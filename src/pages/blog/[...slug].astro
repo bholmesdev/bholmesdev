@@ -69,7 +69,7 @@ const { Content, headings } = await post.render();
                                 <time
                                     datetime={post.data.updated.toISOString()}
                                 >
-                                    {post.data.date.toLocaleDateString(
+                                    {post.data.updated.toLocaleDateString(
                                         undefined,
                                         {
                                             year: "numeric",
