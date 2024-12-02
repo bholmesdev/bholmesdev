@@ -39,9 +39,9 @@ body {
 
 Since our `@media` query is global, it cannot know about this `--mobile-breakpoint` variable. This extends to the `:root` selector as well.
 
-Sass / SASS can make this even more confusing by allowing `@media` blocks to be nested inside of other rulesets. Don't be fooled! When your Sass gets compiled, those media queries will be hoisted to the base of your CSS document.
+SASS / SCSS can make this even more confusing by allowing `@media` blocks to be nested inside of other rulesets. Don't be fooled! When your SASS gets compiled, those media queries will be hoisted to the base of your CSS document.
 
-## Workaround for SASS and SCSS users - use SASS variables for media queries
+## For SASS and SCSS users: use SASS variables for media queries
 
 If you're using SASS or SCSS, I recommend falling back to SASS variables for media queries and using CSS variables everywhere else.
 
