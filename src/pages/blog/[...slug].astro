@@ -112,6 +112,15 @@ const { Content, headings } = await post.render();
         position: relative;
     }
 
+    main :global(article) :global(blockquote) {
+        border-left: 4px solid var(--color-gray-900);
+        color: var(--color-gray-300);
+        padding-left: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        font-style: italic;
+    }
+
     main :global(article) :global(h2:before) {
         counter-increment: heading-counter;
         content: counter(heading-counter);
