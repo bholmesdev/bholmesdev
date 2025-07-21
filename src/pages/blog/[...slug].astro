@@ -35,7 +35,7 @@ const { Content, headings } = await post.render();
     <main class="max-w-prose mx-auto px-3 mb-24">
         <RootElement class="block">
             {
-                post.data.image && (
+                post.data.image && post.data.showImage && (
                     <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
                         <Image
                             class="aspect-[4/3] object-cover object-left w-full"
