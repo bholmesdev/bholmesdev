@@ -15,10 +15,13 @@ const {
     title = "Ben Holmes",
     description = "The whiteboard guy at Astro that codes kinda well.",
     headings,
-    image = '/social.jpg?v=3'
+    image = "/social.jpg",
 } = Astro.props;
 
-const ogImage = new URL(typeof image === 'string' ? image : image.src, Astro.site).href;
+const ogImage = new URL(
+    typeof image === "string" ? image : image.src,
+    Astro.site,
+).href;
 ---
 
 <!doctype html>
