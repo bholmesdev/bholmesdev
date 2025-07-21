@@ -35,7 +35,7 @@ const { Content, headings } = await post.render();
     <main class="max-w-prose mx-auto px-3 mb-24">
         <RootElement class="block">
             {
-                post.data.image && (
+                post.data.image && post.data.showImage && (
                     <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
                         <Image
                             class="aspect-[4/3] object-cover object-left w-full"
@@ -110,6 +110,15 @@ const { Content, headings } = await post.render();
         font-size: var(--text-2xl);
         margin-block-start: 5rem;
         position: relative;
+    }
+
+    main :global(article) :global(blockquote) {
+        border-left: 4px solid var(--color-gray-900);
+        color: var(--color-gray-300);
+        padding-left: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        font-style: italic;
     }
 
     main :global(article) :global(h2:before) {

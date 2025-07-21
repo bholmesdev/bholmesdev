@@ -1,0 +1,97 @@
+---
+title: Response to DHH on the gift of open source
+description: Open source is like a gift exchange. DHH thinks these gifts should be crafted out of self interest, but I disagree. Here's why.
+image: ./thumbnail.png
+showImage: false
+date: 2025-07-20T21:13:41.025Z
+---
+
+I listened to the [DHH x Lex Fridman podcast](https://www.youtube.com/watch?v=vagyIcmIGOQ) this past week. It’s 6 hours long, and genuinely I wish it were 10+. There are _phenomenal_ lessons in here about the beauty of programming language design, the power of open source, the importance of family… just go listen to it.
+
+{% youtube id="vagyIcmIGOQ" /%}
+
+I was originally going to write a TLDR about everything I learned. But there was one part of the podcast that I wanted to focus on: [DHH’s comparison of open source to gift giving](https://youtu.be/vagyIcmIGOQ?si=POt9h7oZ2RuvdTv6&t=20196). It speaks to a lot of my past work as an open source maintainer at Astro, and DHH takes a stance that I… _almost_ agree with. But also kind of don’t.
+
+## Open source is a gift exchange
+
+Here’s a direct quote to start:
+
+> In open source, the customer is a **receiver of gifts**. We are having a gift exchange. I show up and give you my code. If you like it, you can use it. And if you have some code that fits in with where I’m going with this, I would love to get those gifts back. And we can keep trading like that… Together, we pull all the gifts such that someone showing up that’s brand new gets a mountain of gifts.
+
+I love this analogy. Sharing Ruby on Rails with the world was an extraordinary gift that changed the course of web development for decades to come. What’s more, that gift wasn’t a one-sided act; it became a two-sided _exchange._ One person (DHH) shared an idea with the world, it solved real problems for like-minded people, and they shared their own libraries and contributions in return. No money was exchanged, but ideas and gratitude were.
+
+That said, let’s hear the next line:
+
+> This is the magic thing of open source. It increases the total sum value of what’s in the commons when we all pursue **our own self-interest.**”
+
+Increases the value of what’s in the commons… when we pursue our _own_ self-interest.
+
+Why self interest?
+
+I agree with this idea on the surface; since open source projects are “gifts,” not paid services, you, the maintainer, should follow the path that _you_ set for that project. A clear path keeps you in the game without causing burnout. It also keeps the direction of the project certain without a “designed by committee” roadmap. And crucially, it puts up boundaries around the open source relationship. I give this gift to you… but it’s ultimately built for _my_ self interest. I will not be swayed by _your_ self interest. Don’t like what I’m doing? Well I don’t care! Fork it and build what you wish. This is what you might call a “benevolent dictatorship,” which is common across the largest open source projects out there.
+
+There’s nothing inherently wrong with that level of detachment. It may be a healthy line to draw when you’re opening yourself up to community scrutiny. Still, I don’t think that’s what _gift giving_ truly means.
+
+## What gift giving means
+
+There was a [recent interview between Jony Ive and Stripe CEO Patrick Collison](https://www.youtube.com/watch?v=wLb9g_8r-mE&t=984s) about the importance of designing for other people.
+
+{% youtube id="wLb9g_8r-mE" /%}
+
+Jony Ive makes this point on [designing for other members of your team](https://youtu.be/wLb9g_8r-mE?si=_5nterVSNf4EUX5f&t=1877):
+
+> Make things for other people. If you can put that in your daily routine, making things for others on your team, that really puts you in a lovely place.
+
+In Jony Ive’s view, designing for someone else is a very vulnerable and necessary practice. You’re forging a relationship by building with someone else in mind. You’re also opening yourself to criticism, which can be scary.
+
+But there’s a reason that the vulnerability is worth pursuing: **gratitude**. When you build something for someone else, that someone will be grateful for the time and effort you put into it.
+
+Vulnerability is rewarded by gratitude.
+
+Building relationships this way is a very human and “lovely” practice. And it’s what I’d call… **good gift giving.**
+
+Going back to DHH’s view on open source, there’s a lot less sacrifice involved. Ruby on Rails is a gift to the community, but it’s still _for_ Basecamp. It’s designed for the needs of _their_ company, and not necessarily yours. If Ruby on Rails happens to map onto the needs of your company, great! You can enjoy the open source gifts that they’ve shared. But if it doesn’t map onto your needs… well, there’s no guarantee that they’ll ever build with your needs in mind.
+
+Now don’t get me wrong: Ruby on Rails _is_ a gift. It shows a lot of vulnerability to share a framework for building websites, and the community was certainly grateful for DHH's contribution. But if the roadmap to follow is driven by self-interest alone, he’s not selflessly designing for other people as Jony Ive might suggest. It’s gift giving, but a kind of… _selfish_ gift giving.
+
+## The consequence of selfish gift giving
+
+Now, a disclaimer: I’m not a member of the Ruby on Rails community. I don’t know how the community has influenced the Ruby on Rails roadmap. I only have DHH’s stance on this podcast and a few spare tweets to go off of. Still, I saw an example of how selfish gift giving can rub people the wrong way: TypeScript support in Stimulus.
+
+[Stimulus](https://stimulus.hotwired.dev/) is an open source library from Basecamp that makes working with web components simpler. It’s the backbone of interactivity across Basecamp’s products, with [Hey.com](https://www.hey.com/) being a recent example. Naturally, those outside of Basecamp wanted to adopt Stimulus as well. The problem is, some of these interested users didn’t share DHH’s ideals about how software should be written: The ideals of raw text editing without completions, or of using JavaScript without types. So, despite DHH’s preferences, they’d prefer to have TypeScript support built into the library.
+
+And TypeScript support _was_ a feature of Stimulus for some time. Community members decided to be vulnerable with their views and contribute this gift TypeScript support to the project. 
+
+Did they receive gratitude in return? Well, with the next major release… DHH decided to remove type completions entirely. The community was understandably upset. In the eyes of DHH, TypeScript completions didn’t match how he wanted software to be developed. He also didn’t want to maintain something he didn’t like. So, out they went. Gift rejected.
+
+Was DHH wrong to make this call? It’s honestly not my place to say. Maybe maintaining TypeScript types was leading to burnout on Stimulus, so it needed to be removed for DHH to continue stewarding the project. Or maybe his wider narrative on how software should be written is a core principle of the project worth sticking to. If some community members disagree, they aren’t worth serving. Or better yet, he can change their mind.
+
+On the other hand, maybe removing types was a selfish choice that DHH didn’t need to make. Using Jony Ive’s design philosophy, TypeScript types were a design decision suggested by, and built for, other people. It comes with a level of vulnerability (I built these completions for you, hope you like them), and the expected payoff is gratitude from the library’s community and maintainers. But DHH wasn’t interested in the gratitude of the TypeScript community, and didn’t want to build a relationship with the TypeScript community. So the gift exchange ended there.
+
+## My time at Astro
+
+For the past few years, I’ve been a core maintainer of [Astro](https://astro.build), an open source framework for building content-driven websites. From the beginning, this project was built by a core _team_ (not a benevolent dictator), attracting a larger and larger community over time. Today, Astro sits at nearly 935 contributors to the [core repo](https://github.com/withastro/astro), and _over a thousand_ contributors to [documentation](https://github.com/withastro/docs).
+
+There are a number of reasons the Astro community grew to that size. For one, there was the openness of our docs team. Our docs leaders set clear guidelines for what good documentation looked like, and made the contribution process as accessible as possible. Just look at [this post Sarah wrote back in June 2022](https://www.rainsberger.ca/blog/community-driven-astro-docs/). A community member asked “have you written anything about your community-driven approach to docs at Astro?” And she wrote an essay on the subject. Never change Sarah :)
+
+After setting these expectations, the core team stepped back, and let the community step in. Internationalization is my favorite example, since translations are notoriously hard for open source projects to get right (or get at all). I18n contributions were slow at first. But overtime, contributors started translating our docs to Spanish, then French, then Japanese… until we hit a serious tipping point. The Astro docs sit at 14 supported languages today.
+
+How did we get so many translations? The answer’s the same as any good gift exchange: reward vulnerability with gratitude. If a community member translates a single page of our docs into their language, we don’t just say "LGTM" and merge the PR. We give them a special badge in our discord community. We give a thorough PR review with kind, thorough feedback about what to improve for next time. Multiple maintainers stop by the PR to say thanks, even if that PR has already been merged. I’ll say it again: reward vulnerability with gratitude. 
+
+This principle is the backbone of Astro core as well. We have a core team that guides the direction of the project, yes. But we _also_ have a public roadmap, and a public discussion board for anyone to share ideas. The system isn’t perfect (we’re working on ways to make roadmap contribution more accessible), but it’s led to many features landing in Astro that the core team wouldn’t have thought of. [Server islands](https://github.com/withastro/roadmap/pull/963), [Vercel ISR](https://github.com/withastro/roadmap/discussions/228#discussioncomment-11545091), and [first-party font support](https://github.com/withastro/roadmap/pull/1039) to name a few.
+
+We easily could’ve said “we don’t want the hassle of managing Spanish translations,” or “sorry, we don’t believe in serverless hosting.” But we decided to let the community shape the roadmap a bit more. The community showed us what was possible with the gifts they gave.
+
+Of course, there's a balance between accepting and rejecting gifts. We draw boundaries between what should exist in core vs. what should be maintained by the community (ex. adapters for exotic deployment hosts), with an integration system to make the framework extensible. We also formalized which i18n translations our docs would and would not support, [with a blog post](https://astro.build/blog/astro-i18n/) describing our process. In all cases though, there's a common theme: **clear communication.** If we're going to reject gifts from a certain community, they deserve to know why. They also deserve an [accessible discussion forum](https://astro.build/chat) to voice their opinions.
+
+I’ll make one more contrast between Astro and Ruby on Rails: **Astro doesn’t belong to any company.** Astro isn’t built for a Basecamp, it’s built for Astro’s own sake. Instead of designing for a single party, we design for a broad community. We design for other people.
+
+Sure, Astro could be a much more focused project if we partnered with a company and built for their needs. But I imagine the community would be much smaller, and community sentiment would be more mixed.
+
+## Conclusions
+
+I guess I’ll leave off with this: yes, free and open source software is a gift exchange. Maintainers are sacrificing their time and their brainpower without asking for a cent in return. And for this gift exchange to continue, and to grow, we need to keep rewarding vulnerability with gratitude.
+
+You may prefer to keep your community small and only exchange gifts with like-minded individuals. Reject the TypeScript heads, find the text editor junkies. Or you may want to attract a broader community, and try to design for people that _aren’t_ necessarily like you. It’s harder to do, but in my opinion, very rewarding.
+
+So, contributors: keep being vulnerable. And maintainers: keep showing gratitude. Open source is a powerful thing, so let’s make it flourish together.
