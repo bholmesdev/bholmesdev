@@ -18,7 +18,7 @@ export function getEnv() {
 }
 
 export async function checkIfRateLimited(
-  ctx: Pick<APIContext, "request" | "locals">
+  ctx: Pick<APIContext, "request" | "locals">,
 ): Promise<boolean> {
   const ip = import.meta.env.DEV
     ? scope("development")

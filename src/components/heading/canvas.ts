@@ -3,7 +3,7 @@ const eraserWidth = 100;
 
 export function setUpCanvas(
   container: HTMLElement,
-  canvas: HTMLCanvasElement
+  canvas: HTMLCanvasElement,
 ): () => void {
   const colorMap = {
     red: getCssVar("--color-marker-red"),
@@ -30,7 +30,7 @@ export function setUpCanvas(
   ctx.lineJoin = "round";
 
   const colorInputs: NodeListOf<HTMLInputElement> = container.querySelectorAll(
-    'input[name="color"]'
+    'input[name="color"]',
   )!;
   for (const colorInput of colorInputs) {
     colorInput.addEventListener("change", (evt) => {

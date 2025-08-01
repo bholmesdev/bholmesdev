@@ -5,12 +5,12 @@ export function showTemplate(template: HTMLTemplateElement) {
   const firstChild = [...content.childNodes].find((n) => n instanceof Element);
   if (!firstChild) {
     throw new Error(
-      "Template show failed. Template does not have any content."
+      "Template show failed. Template does not have any content.",
     );
   }
   if (!template.parentElement) {
     throw new Error(
-      "Template show failed. Template does not have a parent element. Does the template exist in the document?"
+      "Template show failed. Template does not have a parent element. Does the template exist in the document?",
     );
   }
 
@@ -53,11 +53,11 @@ export function createRoot(rootName: string) {
       if (import.meta.env.DEV) {
         return `const el = ${rootSelector};
       if (!el) throw new Error('Action ${JSON.stringify(
-        name
+        name,
       )} called, but no parent root was found. Did you wrap this element with a root?');
       const action = el.${name};
       if (typeof action !== "function") throw new Error('Action ${JSON.stringify(
-        name
+        name,
       )} does not exist on ${JSON.stringify(rootName)}');
       action.bind(el).call(event)`;
       }
