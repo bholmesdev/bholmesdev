@@ -14,10 +14,10 @@ export function Newsletter() {
   return (
     <section className="bg-gray-900 -mx-4 rounded-2xl shadow-xl py-8 px-4 sm:px-8">
       <h2 className="font-bold font-heading text-gray-200 text-2xl mb-2">
-        The whiteboardist newsletter
+        The Hubble Note newsletter
       </h2>
       <p className="mb-8">
-        Occasional posts and learnings from a lead Astro maintainer.
+        Get updates on <a href="https://hubblenote.com" className="text-primary-light underline transition-[filter] duration-150 hover:brightness-125">Hubble Note</a> as soon as they land!
       </p>
       <form action={action} className="flex gap-4 items-start">
         <div className="flex flex-col gap-4 w-full">
