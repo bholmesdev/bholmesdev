@@ -23,6 +23,7 @@ const blog = defineCollection({
         .or(image())
         .optional(),
       showImage: z.boolean().default(true),
+      cropLegacy: z.boolean().default(true),
       date: z.coerce.date(),
       updated: z.coerce.date().optional(),
       draft: z.boolean().default(false),

@@ -38,7 +38,8 @@ const { Content, headings } = await post.render();
                 post.data.image && post.data.showImage && (
                     <div class="aspect-video w-full overflow-hidden flex items-end rounded-lg">
                         <Image
-                            class="aspect-[4/3] object-cover object-left w-full"
+                            data-crop={post.data.cropLegacy}
+                            class="data-crop:aspect-[4/3] object-cover object-left w-full"
                             src={post.data.image}
                             alt=""
                         />
