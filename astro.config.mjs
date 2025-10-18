@@ -3,7 +3,7 @@ import markdoc from "@astrojs/markdoc";
 import icon from "astro-icon";
 import react from "@astrojs/react";
 import netlify from "@astrojs/netlify";
-import simpleQuery from "simple-stack-query";
+import simpleQuery from "@simplestack/query";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
