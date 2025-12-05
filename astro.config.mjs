@@ -9,7 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://bholmes.dev",
-  output: "hybrid",
+  output: "server",
   adapter: netlify(),
   integrations: [markdoc(), icon(), react(), simpleQuery()],
   vite: {
