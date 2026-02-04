@@ -1,6 +1,6 @@
 # Hi, I'm Ben 👋
 
-Hey there! I’m Ben, a senior web developer at Astro. You might know me from my short whiteboard videos breaking down all sorts of topics (React Server Components, HTMX, and SQLite to name a few). You also might know me as the inventor of Astro. **I didn't invent Astro.** But I'm a proud full time developer driving it forward :)
+Hey there! I’m Ben, DevEx lead at [Warp](https://warp.dev) and core maintainer of [Astro](https://astro.build). You might know me from my short whiteboard videos breaking down all sorts of topics (React Server Components, HTMX, and SQLite to name a few). You also might know me as the inventor of Astro. **I didn't invent Astro.** But I'm a proud full time developer driving it forward :)
 
 ## Find repositories from my content
 
