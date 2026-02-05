@@ -16,7 +16,8 @@ import SquooshButton from "~/components/SquooshButton.astro";
     </div>
     <article class="mt-6 md:mt-12 lg:mt-16">
       <h1 class="text-4xl mb-4 sm:mb-8 font-heading">About me</h1>
-      <input id="inbrief-checkbox" class="hidden checkbox" type="checkbox" />
+      <input id="inbrief-checkbox" class="hidden checkbox" type="checkbox" aria-describedby="mode-description" />
+      <p id="mode-description" class="sr-only">Toggle between personal and recruiter view modes</p>
       <label
         class="font-bold cursor-pointer grid gap-2 items-center justify-between text-lg text-gray-400 mb-2"
         for="inbrief-checkbox"

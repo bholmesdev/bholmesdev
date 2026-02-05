@@ -37,6 +37,8 @@ const { headings } = Astro.props;
   <button
     data-target="btn"
     aria-controls={scope("panel")}
+    aria-expanded="false"
+    aria-label="Table of contents"
     class="transition-all ease-spring-3 duration-500"
   >
     <div class="inner overflow-y-hidden">
@@ -58,6 +60,7 @@ const { headings } = Astro.props;
 
     ctx.effect(() => {
       $.self.toggleAttribute("data-open", open.get());
+      $("btn").setAttribute("aria-expanded", open.get().toString());
       $<HTMLProgressElement>("progress").value = progress.get();
 
       $.self.toggleAttribute(
