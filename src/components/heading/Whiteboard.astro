@@ -19,8 +19,10 @@ const { $scope } = Astro.props;
     width="800"
     height="1200"
     data-target={$scope("canvas")}
+    aria-label="Interactive whiteboard for drawing"
+    role="img"
     class="absolute w-[85%] h-[85.7%] inset-y-[7%] inset-x-[10.8%] rounded-[5%]"
-  ></canvas>
+  >Your browser does not support the canvas element.</canvas>
   <div
     data-target={$scope("eraser")}
     class="absolute left-[14%] bottom-[9%] w-[13%] h-[13%]"

@@ -11,6 +11,8 @@ const { postSlug } = Astro.props;
 <RootElement data={{ postSlug }} class="flex items-center gap-4">
   <button
     data-target="button"
+    aria-label="Like this post"
+    aria-pressed="false"
     class="w-[2.5em] h-[2.5em] bg-gradient-to-br from-slate-600 to-slate-900 rounded-full flex items-center justify-center"
   >
     <div
@@ -51,6 +53,7 @@ const { postSlug } = Astro.props;
     ctx.effect(() => {
       $.self.toggleAttribute("data-liked", liked.get());
       $.self.toggleAttribute("data-pending", pending.get());
+      $("button").setAttribute("aria-pressed", liked.get().toString());
 
       if (liked.get()) {
         localStorage.setItem(`isLike:${postSlug}`, "true");
