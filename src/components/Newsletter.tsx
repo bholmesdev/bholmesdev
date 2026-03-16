@@ -1,6 +1,6 @@
 import { useActionState } from "react";
 import { actions, isInputError } from "astro:actions";
-import { experimental_withState as withState } from "@astrojs/react/actions";
+import { withState } from "@astrojs/react/actions";
 import { scope } from "simple:scope";
 
 export function Newsletter() {
