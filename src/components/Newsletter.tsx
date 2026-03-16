@@ -32,7 +32,7 @@ export function Newsletter() {
                 name="email"
                 type="email"
                 required
-                className="rounded px-4 py-3 border-2 border-slate-700 focus:ring-0 focus:border-primary focus:outline-none transition-colors"
+className="rounded px-4 py-3 border-2 border-slate-500 focus:ring-0 focus:border-primary focus:outline-none transition-colors"
               />
               {fieldErrors.email && (
                 <p className="text-red-300">{fieldErrors.email}</p>
