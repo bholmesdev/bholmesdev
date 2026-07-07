@@ -8,12 +8,11 @@ This project is built using [Astro.](https://astro.build) To run this project on
 
 ## Optional third party services
 
-Interactive features including the like button and newsletter sign-up form rely on third-party services:
+Interactive features including the like button rely on third-party services:
 
 - [Upstash](https://upstash.com/) for persistent storage
-- [Buttondown API](https://docs.buttondown.email/api-introduction) for newsletter signups
 
-To try these features locally, you will need to generate API credentials for each. See the `.env.example` for credentials you will need to retrieve. Then, place these variables in `.env` file following the same format.
+To try these features locally, you will need to generate API credentials. See the `.env.example` for credentials you will need to retrieve. Then, place these variables in `.env` file following the same format.
 
 ## Production deployment
 
@@ -49,4 +48,3 @@ All commands are run from the root of the project using your terminal:
 | `pnpm preview`         | Preview your build locally, before deploying     |
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
-

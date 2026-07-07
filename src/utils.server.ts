@@ -5,10 +5,7 @@ import { z } from "astro/zod";
 import { createHash } from "node:crypto";
 import { scope } from "simple:scope";
 
-export const BUTTONDOWN_URL = "https://api.buttondown.email/v1/";
-
 const envSchema = z.object({
-  BUTTONDOWN_API_KEY: z.string(),
   UPSTASH_REDIS_REST_TOKEN: z.string(),
   UPSTASH_REDIS_REST_URL: z.string(),
 });
