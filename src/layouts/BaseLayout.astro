@@ -63,16 +63,16 @@ const ogImage = new URL(
         <slot name="head" />
         <title>{title}</title>
     </head>
-    <body class="bg-gray-950 text-white text-base">
+    <body class="bg-surface text-text text-base">
         <RootElement
-            class="fixed inset-0 invisible bg-gray-950 opacity-0 z-30 data-visible:opacity-80 data-visible:visible transition-all"
+            class="fixed inset-0 invisible bg-surface opacity-0 z-30 data-visible:visible transition-all"
         />
         <Nav headings={headings} />
         <div class="min-h-[80dvh]">
             <slot />
         </div>
         <footer>
-            <p class="text-center py-8 text-sm">
+            <p class="text-center py-8 text-sm text-text-muted">
                 &copy; 2020-present Ben Holmes. All rights reserved.
             </p>
         </footer>
@@ -91,6 +91,12 @@ const ogImage = new URL(
             }
             article a:is(:hover, :focus) {
                 filter: brightness(1.25);
+            }
+
+            /* Keep the drawing overlay dimming theme-aware. */
+            body > :first-child[data-visible] {
+                opacity: 1;
+                background-color: var(--palette-overlay);
             }
         </style>
         <script>
