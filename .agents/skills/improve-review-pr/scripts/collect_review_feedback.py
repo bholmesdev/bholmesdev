@@ -88,10 +88,6 @@ def _run_gh_json(args: list[str]) -> Any:
 
 
 def _paginate(path: str, params: list[str] | None = None) -> list[Any]:
-    args = ["--paginate", path]
-    if params:
-        for item in params:
-            args.extend(["-f", item] if "=" in item and not item.startswith("per_page") else ["-F", item])
     # Prefer query string construction for simple GETs.
     if params:
         query = "&".join(params)
@@ -184,7 +180,7 @@ def _classify_reply(body: str) -> str:
         return "validated"
     if len(text) < 12:
         return "ambiguous"
-    return "refined"
+    return "ambiguous"
 
 
 def _list_recent_prs(owner: str, repo: str, since: datetime, max_prs: int) -> list[dict[str, Any]]:
