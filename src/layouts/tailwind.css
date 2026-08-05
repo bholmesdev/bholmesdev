@@ -1,5 +1,79 @@
 @import "tailwindcss";
 
+/* Runtime palette tokens. Dark remains the default.
+   @theme maps these into Tailwind color utilities without circular refs. */
+:root {
+  color-scheme: dark;
+  --palette-surface: #030712; /* gray-950 */
+  --palette-surface-elevated: #111827; /* gray-900 */
+  --palette-surface-muted: #1f2937; /* gray-800 */
+  --palette-border: #374151; /* gray-700 */
+  --palette-text: #ffffff;
+  --palette-text-muted: #d1d5db; /* gray-300 */
+  --palette-text-subtle: #9ca3af; /* gray-400 */
+  --palette-overlay: rgb(3 7 18 / 0.8);
+  --palette-primary: #6200ff;
+  --palette-primary-light: #a08aff;
+  --palette-primary-contrast: #ffffff;
+  --palette-marker-red: #ff0000;
+  --palette-marker-blue: #0034ff;
+  --palette-marker-blue-light: color-mix(
+    in srgb,
+    var(--palette-marker-blue),
+    white 20%
+  );
+  --palette-marker-green: #16a34a; /* green-600 */
+}
+
+/* Light mode palette for OS preference or explicit data-theme="light". */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --palette-surface: #fafafa;
+    --palette-surface-elevated: #ffffff;
+    --palette-surface-muted: #f3f4f6; /* gray-100 */
+    --palette-border: #e5e7eb; /* gray-200 */
+    --palette-text: #111827; /* gray-900 */
+    --palette-text-muted: #4b5563; /* gray-600 */
+    --palette-text-subtle: #6b7280; /* gray-500 */
+    --palette-overlay: rgb(17 24 39 / 0.45);
+    --palette-primary: #4c00c9;
+    --palette-primary-light: #6d28d9; /* violet-700, readable on light surfaces */
+    --palette-primary-contrast: #ffffff;
+    --palette-marker-red: #dc2626;
+    --palette-marker-blue: #1d4ed8;
+    --palette-marker-blue-light: color-mix(
+      in srgb,
+      var(--palette-marker-blue),
+      white 25%
+    );
+    --palette-marker-green: #15803d;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --palette-surface: #fafafa;
+  --palette-surface-elevated: #ffffff;
+  --palette-surface-muted: #f3f4f6;
+  --palette-border: #e5e7eb;
+  --palette-text: #111827;
+  --palette-text-muted: #4b5563;
+  --palette-text-subtle: #6b7280;
+  --palette-overlay: rgb(17 24 39 / 0.45);
+  --palette-primary: #4c00c9;
+  --palette-primary-light: #6d28d9;
+  --palette-primary-contrast: #ffffff;
+  --palette-marker-red: #dc2626;
+  --palette-marker-blue: #1d4ed8;
+  --palette-marker-blue-light: color-mix(
+    in srgb,
+    var(--palette-marker-blue),
+    white 25%
+  );
+  --palette-marker-green: #15803d;
+}
+
 @theme {
   --font-heading: var(--font-family-heading);
   --font-sans: var(--font-family-sans);
@@ -15,16 +89,19 @@
   --text-7xl: clamp(5.2rem, 3.94vw + 3.75rem, 6.4rem);
   --text-8xl: clamp(5.8rem, 4.14vw + 4.05rem, 7.2rem);
 
-  --color-marker-red: #ff0000;
-  --color-marker-blue: #0034ff;
-  --color-marker-blue-light: color-mix(
-    in srgb,
-    var(--color-marker-blue),
-    white 20%
-  );
-  --color-marker-green: var(--color-green-600);
-  --color-primary: #6200ff;
-  --color-primary-light: #a08aff;
+  --color-marker-red: var(--palette-marker-red);
+  --color-marker-blue: var(--palette-marker-blue);
+  --color-marker-blue-light: var(--palette-marker-blue-light);
+  --color-marker-green: var(--palette-marker-green);
+  --color-primary: var(--palette-primary);
+  --color-primary-light: var(--palette-primary-light);
+  --color-surface: var(--palette-surface);
+  --color-surface-elevated: var(--palette-surface-elevated);
+  --color-surface-muted: var(--palette-surface-muted);
+  --color-border: var(--palette-border);
+  --color-text: var(--palette-text);
+  --color-text-muted: var(--palette-text-muted);
+  --color-text-subtle: var(--palette-text-subtle);
 
   --width-prose: 60ch;
 
